@@ -1,0 +1,89 @@
+---
+title: Markers and warning systems
+summary: A buried pipeline is invisible, and most damage comes from people who did not know it was there. Learn the layers of marking and warning that keep excavators away.
+order: 4
+minutes: 15
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, API RP 1109, SAES-L-450]
+outcomes:
+  - List the types of pipeline marker and where each is placed
+  - Explain what information a marker must carry
+  - Describe below-ground warning and protection measures
+  - Relate marking to third-party damage prevention
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## Layers of defence
+
+Third-party damage is the leading cause of pipeline failure. Marking is part of a layered defence:
+
+1. **Awareness.** Land-use planning, public information, one-call and permit-to-dig systems.
+2. **Above-ground markers** that tell people a pipeline is there before they dig.
+3. **Below-ground warning**: tape or mesh that an excavator finds before the pipe.
+4. **Physical protection**: slabs, extra cover, heavier wall.
+5. **Detection**: patrols and monitoring that spot activity on the right of way.
+
+No single layer is reliable alone. Each catches some of what the others miss.
+
+## Markers and warning devices
+
+<InfoTabs client:visible title="Pipeline marking and warning" tabs={[
+  { label: "Line markers", title: "Line marker posts", text: "Posts on the pipeline centreline or right-of-way edge, visible from one to the next.", rows: [["Where", "At intervals so the route can be followed, at every change of direction, and both sides of each road, rail, wadi and fence crossing"], ["Shows", "Warning word, product carried, operator name and an emergency phone number"], ["Note", "A marker shows the presence of a line, not its exact position or depth"]] },
+  { label: "KP markers", title: "Kilometre markers", text: "Posts or plates showing the kilometre point along the line.", rows: [["Where", "Every kilometre, sometimes every 500 m"], ["Purpose", "Lets patrols, maintenance crews and emergency services report an exact location"], ["Also used for", "Referencing in-line inspection results to the ground"]] },
+  { label: "Aerial markers", title: "Aerial markers", text: "Large numbered boards readable from a patrol aircraft or drone.", rows: [["Where", "Typically every few kilometres and at key features"], ["Purpose", "Position reference for aerial patrols"]] },
+  { label: "CP test posts", title: "Cathodic protection test posts", text: "Posts with terminals connected to the pipe for potential measurements.", rows: [["Where", "About every 1 to 2 km, and at every crossing, casing and isolation joint"], ["Double duty", "Often combined with line and KP markers"]] },
+  { label: "AGM", title: "Above-ground marker points for in-line inspection", text: "Surveyed reference points where a detector box is placed when an inspection pig is run.", rows: [["Where", "About every 1 to 2 km"], ["Purpose", "Ties the pig's distance record to known coordinates so defects can be found accurately"], ["Also", "Permanent magnets or marker bands fixed to the pipe act as buried reference points"]] },
+  { label: "Warning tape", title: "Buried warning tape and mesh", text: "Brightly coloured plastic tape or mesh laid in the trench above the pipe.", rows: [["Where", "About 300 mm above the pipe crown, along the whole line"], ["Purpose", "An excavator bucket pulls up the tape before reaching the pipe"], ["Options", "Printed warning text; detectable tape with a metal strip; wide mesh for large pipe"]] },
+  { label: "Slabs", title: "Concrete slabs and protection plates", text: "Reinforced concrete slabs or plates buried above the pipe.", rows: [["Where", "Road crossings with limited cover, areas of heavy third-party activity, farmland with deep ploughing"], ["Purpose", "Physically stops or slows an excavator, and spreads wheel loads"], ["Note", "Slabs must be wider than the pipe and marked with tape above them"]] },
+  { label: "Fibre sensing", title: "Fibre-optic intrusion detection", text: "A fibre-optic cable in the trench used as a continuous vibration sensor.", rows: [["How", "Distributed acoustic sensing detects digging, vehicles and footsteps near the line"], ["Purpose", "Real-time alarm with location, before the pipe is hit"], ["Bonus", "The same cable carries SCADA data and can support leak detection"]] },
+]} />
+
+## What a marker says
+
+A marker is only useful if it can be read and acted on. It carries:
+
+- a warning word such as **WARNING**, **CAUTION** or **DANGER**,
+- the product: gas pipeline, petroleum pipeline, and so on,
+- the operator's name,
+- a telephone number answered at all times,
+- often the kilometre point and a "do not dig before calling" message,
+- text in the local language as well as English.
+
+Markers are placed so they are not easily knocked down by vehicles, are visible above vegetation and drifting sand, and are checked and replaced on patrol.
+
+## Marking during construction
+
+Before the permanent markers go in, the construction team marks:
+
+- the surveyed centreline and right-of-way boundaries with stakes,
+- **every existing buried service**, with its depth, before trenching reaches it,
+- overhead power lines, with height limit goalposts for cranes and sidebooms,
+- open trench, with barriers and lights near roads and settlements.
+
+## Records are markers too
+
+The most precise "marker" is the as-built survey. Operators hold pipeline positions in a geographic information system and share them through one-call or permit systems, so that anyone planning to excavate is told what is there. In the field, the line is then located precisely with an electromagnetic pipe locator and marked on the ground before digging starts.
+
+<Callout type="aramco">
+SAES-L-450 and Saudi Aramco standard drawings define pipeline marker types, wording and spacing, including kilometre markers, crossing markers and aerial markers. Excavation near company pipelines is controlled through a work permit system. Check the current standard drawings for marker details.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §434.18 and B31.8 §851.7 | Line markers at crossings and along the route, with the operator's name and emergency number. |
+| API RP 1109 | Recommended practice for marking liquid petroleum pipeline facilities. |
+| API RP 1162 | Public awareness programmes for pipeline operators. |
+| SAES-L-450 | Aramco marker and warning tape requirements. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "What does a line marker tell an excavator?", options: ["The exact position and depth of the pipe", "That a pipeline is nearby and who to call", "The pipe wall thickness", "The operating pressure"], answer: 1, why: "Markers indicate presence, product and emergency contact. Exact location requires the operator to locate and mark the line." },
+  { q: "Where is warning tape placed?", options: ["On the pipe surface", "About 300 mm above the pipe crown", "At the ground surface", "Under the pipe"], answer: 1, why: "It must be reached by an excavator before the pipe is." },
+  { q: "Why are above-ground marker points (AGMs) needed for in-line inspection?", options: ["To power the pig", "To tie the pig's distance measurement to known ground positions", "To slow the pig", "To launch the pig"], answer: 1, why: "Reference points correct odometer drift so reported defects can be located for excavation." }
+]} />

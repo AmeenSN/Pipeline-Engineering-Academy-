@@ -1,0 +1,130 @@
+---
+title: Wadi and water crossings
+summary: A wadi is dry for years and then carries a flood that can strip metres of bed in hours. Learn how scour is estimated, how deep to bury the pipe and how to keep it stable.
+order: 3
+minutes: 25
+level: Intermediate
+standards: [ASME B31.4, ASME B31.8, SAES-L-410, SAES-L-450]
+outcomes:
+  - Explain how flash floods threaten buried pipelines
+  - Estimate scour depth and set the burial depth
+  - Choose between open-cut and trenchless crossing methods
+  - Specify stability and protection measures
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ScourDepth from "@/components/interactives/ScourDepth.tsx";
+
+## The hazard
+
+In arid regions, rain is rare but intense. Runoff from a large rocky catchment concentrates in the wadi within hours, producing a short, fast, sediment-laden flood. Three things then happen to a pipeline crossing:
+
+1. **Scour.** The flood lifts the bed material into suspension. The bed level during the peak can be metres below the dry bed. When the flood recedes the bed refills, so the evidence disappears.
+2. **Exposure and spanning.** If scour reaches the pipe, the pipe is left unsupported in fast water, loaded by drag, debris impact and vortex-induced vibration (module M2).
+3. **Bank erosion and channel migration.** The wadi shifts sideways, attacking the sloping sections of pipe at the banks where cover is least.
+
+Perennial rivers, canals and tidal channels pose the same threats more continuously, with buoyancy and navigation (anchors, dredging) added.
+
+## Estimating scour
+
+The design scour depth comes from a hydrological study (module M3). For sandy beds a widely used first estimate is Lacey's regime formula:
+
+$$
+R = 0.473 \left( \frac{Q}{f} \right)^{1/3} \qquad f = 1.76 \sqrt{d_{50}}
+$$
+
+- $R$ is the normal scour depth in metres, measured **below the flood water level**.
+- $Q$ is the design flood discharge in m³/s.
+- $f$ is the silt factor, from the median grain size $d_{50}$ in millimetres.
+
+The maximum scour is larger than $R$ where the flow is concentrated: about 1.27 R on a straight reach, 1.5 R at a moderate bend and 1.75 R or more at a sharp bend.
+
+<ScourDepth client:visible />
+
+Try this: increase the flood flow and watch the scoured bed approach the pipe. Then change from a straight reach to a sharp bend, which shows why crossings are sited on straight reaches.
+
+## Setting the burial depth
+
+$$
+\text{cover below bed} \geq \text{scour depth below bed} + \text{margin}
+$$
+
+The margin, commonly 1 to 2 m, covers the uncertainty in the flood estimate and in the scour formula. The deep section extends beyond the present banks to allow for channel migration, and the pipe rises to normal cover with **sag bends well outside the banks**.
+
+Design floods for pipeline crossings are typically the 1-in-50-year to 1-in-100-year event.
+
+## Keeping the pipe stable
+
+Even with good burial, crossings are designed to survive exposure:
+
+- **Concrete weight coating** gives negative buoyancy and mechanical protection against debris.
+- **Heavier wall pipe** through the crossing.
+- **No girth weld defects:** 100 % inspection.
+- **Selected backfill**, with the bed restored to its natural level so the crossing does not create a hump or hollow that triggers local scour.
+- **Bank protection:** rock riprap, gabion mattresses or articulated concrete mats on the banks, keyed in at the toe.
+
+## Crossing methods
+
+| Method | When used |
+|---|---|
+| Open cut in the dry | Wadis and seasonal channels: the usual method. Build outside the flood season. |
+| Open cut in flowing water | Small perennial streams, with flumes or dam-and-pump to divert flow. |
+| HDD or microtunnel | Major rivers, navigable channels, environmentally sensitive water, or where the scour depth makes open cut impractical. |
+| Aerial crossing (pipe bridge) | Deep gorges and canals where burial is not feasible. Exposed to damage and needs expansion design. |
+
+<Callout type="field">
+A wadi bed looks like the easiest ground on the route: flat, sandy and dry. That is exactly why it is dangerous. Look for flood marks, debris lines and undercut banks during the site visit, and ask local people how high the last flood came.
+</Callout>
+
+<Callout type="aramco">
+For wadi crossings, Saudi Aramco practice under SAES-L-410 and SAES-L-450 is to bury the pipeline below the predicted scour depth with concrete coating or other buoyancy control, and to provide erosion protection at the banks. Check the current standards for the required design flood and cover.
+</Callout>
+
+## Inspection in service
+
+Because the bed refills after a flood, a crossing can lose and regain its cover without anyone seeing. Operators therefore:
+
+- patrol crossings after every significant flood,
+- survey depth of cover at intervals,
+- look for exposed pipe, eroded banks and damaged protection works,
+- review in-line inspection data for dents or strain at crossings.
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §434.6 and §434.13 | Greater cover at river and stream crossings (1.2 m minimum) and design for scour, buoyancy and stability. |
+| ASME B31.8 §841.1.11 | Water crossings to be designed for flood, scour and buoyancy, with additional protection where cover cannot be assured. |
+| SAES-L-410 and SAES-L-450 | Aramco design and construction requirements for wadi crossings. |
+
+</Standards>
+
+<Worked title="Burial depth at a wadi crossing">
+
+**Given:** design flood 400 m³/s, medium sand bed with d50 = 0.5 mm, flood depth 2 m, straight reach, margin 1.5 m.
+
+**Silt factor:** f = 1.76 × √0.5 = 1.24.
+
+**Normal scour below flood level:**
+
+$$
+R = 0.473 \times \left( \frac{400}{1.24} \right)^{1/3} = 0.473 \times 6.86 = 3.2 \text{ m}
+$$
+
+**Maximum scour on a straight reach:** 1.27 × 3.2 = 4.1 m below flood level.
+
+**Below the bed:** 4.1 − 2.0 = 2.1 m.
+
+**Required cover:** 2.1 + 1.5 = **3.6 m** below the wadi bed.
+
+At a sharp bend the same flood would scour 1.75 × 3.2 − 2.0 = 3.7 m below bed, needing 5.2 m of cover: a strong argument for moving the crossing to a straight reach.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "Why is scour hard to detect after a flood?", options: ["It only happens underground", "The bed refills as the flood recedes", "Wadis are inaccessible", "Scour is always small"], answer: 1, why: "Sediment redeposits as the flow slows, hiding how deep the bed was at the peak." },
+  { q: "Where should the sag bends of a wadi crossing be located?", options: ["At the centre of the bed", "Well outside the banks", "At the toe of each bank", "Anywhere convenient"], answer: 1, why: "Keeping the deep section beyond the banks protects against bank erosion and channel migration." },
+  { q: "What is the purpose of concrete coating at a wadi crossing?", options: ["Thermal insulation", "Stability and mechanical protection if the pipe is exposed", "Cathodic protection", "Easier welding"], answer: 1, why: "It keeps the pipe heavy enough to stay down in water and shields it from debris." }
+]} />

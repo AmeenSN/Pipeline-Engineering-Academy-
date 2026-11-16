@@ -1,0 +1,79 @@
+---
+title: Fault and seismic crossings
+summary: Ground that moves permanently can stretch, compress or shear a buried pipeline. Learn the ground movement hazards and the design approach that lets a pipeline survive them.
+order: 6
+minutes: 20
+level: Advanced
+standards: [ASME B31.8, ISO 13623, ALA 2001, PRCI]
+outcomes:
+  - Distinguish wave propagation from permanent ground deformation
+  - Describe how fault type and crossing angle load the pipe
+  - Explain strain-based design
+  - List practical measures for fault and landslide crossings
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## Two kinds of earthquake loading
+
+**Wave propagation.** Seismic waves travel through the ground and the buried pipe moves with the soil. The strains induced are small. Modern welded steel pipelines in good condition almost never fail from shaking alone.
+
+**Permanent ground deformation (PGD).** The ground itself ends up in a different place: a fault ruptures, a slope slides, or loose saturated sand liquefies and spreads. The pipe is forced to follow, and the movement can be metres. This is what breaks pipelines.
+
+Much of the Arabian plate interior has low seismicity, but pipelines near plate boundaries (the Red Sea and Gulf of Aqaba margin, the Zagros belt) and slope and subsidence hazards anywhere need this assessment.
+
+## Ground movement hazards
+
+<InfoTabs client:visible title="Permanent ground deformation hazards" tabs={[
+  { label: "Strike-slip fault", text: "The two sides of the fault slide horizontally past each other.", rows: [["Effect on pipe", "Bending at the fault plus axial tension or compression, depending on crossing angle"], ["Best crossing", "At an angle that puts the pipe in tension as the fault moves: steel tolerates tensile strain far better than compression"], ["Avoid", "An angle that shortens the pipe, causing compressive wrinkling"]] },
+  { label: "Normal fault", text: "One side drops relative to the other as the crust extends.", rows: [["Effect on pipe", "The pipe is stretched and bent over the step"], ["Behaviour", "Tension-dominated, which is relatively favourable"], ["Measures", "Shallow cover and loose backfill so the pipe can lift out of the step"]] },
+  { label: "Reverse / thrust fault", text: "One side rides up over the other as the crust shortens.", rows: [["Effect on pipe", "Axial compression and bending: the most damaging case"], ["Behaviour", "Local buckling (wrinkling) at low strain, possibly upheaval"], ["Measures", "Oblique crossing to reduce the compressive component, thick wall, above-ground crossing on sliding supports"]] },
+  { label: "Landslide", text: "A mass of soil or rock moves downslope, slowly or suddenly.", rows: [["Pipe along the slope", "Tension at the head of the slide, compression at the toe"], ["Pipe across the slope", "Bending and shear at both edges of the moving mass"], ["Measures", "Route along ridges, drain the slope, bury below the slip surface or relieve stress periodically"]] },
+  { label: "Liquefaction", text: "Loose, saturated sand loses strength during shaking and behaves as a heavy fluid.", rows: [["Effect on pipe", "Buoyant uplift, loss of support, and lateral spreading of the ground toward a free face such as a river bank"], ["Where", "River crossings, coastal and reclaimed land, sabkha margins"], ["Measures", "Buoyancy control, ground improvement, deeper burial below the liquefiable layer"]] },
+  { label: "Subsidence", text: "Ground settles because of fluid withdrawal, mining, karst collapse or salt dissolution.", rows: [["Effect on pipe", "Sag bending over a wide bowl or sharp shear at a collapse edge"], ["Measures", "Monitoring, avoiding known cavities, strain capacity"]] },
+]} />
+
+## Strain-based design
+
+Ordinary pipeline design limits **stress** to a fraction of yield. That cannot work for a fault crossing: no practical pipe stays below yield when the ground moves a metre or more.
+
+Instead, the pipe is allowed to yield and the design limits **strain**:
+
+- **Tensile strain limit:** set by the girth welds, typically 1 to 3 % with qualified, overmatched welds and tight control of flaws.
+- **Compressive strain limit:** set by the onset of local buckling (wrinkling), which depends strongly on D/t. Typically 0.5 to 1.5 %.
+
+The analysis is a non-linear finite-element model of the pipe, with the soil represented by springs in the axial, lateral, upward and downward directions.
+
+## What the designer can do
+
+- **Crossing angle.** Choose the angle that puts the pipe in tension.
+- **Straight pipe, no bends** for a few hundred metres each side, so movement is absorbed over a long length instead of concentrating at a bend.
+- **Heavier wall, lower D/t** to delay wrinkling, in steel with good strain-hardening.
+- **Reduce soil restraint.** Shallow cover, a wide trench with sloped sides, and loose, uniform granular backfill let the pipe slide and shed load. Some crossings wrap the pipe in geotextile or foam.
+- **Go above ground.** On sliding supports, the pipe can move freely. The Trans-Alaska pipeline crosses the Denali fault this way, and survived a 5.5 m offset in 2002.
+- **High-quality welds.** Strain capacity depends on weld strength overmatch, toughness and small allowable flaw sizes.
+- **Isolation valves** each side of an active fault.
+- **Monitoring.** Strain gauges, fibre-optic sensing, survey monuments and inertial in-line inspection to detect movement.
+
+<Callout type="note">
+The same measures that help at a fault (loose backfill, shallow cover) are the opposite of what resists upheaval buckling. On a hot line crossing a fault, the two requirements must be balanced by analysis.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.8 §833 and Appendix A | Design for ground movement and seismic loads where applicable; strain limits may be used for displacement-controlled conditions. |
+| ISO 13623 | Requires geohazards, including seismic and ground movement, to be assessed during routing and design. |
+| ALA 2001 / ASCE guidelines | Soil spring formulas and analysis methods for buried pipe subject to ground deformation. |
+| PRCI seismic design guidelines | Detailed methods for fault crossings and strain-based design. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Which earthquake effect most often breaks buried steel pipelines?", options: ["Seismic wave shaking", "Permanent ground deformation", "Noise", "Air pressure"], answer: 1, why: "Fault offset, landslides and liquefaction force large displacements on the pipe. Shaking alone rarely damages modern welded pipe." },
+  { q: "A fault crossing is best oriented so that fault movement puts the pipe in:", options: ["Compression", "Tension", "Torsion", "No preference"], answer: 1, why: "Steel pipe tolerates several times more tensile strain than compressive strain before failing." },
+  { q: "Why is loose granular backfill used at a fault crossing?", options: ["It is cheaper", "It lets the pipe move relative to the soil and limits the load transferred", "It improves cathodic protection", "It prevents buoyancy"], answer: 1, why: "Weak soil restraint spreads the deformation over a longer length of pipe." }
+]} />

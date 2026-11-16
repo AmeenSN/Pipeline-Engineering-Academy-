@@ -1,0 +1,121 @@
+---
+title: Padding, backfill and rock shield
+summary: What goes back into the trench matters as much as the trench itself. Learn the layers around a buried pipe, the material each needs and how they are placed.
+order: 2
+minutes: 20
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, SAES-L-450]
+outcomes:
+  - Name the layers of fill around a buried pipe and their purposes
+  - Specify padding material and thickness
+  - Compare ways of protecting coating in rocky ground
+  - Describe good backfilling and compaction practice
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import LayerExplorer from "@/components/interactives/LayerExplorer.tsx";
+
+## Why the fill matters
+
+Once the pipe is lowered in, the material placed around it has four jobs:
+
+- **Protect the coating** from stones and impact.
+- **Support the pipe** evenly underneath and at the sides, so it does not ovalise or sag.
+- **Restrain the pipe** against uplift and movement.
+- **Not corrode it:** the fill is the electrolyte in contact with any coating defect.
+
+## The layers
+
+<LayerExplorer client:visible title="Fill around a buried pipe" top="ground surface" bottom="trench bottom" items={[
+  { label: "Normal soil", layers: [
+    { name: "Crown: mounded 150 to 300 mm for settlement", h: 8, color: "yellow" },
+    { name: "Final backfill: excavated soil, large stones removed", h: 40, color: "yellow", hatch: true },
+    { name: "Warning tape, about 300 mm above the pipe", h: 3, color: "bad" },
+    { name: "Padding: screened fine soil to 300 mm above pipe", h: 22, color: "accent" },
+    { name: "Pipe zone: fine material placed under haunches", h: 30, color: "steel" },
+    { name: "Natural trench bottom, graded smooth", h: 6, color: "muted" },
+  ], rows: [["Padding", "Fine excavated soil, typically all passing about 10 to 20 mm"], ["Placed by", "Padding machine or excavator with a screening bucket"], ["Backfill", "Excavated material, in layers where compaction is specified"], ["Note", "The cheapest case: the trench spoil provides everything"]] },
+  { label: "Rock", layers: [
+    { name: "Crown", h: 8, color: "yellow" },
+    { name: "Rock backfill: fragments under a size limit, no voids", h: 38, color: "muted", hatch: true },
+    { name: "Warning tape", h: 3, color: "bad" },
+    { name: "Imported sand padding, 300 mm over the pipe", h: 22, color: "accent" },
+    { name: "Pipe zone, with rock shield wrap where specified", h: 30, color: "steel" },
+    { name: "Sand bedding, 150 mm minimum", h: 12, color: "accent", hatch: true },
+  ], rows: [["Bedding", "150 mm or more of sand or screened fines over the rock bottom"], ["Padding", "Imported sand, or fines crushed and screened from the spoil"], ["Alternatives", "Rock shield mesh, foam pillows or sandbag benches at intervals"], ["Backfill", "Rock limited in size, mixed with fines so water cannot run through"]] },
+  { label: "Sabkha berm", layers: [
+    { name: "Berm cap: marl or gatch against wind erosion", h: 8, color: "muted" },
+    { name: "Berm: imported non-saline fill above grade", h: 34, color: "yellow", hatch: true },
+    { name: "Warning tape", h: 3, color: "bad" },
+    { name: "Clean sand padding", h: 20, color: "accent" },
+    { name: "Concrete-coated pipe in shallow trench", h: 30, color: "steel" },
+    { name: "Sand bedding on geotextile over sabkha", h: 12, color: "accent", hatch: true },
+  ], rows: [["Idea", "Keep the pipe out of the saline water table as far as practical"], ["Fill", "Imported, low in chloride and sulphate"], ["Separator", "Geotextile, sometimes an impermeable membrane, under the fill"], ["Berm", "Side slopes and top width set by the specification, capped against erosion"]] },
+  { label: "Road crossing", layers: [
+    { name: "Pavement reinstated to authority standard", h: 8, color: "text" },
+    { name: "Road base and sub-base, compacted", h: 16, color: "muted", hatch: true },
+    { name: "Backfill compacted in 150 to 200 mm layers", h: 30, color: "yellow", hatch: true },
+    { name: "Concrete slab or warning tape", h: 5, color: "bad" },
+    { name: "Compacted sand padding", h: 20, color: "accent" },
+    { name: "Heavy-wall pipe on compacted bedding", h: 30, color: "steel" },
+  ], rows: [["Compaction", "Each layer compacted to a specified density (commonly 90 to 95 % of maximum)"], ["Why", "To prevent settlement of the road and to support the pipe against traffic load"], ["Testing", "Field density tests on the layers"], ["Protection", "Concrete slab over the pipe where cover is limited"]] },
+]} />
+
+## Padding
+
+Padding is the fine, stone-free material in contact with the pipe.
+
+- **Extent:** all round the pipe and to about 150 to 300 mm above its crown.
+- **Grading:** fine enough not to damage coating. Specifications typically limit the maximum particle to 10 to 20 mm, with rounded particles preferred and tighter limits for thin coatings such as FBE.
+- **Under the haunches:** material must flow or be worked under the lower half of the pipe. Voids there leave the pipe sitting on a line contact.
+- **Chemistry:** free of salts, organic matter and construction debris.
+
+**Padding machines** travel along the trench, pick up spoil, screen it and discharge the fines over the pipe in one pass. They remove the need to import sand where the spoil contains enough fine material.
+
+## Protecting coating in rock
+
+| Method | How it works | Notes |
+|---|---|---|
+| Sand bedding and padding | Fine layer all round the pipe | Most reliable; may need imported material |
+| Rock shield | Tough extruded plastic mesh wrapped round the pipe | Quick; open mesh lets cathodic protection current reach the pipe |
+| Concrete or rock-jacket coating | Factory-applied armour over the corrosion coating | For severe rock and long distances |
+| Foam pillows or sandbag benches | Supports at intervals keep the pipe off the trench bottom | Needs padding placed around them to avoid spans |
+| Geotextile wrap | Felt layer around the pipe | Light protection |
+
+Any wrap must not **shield** the pipe from cathodic protection. Solid plastic sheet around a pipe is a known cause of hidden corrosion.
+
+## Backfilling
+
+1. **Inspect first.** Coating holiday-tested as the pipe is lowered, trench clear of debris, pipe resting on the bottom.
+2. **Backfill soon** after lowering-in, to protect the pipe and close the trench.
+3. **Padding first,** placed gently. Never drop backfill from height directly onto the pipe.
+4. **Then general backfill.** Keep large rocks out or place them last and away from the pipe.
+5. **Warning tape** laid above the pipe as filling proceeds.
+6. **Compaction** where specified: at roads, around tie-ins and bends on hot lines, and on slopes. Elsewhere the backfill is left with a **crown** to allow for natural settlement.
+7. **Trench breakers** on slopes: barriers of sandbags or foam across the trench to stop water flowing along it.
+8. **Leave tie-in points open** until welded, tested and coated.
+
+<Callout type="field">
+On a hot line, do not backfill in the cool of the night if you can avoid it. Backfilling when the pipe is warm locks it in at a higher temperature, which reduces compressive stress in service.
+</Callout>
+
+<Callout type="aramco">
+SAES-L-450 specifies Saudi Aramco's padding material grading, thickness above the pipe, berm dimensions over pipelines and sand stabilisation requirements. Check the current revision for the particle size limits that apply to the coating type in use.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §434.11 | Backfill to provide firm support and not damage pipe or coating; protection in rock. |
+| ASME B31.8 §841.2.5 | Bedding, padding and backfill; rock shield or padding where the ditch is in rock. |
+| SAES-L-450 | Aramco padding, backfill and berm requirements. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "How far above the pipe does padding normally extend?", options: ["To the surface", "About 150 to 300 mm", "It stops at the pipe centreline", "2 m"], answer: 1, why: "A fine layer over the crown protects the coating from the coarser backfill placed above." },
+  { q: "Why must rock shield be an open mesh rather than solid sheet?", options: ["To save material", "So cathodic protection current can reach the pipe", "To let the pipe cool", "For drainage only"], answer: 1, why: "A solid barrier shields the steel from protective current and can hide corrosion." },
+  { q: "What is the purpose of the crown left over a backfilled trench?", options: ["To mark the route", "To allow for settlement of the backfill", "To increase cover permanently", "To hold the warning tape"], answer: 1, why: "Uncompacted backfill settles with time and rain; the crown prevents a depression forming over the line." }
+]} />

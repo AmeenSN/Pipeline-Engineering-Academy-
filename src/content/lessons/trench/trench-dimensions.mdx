@@ -1,0 +1,134 @@
+---
+title: Trench dimensions and cover
+summary: The trench is the pipeline's permanent home. Learn how its depth, width and side slopes are set, what minimum cover the codes require and how excavation quantities follow.
+order: 1
+minutes: 20
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, SAES-L-450, OSHA 1926]
+outcomes:
+  - Size a trench from pipe diameter, cover and soil type
+  - State code minimum cover by location
+  - Explain why trench bottom quality matters
+  - Apply excavation safety rules for workers entering trenches
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import TrenchSection from "@/components/interactives/TrenchSection.tsx";
+
+## What the trench does
+
+Burial protects the pipeline from vehicles, tools, sun, fire and temperature swings, and the surrounding soil restrains it against pressure and thermal forces. The trench has to be deep enough to give that protection, wide enough to lower the pipe in without scraping its coating, and smooth enough to support it evenly.
+
+## Depth
+
+$$
+\text{trench depth} = \text{cover} + \text{pipe diameter} + \text{bedding}
+$$
+
+**Cover** is measured from the top of the pipe (or of its concrete coating) to the finished ground surface. Code minimums:
+
+| Location | ASME B31.4 | ASME B31.8 |
+|---|---|---|
+| Open country | 0.75 m | 0.61 m (Class 1) |
+| Industrial, commercial, residential | 0.9 m | 0.76 m (Class 2 to 4) |
+| Rock excavation | 0.45 to 0.6 m | 0.45 to 0.61 m |
+| Road and rail ditches | 0.9 m | 0.9 m |
+| River and stream crossings | 1.2 m | By assessment |
+
+Most operators specify more than this: around 1 m in open country is common, with extra cover in farmland (below plough depth), at crossings, in wadis and in moving sand. Hot lines may need extra cover against upheaval buckling.
+
+More cover is not always better. It raises excavation cost and soil load, and makes later repair slower.
+
+## Width
+
+The bottom must be wide enough for the pipe plus working clearance:
+
+$$
+\text{bottom width} \approx D + 2 \times \text{clearance}
+$$
+
+with a clearance of about 150 to 300 mm each side, more where workers must enter (tie-ins) and where padding must be compacted beside the pipe. A trench that is too narrow scrapes the coating during lowering-in; one that is too wide wastes excavation and backfill.
+
+## Side slopes
+
+The sides must stand until the pipe is in and backfilled:
+
+- **Rock:** near-vertical.
+- **Stiff clay and cemented soil:** steep, about 1 horizontal to 2 or 4 vertical.
+- **Ordinary soil:** about 1 to 2.
+- **Loose dry sand:** as flat as 1.5 horizontal to 1 vertical.
+- **Wet or saturated ground:** flat slopes plus dewatering or sheet piling.
+
+<TrenchSection client:visible />
+
+Try this: at NPS 24 with 1 m of cover, switch from normal soil to loose sand and compare the top width and excavation volume. Then increase the cover and see how quickly volume grows in sand.
+
+## The trench bottom
+
+The pipe should rest on the trench bottom along its full length.
+
+- **Graded and smooth,** following the designed profile, with no humps, hollows or hard points.
+- **Free of rocks, roots, skids and debris.** Welding rod stubs and timber left under the pipe damage coating.
+- **Bedded** with fine material where the natural bottom is rock or gravel.
+- **Dry** enough to see and inspect. A flooded trench hides everything.
+
+Local high spots matter twice: they dent the pipe, and on a hot line each one is an imperfection that can start upheaval buckling.
+
+## Trenching methods
+
+- **Hydraulic excavators** are the general-purpose tool, used almost everywhere.
+- **Wheel and chain trenchers** cut a neat, uniform trench quickly in suitable soil and soft rock.
+- **Rock breakers, rippers and blasting** for hard rock.
+- **Ploughs** for small-diameter lines in open, soft country.
+
+Trenching is usually kept a controlled distance ahead of welding and lowering-in. Too far, and the open trench collapses, fills with windblown sand or floods, and is a hazard to people and animals. Crossings for livestock, wildlife and local traffic are left at intervals.
+
+## Safety in trenches
+
+Trench collapse kills quickly and without warning. A cubic metre of soil weighs well over a tonne.
+
+- No one enters a trench deeper than about 1.2 to 1.5 m unless it is sloped, benched, shored or shielded.
+- Spoil and equipment are kept back from the edge (at least 0.6 m, more in weak ground).
+- Ladders or ramps for exit at short intervals.
+- Daily inspection by a competent person, and after rain.
+- Gas testing where hydrocarbons, H₂S or oxygen deficiency are possible.
+- Barriers and lights where the public or traffic are near.
+
+<Callout type="aramco">
+SAES-L-450 sets Saudi Aramco's minimum cover, trench bottom width and padding requirements, with greater cover in specific areas such as sand dunes, wadis and crossings. Excavation safety follows the company construction safety manual. Check the current standard for values by pipe size and terrain.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §434.6 | Ditching and minimum cover by location; clearance from other structures. |
+| ASME B31.8 §841.1.11 | Cover requirements by location class, with alternatives where cover cannot be provided. |
+| OSHA 29 CFR 1926 Subpart P | Excavation safety: sloping, shoring, spoil setback, access and inspection. |
+| SAES-L-450 | Aramco trench dimensions and cover. |
+
+</Standards>
+
+<Worked title="Trench for an NPS 24 line in firm soil">
+
+**Given:** OD 0.61 m, cover 1.0 m, no bedding, 0.3 m clearance each side, side slope 0.5 horizontal to 1 vertical.
+
+**Depth:** 1.0 + 0.61 = 1.61 m.
+
+**Bottom width:** 0.61 + 2 × 0.3 = 1.21 m.
+
+**Top width:** 1.21 + 2 × 0.5 × 1.61 = 2.82 m.
+
+**Excavation per metre:** (1.21 + 2.82) / 2 × 1.61 = **3.24 m³/m**, or 3240 m³ per kilometre.
+
+**In loose sand** (slope 1.5 to 1) the top width becomes 6.04 m and the volume 5.84 m³/m: 80 % more digging for the same pipe.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "Cover is measured from:", options: ["The pipe centreline to the surface", "The top of the pipe or its coating to the finished surface", "The trench bottom to the surface", "The bottom of the pipe"], answer: 1, why: "Depth of cover is the soil thickness above the top of the pipe." },
+  { q: "Why should trenching not run far ahead of lowering-in?", options: ["It wastes fuel", "Open trench collapses, fills or floods and is a hazard", "The coating cures too fast", "Welders need shade"], answer: 1, why: "An open trench deteriorates and endangers people and animals, so the gap is controlled." },
+  { q: "A worker must enter a 2 m deep trench in ordinary soil. What is required?", options: ["Nothing if they are quick", "Sloping, benching, shoring or a trench shield", "Only a hard hat", "A second worker to watch"], answer: 1, why: "Unsupported trenches of that depth can collapse without warning. Protective systems are mandatory." }
+]} />

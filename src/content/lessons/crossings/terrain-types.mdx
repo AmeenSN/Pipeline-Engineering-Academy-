@@ -1,0 +1,93 @@
+---
+title: Rocky, sandy and sabkha terrain
+summary: The same pipeline is built very differently in rock, in dune sand and in sabkha. See how the trench, the bedding, the coating and the construction method change with the ground.
+order: 4
+minutes: 25
+level: Intermediate
+standards: [SAES-L-450, SAES-L-410, ASME B31.4, ASME B31.8]
+outcomes:
+  - Describe the construction problems of rock, sand, sabkha and wadi ground
+  - Specify bedding and padding for rocky ground
+  - Explain cover loss and stabilisation in dune areas
+  - List the measures needed to build and protect a pipeline in sabkha
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import TrenchSection from "@/components/interactives/TrenchSection.tsx";
+
+## Ground decides the method
+
+The pipeline code is the same everywhere, but the ground is not. Terrain changes the trench shape, what goes around the pipe, how it is kept in place, how corrosive its surroundings are and how fast the spread can move.
+
+<TrenchSection client:visible initial="rock" />
+
+Switch between the terrain types and watch the trench change: its side slopes, the bedding layer, the water table and the concrete coating. The notes on the left summarise what each terrain requires.
+
+## Rock
+
+Rock trenching is slow and expensive, and the excavated material is the wrong thing to put back against a coated pipe.
+
+- **Excavation:** hydraulic breakers, rock trenching machines (chain or wheel) or controlled drilling and blasting. Blasting beside existing pipelines is strictly limited by vibration criteria.
+- **Trench bottom:** over-excavated and levelled, because rock points would dent the pipe and puncture the coating.
+- **Bedding:** at least 150 mm of imported sand or fine screened material under the pipe.
+- **Padding:** the same fine material around the pipe and 300 mm over it, placed before any rock backfill.
+- **Alternatives:** rock shield (a tough plastic mesh wrap), foam pillows or sandbag supports at intervals, and padding machines that screen fine material from the spoil.
+- **Backfill:** rock fragments above the padding, limited in size, with no voids left for surface water to run along the trench.
+
+<Callout type="warn">
+A single sharp stone under a pipe causes a dent with a coating holiday, hidden under the pipe where cathodic protection may be shielded. Dents found by the first in-line inspection are very often from rocks in the trench bottom.
+</Callout>
+
+## Sand and dunes
+
+Sand is easy to dig and makes excellent padding. Its problems are movement and looseness.
+
+- **Trench stability:** dry sand will not stand. Slopes are flat, so the trench top is wide and volumes are large. The trench is opened only shortly ahead of lowering-in.
+- **Access:** soft sand needs graded and stabilised working surfaces, and low ground-pressure equipment.
+- **Dune migration:** dunes advance metres per year. A dune can bury a valve station, or move on and leave the pipe with less cover.
+- **Wind erosion:** the loose backfill over a new trench is easily stripped. The surface is stabilised with marl or gatch capping, crude oil or bitumen spray, or geotextile.
+- **Low restraint:** loose sand gives little uplift resistance and low friction, which matters for hot lines (upheaval buckling and anchor length, module M2).
+- **Routing:** follow the firm inter-dune corridors and avoid slip faces.
+
+## Sabkha
+
+Sabkha is flat, salt-encrusted ground with a very saline water table at or near the surface. It is the most demanding terrain in the Arabian Gulf region.
+
+- **Bearing capacity** is low and drops further when the crust is broken. Equipment bogs down, so temporary roads of imported fill and geotextile are built first.
+- **Trench:** water flows in immediately. Dewatering is continuous, and the brine must be disposed of properly.
+- **Buoyancy:** the brine is 15 to 20 % denser than fresh water. Empty pipe floats, so concrete coating, set-on weights or anchors are required (module M7).
+- **Corrosion:** chloride and sulphate levels are extreme and resistivity is very low. Coating quality, field joint coating and cathodic protection design are all upgraded, and concrete must be sulphate-resisting.
+- **Berm construction:** instead of a deep wet trench, the pipeline is often laid in a shallow trench or on grade and covered with a raised **berm** of imported, non-saline fill, sometimes with a geotextile or membrane separator.
+- **Salt heave and settlement** of the crust can load the pipe over time.
+
+<Callout type="aramco">
+SAES-L-450 contains Saudi Aramco's specific construction requirements for sabkha, sand and rock areas, including padding gradation, berm dimensions, sand stabilisation and buoyancy control. SAES-H and SAES-X set the coating and cathodic protection requirements for sabkha. Check the current revisions for dimensions and material grading.
+</Callout>
+
+## Wadi beds and flood plains
+
+Covered in the previous lesson: depth is set by scour, stability by concrete coating, and the banks by erosion protection.
+
+## Other difficult ground
+
+- **Steep slopes:** trench breakers (sandbag or foam barriers) stop water running down the trench and washing out the backfill; surface diversion berms control erosion; equipment may need winching.
+- **Agricultural land:** topsoil stripped and stored separately, drainage and irrigation restored, deeper cover against ploughing.
+- **Marsh and wetland:** timber mats or geotextile roads, push-pull or float-and-sink installation.
+- **Karst and cavities:** ground-penetrating radar or probing ahead of trenching; bridging or grouting of voids.
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §434.6 and §434.11 | Ditch to provide uniform support; rock ditches padded; backfill free of material that could damage pipe or coating. |
+| ASME B31.8 §841.2.5 | Installation in the ditch, bedding and backfill requirements, protection in rock. |
+| SAES-L-450 | Aramco construction requirements by terrain, including sabkha, sand and rock. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "In a rock trench, what goes directly under the pipe?", options: ["The excavated rock", "At least 150 mm of sand or fine bedding", "Concrete", "Nothing"], answer: 1, why: "Fine bedding gives uniform support and keeps rock points away from the coating." },
+  { q: "Why are pipelines in sabkha often built in a berm?", options: ["To improve the view", "To avoid a deep, flooded, corrosive trench and keep the pipe in clean imported fill", "Because sabkha is too hard to dig", "To reduce pressure drop"], answer: 1, why: "A shallow trench with a raised berm of non-saline fill reduces dewatering, buoyancy and corrosion problems." },
+  { q: "The main long-term threat to a pipeline in dune sand is:", options: ["Rock dents", "Loss of cover from wind erosion and dune movement", "Flooding", "Frost heave"], answer: 1, why: "Wind strips loose backfill and dunes migrate, so cover must be stabilised and monitored." }
+]} />

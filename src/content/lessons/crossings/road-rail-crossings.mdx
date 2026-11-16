@@ -1,0 +1,123 @@
+---
+title: Road and railroad crossings
+summary: Where a pipeline passes under a road or railway it carries traffic load for life and must be built without stopping the traffic. Learn the requirements, the casing debate and the design checks.
+order: 1
+minutes: 25
+level: Intermediate
+standards: [API RP 1102, ASME B31.4, ASME B31.8, SAES-L-460]
+outcomes:
+  - State the minimum cover and other requirements at road and rail crossings
+  - Explain why uncased crossings are now preferred
+  - Outline the API RP 1102 design checks
+  - Choose between open-cut and bored construction
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import RoadCrossing from "@/components/interactives/RoadCrossing.tsx";
+
+## What is special about a crossing
+
+At a crossing the pipeline:
+
+- carries **repeated wheel or axle loads** on top of soil load and internal pressure,
+- lies where excavation for repair is **difficult and disruptive**,
+- must usually be installed **without closing** the road or railway,
+- sits in land controlled by **another authority**, which sets its own conditions.
+
+For these reasons the crossing is designed separately, has its own drawing, and normally uses heavier-wall pipe than the line on either side.
+
+## Requirements at a crossing
+
+| Item | Typical requirement |
+|---|---|
+| Crossing angle | As near 90° as practical, not less than about 30° |
+| Cover under a road surface | 1.2 m minimum |
+| Cover under railway track (uncased) | 1.8 m minimum |
+| Cover under roadside ditches | 0.9 m minimum |
+| Wall thickness | Heavier wall or lower design factor through the crossing |
+| Extent of heavy wall | Across the full road reserve plus a margin each side |
+| Girth welds | 100 % inspected; as few as possible under the road |
+| Bends | None under the road. Vertical bends start outside the reserve |
+| Coating | Abrasion-resistant overcoat for bored pipe |
+| Markers | A pipeline marker each side of the crossing |
+
+ASME B31.8 lowers the design factor at many crossings (for example to 0.60 in Class 1 for an uncased road crossing), which increases the wall directly.
+
+## Cased or uncased
+
+A **casing** is a larger steel pipe installed under the road with the carrier pipe threaded through it on insulating spacers. The ends are sealed and vent pipes rise to the surface.
+
+Casings were once standard, on the idea that they carry the traffic load and let the carrier be withdrawn. Experience has shown real drawbacks:
+
+- The casing **shields** the carrier from cathodic protection current.
+- If the carrier touches the casing (a **shorted casing**), CP current is drained and the annulus can corrode the carrier unseen.
+- Water enters through failed end seals.
+- The carrier in a casing cannot be inspected by above-ground coating surveys.
+
+Modern practice, reflected in API RP 1102, is an **uncased** crossing with thicker-wall carrier pipe designed to take the loads directly. Casings are used only where the road or rail authority demands one, or where the ground makes boring the coated carrier impractical.
+
+<RoadCrossing client:visible />
+
+Try this: select a railway and reduce the cover until the minimum is breached. Then switch between uncased and cased and read the verdict. Lower the wall thickness to see ovalisation respond.
+
+## The API RP 1102 design method
+
+API RP 1102 gives a step-by-step check for uncased steel pipelines:
+
+1. Start with the wall thickness from pressure design, at the crossing's design factor.
+2. Calculate the **circumferential stress from earth load**.
+3. Calculate the **cyclic circumferential and longitudinal stresses from live load** (wheel or axle load with an impact factor), from design curves that depend on depth, diameter, wall thickness and soil.
+4. Add the **internal pressure** stresses.
+5. Check the **total effective stress** against the allowable (SMYS × design factor).
+6. Check **fatigue** of the girth weld and of the longitudinal seam against endurance limits, since traffic applies millions of cycles.
+
+If any check fails, increase wall thickness or depth. The explorer above uses a simpler screening estimate, and the real method must be followed for design.
+
+## Building the crossing
+
+- **Open cut.** The road is trenched, half at a time or with a diversion. Cheap and simple. Used for tracks and minor roads. Backfill must be compacted in layers and the pavement reinstated to the authority's standard.
+- **Auger boring (thrust boring).** A boring machine in a launch pit drives an auger inside the pipe or casing, pushing it forward under the road to a reception pit. The usual method for paved roads and railways up to about 100 m.
+- **Pipe jacking, microtunnelling and HDD** for longer or more difficult crossings (next lesson).
+
+<Callout type="field">
+On a bored crossing the carrier pipe coating is dragged through the ground. Specify an abrasion-resistant overcoat, and check the coating by electrical test after installation, before the tie-in welds are made.
+</Callout>
+
+<Callout type="aramco">
+SAES-L-460 governs pipeline crossings under roads and railroads for Saudi Aramco, covering cover, wall thickness, casing policy and protection of existing pipelines where a new road is built across them. Crossings of public highways and railways also need the approval of the relevant government authority. Check the current standard for the required cover and design factor.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| API RP 1102 | Design, installation and testing of steel pipelines crossing railroads and highways, with the stress and fatigue method for uncased crossings. |
+| ASME B31.8 §841.1.6 | Reduced design factors at road and railroad crossings by location class and whether cased. |
+| ASME B31.4 §434.13 | Crossings to be designed for the imposed loads; casing requirements where used. |
+| SAES-L-460 | Aramco requirements for road and railroad crossings. |
+
+</Standards>
+
+<Worked title="Wall thickness through a highway crossing">
+
+**Given:** NPS 24 gas line, P = 9.6 MPa, X65, Class 1. Line pipe wall from the M2 lesson is 9.5 mm at F = 0.72 (9.04 mm required).
+
+**At the crossing:** ASME B31.8 requires F = 0.60 for an uncased crossing of a hard-surfaced road in Class 1.
+
+$$
+t = \frac{9.6 \times 610}{2 \times 450 \times 0.60} = 10.84 \text{ mm} \quad\Rightarrow\quad \text{select } 11.1 \text{ mm or } 12.7 \text{ mm}
+$$
+
+**Choose 12.7 mm.** The extra wall also helps the API RP 1102 live-load and fatigue checks and matches a wall already used elsewhere on the line.
+
+**Extent:** the heavy wall runs across the road reserve and a margin beyond each boundary, with transition welds made in the open trench where they can be inspected.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "Why are uncased crossings now preferred?", options: ["They are easier to bore", "Casings shield the carrier from cathodic protection and can short to it", "Casings are too heavy", "Uncased pipe needs no coating"], answer: 1, why: "A casing blocks protective current and creates a hidden corrosion cell if it contacts the carrier or fills with water." },
+  { q: "Which check is specific to crossings and not to ordinary buried pipe?", options: ["Hoop stress", "Fatigue of welds under cyclic traffic load", "Hydrotest", "Coating adhesion"], answer: 1, why: "Traffic applies millions of load cycles, so API RP 1102 includes girth and seam weld fatigue checks." },
+  { q: "Where should vertical bends be placed at a road crossing?", options: ["Directly under the road centreline", "Outside the road reserve", "At the edge of the pavement", "Inside the casing"], answer: 1, why: "The pipe is kept straight under the road, with bends in the open trench on each side." }
+]} />

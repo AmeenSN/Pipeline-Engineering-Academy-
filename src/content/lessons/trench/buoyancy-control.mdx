@@ -1,0 +1,104 @@
+---
+title: Buoyancy control
+summary: In wet ground an empty pipeline wants to float. Compare the ways of holding it down and work out how many weights a section needs.
+order: 3
+minutes: 20
+level: Intermediate
+standards: [ASME B31.4, ASME B31.8, SAES-L-450, ISO 21809-5]
+outcomes:
+  - Identify where buoyancy control is needed
+  - Compare concrete coating, set-on weights, bag weights and anchors
+  - Calculate the spacing of set-on weights
+  - Avoid the common construction problems with each method
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+import WeightSpacing from "@/components/interactives/WeightSpacing.tsx";
+
+## Where pipes float
+
+Module M2 showed that a large empty pipe displaces far more water than it weighs. Buoyancy control is needed wherever the trench can fill with water or the soil can behave like a fluid:
+
+- sabkha and coastal flats with a high water table,
+- river, wadi and canal crossings,
+- marsh, swamp and irrigated farmland,
+- flood plains, even if dry at the time of construction,
+- soils that can liquefy in an earthquake.
+
+The check is made for the **empty** pipe, with the density of the actual groundwater, to a safety factor of about 1.1 (higher in flowing water).
+
+## The methods
+
+<InfoTabs client:visible title="Buoyancy control methods" tabs={[
+  { label: "Concrete coating", title: "Continuous concrete weight coating", text: "A layer of dense reinforced concrete applied over the corrosion coating at a coating plant.", rows: [["Thickness", "Typically 40 to 150 mm"], ["Density", "2400 kg/m³ standard; 3040 kg/m³ and more with iron ore aggregate"], ["Strengths", "Uniform weight, also armours the pipe against impact; standard for long wet sections and offshore"], ["Limits", "Heavy to transport and handle; cannot be field bent; field joints need infill"], ["Watch for", "Cracking and spalling in handling; damage to the corrosion coating underneath is hidden"]] },
+  { label: "Set-on weights", title: "Set-on (saddle) concrete weights", text: "Precast concrete saddles lowered over the pipe after it is in the trench.", rows: [["Mass", "Typically 1 to 6 tonnes each"], ["Strengths", "Simple, made locally, placed only where needed"], ["Limits", "Can roll off if the pipe moves or the trench is not level; point load on the coating"], ["Watch for", "Padding (felt or rock shield) between weight and pipe; trench wide enough to seat them"]] },
+  { label: "Bolt-on weights", title: "Bolt-on concrete weights", text: "Two precast halves clamped round the pipe before lowering-in.", rows: [["Strengths", "Cannot fall off; pipe can be installed by floating or pulling with weights attached"], ["Limits", "Bolts corrode unless protected; slower to fit"], ["Used for", "River and swamp crossings, pull-in installations"]] },
+  { label: "Bag weights", title: "Geotextile bag weights", text: "Saddle-shaped fabric bags filled with gravel or sand, draped over the pipe.", rows: [["Strengths", "Soft on the coating, conform to the pipe, do not shield cathodic protection, filled on site with local material"], ["Limits", "Bulkier than concrete for the same net weight; fabric must be durable"], ["Used for", "Wet farmland, muskeg, intermittent wet sections"]] },
+  { label: "Screw anchors", title: "Screw (helical) anchors", text: "Pairs of steel helical anchors screwed into firm ground either side of the pipe and joined over it by a strap.", rows: [["Strengths", "Very efficient: hold-down from soil strength instead of dead weight; light to transport"], ["Limits", "Need competent soil at depth; strap must be insulated from the pipe; anchors need corrosion protection"], ["Watch for", "Proof-load testing of anchors; electrical isolation from the pipe"]] },
+  { label: "Backfill", title: "Deeper burial with selected backfill", text: "Relies on the weight and strength of the soil above the pipe.", rows: [["Strengths", "No extra material on the pipe"], ["Limits", "Works only if the backfill keeps its weight and strength when saturated, and only after backfilling: the pipe can float while the trench is open"], ["Used for", "Mild cases, with a specified backfill and compaction"]] },
+]} />
+
+## How many weights
+
+For intermittent weights, each unit must hold down the length of pipe between it and its neighbours.
+
+$$
+\text{spacing} = \frac{\text{net submerged weight of one unit}}{1.1 \times \text{buoyancy} - \text{pipe weight}}
+$$
+
+A concrete weight is itself buoyant: in water its effective weight is only about 58 % of its weight in air, and less in brine.
+
+<WeightSpacing client:visible />
+
+Try this: for NPS 30 pipe in sabkha brine, vary the weight mass and watch the spacing. Then switch the fluid to liquefied soil and see why continuous concrete coating takes over.
+
+Spacing is also capped so the pipe cannot lift between weights and overstress in bending. A common practical limit is about one pipe joint (12 m).
+
+## Construction issues
+
+- **Float during construction.** A sudden rainstorm or a failed dewatering pump can float an open-trench pipe string in minutes. Weights go on as the pipe goes in, not later.
+- **Coating protection** under every weight or strap.
+- **Electrical isolation.** Reinforcing steel and anchor straps must not touch the pipe, or they drain cathodic protection current.
+- **Negative buoyancy for installation.** For pulled or floated crossings the pipe weight is tuned so it is slightly heavy, and can be flooded once in position.
+- **Hydrotest water.** A water-filled pipe is stable, which can hide a buoyancy problem until dewatering.
+
+<Callout type="aramco">
+SAES-L-450 requires buoyancy control wherever the pipeline may be submerged, including sabkha and wadi crossings, with the weight coating or anchor design based on the density of the surrounding fluid. Concrete weight coating is purchased to an Aramco materials specification. Check the current standard for the required safety factor.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §434.6 and B31.8 §841.1.11 | Pipelines in areas subject to flooding or high water table to be weighted or anchored against flotation. |
+| ISO 21809-5 | External concrete coatings for pipelines: materials, application and testing. |
+| SAES-L-450 | Aramco buoyancy control requirements. |
+
+</Standards>
+
+<Worked title="Saddle weights for an NPS 30 line in sabkha">
+
+**Given:** OD 762 mm, wall 9.5 mm, empty, brine 1150 kg/m³. From module M2: pipe weight 1.80 kN/m, buoyancy 5.23 kN/m. Weights of 3000 kg, concrete 2400 kg/m³.
+
+**Downforce needed:** 1.1 × 5.23 − 1.80 = **3.95 kN/m**.
+
+**Net weight of one unit in brine:**
+
+$$
+3000 \times 9.81 \times \left( 1 - \frac{1150}{2400} \right) = 15.3 \text{ kN}
+$$
+
+**Spacing:** 15.3 / 3.95 = **3.9 m**, about three weights per 12 m joint.
+
+At that density of weights, continuous concrete coating of about 85 mm (module M2) is likely to be cheaper and more reliable.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "In fresh water, a concrete weight of density 2400 kg/m³ has an effective weight of about:", options: ["100 % of its weight in air", "58 %", "25 %", "Zero"], answer: 1, why: "It loses the weight of the water it displaces: 1 − 1000/2400 = 0.58." },
+  { q: "Why must screw anchor straps be insulated from the pipe?", options: ["To keep them warm", "So they do not drain cathodic protection current", "To reduce noise", "To allow thermal expansion"], answer: 1, why: "Bare steel in contact with the pipe becomes part of the protected structure and takes current intended for the pipe." },
+  { q: "When is an open-trench pipe string most at risk of floating?", options: ["After hydrotest filling", "When empty in a trench that floods", "During welding on skids", "After backfilling"], answer: 1, why: "An empty, capped pipe in a flooded trench has maximum buoyancy and no backfill restraint." }
+]} />

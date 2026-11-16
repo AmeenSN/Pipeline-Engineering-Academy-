@@ -1,0 +1,120 @@
+---
+title: Trenchless crossings (HDD, boring, microtunnel)
+summary: Rivers, highways, railways and sensitive areas are crossed without digging a trench. Compare the methods and design the profile of a horizontal directional drill.
+order: 2
+minutes: 30
+level: Intermediate
+standards: [API RP 1102, ASME B31.4, ASME B31.8, SAES-L-460]
+outcomes:
+  - Compare auger boring, pipe ramming, microtunnelling, HDD and direct pipe
+  - Describe the three stages of an HDD crossing
+  - Lay out an HDD profile with entry and exit angles and bend radius
+  - List the main risks of trenchless work
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+import HddProfile from "@/components/interactives/HddProfile.tsx";
+
+## Why go trenchless
+
+Open-cut trenching is the cheapest way to install pipe, until the surface cannot be disturbed. Trenchless methods install the pipe from pits or surface entry points with nothing in between touched. They are used for busy roads and railways, rivers and canals, wetlands, congested utility corridors and environmentally sensitive ground.
+
+## The methods
+
+<InfoTabs client:visible title="Trenchless methods compared" tabs={[
+  { label: "Auger boring", title: "Auger (thrust) boring", text: "A rotating auger inside a steel casing or the carrier pipe removes soil while jacks push the pipe forward from a launch pit.", rows: [["Typical length", "Up to about 100 m"], ["Diameter", "NPS 4 to 60"], ["Ground", "Soft to firm soil above the water table; small boulders only"], ["Accuracy", "Limited steering: suited to straight, short drives"], ["Used for", "Most road and railway crossings"]] },
+  { label: "Pipe ramming", title: "Pipe ramming", text: "A pneumatic hammer drives an open-ended steel casing through the ground. Soil is cleaned out afterwards.", rows: [["Typical length", "Up to about 60 m"], ["Diameter", "NPS 8 to 120 and more"], ["Ground", "Tolerates cobbles and mixed ground; no steering"], ["Used for", "Short crossings under railways and embankments, and as conductor casing for HDD"]] },
+  { label: "Microtunnel", title: "Microtunnelling and pipe jacking", text: "A remotely controlled, laser-guided tunnel boring machine is jacked forward from a shaft, with pipe sections added behind it.", rows: [["Typical length", "100 to 1000 m and more"], ["Diameter", "0.6 m to over 3 m"], ["Ground", "Almost any, including rock and below the water table, with the right cutting head"], ["Accuracy", "Very high, in line and level"], ["Used for", "Long, deep or critical crossings; shore approaches; usually installs a concrete or steel sleeve"]] },
+  { label: "HDD", title: "Horizontal directional drilling", text: "A steerable drill makes a curved pilot hole from the surface, the hole is reamed larger, and the pipe string is pulled back through.", rows: [["Typical length", "200 m to over 2 km"], ["Diameter", "NPS 4 to 56"], ["Ground", "Clay, sand and rock. Gravel, cobbles and cavities are difficult"], ["Accuracy", "Good, within about a metre at exit"], ["Used for", "River, canal and shore crossings, wide highways, wetlands"], ["No pits", "Entry and exit are at the surface: no deep shafts"]] },
+  { label: "Direct pipe", title: "Direct Pipe", text: "Combines a microtunnelling head with a pipe thruster, so the welded pipeline itself is pushed in behind the machine in one step.", rows: [["Typical length", "Up to about 1.5 km"], ["Diameter", "NPS 30 to 60"], ["Ground", "Wide range, including permeable ground where HDD mud would be lost"], ["Advantage", "The hole is always supported by the pipe: low risk of collapse or mud escape"], ["Used for", "Landfalls and crossings in difficult ground"]] },
+]} foot="Lengths and diameters are typical capabilities, not limits." />
+
+## How HDD works
+
+HDD has three stages. Use the buttons in the tool below to step through them.
+
+<HddProfile client:visible />
+
+Try this: shorten the crossing until it turns red, then recover it by steepening the entry and exit angles. Next increase the pipe size and watch the design radius, and so the minimum length, grow.
+
+## Designing the profile
+
+An HDD profile is a straight **entry tangent**, a downward **curve**, a straight section at depth, an upward curve and an **exit tangent**.
+
+- **Entry angle:** usually 8° to 20°, set by the rig.
+- **Exit angle:** usually 5° to 12°, kept low so the pipe string can be lifted into the hole without over-bending.
+- **Bend radius:** the pipe is pulled round the curves elastically, so the radius must respect the elastic bend limit. A common rule for steel pipe is
+
+$$
+R \geq 1200 \times D
+$$
+
+  that is, 100 feet of radius per inch of diameter.
+- **Depth:** enough cover beneath the obstacle to contain the drilling mud pressure, typically at least 6 to 10 m under a river bed, and below the scour level.
+
+The curves need horizontal space. A deep crossing with a large pipe is therefore necessarily long.
+
+## Stresses on the pipe
+
+The pipe in an HDD sees loads an ordinary buried line does not:
+
+- **Pull force** during pullback: friction on the rollers and in the hole, plus drag from the mud.
+- **Bending** round the curves, during installation and permanently.
+- **External pressure** from the drilling mud on an empty pipe, which can govern wall thickness (collapse, module M2).
+- **Combined** tension, bending and external pressure at the same time.
+
+Heavy-wall pipe and an abrasion-resistant coating over the main coating are standard.
+
+## What can go wrong
+
+- **Frac-out:** drilling mud breaks through to the surface or river bed when its pressure exceeds what the cover can contain.
+- **Hole collapse** in loose sand or gravel.
+- **Stuck pipe** during pullback, if the hole is not clean or the pull is interrupted.
+- **Steering error**, hitting another utility or exiting off target.
+- **Coating damage**, invisible once the pipe is in the ground.
+
+A thorough geotechnical investigation along the bore line is the best protection against all of these.
+
+<Callout type="field">
+Pullback is done in one continuous operation, day and night if necessary. Stopping allows the mud to gel and the hole to close in on the pipe. The whole string is therefore welded, inspected, coated and hydrotested before pullback begins.
+</Callout>
+
+<Callout type="aramco">
+Trenchless crossings on Saudi Aramco projects follow SAES-L-460 and the project specification, with the crossing design, geotechnical data and method statement submitted for approval. Sabkha, high water tables and cavernous limestone in the Eastern Province all need particular attention in method selection.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| API RP 1102 | Load and stress design for pipe installed by boring under roads and railways. |
+| ASME B31.4 and B31.8 | Installation stresses, including those from directional drilling, to be considered and combined with operating stresses. |
+| PRCI PR-227-03110 | Widely used engineering design guide for installing pipelines by HDD. |
+| SAES-L-460 | Aramco crossing requirements. |
+
+</Standards>
+
+<Worked title="Minimum length of an HDD river crossing">
+
+**Given:** NPS 24 pipe (0.61 m), 18 m depth below entry level, 10° entry, 8° exit.
+
+**Radius:** R = 1200 × 0.61 = 732 m.
+
+**Entry side:** the curve from 10° to level drops R(1 − cos 10°) = 11.1 m over a run of R sin 10° = 127 m. The remaining 6.9 m of depth comes from the straight tangent: 6.9 / tan 10° = 39 m. Total 166 m.
+
+**Exit side:** the curve drops R(1 − cos 8°) = 7.1 m over 102 m. Remaining 10.9 m from the tangent: 10.9 / tan 8° = 77 m. Total 179 m.
+
+**Minimum crossing length:** 166 + 179 = **345 m**, with no straight section at depth. For a river 200 m wide needing full depth across its bed, the crossing is about 550 to 700 m.
+
+**Bending stress in the curves:** E·D / 2R = 207 000 × 0.61 / (2 × 732) = 86 MPa, comfortably elastic.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "What is the correct order of HDD stages?", options: ["Ream, pilot, pullback", "Pilot hole, reaming, pullback", "Pullback, pilot, ream", "Pilot hole, pullback, reaming"], answer: 1, why: "A small steered pilot hole is drilled first, enlarged by reaming, then the pipe is pulled in." },
+  { q: "Why does a larger pipe need a longer HDD crossing for the same depth?", options: ["Larger rigs are slower", "The minimum bend radius scales with diameter", "Mud is heavier", "Larger pipe floats"], answer: 1, why: "With R of about 1200 D, the curves take more horizontal distance to reach depth." },
+  { q: "A frac-out is:", options: ["A pipe coating defect", "Drilling mud escaping to the surface through the ground", "A broken drill bit", "A collapsed casing"], answer: 1, why: "If mud pressure exceeds the confining strength of the cover, the fluid breaks out to the surface or river bed." }
+]} />

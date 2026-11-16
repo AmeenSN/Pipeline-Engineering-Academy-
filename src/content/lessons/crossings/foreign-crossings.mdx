@@ -1,0 +1,90 @@
+---
+title: Foreign pipeline and utility crossings
+summary: Every new pipeline crosses existing pipelines, cables and services. Learn the clearances, the protection measures and the safe way to excavate near a live line.
+order: 5
+minutes: 20
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, SAES-L-460, SAES-B-064]
+outcomes:
+  - State typical minimum clearances at pipeline and cable crossings
+  - Explain why crossings should be near perpendicular
+  - Describe cathodic protection measures at a crossing
+  - List the steps for safe excavation near a live pipeline
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import CrossingClearance from "@/components/interactives/CrossingClearance.tsx";
+
+## Someone else's pipeline
+
+A "foreign" service is any buried pipeline, cable or utility owned or operated by another party, or simply another line in the same corridor. On a route through an established oil field there may be several crossings per kilometre.
+
+At each crossing two things matter: **not damaging** the existing service while you build, and leaving an arrangement that lets **both** be operated, protected and repaired for decades.
+
+## Design rules
+
+- **Go under.** The new pipeline normally passes beneath existing lines, so the existing line is not undermined later and keeps its cover. Passing over is accepted where the existing line is very deep, and then the new line's cover must be checked.
+- **Clearance.** ASME codes set a minimum of 300 mm between pipelines for liquids (150 mm for gas). Operators usually require 600 mm or more between pipelines, and about 1 m from power cables.
+- **Angle.** Cross as close to 90° as possible. A skew crossing keeps the two lines close over a long distance, which complicates excavation and increases electrical interference.
+- **Physical separation.** A concrete slab, sandbags or a non-conductive barrier between the two prevents contact from settlement and warns future excavators.
+- **Support.** The existing line is supported while exposed, and the backfill under it is compacted so it does not settle afterwards.
+- **No fittings or bends** of the new line directly at the crossing where avoidable.
+
+<CrossingClearance client:visible />
+
+Try this: reduce the clearance below 0.3 m, then lower the crossing angle to 30° and see how long the two services stay within 3 m of each other.
+
+## Cathodic protection at crossings
+
+Two cathodically protected structures close together can interfere: current intended for one enters or leaves the other, causing accelerated corrosion where it leaves (module M9). At each crossing:
+
+- a **test post** is installed with test leads to both pipelines,
+- potentials on both lines are measured before and after the new system is energised,
+- if interference is found, a **resistive bond** between the lines or additional local anodes corrects it,
+- coating at the crossing is kept in the best possible condition, since a coating defect there is the worst place for one.
+
+## Power lines and cables
+
+- **Buried power cables:** greater clearance, cable tiles or slabs, and the cable owner's supervision during excavation.
+- **Overhead high-voltage lines:** the hazard is induced AC voltage on the welded pipe string during construction and on the pipeline in service. Grounding of the pipe string, safe working distances for cranes and sidebooms, and an AC interference study are required.
+- **Fibre-optic and telecom cables:** easily damaged and expensive to repair. Locate by hand digging.
+
+## Excavating near a live line
+
+Most crossing incidents happen during excavation. The safe sequence is:
+
+1. **Find out what is there.** Records, drawings and a locator survey before any digging.
+2. **Get the permit.** A crossing or excavation permit from the owner, with their representative present.
+3. **Mark the line** on the ground, with its depth.
+4. **Prove it by hand.** Hand-dig trial holes to expose the existing line and confirm position and depth.
+5. **Keep machines away.** No mechanical excavation within a set distance of the live line (commonly 0.5 to 1 m): hand tools or vacuum excavation only.
+6. **Protect and support** the exposed line: no loads on it, no impact, supports at safe spacing.
+7. **Inspect its coating** while exposed and repair any damage.
+8. **Backfill carefully** with fine material, compacted under and around both lines, and install marker tape.
+9. **Record** the as-built position and clearance of both lines.
+
+<Callout type="field">
+Heavy construction traffic must not cross an existing buried pipeline wherever it likes. Designated crossing points are built with a temporary earth ramp or timber mats to spread the wheel load, sized by a load check on the existing pipe.
+</Callout>
+
+<Callout type="aramco">
+Work near existing Saudi Aramco pipelines requires approved crossing permits and, typically, hand excavation to expose the line under the supervision of the operating proponent. Clearance, separation and protective ramp requirements are found in SAES-L-460 and SAES-B-064. Confirm the current values before design.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §434.6 | At least 12 in (300 mm) clearance between the pipeline and other underground structures, or suitable protection where this cannot be achieved. |
+| ASME B31.8 §841.1.11 | At least 6 in (150 mm) clearance from other underground structures; precautions against interference. |
+| NACE SP0169 / ISO 15589-1 | Interference testing and mitigation between cathodic protection systems. |
+| SAES-L-460 and SAES-B-064 | Aramco crossing and spacing requirements. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Why does a new pipeline normally pass under an existing one?", options: ["It is cheaper", "The existing line keeps its cover and is not undermined by later work", "To improve flow", "Codes forbid crossing over"], answer: 1, why: "Going under leaves the existing line undisturbed above; the new line is then the deeper one." },
+  { q: "What is installed at a pipeline crossing for cathodic protection?", options: ["A rectifier", "A test post with leads to both pipelines", "An isolation joint", "A sacrificial casing"], answer: 1, why: "Test leads to both lines allow interference to be measured and, if needed, a bond to be fitted." },
+  { q: "Close to a live buried pipeline, excavation should be by:", options: ["The largest excavator available", "Hand tools or vacuum excavation", "Blasting", "Trencher"], answer: 1, why: "Mechanical excavation is excluded within a set distance of the line to avoid striking it." }
+]} />
