@@ -39,9 +39,9 @@ export default function CathodicProtection() {
           {sys === 'iccp' ? <>
             <rect x="380" y="22" width="56" height="34" rx="4" fill="var(--surface)" stroke="var(--text)" strokeWidth="1.5" /><text x="408" y="43" textAnchor="middle" className="svg-strong">T/R</text>
             <path d="M380 46H200V120" fill="none" stroke="var(--text)" strokeWidth="1.5" /><text x="290" y="40" textAnchor="middle" className="svg-label">− to pipe</text>
-            <path d="M436 46H500V90" fill="none" stroke="var(--text)" strokeWidth="1.5" /><text x="506" y="52" className="svg-label">+ to</text><text x="506" y="64" className="svg-label">anodes</text>
+            <path d="M436 46H500V90" fill="none" stroke="var(--text)" strokeWidth="1.5" /><text x="468" y="40" textAnchor="middle" className="svg-label">+ to anodes</text>
             {[470, 500, 530].map((ax) => <rect key={ax} x={ax - 5} y="90" width="10" height="70" rx="3" fill="var(--text)" />)}
-            <text x="500" y="178" textAnchor="middle" className="svg-label">ground bed (inert anodes in coke)</text>
+            <text x="552" y="180" textAnchor="end" className="svg-label">ground bed (inert anodes in coke)</text>
           </> : <>
             {[110, 250].map((ax) => <g key={ax}><rect x={ax - 8} y="158" width="46" height="18" rx="5" fill="var(--bad)" opacity=".8" /><path d={`M${ax + 15} 158V140`} stroke="var(--text)" strokeWidth="1.5" /></g>)}
             <text x="330" y="176" className="svg-label">magnesium anodes wired directly to the pipe</text>

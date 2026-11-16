@@ -34,6 +34,8 @@ export const STAGES: Stage[] = [
     acts: ['Dry to the specified dew point; purge with nitrogen for gas', 'Commission CP, valves, instruments and SCADA', 'Introduce product and pressurise', 'Run baseline in-line inspection', 'Compile and hand over as-built records'], kit: ['Dry air or vacuum drying spread', 'Nitrogen units'], qc: ['Dew point achieved and held', 'Pre-startup safety review', 'As-built data book complete'], issues: ['Residual water causing hydrates or corrosion', 'Punch-list items left open', 'Incomplete traceability records'] },
 ];
 
+const SHORT = ['Survey', 'Grading', 'Stringing', 'Bending', 'Welding', 'NDT', 'Joint coat', 'Trenching', 'Lowering', 'Backfill', 'Tie-ins', 'Hydrotest', 'Reinstate', 'Handover'];
+
 function Zone({ s, x, w, on, onClick, n }: { s: Stage; x: number; w: number; on: boolean; onClick: () => void; n: number }) {
   const gy = 70, cx = x + w / 2;
   return (
@@ -49,7 +51,7 @@ function Zone({ s, x, w, on, onClick, n }: { s: Stage; x: number; w: number; on:
       {s.pipe === 'buried' && <g><rect x={x} y={gy + 22} width={w} height="7" fill="var(--accent)" opacity=".85" /><path d={`M${x} ${gy}q${w / 2} -7 ${w} 0`} fill="var(--yellow)" opacity=".5" /></g>}
       <rect x={cx - 15} y={gy - 36} width="30" height="16" rx="3" fill={on ? 'var(--accent)' : 'var(--brand)'} opacity=".9" />
       <text x={cx} y={gy - 24} textAnchor="middle" style={{ fontSize: 10, fill: '#fff', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>{n}</text>
-      <text x={cx} y="130" textAnchor="middle" className="svg-label" style={{ fontSize: 9 }}>{s.name.split(' ')[0]}</text>
+      <text x={cx} y="130" textAnchor="middle" className="svg-label" style={{ fontSize: 9 }}>{SHORT[n - 1]}</text>
     </g>
   );
 }

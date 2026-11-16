@@ -1,6 +1,34 @@
 ---
 import Base from '@/layouts/Base.astro';
-const tools = [
+const more = [
+  ['Pressure profile and surge', 'Friction loss, elevation, arrival pressure and Joukowsky surge for a liquid line.', 'foundations/hydraulics-maop-surge', 'Hydraulics'],
+  ['Pipeline glossary', 'Searchable list of pipeline terms and abbreviations.', 'foundations/glossary', 'Reference'],
+  ['Route option scoring', 'Weighted comparison of three route options against cost, safety and terrain.', 'route-surveys/route-selection', 'Routing'],
+  ['Read an alignment sheet', 'Move along a sample sheet and read the plan, profile and data bands.', 'route-surveys/alignment-sheets', 'Routing'],
+  ['Right-of-way builder', 'Construction ROW width built up from trench, spoil and working lanes.', 'route-surveys/right-of-way', 'Routing'],
+  ['Location class study', 'Place buildings on a map and slide the ASME B31.8 one-mile zone.', 'safety-risk/pdi-location-class', 'Safety'],
+  ['Impact radius and risk ranking', 'Potential impact radius of a gas line and a 5 × 5 risk matrix.', 'safety-risk/risk-assessment', 'Safety'],
+  ['Road and railway crossing', 'Cover, method and ovalisation check for cased and uncased crossings.', 'crossings/road-rail-crossings', 'Crossings'],
+  ['HDD crossing profile', 'Entry and exit angles, bend radius, drilled length and feasibility.', 'crossings/trenchless-crossings', 'Crossings'],
+  ['Wadi scour and burial depth', 'Lacey scour estimate and the cover needed below a wadi bed.', 'crossings/wadi-water-crossings', 'Crossings'],
+  ['Trench cross-section by terrain', 'Trench shape, padding and volumes in soil, rock, sand, sabkha and wadi.', 'trench/trench-dimensions', 'Trench'],
+  ['Crossing an existing pipeline', 'Clearance and angle check at pipeline and cable crossings.', 'crossings/foreign-crossings', 'Crossings'],
+  ['Set-on weight spacing', 'Spacing of concrete saddle weights against flotation.', 'trench/buoyancy-control', 'Trench'],
+  ['The pipeline spread', 'All fourteen construction stages with activities, checks and typical problems.', 'construction/construction-spread', 'Construction'],
+  ['Girth weld build-up and heat input', 'Weld passes in the bevel and heat input from welding parameters.', 'construction/welding-ndt', 'Construction'],
+  ['Which metal corrodes?', 'Galvanic series and the corrosion cell between two connected metals.', 'corrosion/corrosion-mechanisms', 'Corrosion'],
+  ['Mainline coating systems', 'Layer-by-layer view of 3LPE, 3LPP, FBE and other coatings.', 'corrosion/external-coatings', 'Corrosion'],
+  ['Cathodic protection sizing', 'Current demand, anode count and the −850 mV criterion.', 'corrosion/cathodic-protection', 'Corrosion'],
+  ['AC interference check', 'AC current density at a holiday from induced voltage and soil resistivity.', 'corrosion/interference', 'Corrosion'],
+  ['Hydrotest section designer', 'Test pressure window, allowable elevation range and temperature effect.', 'testing/hydrostatic-testing', 'Testing'],
+  ['Launching a pig', 'Step-by-step valve sequence on a pig launcher.', 'operations/pigging-scraper-traps', 'Operations'],
+  ['Sectionalizing valve spacing', 'ASME B31.8 spacing by class and the inventory between valves.', 'operations/sectionalizing-valves', 'Operations'],
+  ['Leak location by pressure wave', 'Locate a leak from arrival times at two sensors.', 'operations/leak-detection', 'Operations'],
+  ['Corrosion defect assessment', 'Modified B31G failure pressure, safe pressure and acceptance curve.', 'operations/defect-assessment', 'Integrity'],
+  ['Above-ground expansion loop', 'Thermal growth, loop leg length and support span.', 'aboveground-offshore/above-ground-pipelines', 'Above ground'],
+  ['On-bottom stability', 'Submerged weight against drag and lift for a subsea pipe.', 'aboveground-offshore/offshore-design', 'Offshore'],
+].map(([t, d, h, tag]) => ({ t, d, h: `/learn/${h}/`, tag }));
+const base = [
   { t: 'Grade comparison', d: 'Wall thickness and steel tonnage for every API 5L grade at your pressure and diameter.', h: '/learn/materials/carbon-steel-grades/', tag: 'Materials' },
   { t: 'Carbon equivalent and weldability', d: 'CE(IIW) and Pcm from chemistry, checked against API 5L PSL2 limits.', h: '/learn/materials/carbon-steel-grades/', tag: 'Materials' },
   { t: 'How line pipe is made', d: 'Step through seamless, HFW, LSAW and spiral pipe manufacturing.', h: '/learn/materials/pipe-manufacturing/', tag: 'Materials' },
@@ -23,6 +51,7 @@ const tools = [
   { t: 'Pressure-cycle fatigue life', d: 'Girth-weld fatigue life from pressure swings using S-N curves.', h: '/learn/mechanical-design/fatigue-dt-collapse/', tag: 'Integrity' },
   { t: 'Collapse and D/t', d: 'Elastic, plastic and combined collapse pressure against water depth.', h: '/learn/mechanical-design/fatigue-dt-collapse/', tag: 'Integrity' },
 ];
+const tools = [...base, ...more];
 ---
 <Base title="Calculators" description="Interactive pipeline engineering calculators with shown working and SI/US units.">
   <section class="blueprint border-b border-line">

@@ -16,9 +16,9 @@ const STEPS: Step[] = [
 const Valve = ({ x, y, open, label, vert, lx = 0, ly = -14 }: { x: number; y: number; open: number; label: string; vert?: boolean; lx?: number; ly?: number }) => {
   const c = open >= 1 ? 'var(--ok)' : open <= 0 ? 'var(--bad)' : 'var(--yellow)';
   return (
-    <g transform={`translate(${x} ${y})${vert ? ' rotate(90)' : ''}`}>
-      <path d="M-12 -9L12 9V-9L-12 9Z" fill={c} stroke="var(--text)" strokeWidth="1.2" />
-      <text x={vert ? ly : lx} y={vert ? -lx - 16 : ly} textAnchor="middle" className="svg-label" transform={vert ? 'rotate(-90)' : undefined} style={{ fill: c, fontWeight: 600 }}>{label}</text>
+    <g>
+      <path transform={`translate(${x} ${y})${vert ? ' rotate(90)' : ''}`} d="M-12 -9L12 9V-9L-12 9Z" fill={c} stroke="var(--text)" strokeWidth="1.2" />
+      <text x={x + lx} y={y + ly} textAnchor={vert ? 'start' : 'middle'} className="svg-label" style={{ fill: c, fontWeight: 600 }}>{label}</text>
     </g>
   );
 };
@@ -48,17 +48,17 @@ export default function PigTrap() {
           {pipe('M320 108H400V190', flowKick)}
           {/* closure door */}
           <g transform={s.door ? 'rotate(-70 130 88)' : undefined} style={{ transition: 'transform .4s' }}><rect x="122" y="84" width="9" height="48" rx="2" fill="var(--text)" /></g>
-          <text x="118" y="146" textAnchor="middle" className="svg-label">closure</text>
+          <text x="112" y="112" textAnchor="end" className="svg-label">closure</text>
           <text x="205" y="146" textAnchor="middle" className="svg-label">barrel (oversize)</text>
           {/* vent, drain, gauge */}
-          <line x1="230" y1="88" x2="230" y2="68" stroke="var(--text)" strokeWidth="2" /><circle cx="230" cy="60" r="9" fill="var(--surface)" stroke="var(--text)" /><text x="230" y="64" textAnchor="middle" style={{ fontSize: 9, fill: s.pressured ? 'var(--bad)' : 'var(--ok)', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>{s.pressured ? 'P' : '0'}</text>
-          <text x="246" y="62" className="svg-label">gauge + vent</text>
+          <line x1="262" y1="88" x2="262" y2="68" stroke="var(--text)" strokeWidth="2" /><circle cx="262" cy="60" r="9" fill="var(--surface)" stroke="var(--text)" /><text x="262" y="64" textAnchor="middle" style={{ fontSize: 9, fill: s.pressured ? 'var(--bad)' : 'var(--ok)', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>{s.pressured ? 'P' : '0'}</text>
+          <text x="278" y="62" className="svg-label">gauge + vent</text>
           {/* pig */}
           {s.pig > 0 && s.pig < 3 && <g transform={`translate(${pigX} ${s.pig === 1 ? 108 : 190})`} style={{ transition: 'transform .8s' }}><rect x="-22" y="-7" width="44" height="14" rx="4" fill="var(--accent)" /><rect x="-24" y="-12" width="5" height="24" fill="var(--accent)" /><rect x="14" y="-12" width="5" height="24" fill="var(--accent)" /></g>}
-          <Valve x={170} y={62} open={s.K ? 1 : 0} label="KICKER" vert lx={-34} ly={0} />
+          <Valve x={170} y={62} open={s.K ? 1 : 0} label="KICKER" vert lx={16} ly={4} />
           <Valve x={360} y={108} open={s.A ? 1 : 0} label="TRAP VALVE" />
           <Valve x={260} y={190} open={s.B} label="MAINLINE BYPASS" ly={26} />
-          <path d="M520 178v-14h14" fill="none" stroke="var(--text)" strokeWidth="2" /><text x="540" y="168" className="svg-label">pig signaller</text>
+          <path d="M480 178v-14h14" fill="none" stroke="var(--text)" strokeWidth="2" /><text x="500" y="168" className="svg-label">pig signaller</text>
           <text x="8" y="214" className="svg-label">from station →</text><text x="612" y="214" textAnchor="end" className="svg-label">→ pipeline</text>
         </svg>
         <div style={{ display: 'flex', gap: 4 }}>{STEPS.map((_, k) => <button key={k} type="button" aria-label={`Step ${k + 1}`} onClick={() => setI(k)} style={{ flex: 1, height: 6, borderRadius: 4, background: k <= i ? 'var(--accent)' : 'var(--line)' }} />)}</div>

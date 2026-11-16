@@ -30,7 +30,7 @@ export default function RowSection() {
         <Segmented label="Separate travel lane" value={passing} onChange={setPassing} options={[{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }]} />
       </Controls>
       <View>
-        <svg viewBox={`0 0 ${W} 200`} role="img" aria-label="Cross-section of the construction right of way" style={{ width: '100%' }}>
+        <svg viewBox={`0 0 ${W} 216`} role="img" aria-label="Cross-section of the construction right of way" style={{ width: '100%' }}>
           <line x1="0" x2={W} y1={gy} y2={gy} stroke="var(--text)" strokeWidth="1.5" />
           {r.parts.map((p, i) => {
             const x0 = x, w = p.w * s; x += w;

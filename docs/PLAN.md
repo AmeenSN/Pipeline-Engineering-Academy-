@@ -35,19 +35,19 @@ tests/                                    unit tests for the engineering library
 ## Curriculum and status
 | Code | Module | Status |
 |---|---|---|
-| M0 | Foundations | Planned |
+| M0 | Foundations | **Built** |
 | M1 | Line pipe materials and manufacturing | **Built: 4 lessons, 7 interactive tools** |
 | M2 | Mechanical design | **Built: 7 lessons, 9 interactive tools** |
-| M3 | Route selection and surveys | Planned |
-| M4 | Safety and risk (PDI, location class) | Planned |
+| M3 | Route selection and surveys | **Built** |
+| M4 | Safety and risk (PDI, location class) | **Built** |
 | M5 | Bends and pipe geometry | **Built: 4 lessons, 5 interactive tools** |
-| M6 | Crossings and special terrain | Planned |
-| M7 | Trench design and burial | Planned |
-| M8 | Construction | Planned |
-| M9 | Coatings and corrosion control | Planned |
-| M10 | Testing and commissioning | Planned |
-| M11 | Operations and integrity | Planned |
-| M12 | Above-ground and offshore | Planned |
+| M6 | Crossings and special terrain | **Built** |
+| M7 | Trench design and burial | **Built** |
+| M8 | Construction | **Built** |
+| M9 | Coatings and corrosion control | **Built** |
+| M10 | Testing and commissioning | **Built** |
+| M11 | Operations and integrity | **Built** |
+| M12 | Above-ground and offshore | **Built** |
 
 The full lesson list for each module is in `src/data/curriculum.ts`.
 

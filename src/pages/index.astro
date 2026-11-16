@@ -21,7 +21,7 @@ const features = [
           <a href="/learn/" class="btn btn-ghost">Browse the curriculum</a>
         </div>
         <dl class="mt-10 flex flex-wrap gap-x-10 gap-y-4">
-          {[[MODULES.length, 'modules'], [liveLessonCount, `of ${lessonCount} lessons live`], [toolCount, 'interactive tools']].map(([n, l]) => (
+          {[[MODULES.length, 'modules'], [lessonCount, 'lessons'], [toolCount, 'interactive tools']].map(([n, l]) => (
             <div><dt class="num text-3xl font-bold">{n}</dt><dd class="text-sm text-muted">{l}</dd></div>
           ))}
         </dl>

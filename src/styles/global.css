@@ -117,3 +117,8 @@ input[type='range']::-moz-range-thumb { width: 14px; height: 14px; border-radius
 @keyframes dash { to { stroke-dashoffset: 0; } }
 @keyframes flow { to { stroke-dashoffset: -40; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001s !important; transition-duration: .001s !important; } }
+
+/* Lists inside interactive tools keep their own bullets, not the lesson prose style. */
+.prose .not-prose ul > li { padding-left: 0; margin-top: 0; color: inherit; }
+.prose .not-prose ul > li::before { content: none; }
+.prose .not-prose p { color: inherit; }
