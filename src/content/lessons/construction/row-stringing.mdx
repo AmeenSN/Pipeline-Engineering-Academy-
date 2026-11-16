@@ -1,0 +1,107 @@
+---
+title: ROW preparation and stringing
+summary: The first four stages put the route on the ground and the pipe beside it. Learn what survey, grading, stringing and bending crews do and how mistakes here surface later.
+order: 2
+minutes: 20
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, API RP 5L1, SAES-L-450]
+outcomes:
+  - Describe setting out and right-of-way preparation
+  - Explain pipe handling, stacking and stringing rules
+  - Plan stringing so the right pipe ends up in the right place
+  - Recognise handling damage and how to prevent it
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ConstructionSpread from "@/components/interactives/ConstructionSpread.tsx";
+
+## Getting ready to build
+
+Nothing permanent is installed in these stages, but they decide how well everything after them goes.
+
+<ConstructionSpread client:visible only={["survey", "clear", "string", "bend"]} />
+
+## Setting out
+
+The construction survey transfers the design from the alignment sheets to the ground:
+
+- **Centreline stakes** at regular intervals and at every point of intersection.
+- **Right-of-way boundary stakes** both sides, so that work stays inside the permitted strip.
+- **Offset reference stakes**, because centreline stakes are destroyed by grading and trenching.
+- **Existing services** located, exposed by hand at crossings, and marked with their depth.
+- **Station markers** so that every crew can report where it is.
+
+A pre-construction condition record (photographs, levels, fence and road condition) protects against later damage claims.
+
+## Clearing and grading
+
+The right of way is made into a working surface:
+
+- Vegetation, rocks and obstructions removed.
+- Topsoil stripped and stockpiled separately where the land is cultivated.
+- The surface graded so that sidebooms and trailers can travel and the pipe string lies evenly. In dunes this can mean cutting through or building up significant volumes of sand.
+- On side slopes, a level **bench** is cut for the equipment.
+- Temporary bridges, culverts and ramps keep drainage and local access open, and protect existing buried pipelines where plant crosses them.
+
+Grading also sets the profile the pipe will follow. Smoothing out sharp changes of ground level at this stage reduces the number of field bends.
+
+## Pipe transport and storage
+
+Line pipe is damaged more often in transport and handling than in service. Good practice:
+
+- **Transport** by rail or sea follows loading rules (API RP 5L1 and 5LW) that limit stacking height and bearing loads. Vibration during a long journey can start fatigue cracks at the seam of badly loaded thin-wall pipe.
+- **Lifting** with wide padded slings, vacuum lifters or padded end hooks. Never chains or bare wire rope on coated pipe.
+- **Stacking** on level ground on padded timber or sand berms, with separators between tiers, wedged against rolling, and limited in height by pipe size and wall.
+- **End caps** kept on to keep out sand, water and animals.
+- **Coating protection** from prolonged sun where the coating is UV-sensitive, as FBE is.
+
+## Stringing
+
+Stringing lays each joint where it will be welded. The **stringing plan** (or pipe tally) lists, kilometre by kilometre, which wall thickness, grade, coating and bends go where. It is taken from the alignment sheets.
+
+- Joints are set on padded skids, clear of the ground, in line and slightly offset end to end so the bevels do not touch.
+- Heavy-wall and concrete-coated joints are placed at their crossings.
+- Gaps are left for access, wildlife and livestock.
+- Each joint's **pipe number and heat number are recorded against its location**. This is the start of the traceability chain that runs through to the as-built records.
+
+<Callout type="warn">
+Heavy-wall and standard-wall pipe look the same on the skids. A standard-wall joint strung by mistake under a road crossing is a serious, expensive error if found after backfill. Check the stencil and measure the wall at the bevel.
+</Callout>
+
+## Bending
+
+Field bending was covered in module M5. On the spread, the bending engineer walks the graded right of way (or the open trench), measures the change of direction at each location, and assigns a bend to a specific joint in the string. Bends are made beside the line and laid back in sequence, marked with their angle, direction and top of pipe.
+
+## Inspection on receipt
+
+Before a joint is accepted for stringing it is checked for:
+
+- stencil markings that match the delivery documents,
+- bevel damage and end ovality,
+- dents, gouges and laminations visible at the ends,
+- coating damage and thickness,
+- internal cleanliness.
+
+Damaged joints are set aside for repair or rejection, and recorded.
+
+<Callout type="aramco">
+SAES-L-450 covers pipe handling, storage and stringing for Saudi Aramco projects, including stacking limits and protection of coated pipe, with coating handling rules in the SAES-H series. Material traceability from the mill certificate to the as-built record is a firm requirement.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §434.4 and B31.8 §841.2.4 | Handling, hauling and stringing so that pipe, bevels and coating are not damaged. |
+| API RP 5L1 / 5LW | Recommended practices for railroad and marine transportation of line pipe. |
+| ASME B31.8 §841.2.4 | Inspection of pipe for defects before installation. |
+| SAES-L-450 | Aramco requirements for handling, storage and stringing. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Why are offset reference stakes set as well as centreline stakes?", options: ["For decoration", "Centreline stakes are destroyed by grading and trenching", "To mark the spoil side", "To measure bends"], answer: 1, why: "Offsets allow the centreline to be re-established after construction traffic has removed the originals." },
+  { q: "What should be used to lift coated pipe?", options: ["Chains", "Bare wire rope", "Wide padded slings or vacuum lifters", "Excavator bucket teeth"], answer: 2, why: "Narrow or hard lifting gear cuts the coating and can dent the pipe." },
+  { q: "What is recorded for each joint during stringing?", options: ["Its colour", "Pipe number and heat number against location", "The driver's name", "The weld number only"], answer: 1, why: "Linking each joint's identity to its position starts the traceability chain to the as-built records." }
+]} />

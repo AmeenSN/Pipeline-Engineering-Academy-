@@ -1,0 +1,119 @@
+---
+title: Welding and NDT
+summary: A pipeline is thousands of girth welds in a row, and each one must be as sound as the pipe. Learn the weld passes, the processes, the essential controls and how welds are inspected.
+order: 3
+minutes: 30
+level: Intermediate
+standards: [API 1104, ASME B31.4, ASME B31.8, SAES-W-012]
+outcomes:
+  - Describe the passes in a pipeline girth weld
+  - Compare manual, semi-automatic and mechanised welding
+  - Explain procedure and welder qualification
+  - Compare radiography and automated ultrasonic testing
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ConstructionSpread from "@/components/interactives/ConstructionSpread.tsx";
+import WeldJoint from "@/components/interactives/WeldJoint.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## The girth weld
+
+A 100 km pipeline in 12 m joints has more than 8000 girth welds. Each is made outdoors, in position, around a fixed horizontal pipe, by a team working against the clock. Welding is where pipeline construction quality is mostly won or lost.
+
+<ConstructionSpread client:visible only={["weld", "ndt"]} />
+
+## Building up the weld
+
+<WeldJoint client:visible />
+
+Step the "passes completed" slider from 0 to 4 to build the weld. Then change the voltage, current and travel speed to see how heat input responds.
+
+On a mainline spread the work is split:
+
+- The **front end** aligns each new joint with an internal line-up clamp and makes the root and hot pass. As soon as the hot pass is complete the clamp is released and the front end moves to the next joint.
+- The **back end** follows, with several welding stations each adding fill passes and the cap.
+
+## Welding processes
+
+<InfoTabs client:visible title="Pipeline welding processes" tabs={[
+  { label: "SMAW", title: "Shielded metal arc (stick) welding", text: "Manual welding with flux-covered electrodes.", rows: [["Technique", "Vertical-down with cellulosic electrodes for mainline; vertical-up with low-hydrogen electrodes for tie-ins and repairs"], ["Strengths", "Simple, robust in wind, works anywhere"], ["Limits", "Slow; cellulosic electrodes give high hydrogen, which limits their use on high-strength pipe"], ["Used for", "Small projects, tie-ins, repairs, lower grades"]] },
+  { label: "Semi-auto", title: "Semi-automatic (FCAW and GMAW)", text: "The welder guides a gun that feeds wire continuously.", rows: [["Technique", "Self-shielded flux-cored wire for fill and cap is common; controlled short-arc GMAW for root"], ["Strengths", "Higher deposition than stick, low hydrogen"], ["Limits", "More equipment; gas-shielded processes need wind protection"], ["Used for", "Fill and cap on medium projects, tie-ins"]] },
+  { label: "Mechanised GMAW", title: "Mechanised (automatic) GMAW", text: "Welding heads called bugs travel on a band round the pipe, with a narrow-gap bevel cut on site.", rows: [["Technique", "Internal welding machine or external root, then multiple external bugs; narrow bevel reduces weld volume"], ["Strengths", "Fast, consistent, low repair rate, suited to high-strength pipe"], ["Limits", "High set-up cost; needs facing machines, shelters and skilled technicians; sensitive to fit-up"], ["Used for", "Large-diameter, long-distance projects"], ["Inspection", "Normally paired with automated ultrasonic testing"]] },
+  { label: "SAW double-joint", title: "Double jointing by submerged arc", text: "Two 12 m joints are welded into a 24 m length at a yard, rotating the pipe under a fixed welding head.", rows: [["Strengths", "Halves the number of field welds; high-quality rotated weld"], ["Limits", "Needs a yard and transport for long lengths"], ["Used for", "Large projects with good access"]] },
+]} />
+
+## What must be controlled
+
+- **Fit-up.** Root gap and high-low (the radial offset between the two pipe ends). Poor fit-up is the root cause of most root defects.
+- **Preheat.** The joint is heated, typically to 50 to 150 °C depending on grade, wall and process, to slow cooling and let hydrogen escape. Checked with contact thermometers or temperature crayons.
+- **Interpass temperature.** Kept within limits between passes.
+- **Heat input.** Controlled through current, voltage and travel speed.
+- **Hydrogen.** Low-hydrogen electrodes kept dry in heated quivers; time between root and hot pass limited; no welding on wet pipe.
+- **Weather.** Wind shelters for gas-shielded processes; no welding in rain or sandstorm.
+- **Cleanliness.** Slag removed and each pass ground or brushed before the next.
+- **No arc strikes** outside the weld groove. An arc strike leaves a small, hard, crack-prone spot on the pipe.
+
+## Qualification
+
+**Welding procedure specification (WPS).** A written recipe: joint design, process, consumables, preheat, electrical ranges, number of passes. It is proven by welding a test joint and destructively testing it (tensile, bend, nick-break, and for most projects Charpy and hardness). The record of that test is the procedure qualification record (PQR).
+
+**Essential variables.** If any of a defined list changes beyond its limit, for example pipe grade, wall thickness range, process or consumable, the procedure must be requalified.
+
+**Welder qualification.** Each welder welds a test joint to the procedure, which is inspected and tested. Qualification is specific to process, position and diameter and thickness range.
+
+## Inspection
+
+Every weld is visually inspected. Then, on most pipelines, 100 % are examined by a volumetric method:
+
+| | Radiography (RT) | Automated ultrasonics (AUT) |
+|---|---|---|
+| How | X-ray or gamma source inside the pipe exposes film or a detector wrapped outside | Phased-array and time-of-flight probes scan round the weld on a band |
+| Finds best | Volumetric defects: porosity, slag, burn-through | Planar defects: lack of fusion, cracks |
+| Sizing | Length only | Length and height, enabling fracture-mechanics acceptance |
+| Speed | Minutes per weld plus processing | Result in about a minute |
+| Safety | Radiation exclusion zone | No radiation |
+| Suits | Manual welding, small projects | Mechanised welding, large projects |
+
+**Acceptance criteria.** API 1104 gives workmanship limits on defect type and length. Its Annex A allows wider limits based on an engineering critical assessment, where defect height is known and weld toughness is proven.
+
+**Repairs.** A rejected weld is repaired by grinding out the defect and re-welding to a qualified repair procedure, then re-inspected. Cracks usually mean the weld is cut out. The **repair rate** (a few percent is typical) is tracked by welder and by cause.
+
+<Callout type="field">
+Lack of fusion on the bevel wall lies almost parallel to an X-ray beam and can be invisible on a radiograph, yet it is the most common defect in mechanised narrow-gap welds. That is why mechanised welding and AUT are used together.
+</Callout>
+
+<Callout type="aramco">
+Saudi Aramco pipeline welding follows SAES-W-012, which supplements API 1104 with requirements on processes, consumables, preheat, hardness (especially for sour service) and inspection extent. NDT requirements and acceptance criteria are stated there and in the project specifications. Check the current revision before qualifying procedures.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| API 1104 | Procedure qualification, welder qualification, production welding, inspection, acceptance standards and repair. Annex A gives alternative acceptance based on fracture mechanics. |
+| ASME B31.4 §434.8 and B31.8 §821 to §826 | Welding requirements and the extent of inspection by location class. |
+| ISO 13847 | International standard for welding of pipelines. |
+| SAES-W-012 | Aramco welding requirements for pipelines. |
+
+</Standards>
+
+<Worked title="Heat input of a fill pass">
+
+**Given:** 26 V, 160 A, travel speed 300 mm/min.
+
+$$
+HI = \frac{26 \times 160 \times 60}{1000 \times 300} = 0.83 \text{ kJ/mm}
+$$
+
+If the welder slows to 150 mm/min, heat input doubles to 1.66 kJ/mm. If the procedure was qualified for 0.6 to 1.2 kJ/mm, the slower pass is outside the procedure, even though nothing else changed.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "Which pass is made immediately after the root pass?", options: ["Cap pass", "Hot pass", "Fill pass", "Back weld"], answer: 1, why: "The hot pass follows directly, while the root is hot, to burn out slag and reinforce it before the clamp is released." },
+  { q: "Why is preheat applied before welding?", options: ["To dry the welder's gloves", "To slow cooling and reduce hydrogen cracking risk", "To expand the pipe for fit-up", "To melt the coating"], answer: 1, why: "Slower cooling gives a softer microstructure and time for hydrogen to diffuse out." },
+  { q: "Which defect is automated ultrasonic testing better at finding than radiography?", options: ["Porosity", "Lack of fusion on the bevel face", "Slag inclusions", "Burn-through"], answer: 1, why: "Planar defects aligned with the bevel reflect ultrasound well but may not show on a radiograph." }
+]} />

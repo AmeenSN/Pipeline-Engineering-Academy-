@@ -1,0 +1,101 @@
+---
+title: As-builts and handover
+summary: The last construction deliverable is information. Learn what records a pipeline must have, how they are assembled and what happens at commissioning and handover to operations.
+order: 6
+minutes: 20
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, ASME B31.8S, SAES-L-450]
+outcomes:
+  - List the records in a pipeline handover package
+  - Explain material and weld traceability
+  - Describe commissioning and mechanical completion
+  - Explain why records are part of pipeline integrity
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ConstructionSpread from "@/components/interactives/ConstructionSpread.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## The pipeline you cannot see
+
+When construction ends, the pipeline is buried. From then on, what the operator knows about it is what the records say. A pipeline with complete, traceable records can be assessed, re-rated, repaired and inspected efficiently for fifty years. One without them must be treated with suspicion, excavated to find out basic facts, or re-tested.
+
+<ConstructionSpread client:visible only={["commission"]} />
+
+## Traceability
+
+The core idea is an unbroken chain from a point on the ground to the documents that prove what is there:
+
+**location → weld number → pipe joint number → heat number → mill test certificate**
+
+and in parallel:
+
+**weld number → welding procedure → welder → NDT report → repair record**
+
+This chain is built stage by stage: at stringing (pipe to location), at welding (weld numbers), at NDT, at lowering-in (survey) and at tie-in. Assembled afterwards from memory, it is never complete.
+
+## The handover package
+
+<InfoTabs client:visible title="What operations receives" tabs={[
+  { label: "Drawings", title: "As-built drawings and data", rows: [["Alignment sheets", "Re-issued as-built with surveyed pipe position, cover, weld and joint numbers"], ["GIS database", "Centreline, features and attributes in the operator's system"], ["Crossings and stations", "As-built detail drawings, P&IDs, isometrics"], ["Pipe book / tally", "Every joint in sequence with its number, heat, length, wall and coating"]] },
+  { label: "Materials", title: "Material records", rows: [["Mill test certificates", "For all pipe, bends, fittings, flanges and valves, tied to heat numbers"], ["Coating records", "Plant application and inspection reports"], ["Valve data", "Test certificates, actuator settings, manuals"], ["Deviations", "Approved concessions and non-conformance reports with their closure"]] },
+  { label: "Welding", title: "Welding and NDT records", rows: [["Procedures", "WPS and PQR for each procedure used"], ["Welders", "Qualification records"], ["Weld register", "Every weld with date, welders, procedure and location"], ["NDT", "Reports, radiographs or AUT data, with repair and re-inspection records"]] },
+  { label: "Coating and CP", title: "Coating and cathodic protection", rows: [["Field joints", "Application and inspection records, peel tests"], ["Holiday tests", "Records before lowering-in"], ["CP installation", "Anode beds, rectifiers, test posts, bonds, isolation joints"], ["CP commissioning", "Baseline potential survey and interference tests"], ["Coating survey", "DCVG or similar survey after backfill, with defects repaired"]] },
+  { label: "Testing", title: "Testing and commissioning", rows: [["Hydrotest", "Procedure, pressure and temperature charts, calibration certificates, acceptance certificate"], ["Gauging", "Gauge plate or caliper pig report"], ["Drying", "Dew point records"], ["Baseline ILI", "First in-line inspection report"], ["Commissioning", "Check sheets, punch lists, pre-startup safety review"]] },
+  { label: "Operations", title: "Operating information", rows: [["Design basis", "Design pressure and temperature, MAOP, corrosion allowance, design life, location class study"], ["Manuals", "Operating, maintenance and emergency response procedures"], ["Spares", "Recommended spares and special tools"], ["Land", "Right-of-way agreements, permits, crossing agreements"]] },
+]} />
+
+## The as-built survey
+
+The most important single record is where the pipe actually is.
+
+- **Position and level of the top of pipe**, surveyed in the open trench before backfill, typically at every girth weld and at bends, crossings and features.
+- **Weld numbers** attached to each surveyed point.
+- **Final ground level** after reinstatement, giving depth of cover.
+- **Features:** valves, tees, bends, anodes, test posts, casings, crossings of other services.
+
+This survey gives every later in-line inspection a map to be matched against, and every future excavator an accurate location.
+
+## Commissioning
+
+Commissioning brings the completed pipeline into service in controlled steps:
+
+1. **Mechanical completion.** Everything is built, tested and inspected. Remaining items are listed on a **punch list**, graded by whether they must be closed before start-up.
+2. **Pre-commissioning.** Cleaning, drying, inerting, valve and instrument function checks, CP energised, SCADA points verified end to end.
+3. **Pre-startup safety review.** A formal check that the system, procedures and people are ready.
+4. **Introduction of product.** For gas, air is displaced with nitrogen and then gas, so that gas and air never mix. For liquids, the line is filled behind pigs to control the interface.
+5. **Pressurisation** in stages to operating pressure, with leak checks at flanges and valves.
+6. **Performance run** and **handover** to operations.
+
+## Lessons from the field
+
+- Records are compiled **as work proceeds**, by people assigned to do so, and checked weekly.
+- Each record is tied to a **location**, not just a date.
+- Digital data capture in the field (tablets, barcodes on pipe) avoids transcription errors.
+- The handover package is reviewed by the **operations team** before acceptance.
+
+<Callout type="note">
+Several regulators now require pipeline records to be **traceable, verifiable and complete**. Where an operator cannot show the material grade or test pressure of a segment from reliable records, the allowable operating pressure may have to be reduced until it is re-established by testing.
+</Callout>
+
+<Callout type="aramco">
+Saudi Aramco projects hand over through defined mechanical completion and performance acceptance milestones, with as-built drawings, inspection records and a project record book delivered to the operating proponent. SAES-L-450 and project quality requirements list the records required. Follow the current project execution procedures for formats.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §436 and §437.7 | Inspection and test records to be made and retained for the life of the facility. |
+| ASME B31.8 §841.3.5 and §851 | Records of design, materials, construction and testing to be kept for the life of the pipeline. |
+| ASME B31.8S / API 1160 | Data gathering and integration as the first element of integrity management. |
+| SAES-L-450 | Aramco construction records and as-built requirements. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "What does material traceability link together?", options: ["Welder to salary", "Location, weld, pipe joint, heat number and mill certificate", "Valve to actuator", "Coating to colour"], answer: 1, why: "The chain proves what steel is at each location and how it was joined and inspected." },
+  { q: "When must the pipe position be surveyed?", options: ["After reinstatement", "In the open trench before backfill", "During hydrotest", "At the mill"], answer: 1, why: "Once covered, the pipe can only be located indirectly and less accurately." },
+  { q: "Why is nitrogen used when commissioning a gas pipeline?", options: ["To test for leaks at high pressure", "To separate air from gas so a flammable mixture never forms", "To dry the coating", "To clean the pipe wall"], answer: 1, why: "An inert slug between air and gas prevents an explosive mixture inside the line." }
+]} />

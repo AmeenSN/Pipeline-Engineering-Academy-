@@ -1,0 +1,87 @@
+---
+title: The construction spread
+summary: A pipeline is built by a moving assembly line called a spread. Walk through all fourteen stages, from the first survey stake to handover, and see what each crew does and checks.
+order: 1
+minutes: 30
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, API 1104, SAES-L-450]
+outcomes:
+  - Name the stages of pipeline construction in order
+  - Describe the activities, equipment and quality checks of each stage
+  - Explain how the spread is sequenced and what controls its progress
+  - Identify the main hold points where work stops for inspection
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ConstructionSpread from "@/components/interactives/ConstructionSpread.tsx";
+
+## A factory that moves
+
+In a factory the product moves past the workers. On a pipeline the product stays where it is and the factory moves. Each crew does one job, then advances along the right of way, followed by the next crew. The whole train of crews and equipment is the **spread**. On a large project it stretches over tens of kilometres and employs hundreds of people.
+
+A long pipeline is divided into several spreads working at once, each building 50 to 150 km.
+
+## The fourteen stages
+
+<ConstructionSpread client:visible />
+
+Click through the stages in order. For each, read the activities, the equipment, the quality checks and the things that typically go wrong. The later lessons in this module look at groups of stages in more depth.
+
+## How the spread is sequenced
+
+- **Linear work:** survey, clearing, stringing, welding, coating, trenching, lowering-in and backfill follow each other continuously. Their speed sets the daily progress, typically 0.5 to 3 km per day depending on diameter, terrain and welding method.
+- **The pacing crew** is usually mainline welding. Everything else is sized to keep up with it and not get in its way.
+- **Special sections** are built separately by dedicated crews: road and wadi crossings, valve stations, scraper traps, steep slopes and rock. The main spread skips them and moves on.
+- **Tie-in crews** follow behind, joining the strings to each other and to the special sections.
+- **Testing and reinstatement** crews work in completed test sections.
+
+Whether trenching comes before or after welding depends on the ground. In stable soil the trench is often dug first. In sand that collapses, or where open trench is a hazard, it is dug just ahead of lowering-in, as shown above.
+
+## What controls progress
+
+- **Terrain:** rock, sabkha and dunes slow trenching and access.
+- **Welding rate and repair rate.**
+- **Weather:** wind and sand stop welding and coating; rain floods trenches; summer heat limits working hours.
+- **Material supply:** pipe, bends and coating materials must arrive in the right sequence.
+- **Permits and crossings:** each one can hold the spread.
+- **Inspection hold points.**
+
+## Quality control and hold points
+
+Construction quality is managed through an **inspection and test plan (ITP)**. For every activity it lists what is checked, against which standard, by whom, and whether work must stop until the check is accepted:
+
+- **Hold point:** work cannot proceed until the inspector signs.
+- **Witness point:** the inspector is notified and may attend.
+- **Review:** records are checked afterward.
+
+Typical hold points are welding procedure qualification, pre-lowering holiday test, trench bottom acceptance before lowering-in, pre-backfill survey, and the hydrotest. Anything that becomes invisible after the next stage needs to be inspected before it.
+
+<Callout type="field">
+The single most valuable habit on a spread is to inspect work **before it is covered**. A coating defect found before lowering-in takes ten minutes to repair. The same defect found by a survey five years later needs an excavation.
+</Callout>
+
+## Safety on the spread
+
+Pipeline construction combines heavy lifting, deep excavation, moving plant, radiation, high pressure and remote locations. The main controls are permits to work, lifting plans for sidebooms, excavation rules, radiography exclusion zones, traffic management on the right of way, heat stress management and emergency response for remote sites.
+
+<Callout type="aramco">
+SAES-L-450 is Saudi Aramco's governing standard for construction of on-land and near-shore pipelines. It works together with SAES-W-012 for pipeline welding, the SAES-H series for coatings, SAES-X series for cathodic protection and SAES-A-004 for pressure testing, with inspection requirements defined in project quality plans and Aramco inspection procedures. Verify these references against the current index.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 Chapter V | Construction, welding and assembly of liquid pipelines, from right of way to backfill. |
+| ASME B31.8 Chapter IV | Design, installation and testing, including handling, bending, ditching and backfilling. |
+| API 1104 | Welding of pipelines and related facilities: procedure and welder qualification, inspection and acceptance. |
+| SAES-L-450 | Aramco construction of on-land and near-shore pipelines. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Which crew normally sets the pace of the spread?", options: ["Survey", "Mainline welding", "Reinstatement", "Hydrotest"], answer: 1, why: "Welding is usually the slowest linear activity, so other crews are sized around it." },
+  { q: "What is a hold point?", options: ["A place to store pipe", "A stage where work must stop until an inspection is accepted", "A break in the working day", "A type of pipe support"], answer: 1, why: "At a hold point the next activity cannot start without the inspector's sign-off." },
+  { q: "Why are road crossings built by a separate crew?", options: ["They use different pipe grade", "They are slow, special work that would stop the main spread", "Regulations forbid the main crew", "They need no welding"], answer: 1, why: "Special sections are built independently so the linear crews keep moving, and are tied in later." }
+]} />

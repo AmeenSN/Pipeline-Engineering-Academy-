@@ -1,0 +1,101 @@
+---
+title: Tie-ins and reinstatement
+summary: The spread leaves gaps behind it. Tie-in crews close them, the line is cleaned, gauged and tested, and the land is put back. Learn why tie-in welds get special care.
+order: 5
+minutes: 20
+level: Intermediate
+standards: [API 1104, ASME B31.4, ASME B31.8, SAES-L-450]
+outcomes:
+  - Explain what a tie-in is and why it is higher risk than a mainline weld
+  - Describe tie-in temperature control on hot pipelines
+  - Outline cleaning, gauging and testing before handover
+  - List reinstatement requirements
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ConstructionSpread from "@/components/interactives/ConstructionSpread.tsx";
+
+## Closing the gaps
+
+<ConstructionSpread client:visible only={["tiein", "test", "reinstate"]} />
+
+## What a tie-in is
+
+The main spread welds long strings beside the trench and lowers them in. Wherever a string ends, there is a gap: at a road or wadi crossing built separately, at a valve station, at the start of a new day's string, or at a hydrotest section boundary. The weld that closes each gap is a **tie-in**.
+
+A tie-in differs from a mainline weld in every way that matters:
+
+- It is made **in the trench**, in a bell hole, often in poor light and awkward positions.
+- The two pipe ends are **already restrained** by backfill, so they cannot be moved freely to get good fit-up.
+- An **external** clamp must be used, since an internal clamp could not be retrieved.
+- The last tie-ins in a test section, called **golden welds**, are made after the hydrotest and so are never pressure tested.
+
+For these reasons tie-in welds have the highest repair rates and the tightest controls.
+
+## Controls on tie-in welds
+
+- **No forcing.** The ends are cut to fit so they meet in line without jacking or pulling. Forced alignment locks in stress that stays for the life of the pipeline.
+- **Enough free pipe.** A sufficient length is left uncovered each side so the ends can be aligned elastically.
+- **Low-hydrogen, vertical-up procedures**, with a separately qualified tie-in procedure and welders.
+- **Extended preheat and delay before inspection**, because restraint increases the risk of delayed hydrogen cracking. NDT is often carried out 24 hours or more after welding.
+- **100 % inspection by two methods** for golden welds, commonly radiography plus ultrasonic or magnetic particle testing.
+- **Safe excavation.** The bell hole is sloped or shored and has clear exits.
+
+## Tie-in temperature
+
+A buried pipeline is "locked in" at the temperature of its final tie-ins. Every degree between that temperature and the operating temperature becomes stress (module M2).
+
+- On **hot lines**, tie-ins are made when the pipe is warm, typically in the afternoon, and the specification states a **minimum tie-in temperature**. A weld made at 15 °C on a winter night instead of 40 °C adds about 60 MPa of compression in service.
+- The pipe temperature at each tie-in is measured and recorded on the weld record and as-built data.
+- Long strings left open in the sun move by tens of millimetres between day and night. Tie-ins are planned for a stable period.
+
+<Callout type="field">
+If two pipe ends that fitted at noon have a 40 mm gap at dawn, the pipe is telling you how much it moves. Do not close that gap with a sideboom and weld it. Wait for the temperature at which the tie-in was planned.
+</Callout>
+
+## Cleaning, gauging and testing
+
+Before a section is tested, pigs are run through it with compressed air or water:
+
+1. **Cleaning pigs** with brushes and scrapers remove mill scale, sand, welding debris and anything left inside.
+2. A **gauging pig** carries an aluminium plate, usually 95 % of the minimum internal diameter. If the plate arrives bent or notched, something is reducing the bore: a dent, a buckle, excessive weld penetration or an ovalised bend. It must be found and corrected before testing.
+3. Increasingly, a **caliper (geometry) pig** is run instead or as well, which measures and locates every dent and ovality.
+
+The hydrostatic test itself is the subject of module M10.
+
+## Reinstatement
+
+The right of way is returned as close to its original condition as practical.
+
+- **Clean up.** All skids, welding rod stubs, coating waste, drums and scrap removed. Nothing is buried in the trench.
+- **Regrade** to original contours, with a crown over the trench.
+- **Topsoil** replaced where it was stripped, and compaction from construction traffic relieved in farmland.
+- **Drainage** restored: wadi beds and banks re-profiled and protected, culverts and ditches reopened.
+- **Erosion control:** slope breakers, mats, rock or vegetation on slopes; surface stabilisation over the trench in windblown sand.
+- **Roads, fences, walls and irrigation** repaired to at least their previous standard.
+- **Permanent markers,** test posts and fences at above-ground facilities installed.
+- **Sign-off** by landowners and authorities, compared with the pre-construction record.
+
+Reinstatement is inspected again after the first rains or the first season, when trench settlement and erosion show up.
+
+<Callout type="aramco">
+SAES-L-450 covers tie-in practice, including alignment without excessive force and recording tie-in temperatures on restrained lines, as well as cleanup and restoration of the right of way. SAES-W-012 sets the welding and inspection requirements for tie-in and closure welds. Check the current standards for the required inspection of welds that will not be hydrotested.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| API 1104 | Qualification and inspection requirements that apply equally to tie-in welds, with repair rules. |
+| ASME B31.4 §434.9 and §437.1.4 | Tie-in welding; welds not pressure tested (closures) to be fully inspected. |
+| ASME B31.8 §841.3 and §826 | Tie-in welds for tested sections need 100 % non-destructive examination. |
+| SAES-L-450 and SAES-W-012 | Aramco tie-in, closure weld and restoration requirements. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "What is a golden weld?", options: ["A weld made with gold electrodes", "A tie-in weld that is not pressure tested", "The first weld of the project", "A repaired weld"], answer: 1, why: "Closure welds made after the hydrotest rely entirely on enhanced NDT for their acceptance." },
+  { q: "Why should tie-ins on a hot pipeline be made when the pipe is warm?", options: ["Welders prefer it", "It raises the locked-in temperature and lowers operating compressive stress", "The coating cures better", "To avoid radiography"], answer: 1, why: "The tie-in temperature becomes the stress-free reference, so a higher value reduces the temperature rise in service." },
+  { q: "A gauging plate arrives with a deep notch. What does this suggest?", options: ["The line is clean", "A dent, buckle or other restriction in the bore", "The test pressure was too high", "The coating is damaged"], answer: 1, why: "The plate is sized just under the minimum bore, so damage means something is reducing the internal diameter." }
+]} />

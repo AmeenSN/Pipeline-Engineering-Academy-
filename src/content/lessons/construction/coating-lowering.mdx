@@ -1,0 +1,115 @@
+---
+title: Field joint coating and lowering-in
+summary: Between the finished weld and the closed trench, four stages decide whether the pipe goes into the ground undamaged. Learn joint coating, trenching sequence, the lowering-in lift and backfill.
+order: 4
+minutes: 25
+level: Intermediate
+standards: [ISO 21809-3, ASME B31.4, ASME B31.8, SAES-L-450, SAES-H-002]
+outcomes:
+  - Describe the steps of field joint coating and its inspection
+  - Explain how holiday detection works
+  - Plan a lowering-in lift with sidebooms
+  - List the checks made before and during backfill
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ConstructionSpread from "@/components/interactives/ConstructionSpread.tsx";
+
+## From string to trench
+
+<ConstructionSpread client:visible only={["fjc", "trench", "lower", "backfill"]} />
+
+## Field joint coating
+
+Pipe arrives coated, except for a bare **cutback** of about 100 to 150 mm at each end, left for welding. After the weld is accepted, this bare band must be coated on site. The field joint is the weakest part of most coating systems, because it is applied outdoors by hand, so it gets the most attention.
+
+The steps:
+
+1. **Clean.** Remove weld spatter, oil and salts.
+2. **Abrasive blast** the steel to near-white metal (Sa 2½) with the specified surface profile, and roughen the edges of the factory coating so the joint coating overlaps onto it.
+3. **Check** cleanliness, profile, dust and soluble salt contamination. In coastal and sabkha areas salt is a real problem.
+4. **Preheat** to the temperature required by the system, by gas torch or, better, induction coil.
+5. **Apply** the coating:
+   - **Heat-shrink sleeve** with epoxy primer: the common partner for 3LPE.
+   - **Liquid epoxy or polyurethane**, brushed or sprayed.
+   - **FBE powder** applied by a field machine, for FBE-coated pipe.
+   - **Injection-moulded or flame-sprayed polypropylene** for high-performance systems.
+6. **Inspect:** visual, thickness, holiday test, and periodic **peel (adhesion) tests** on production joints.
+
+Compatibility with the factory coating, the operating temperature and the cathodic protection system is the basis of selection (module M9).
+
+## Holiday detection
+
+A **holiday** is a pinhole or gap in the coating. A holiday detector applies a high voltage between an electrode (a spring coil or brush that travels around the pipe) and the earthed steel. Where the coating is missing or thin, a spark jumps and an alarm sounds.
+
+- The test voltage is set by the coating type and thickness, for example around 5 V per micron for thin-film FBE, and up to 25 kV for thick polyethylene.
+- The whole pipe surface is tested, not just the joints.
+- The final holiday test is made **as the pipe is lowered in**, at the last moment it is accessible.
+- Every holiday is marked, repaired with an approved repair material and retested.
+
+## Trench ready
+
+Trench design was covered in module M7. Before lowering-in, the trench is inspected and accepted:
+
+- depth and width surveyed against the profile,
+- bottom smooth and free of rocks, skids, welding debris and water,
+- bedding in place where specified,
+- existing service crossings exposed and protected.
+
+## Lowering-in
+
+The welded string, perhaps a kilometre long, is lifted off its skids and laid into the trench by a line of sidebooms moving together.
+
+- **Lifting plan.** The number and spacing of sidebooms, and the lift height, are calculated so the bending stress in the pipe stays within a limit (commonly 72 to 85 % of yield, including the lift geometry). Larger, heavier pipe needs more machines closer together.
+- **Cradles.** Each sideboom carries the pipe on a rolling cradle with rubber or urethane wheels, so the machine can travel while the pipe stays supported.
+- **The S-curve.** The pipe leaves the skids, rises slightly, moves sideways over the trench and descends to the bottom in a long S shape. If the curve is too tight the pipe overstresses or buckles.
+- **Coating protection.** The pipe must not rub on the trench wall. In rock, the trench side may be padded or the pipe wrapped.
+- **Slack.** In hot climates the pipe is laid with slight slack, or lowered in the cooler part of the day, so it does not go into tension as it cools.
+
+<Callout type="warn">
+Lowering-in is a critical lift with people close to a suspended load and an open trench. No one stands between the pipe and the trench, or in the trench under the pipe. One signaller controls all the sidebooms.
+</Callout>
+
+## Before the pipe is covered
+
+Once backfilled, the pipe is not seen again. So, immediately after lowering-in:
+
+- the **as-laid survey** records the position and level of the top of pipe, usually at every weld, with the weld number,
+- depth of cover is confirmed,
+- the pipe is checked to be resting on the bottom, with no spans over hollows,
+- any last coating damage is repaired,
+- cathodic protection test leads and any anodes are attached.
+
+## Padding and backfill
+
+Module M7 covers materials and layers. The sequence on the spread:
+
+1. Padding placed round and over the pipe, gently.
+2. Warning tape and fibre-optic cable duct laid.
+3. General backfill, with compaction where specified.
+4. Crown formed over the trench.
+5. Tie-in locations left open.
+
+Backfill follows lowering-in closely, to protect the pipe and coating from sun, traffic and floods, and to restrain the string against temperature movement.
+
+<Callout type="aramco">
+Field joint coating systems for Saudi Aramco pipelines are selected from approved protective coating systems in SAES-H-002, with application procedures qualified before production. SAES-L-450 covers lowering-in and backfill, including holiday detection immediately before the pipe enters the trench. Check the current approved systems list for the pipe coating and service temperature.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ISO 21809-3 | Field joint coatings for pipelines: types, qualification, application and testing. |
+| NACE SP0188 / SP0490 | Holiday detection of protective coatings, including test voltages. |
+| ASME B31.4 §434.10 and B31.8 §841.2.5 | Installation in the ditch without damage; inspection of coating before lowering-in. |
+| SAES-H-002 and SAES-L-450 | Aramco coating selection and construction requirements. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Why is the field joint the weakest part of most coating systems?", options: ["It uses thinner steel", "It is applied outdoors by hand under variable conditions", "It carries more pressure", "It is never inspected"], answer: 1, why: "Factory coating is applied under controlled conditions; field joints depend on site surface preparation and weather." },
+  { q: "When is the final holiday test made?", options: ["At the coating mill", "After backfill", "As the pipe is being lowered into the trench", "During hydrotest"], answer: 2, why: "It is the last moment the whole coating surface is accessible." },
+  { q: "What does the lowering-in lifting plan control?", options: ["The colour of the cradles", "Bending stress in the pipe from the lift geometry", "The welding sequence", "The hydrotest pressure"], answer: 1, why: "Sideboom number, spacing and lift height are set so the pipe is not overstressed or buckled." }
+]} />
