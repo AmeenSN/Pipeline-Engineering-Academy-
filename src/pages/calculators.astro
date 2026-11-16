@@ -1,6 +1,18 @@
 ---
 import Base from '@/layouts/Base.astro';
 const tools = [
+  { t: 'Grade comparison', d: 'Wall thickness and steel tonnage for every API 5L grade at your pressure and diameter.', h: '/learn/materials/carbon-steel-grades/', tag: 'Materials' },
+  { t: 'Carbon equivalent and weldability', d: 'CE(IIW) and Pcm from chemistry, checked against API 5L PSL2 limits.', h: '/learn/materials/carbon-steel-grades/', tag: 'Materials' },
+  { t: 'How line pipe is made', d: 'Step through seamless, HFW, LSAW and spiral pipe manufacturing.', h: '/learn/materials/pipe-manufacturing/', tag: 'Materials' },
+  { t: 'Carbon steel or CRA?', d: 'CO₂ corrosion rate, inhibitor availability and wall loss over the design life.', h: '/learn/materials/cra-clad-nonmetallic/', tag: 'Materials' },
+  { t: 'Inside the pipe wall', d: 'Layer-by-layer view of carbon steel, clad, lined, solid CRA, RTP and GRE pipe.', h: '/learn/materials/cra-clad-nonmetallic/', tag: 'Materials' },
+  { t: 'Flange pressure class selector', d: 'ASME B16.5 class for a design pressure and temperature, with rating curves.', h: '/learn/materials/fittings-flanges-valves/', tag: 'Components' },
+  { t: 'Pipeline valve types', d: 'Operate ball, gate, check and globe valves and see which are piggable.', h: '/learn/materials/fittings-flanges-valves/', tag: 'Components' },
+  { t: 'Three ways to turn a pipeline', d: 'Radius and curve length of elastic, cold and induction bends for the same turn.', h: '/learn/bends/elastic-bends/', tag: 'Bends' },
+  { t: 'Elastic bend radius check', d: 'Minimum elastic radius from the combined stress limit.', h: '/learn/bends/elastic-bends/', tag: 'Bends' },
+  { t: 'Cold field bend planner', d: 'Maximum angle per joint and the number of joints needed for a turn.', h: '/learn/bends/cold-field-bends/', tag: 'Bends' },
+  { t: 'Hot induction bend designer', d: 'Wall thinning, intrados stress and mother pipe wall for any radius.', h: '/learn/bends/hot-induction-bends/', tag: 'Bends' },
+  { t: 'Miter bend rule checker', d: 'Whether a miter is permitted under ASME B31.4 or B31.8 at your stress level.', h: '/learn/bends/miters-segmental-bends/', tag: 'Bends' },
   { t: 'Wall thickness calculator', d: 'Barlow pressure design to ASME B31.4 and B31.8, with design factor, temperature derating and corrosion allowance.', h: '/learn/mechanical-design/wall-thickness/', tag: 'Design' },
   { t: 'Stress state explorer', d: 'Hoop, longitudinal and Von Mises stress for restrained and unrestrained pipe, plotted on the yield envelope.', h: '/learn/mechanical-design/pipe-stresses/', tag: 'Stress' },
   { t: 'Virtual anchor and end movement', d: 'Full restraint force, soil friction, anchor length and free-end expansion.', h: '/learn/mechanical-design/thermal-expansion-anchors/', tag: 'Stress' },

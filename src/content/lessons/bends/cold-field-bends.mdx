@@ -1,0 +1,136 @@
+---
+title: Cold field bends
+summary: Most bends on a cross-country pipeline are made on site, one small pull at a time, by a hydraulic bending machine. Learn the limits, the method and the quality checks.
+order: 2
+minutes: 25
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, SAES-L-450]
+outcomes:
+  - Describe how a field bending machine works
+  - Apply code limits on cold bend radius
+  - Work out the maximum bend angle that fits in one joint
+  - List the acceptance checks for a finished bend
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ColdBend from "@/components/interactives/ColdBend.tsx";
+
+## What a cold field bend is
+
+A cold field bend is a permanent bend made in a full pipe joint, at ambient temperature, on the right of way. The pipe is bent beyond yield in a controlled way so that it keeps the new shape. A typical project makes hundreds or thousands of them.
+
+Field bends are named by direction:
+
+- **Side bend:** a horizontal turn, left or right.
+- **Sag bend:** the pipe curves downward then up, as at the bottom of a valley.
+- **Overbend:** the pipe curves over a crest.
+- **Combination bend:** a horizontal and a vertical change in one joint, made by rotating the pipe in the machine.
+
+## How the bending machine works
+
+The machine has three main parts: a **pin-up shoe** that clamps the pipe, a fixed curved **die** above the pipe, and a **stiffback** that pushes up behind the die.
+
+1. The coated joint is fed into the machine and clamped.
+2. The stiffback rises, bending a short length of pipe up against the die. This is one **pull**.
+3. The pipe is released and advanced by about one pipe diameter.
+4. The next pull is made. Many small pulls add up to a smooth bend.
+
+Each pull bends the pipe by a small, set angle. Keeping pulls small and evenly spaced is what prevents wrinkles.
+
+For thin-wall pipe (high D/t) an **internal mandrel** is placed inside the pipe under the die. It supports the wall from inside so the compressed side does not buckle.
+
+## Limits on the bend
+
+Cold bending stretches the outside of the bend and compresses the inside. Push it too far and the inside wrinkles, the section ovalises, or the coating cracks. Codes therefore limit the radius by pipe size:
+
+| Pipe size | Minimum radius | Equivalent bend per diameter |
+|---|---|---|
+| NPS 12 and smaller | 18 D | 3.2° |
+| NPS 14 | 21 D | 2.7° |
+| NPS 16 | 24 D | 2.4° |
+| NPS 18 | 27 D | 2.1° |
+| NPS 20 and larger | 30 D | 1.9° |
+
+These are code minimums. Project specifications are usually more conservative: **1.5° per pipe diameter** (a radius of about 40 D) is a common limit, and lower for thin-wall or high-grade pipe.
+
+Other rules for every joint:
+
+- **Tangents.** A straight length is left at each end, commonly 1.5 to 2 m. The bending machine needs it to grip, and the welders need a round, straight end to fit up.
+- **Seam position.** The longitudinal seam is placed near the neutral axis (the side of the bend), where bending strain is lowest.
+- **No bending across a girth weld** unless the weld is fully inspected afterward.
+
+<ColdBend client:visible />
+
+Try this: with NPS 24 and 12 m joints, find the maximum angle one joint can take at 1.5° per diameter. Then switch to 18 m joints and see how much more turn each joint gives. Finally push the bend per diameter beyond the code limit to see the warning.
+
+## Acceptance checks
+
+Each bend is inspected before it is welded into the line.
+
+- **No wrinkles or buckles.** A visible ripple on the inside of the bend is cause for rejection or assessment.
+- **Ovality.** The difference between maximum and minimum diameter must stay within the specified limit, commonly 2.5 % of the nominal diameter. A gauging plate or sizing pig is pulled through to confirm the bore.
+- **Coating.** The bent area is holiday-tested, since stretched coating can crack or disbond.
+- **Angle.** The bend is checked against the angle the surveyor specified for that location.
+- **Ends.** Tangents must be straight and round for fit-up.
+
+<Callout type="field">
+Bend angles are measured on site by the bending engineer after the trench is graded, not taken from design drawings alone. Each joint is marked with its station number, direction and angle, and the top of pipe is marked so it goes into the trench the right way round.
+</Callout>
+
+## When cold bending is not enough
+
+- The turn is sharp and there is no room for several bent joints in sequence.
+- Thin-wall or high-strength pipe wrinkles even with a mandrel.
+- Pipe with thick concrete coating, which cannot be field bent.
+- Station approaches and crossings with tight geometry.
+
+In these cases the designer specifies a hot induction bend (next lesson).
+
+<Callout type="aramco">
+SAES-L-450 sets Saudi Aramco's field bending requirements: the bend per diameter limit, tangent length, ovality, seam position and inspection. Verify the current limits for the pipe size, wall and grade in use, as they may be tighter than the ASME values above.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §404.2 and §434.7 | Minimum radius of field cold bends by pipe size; bends free of buckling, cracks and mechanical damage; diameter reduction limited to 2.5 % of nominal. |
+| ASME B31.8 §841.2.3 | Same minimum radii expressed as maximum deflection per diameter; seam near the neutral axis; limits on bending across girth welds. |
+| SAES-L-450 | Aramco field bending practice: limits, tangents, mandrel use, gauging and coating inspection. |
+
+</Standards>
+
+<Worked title="Bending plan for a 35° side bend, NPS 24">
+
+**Given:** OD 610 mm, 12 m joints, 2 m tangent each end, specification limit 1.5° per pipe diameter.
+
+**Usable length:** 12 − 2 × 2 = 8 m.
+
+**Number of pulls:** 8 / 0.610 = 13.1 diameters.
+
+**Maximum angle per joint:** 13.1 × 1.5° = **19.7°**.
+
+**Joints needed:** 35 / 19.7 = 1.8, so **two joints**, each bent to 17.5°.
+
+**Space taken:** two full joints, 24 m of pipeline, at a radius of about 40 × 0.61 = 24 m.
+
+**Check against the code:** for NPS 20 and larger the code minimum is 30 D, or 1.9° per diameter. The 1.5° specification is inside that.
+
+</Worked>
+
+## Common mistakes
+
+- Bending to the code minimum radius on thin-wall pipe and getting wrinkles.
+- Leaving tangents too short, so the pipe end is oval and the weld fit-up is poor.
+- Placing the seam on the inside or outside of the bend.
+- Skipping the holiday test on the bent section.
+- Installing a bend upside down or reversed because it was not marked.
+
+<Quiz client:visible questions={[
+  { q: "Why is a field bend made with many small pulls?", options: ["To save fuel", "To keep strain even and avoid wrinkles", "To thin the wall", "To heat the pipe"], answer: 1, why: "Small, evenly spaced pulls spread the deformation along the bend so the inside does not buckle." },
+  { q: "Where should the longitudinal seam be positioned in a cold bend?", options: ["On the outside of the bend", "On the inside of the bend", "Near the neutral axis", "It does not matter"], answer: 2, why: "Bending strain is lowest at the neutral axis, so the seam weld is least stressed there." },
+  { q: "What is the purpose of the internal mandrel?", options: ["To heat the pipe", "To support thin-wall pipe from inside against wrinkling and ovalising", "To clean the pipe", "To apply internal coating"], answer: 1, why: "It holds the cross-section round under the die, which matters most at high D/t." },
+  { q: "The code minimum cold bend radius for NPS 24 pipe is:", options: ["18 D", "24 D", "30 D", "5 D"], answer: 2, why: "NPS 20 and larger pipe has a 30 D minimum, about 1.9° per diameter." }
+]} />

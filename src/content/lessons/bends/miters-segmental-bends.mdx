@@ -1,0 +1,121 @@
+---
+title: Miters and segmental bends
+summary: A miter is a bend made by cutting and welding straight pipe at an angle. It is cheap and quick, and on a pressurised pipeline it is mostly forbidden. Learn the rules and the alternatives.
+order: 4
+minutes: 20
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, ASME B16.9, SAES-L-410]
+outcomes:
+  - Explain why miter joints concentrate stress
+  - Apply the ASME limits on miter angle by hoop stress level
+  - Tell a miter from an acceptable misalignment
+  - Choose a proper alternative for a small change of direction
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import MiterBend from "@/components/interactives/MiterBend.tsx";
+
+## What a miter is
+
+A miter bend is made by cutting the ends of two straight pipes at an angle and welding them together, so the pipe changes direction at the weld. Several miters in a row make a segmented, or "lobster-back", bend.
+
+Miters are attractive on site: no bending machine, no special fitting, any angle. That is exactly why codes control them tightly.
+
+## Why miters are a problem
+
+A smooth bend spreads the change of direction over its whole length. A miter concentrates it at one weld.
+
+- **Stress concentration.** Pressure tries to open the angle. This produces local bending stress at the inside corner (the crotch) of the miter, on top of the hoop stress. The sharper the angle, the higher it is.
+- **A weld in the worst place.** The highest stress falls on the girth weld, where defects and misalignment are most likely.
+- **Fatigue.** Pressure and thermal cycles work the corner. Miters are a classic origin of fatigue cracks.
+- **Pigging.** The internal kink can damage or stop cleaning and inspection pigs.
+
+## The code limits
+
+The ASME codes allow miters only at low hoop stress, and limit the angle at each joint.
+
+| Operating hoop stress | ASME B31.8 (gas) | ASME B31.4 (liquid) |
+|---|---|---|
+| Above 40 % SMYS | Not permitted | Not permitted |
+| 20 to 40 % SMYS | Up to 12.5° per joint | Not permitted |
+| 10 to 20 % SMYS | Up to 12.5° per joint | Up to 12.5° per joint |
+| Below 10 % SMYS | Up to 90° total | Angle limit does not apply |
+
+Where miters of up to 12.5° are allowed, the distance between them must be at least one pipe diameter.
+
+Transmission pipelines operate at 50 to 72 % SMYS. So on a normal cross-country pipeline, **miters are not allowed at all**.
+
+<MiterBend client:visible />
+
+Try this: set hoop stress to 60 % SMYS and try any angle above 3°. Then lower the stress to 30 % and compare the gas and liquid codes: the gas code permits a limited miter, the liquid code still does not.
+
+## Misalignment is not a miter
+
+Pipe ends are never perfectly square, and a welded string is never perfectly straight. The codes recognise this: a deflection of **3° or less** at a girth weld, caused by misalignment, is not treated as a miter.
+
+This allowance is for fit-up tolerance. It is not a design tool. Deliberately "stealing" 3° at several consecutive welds to turn the line is poor practice, and most specifications forbid it.
+
+## What to use instead
+
+For a small change of direction on a pipeline:
+
+- **Elastic bend** if there is length available.
+- **Cold field bend** for almost everything else. A bending machine can make a 2° bend as easily as a 20° one.
+- **Induction bend** where space is tight.
+- **Segmentable bends.** A factory induction bend or elbow of 90° can be ordered as "segmentable", meaning it is made to tolerances that allow it to be cut at any point to a smaller angle. The cut piece is still a smooth bend, not a miter.
+
+<Callout type="note">
+Do not confuse a **segmentable** bend with a **segmented** bend. Segmentable: a smooth factory bend cut to a shorter arc. Segmented: straight pieces welded at angles, that is, a miter bend.
+</Callout>
+
+## Where miters are still used
+
+- Low-pressure water lines and large-diameter low-stress ducting.
+- Casing pipe and structural pipe, which carry no pressure.
+- Temporary lines, within the code limits.
+- Plant piping to ASME B31.3, which has its own miter design formulas.
+
+<Callout type="aramco">
+Saudi Aramco practice is restrictive on miter bends and on deliberate angular offsets at girth welds in cross-country pipelines. Check SAES-L-410 for the current limits, and treat any proposal for a field miter as needing engineering approval.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.8 §841.2.3 | Miters prohibited at 40 % SMYS hoop stress or more; up to 12.5° between 10 and 40 %; up to 90° below 10 %. Deflections of 3° or less from misalignment are not miters. |
+| ASME B31.4 §404.2.4 | Miters prohibited above 20 % SMYS; up to 12.5° at 20 % or less with at least one diameter spacing; angle and spacing limits waived at 10 % or less. |
+| ASME B16.9 | Factory elbows, including those supplied for segmenting. |
+| SAES-L-410 | Aramco restrictions on miters and angular offsets in pipelines. |
+
+</Standards>
+
+<Worked title="Can this low-pressure gas line use a miter?">
+
+**Given:** NPS 12 gas gathering line, OD 323.9 mm, wall 9.5 mm, Grade B (SMYS 245 MPa), operating at 2.0 MPa (20 bar). A 20° change of direction is needed.
+
+**Hoop stress:** 2.0 × 323.9 / (2 × 9.5) = 34.1 MPa.
+
+**Ratio:** 34.1 / 245 = **13.9 % SMYS**.
+
+**ASME B31.8:** between 10 and 40 % SMYS, miters are permitted up to 12.5° each. A single 20° miter is not allowed, but **two miters of 10°**, at least one diameter (324 mm) apart, are.
+
+**Better answer:** an NPS 12 pipe can be cold bent at up to 3.2° per diameter. A 20° bend needs only about 7 pulls, roughly 2.3 m of bend. A cold field bend is quick, smooth and piggable, so it remains the better choice even though the miter is legal.
+
+</Worked>
+
+## Common mistakes
+
+- Cutting a miter on site to fix a fit-up problem on a high-pressure line.
+- Using the 3° misalignment allowance repeatedly to make a turn.
+- Assuming plant piping miter rules (B31.3) apply to a pipeline.
+- Confusing a segmentable bend with a segmented (mitered) one.
+
+<Quiz client:visible questions={[
+  { q: "A gas transmission line operates at 65 % SMYS. A 10° miter is:", options: ["Permitted", "Permitted with one diameter spacing", "Not permitted", "Permitted if radiographed"], answer: 2, why: "ASME B31.8 prohibits miters where hoop stress is 40 % SMYS or more." },
+  { q: "A 2° angular offset at a girth weld due to fit-up is:", options: ["A prohibited miter", "Treated as misalignment, not a miter", "Only allowed below 10 % SMYS", "Always a reject"], answer: 1, why: "Deflections of 3° or less caused by misalignment are not considered miters." },
+  { q: "Why do miters concentrate stress?", options: ["They are thinner", "Pressure tries to open the angle, bending the wall at the crotch", "They are colder", "They have no coating"], answer: 1, why: "The abrupt change of direction creates local bending at the miter weld in addition to hoop stress." },
+  { q: "A segmentable bend is:", options: ["Straight pieces welded at angles", "A smooth factory bend made to be cut to a smaller angle", "A cold field bend", "A flexible hose"], answer: 1, why: "It remains a smooth curve after cutting, unlike a segmented (mitered) bend." }
+]} />

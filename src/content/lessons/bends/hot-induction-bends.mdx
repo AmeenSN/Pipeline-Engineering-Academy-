@@ -1,0 +1,137 @@
+---
+title: Hot induction bends
+summary: Where the route turns sharply, a factory-made induction bend does the job in a few metres. Learn how they are made, how the wall changes, and what to specify.
+order: 3
+minutes: 30
+level: Intermediate
+standards: [ISO 15590-1, ASME B16.49, ASME B31.8, SAES-L-410]
+outcomes:
+  - Describe the induction bending process
+  - Estimate wall thinning and intrados stress for a given radius
+  - Specify mother pipe for a bend
+  - Choose a radius that keeps the line piggable
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InductionBend from "@/components/interactives/InductionBend.tsx";
+
+## Why induction bends
+
+Cold field bends need about 40 pipe diameters of radius. At a scraper trap, a valve station, a road crossing or a congested corridor, there is not that much room. A hot induction bend makes the same turn at a radius of 3 to 10 diameters.
+
+Induction bends are factory products, ordered like fittings with a defined radius, angle and tangent lengths. They are the most expensive way to turn a pipeline, so they are used only where needed.
+
+## How they are made
+
+1. A length of **mother pipe** is clamped at its front end to a pivoting radius arm. The arm length sets the bend radius.
+2. An **induction coil** around the pipe heats a narrow band, only about 25 to 50 mm wide, to between 850 and 1050 °C.
+3. A hydraulic ram pushes the pipe slowly forward through the coil. Because the front end is held by the arm, the hot band is forced to follow a circular arc. Only the hot band deforms.
+4. Just behind the coil, a **water or air quench** cools the pipe so the cold material on both sides supports the hot band.
+5. The pipe keeps advancing until the required angle is reached. Straight **tangents** are left at each end.
+6. The finished bend is usually **heat treated** (quenched and tempered, or tempered) to restore strength and toughness.
+
+Heating and quenching change the steel's microstructure. The properties of the finished bend are those created by the bending and heat treatment, not those of the mother pipe as delivered. This is why bends are qualified by testing.
+
+## What happens to the wall
+
+The outside of the bend (the **extrados**) is stretched and gets thinner. The inside (the **intrados**) is compressed and gets thicker. For a bend of radius $n$ pipe diameters, good estimates are:
+
+$$
+\text{extrados thinning} \approx \frac{1}{2n + 1} \qquad\qquad \text{intrados thickening} \approx \frac{1}{2n - 1}
+$$
+
+| Radius | Extrados thinning | Intrados thickening |
+|---|---|---|
+| 3 D | 14 % | 20 % |
+| 5 D | 9 % | 11 % |
+| 7 D | 7 % | 8 % |
+| 10 D | 5 % | 5 % |
+
+## Stress in a bend
+
+Pressure in a curved pipe does not produce uniform hoop stress. The intrados carries **more** than a straight pipe and the extrados **less**:
+
+$$
+\frac{\sigma_{intrados}}{\sigma_{straight}} = \frac{4n - 1}{4n - 2} \qquad\qquad \frac{\sigma_{extrados}}{\sigma_{straight}} = \frac{4n + 1}{4n + 2}
+$$
+
+Conveniently, the wall gets thicker just where the stress is higher and thinner where it is lower. But the thinning on the extrados is larger than the stress relief there, so the extrados usually governs. The mother pipe must start thicker than the line pipe.
+
+<InductionBend client:visible />
+
+Try this: move the radius from 5 D down to 3 D and watch the thinning and the required mother pipe wall grow. Go below 3 D and the pigging warning appears.
+
+## Choosing the radius
+
+- **5 D** is the common default for mainline bends. All cleaning and inspection pigs pass.
+- **3 D** saves space and is accepted by most modern inspection tools. Confirm with the inspection vendor before committing.
+- **7 D or 10 D** are used for thin-wall, large-diameter or high-grade pipe, where tighter bends would thin or ovalise too much.
+- **1.5 D** (the standard long-radius elbow) is for station piping that is not pigged.
+
+## Specifying a bend
+
+A bend data sheet or purchase specification covers:
+
+- **Geometry:** diameter, radius, angle, tangent lengths at each end, end bevel.
+- **Mother pipe:** grade, wall thickness (heavier than the line), process (seamless or LSAW; the seam goes on the neutral axis) and chemistry suited to the heat treatment.
+- **Finished properties:** minimum yield and tensile strength, Charpy toughness, maximum hardness (especially for sour service).
+- **Dimensional limits:** minimum wall after bending, ovality in the bend and at the ends, no wrinkles.
+- **Qualification:** a manufacturing procedure specification and a **test bend**, cut up and tested at the extrados, intrados, neutral axis, weld and transition zones.
+- **Inspection:** magnetic particle or ultrasonic testing of the bend surface, wall thickness survey, gauging.
+- **Coating:** bends are coated after bending, usually with liquid epoxy or FBE compatible with the line coating.
+
+<Callout type="warn">
+The start and stop of bending are **transition zones**, where the heating conditions were not steady. Properties there can differ from the bend body, so qualification tests include them. This is also why long enough tangents matter.
+</Callout>
+
+<Callout type="aramco">
+Saudi Aramco buys induction bends to a materials system specification that supplements ISO 15590-1 / ASME B16.49, and SAES-L-410 sets where bends are used and the minimum radius for piggable lines. Sour-service bends have hardness limits that drive the heat treatment. Check current revisions for the required radius by line size.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ISO 15590-1 | Induction bends for pipeline transportation systems: manufacturing procedure, test bend qualification, testing, dimensions and tolerances. |
+| ASME B16.49 | Factory-made wrought steel induction bends for transportation and distribution systems. |
+| ASME B31.8 §841.2.3 and B31.4 §404.2 | Bends must meet wall thickness and strength requirements of the adjoining pipe; limits on ovality and wrinkles. |
+| SAES-L-410 | Minimum bend radius for scraper passage and where hot bends are permitted. |
+
+</Standards>
+
+<Worked title="Mother pipe for a 5 D bend in an NPS 24 line">
+
+**Given:** line pipe 610 mm × 12.7 mm X65. Required: a 45°, 5 D bend with at least the pressure capacity of the line pipe.
+
+**Extrados:** thinning = 1 / (2 × 5 + 1) = 9.1 %. Stress factor = (4 × 5 + 1) / (4 × 5 + 2) = 0.955.
+
+Wall needed after bending: 12.7 × 0.955 = 12.1 mm. Mother pipe wall: 12.1 / (1 − 0.091) = **13.3 mm**.
+
+**Intrados:** thickening 11.1 %, stress factor (20 − 1) / (20 − 2) = 1.056.
+
+Wall needed after bending: 12.7 × 1.056 = 13.4 mm. Mother pipe wall: 13.4 / 1.111 = 12.1 mm.
+
+**Governing:** the extrados, 13.3 mm. The next standard wall is **14.3 mm**.
+
+**Geometry:** radius 5 × 0.61 = 3.05 m. Arc length = 3.05 × 45° × π / 180 = 2.40 m, plus tangents.
+
+Compare with a cold bend: a 45° turn at 40 D would need three joints and about 36 m.
+
+</Worked>
+
+## Common mistakes
+
+- Ordering mother pipe at line-pipe wall thickness, leaving the extrados under thickness.
+- Assuming the bend has the mother pipe's properties. Heat changes them.
+- Specifying 1.5 D or 3 D bends without checking the inspection pig's limits.
+- Tangents too short for field welding or for hydraulic clamps.
+- Forgetting that bend ends must match the line pipe bore, which may need a taper.
+
+<Quiz client:visible questions={[
+  { q: "In an induction bend, the wall is thinnest at the:", options: ["Intrados (inside of the bend)", "Extrados (outside of the bend)", "Neutral axis", "Tangents"], answer: 1, why: "The outside of the bend is stretched, so it thins. The inside is compressed and thickens." },
+  { q: "Approximate extrados thinning for a 5 D bend is:", options: ["2 %", "9 %", "20 %", "33 %"], answer: 1, why: "1 / (2n + 1) with n = 5 gives 1/11, about 9 %." },
+  { q: "Why is a test bend cut up and mechanically tested?", options: ["To check the coating", "Because heating and quenching change the steel's properties", "To measure the angle", "To verify the mother pipe certificate"], answer: 1, why: "The finished properties come from the bending thermal cycle and heat treatment, so they must be proven on a real bend." },
+  { q: "Which radius keeps a mainline passable by all standard inspection pigs?", options: ["1.5 D", "2 D", "5 D", "None"], answer: 2, why: "5 D is the conventional piggable radius. 3 D suits many modern tools but must be confirmed." }
+]} />

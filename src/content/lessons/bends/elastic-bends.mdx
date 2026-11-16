@@ -1,0 +1,146 @@
+---
+title: Elastic bends
+summary: The cheapest bend is no bend at all. Steel pipe is flexible enough to follow gentle curves on its own, within a radius set by stress. Start here for an overview of all three bend types.
+order: 1
+minutes: 20
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, SAES-L-410, SAES-L-450]
+outcomes:
+  - Compare elastic, cold field and hot induction bends
+  - Calculate bending stress in an elastically curved pipe
+  - Find the minimum elastic bend radius for a restrained line
+  - Recognise where elastic bending is and is not practical
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import BendCompare from "@/components/interactives/BendCompare.tsx";
+import ElasticBend from "@/components/interactives/ElasticBend.tsx";
+
+## Three ways to change direction
+
+A pipeline has to follow the terrain and the route. It turns left and right (side bends), dips into valleys (sag bends) and crests over ridges (overbends). There are three ways to make each turn, from gentlest to tightest:
+
+| Bend type | Typical radius | How it is made | Cost |
+|---|---|---|---|
+| Elastic bend | 500 D and more | The pipe flexes to follow the trench | Free |
+| Cold field bend | About 40 D | Bending machine on the right of way | Low |
+| Hot induction bend | 3 D to 10 D | Factory, by induction heating | High |
+
+<BendCompare client:visible />
+
+Try this: set a small angle such as 5° and compare the length of curve each type needs. Then set 60° and see why an elastic bend becomes impractical: the curve would be hundreds of metres long.
+
+The rule on any project is to use the gentlest bend that fits. Elastic bending comes first, cold bends where the turn is too sharp, and induction bends only where space is truly limited.
+
+## What an elastic bend is
+
+A long steel pipe is flexible. Lift one end of a welded string and it drapes in a smooth curve. An elastic bend uses that flexibility: the trench is cut to a gentle curve and the pipe is lowered in to follow it. Nothing is permanently deformed. If the pipe were lifted out, it would spring back straight.
+
+Because nothing yields, there is no wall thinning, no ovality, no coating damage and no bending crew. The price is stress: the pipe is permanently held in bending.
+
+## Bending stress
+
+Curving a pipe to radius $R$ stretches the outside fibre and compresses the inside fibre. From simple beam theory:
+
+$$
+\sigma_b = \frac{E \, D}{2 \, R}
+$$
+
+- $E$ is the elastic modulus of steel (207 000 MPa).
+- $D$ is the outside diameter.
+- $R$ is the radius of the curve, in the same units as $D$.
+
+The stress depends only on the ratio $R / D$. It does not depend on wall thickness or on grade.
+
+## The minimum radius
+
+Bending stress is a longitudinal stress. It adds to the pressure and thermal longitudinal stress from module M2:
+
+$$
+\sigma_L = \nu \, \sigma_h - E \, \alpha \, \Delta T \pm \sigma_b
+$$
+
+One side of the pipe gets more tension and the other more compression. The combined equivalent stress must stay within 0.9 SMYS on both sides. So the minimum radius is not one fixed number. It depends on how much of the stress allowance pressure and temperature have already used.
+
+<ElasticBend client:visible />
+
+Try this: note the minimum radius, then raise ΔT. A hot line has less stress to spare, so its minimum elastic radius grows. Switch to a higher grade and it shrinks again.
+
+<Callout type="note">
+Rules of thumb such as "500 D" or "1000 D" are common in specifications. They are safe starting points, but the real limit comes from the stress check. A cool, low-pressure line can go tighter. A hot line near its stress limit may have almost no elastic bending available.
+</Callout>
+
+## Where elastic bends work
+
+Elastic bends suit gentle changes: following rolling terrain, slow route curvature in open desert, and the run-in to a crossing.
+
+They need:
+
+- **Length.** At 600 D, an NPS 24 line turns about 1.9° per 12 m joint. A 20° turn needs about 130 m of curve.
+- **An accurately cut trench.** The trench must follow the design radius. A locally tighter spot concentrates the bending.
+- **Restraint.** The pipe wants to straighten, so the backfill and trench wall must hold it. Side bends in loose sand need care.
+- **Records.** Elastic bends appear on the alignment sheet with their radius, so that operating stress is known.
+
+## Where they do not
+
+- Sharp changes of direction and steep slopes, where the curve would be too long.
+- At road, pipeline and wadi crossings, where the profile must change quickly.
+- Close to a made bend. Specifications require a straight length between an elastic curve and a field or induction bend.
+- Hot lines with little stress margin, and vertical overbends on lines at risk of upheaval buckling.
+
+<Callout type="aramco">
+SAES-L-410 requires the bending stress from elastic curvature to be included in the combined stress check, and SAES-L-450 governs how the trench is prepared for it. Projects normally state a minimum elastic bend radius on the alignment sheets for each pipe size and design condition.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §402.6 | Bending stress is part of the longitudinal stress for restrained pipe and enters the combined stress check. |
+| ASME B31.8 §833 | Same principle: bending from elastic curvature is included in the longitudinal and combined stress limits. |
+| SAES-L-410 | Stress analysis including elastic bends at design pressure and temperature. |
+| SAES-L-450 | Trench alignment and bottom preparation so the pipe is laid to the designed radius without forcing. |
+
+</Standards>
+
+<Worked title="Minimum elastic radius for a buried NPS 24 line">
+
+**Given:** OD 610 mm, wall 12.7 mm, X65 (450 MPa), P = 9.6 MPa, ΔT = 45 °C. From the M2 stress lesson: hoop stress 230.6 MPa, longitudinal stress without bending −39.8 MPa.
+
+**Limit:** 0.9 × 450 = 405 MPa equivalent stress.
+
+**Worst side:** bending adds compression on the inside of the curve. Solve the Von Mises equation for the most compressive longitudinal stress allowed:
+
+$$
+\sigma_h^2 - \sigma_h \sigma_L + \sigma_L^2 = 405^2 \quad\Rightarrow\quad \sigma_L = -237 \text{ MPa}
+$$
+
+**Bending stress available:** 237 − 39.8 = 197 MPa.
+
+**Minimum radius:**
+
+$$
+R = \frac{E \, D}{2 \, \sigma_b} = \frac{207000 \times 0.610}{2 \times 197} = 320 \text{ m} \quad (525 \, D)
+$$
+
+**Turn per joint:** 12 / 320 radians = 2.1° per 12 m joint.
+
+A project would round this up, for example to 400 m, to leave margin for trench tolerance.
+
+</Worked>
+
+## Common mistakes
+
+- Applying a rule-of-thumb radius without a stress check on a hot line.
+- Forgetting that elastic bends use up stress margin that settlement or spans may also need.
+- Cutting the trench in short straight chords so the pipe is forced at the corners.
+- Leaving elastic bends off the as-built records.
+
+<Quiz client:visible questions={[
+  { q: "Bending stress in an elastic bend depends on:", options: ["Wall thickness and grade", "The ratio of pipe diameter to bend radius", "Internal pressure only", "Coating type"], answer: 1, why: "σb = E·D / 2R. Wall thickness and grade do not appear." },
+  { q: "A hotter operating temperature makes the minimum elastic bend radius:", options: ["Smaller", "Larger", "Unchanged", "Zero"], answer: 1, why: "Thermal compression uses stress margin, leaving less for bending, so the radius must increase." },
+  { q: "What happens to an elastically bent pipe if it is lifted out of the trench?", options: ["It stays curved", "It springs back straight", "It buckles", "It ovalises"], answer: 1, why: "The steel never yields, so the deformation is fully recoverable." },
+  { q: "Which is the preferred order of bend selection?", options: ["Induction, cold, elastic", "Cold, elastic, induction", "Elastic, cold, induction", "Any order"], answer: 2, why: "Use the gentlest, cheapest option that fits the route: elastic first, then cold field bends, then induction bends." }
+]} />

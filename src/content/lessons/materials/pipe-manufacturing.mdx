@@ -1,0 +1,132 @@
+---
+title: Pipe manufacturing methods
+summary: Seamless, HFW, LSAW and spiral pipe are made in completely different ways. Follow each process step by step and learn which one suits which pipeline.
+order: 2
+minutes: 30
+level: Foundation
+standards: [API 5L, ISO 3183, SAES-L-136]
+outcomes:
+  - Describe the four main line pipe manufacturing routes
+  - Match a process to diameter, wall thickness and service
+  - Name the characteristic defects of each process
+  - List the mill tests every pipe goes through
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import Manufacturing from "@/components/interactives/Manufacturing.tsx";
+
+## Four routes to a pipe
+
+Line pipe is made either by piercing a solid bar (seamless) or by forming flat steel into a tube and welding the seam. The welded routes differ in the starting material (coil or plate), the direction of the seam (straight or spiral) and the welding method.
+
+<Manufacturing client:visible />
+
+Step through each process with the Next button or press Play. The bar chart at the bottom shows the diameter range each process covers: click a bar to switch.
+
+## Seamless (SMLS)
+
+A heated solid billet is pierced and rolled into a tube. There is no weld.
+
+- **Strengths:** no seam to inspect or to fail, available in very heavy walls, good for sour and high-pressure service in small sizes.
+- **Limits:** practical only up to about NPS 16 to 24. Wall thickness varies around the circumference (eccentricity), so tolerances are wider. Cost per tonne is higher.
+- **Typical defects:** eccentric wall, laps and seams rolled into the surface, internal tears from piercing.
+
+## High-frequency welded (HFW, formerly ERW)
+
+Coil is roll-formed into a tube and the edges are heated by high-frequency current, then forged together. No filler metal is used.
+
+- **Strengths:** fast and economical, excellent wall and diameter accuracy because it starts from rolled strip, good surface for coating.
+- **Limits:** up to about NPS 24 and 25 mm wall. Seam quality depends heavily on process control.
+- **Typical defects:** lack of fusion (cold weld), hook cracks where inclusions turn upward at the squeeze, and a poorly heat-treated seam.
+
+<Callout type="warn">
+Pipe made before about 1970 by **low-frequency** ERW has a poor record: lack-of-fusion defects and selective seam corrosion. Modern high-frequency welding with seam normalising and full-length ultrasonic inspection is a different product. When assessing an old pipeline, find out which one you have.
+</Callout>
+
+## Longitudinal submerged-arc welded (LSAW)
+
+A single plate is pressed into a tube (UOE or JCOE forming) and welded along one straight seam, inside and outside, by submerged-arc welding. The pipe is then cold-expanded.
+
+- **Strengths:** the choice for large-diameter, thick-wall, high-pressure and sour service. Plate can be ordered to exacting chemistry and toughness. Cold expansion gives excellent roundness, which speeds up field welding.
+- **Limits:** minimum about NPS 16. Higher cost. Length limited by plate (usually 12.2 m, some mills 18.3 m).
+- **Typical defects:** weld toe cracks, slag and porosity, misalignment of the inside and outside passes, peaking at the seam.
+
+## Spiral submerged-arc welded (SSAW or HSAW)
+
+Coil is fed at an angle and wound into a helix, with the spiral seam welded inside and outside.
+
+- **Strengths:** any diameter from one coil width, very large diameters possible, long pipe lengths, lower cost than LSAW. The helical seam sees only part of the hoop stress.
+- **Limits:** more weld length per pipe to inspect, dimensional control (particularly at pipe ends) depends on the mill, wall thickness limited by coil. Skelp-end welds, where one coil joins the next, need attention.
+- **Typical defects:** seam misalignment, undercut, residual stress from forming, out-of-roundness at ends.
+
+<Callout type="aramco">
+Operators differ on where spiral and HFW pipe may be used. Saudi Aramco's materials specifications and SAES-L-136 restrict some manufacturing routes in sour, high-pressure gas and critical services. Always check the current permitted process for the service before specifying pipe.
+</Callout>
+
+## Choosing a process
+
+| Situation | Usual choice |
+|---|---|
+| Flowlines up to NPS 8, any service | Seamless or HFW |
+| NPS 8 to 24, sweet oil or gas | HFW |
+| NPS 8 to 16, sour or very high pressure | Seamless |
+| NPS 24 and above, high-pressure gas or sour | LSAW |
+| NPS 24 and above, water or moderate-pressure oil | SSAW |
+| Offshore, any size | Seamless or LSAW |
+| Induction bend mother pipe | Seamless or LSAW |
+
+Cost, mill availability and delivery time often decide between two technically acceptable routes.
+
+## What happens after forming
+
+Every pipe then goes through finishing and testing, whichever route made it:
+
+1. **Heat treatment** where the grade requires it (normalising, or quench and temper).
+2. **Hydrostatic mill test.** Each pipe is pressurised to a high fraction of SMYS, typically 90 to 95 %, and held for a few seconds.
+3. **Non-destructive testing.** Ultrasonic testing of the full seam; X-ray of SAW seam ends; ultrasonic testing of plate or body for laminations.
+4. **Dimensional checks.** Diameter, out-of-roundness, wall thickness, straightness, end squareness and bevel.
+5. **Mechanical tests** on samples per heat or lot: tensile, Charpy, DWTT, hardness, flattening (HFW), guided bend (SAW).
+6. **Marking and end protection.** Pipe is stencilled with grade, size, heat number and PSL, then bevel protectors are fitted.
+
+Each pipe is traceable to a **mill test certificate** listing the heat chemistry and test results. Keep these: integrity engineers will need them decades later.
+
+<Callout type="field">
+Mill hydrotest and the field hydrotest prove different things. The mill test lasts seconds and finds gross seam defects in one pipe. The field test holds for hours and proves the whole welded system, including damage from transport and construction.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| API 5L / ISO 3183 | Acceptable manufacturing processes per PSL, heat treatment, mill hydrotest, NDT, tolerances and marking. |
+| API 5L Table 2 and 3 | Which pipe types (SMLS, HFW, SAWL, SAWH) may be supplied for each grade and PSL. |
+| API RP 5L1 / 5LW | Recommended practice for rail and marine transport of line pipe, to avoid transit fatigue cracks. |
+| SAES-L-136 | Aramco restrictions on pipe manufacturing process by service. |
+
+</Standards>
+
+<Worked title="Selecting a process for three lines">
+
+**Line 1: NPS 6 sour flowline, 15 mm wall.** Small diameter, heavy wall, sour. Seamless, grade X52QS or X60QS.
+
+**Line 2: NPS 16 sweet crude trunkline, 9.5 mm wall, 80 km.** Mid-size, moderate wall, non-sour. HFW gives the best price and dimensional accuracy. Specify full-length seam ultrasonic testing and seam heat treatment.
+
+**Line 3: NPS 48 sales gas line, 19.1 mm wall, X70.** Large diameter, high pressure, fracture control required. LSAW from TMCP plate (X70M), with DWTT and Charpy requirements set by the fracture arrest calculation.
+
+</Worked>
+
+## Common mistakes
+
+- Treating all "ERW" as equal. Vintage low-frequency ERW and modern HFW are very different.
+- Specifying seamless for large diameters where it is not made.
+- Ignoring pipe-end tolerances. Out-of-round ends cause hi-lo misalignment and slow every field weld.
+- Stacking or shipping pipe without following the transport practice, which can start fatigue cracks at the seam before the pipe reaches site.
+
+<Quiz client:visible questions={[
+  { q: "Which process uses no filler metal in the seam?", options: ["LSAW", "SSAW", "HFW", "All of them use filler"], answer: 2, why: "High-frequency welding heats the strip edges and forges them together. SAW processes add filler wire under flux." },
+  { q: "An NPS 42 high-pressure sour gas trunkline would normally use:", options: ["Seamless", "HFW", "LSAW", "Any of these"], answer: 2, why: "Seamless and HFW are not made this large. LSAW from sour-grade plate is the standard choice." },
+  { q: "Why is LSAW pipe cold-expanded after welding?", options: ["To increase wall thickness", "To round and size the pipe and relieve forming stress", "To remove the weld", "To apply the coating"], answer: 1, why: "Expansion of about 1 % gives accurate diameter and roundness, which helps field fit-up." },
+  { q: "The characteristic wall problem of seamless pipe is:", options: ["Lack of fusion at the seam", "Eccentricity: wall thickness varying around the circumference", "Peaking", "Skelp-end welds"], answer: 1, why: "Piercing and rolling over a mandrel cannot hold wall as evenly as rolled strip or plate." }
+]} />

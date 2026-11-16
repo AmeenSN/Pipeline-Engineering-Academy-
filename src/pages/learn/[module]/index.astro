@@ -18,7 +18,7 @@ const minutes = entries.reduce((n, e) => n + e.data.minutes, 0);
       <h1 class="text-4xl sm:text-5xl font-bold mt-2">{mod.title}</h1>
       <p class="mt-4 text-lg text-muted max-w-2xl">{mod.blurb}</p>
       <div class="mt-6 flex flex-wrap gap-6 text-sm text-muted num">
-        <span>{entries.length} lessons</span><span>about {Math.round(minutes / 60 * 10) / 10} hours</span><span>{entries.length + 2} interactive tools</span>
+        <span>{entries.length} lessons</span><span>about {Math.round(minutes / 60 * 10) / 10} hours</span><span>{mod.tools} interactive tools</span>
       </div>
       <div class="mt-6 max-w-md" data-progress-for={mod.id + '/'} data-total={entries.length}>
         <div class="h-2 rounded-full bg-surface-2 border border-line overflow-hidden"><div data-bar class="h-full bg-ok" style="width:0;transition:width .4s"></div></div>

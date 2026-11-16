@@ -1,0 +1,169 @@
+---
+title: Carbon steel grades (API 5L)
+summary: What X52, X65 and X70 actually mean, how PSL1 differs from PSL2, and how to choose a grade that is strong enough, tough enough and still easy to weld in the field.
+order: 1
+minutes: 25
+level: Foundation
+standards: [API 5L, ISO 3183, ISO 15156, SAES-L-136]
+outcomes:
+  - Read an API 5L grade designation, including its suffix letters
+  - Explain the difference between PSL1 and PSL2
+  - Compare grades by wall thickness, tonnage and weldability
+  - Calculate carbon equivalent and judge field weldability
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import GradeCompare from "@/components/interactives/GradeCompare.tsx";
+import CarbonEquivalent from "@/components/interactives/CarbonEquivalent.tsx";
+
+## Why carbon steel
+
+More than 95 % of the world's pipelines are carbon-manganese steel. It is strong, tough, weldable in the field with simple equipment, and cheap for the strength it gives. Its one weakness is corrosion, which is managed with coatings, cathodic protection and inhibitors (module M9).
+
+Line pipe is ordered to **API Specification 5L** (technically equivalent to ISO 3183). The specification defines grades, chemistry, mechanical properties, manufacturing routes, testing and dimensions.
+
+## Reading a grade
+
+The grade name tells you the minimum yield strength.
+
+| API name | ISO name | SMYS (MPa) | SMYS (ksi) | SMTS (MPa) |
+|---|---|---|---|---|
+| B | L245 | 245 | 35.5 | 415 |
+| X42 | L290 | 290 | 42 | 415 |
+| X52 | L360 | 360 | 52 | 460 |
+| X60 | L415 | 415 | 60 | 520 |
+| X65 | L450 | 450 | 65 | 535 |
+| X70 | L485 | 485 | 70 | 570 |
+| X80 | L555 | 555 | 80 | 625 |
+
+- The **X number** is the specified minimum yield strength (SMYS) in thousands of psi.
+- The **L number** is the same strength in MPa.
+- **SMTS** is the specified minimum tensile strength.
+
+PSL2 pipe also carries suffix letters. The first gives the delivery condition, and an optional second gives the service:
+
+- **R** as-rolled, **N** normalised, **Q** quenched and tempered, **M** thermomechanically rolled (TMCP).
+- **S** for sour service, **O** for offshore service.
+
+So **X65MS** is a 450 MPa pipe made from thermomechanically rolled steel and qualified for sour service.
+
+## PSL1 and PSL2
+
+API 5L has two product specification levels. PSL2 is the default for oil and gas transmission.
+
+| Requirement | PSL1 | PSL2 |
+|---|---|---|
+| Maximum yield and tensile strength | Not limited | Limited (prevents over-strong, brittle pipe) |
+| Yield-to-tensile ratio | Not limited | Maximum 0.93 for most grades |
+| Charpy impact toughness | Not required | Mandatory |
+| Carbon equivalent | Not limited | Limited |
+| Carbon, phosphorus, sulphur | Looser | Tighter |
+| Non-destructive testing of the seam | Limited | Mandatory |
+| Traceability | Until tests pass | Full, heat and lot |
+
+<Callout type="note">
+A **maximum** yield strength matters as much as the minimum. Girth welds are designed to be stronger than the pipe (overmatching). If the pipe arrives far above its nominal grade, the weld becomes the weak link and strain concentrates there.
+</Callout>
+
+## Strength versus everything else
+
+A higher grade needs less wall for the same pressure. Less wall means less steel to buy, transport, bend and weld. That is why large gas trunklines moved from X52 to X65 and X70.
+
+<GradeCompare client:visible />
+
+Try this: at NPS 30 and 96 bar, click through the grades from B to X70 and watch the tonnage fall. Then lower the pressure to 30 bar and see the benefit vanish: once D/t becomes the limit, strength no longer helps.
+
+Strength is not free. As grade goes up:
+
+- **Toughness and weldability** depend more on precise mill processing.
+- **Yield-to-tensile ratio** rises, so the pipe has less capacity to stretch before it fails.
+- **Sour service** becomes harder to qualify. Most sour lines stay at X65 or below.
+- **Field welding** needs tighter control of heat input and hydrogen.
+
+For small-diameter, low-pressure lines the minimum practical wall governs anyway, and Grade B or X42 is the sensible choice.
+
+## How modern steel gets its strength
+
+Old steels were strengthened with carbon, which makes welds hard and crack-prone. Modern line pipe steel gets its strength differently:
+
+- **Low carbon** (0.04 to 0.10 %) for weldability and toughness.
+- **Micro-alloying** with small amounts of niobium, vanadium and titanium to refine the grain.
+- **Thermomechanical controlled processing (TMCP)**: rolling at controlled temperatures followed by accelerated cooling, which produces a very fine grain structure. Fine grain raises strength **and** toughness together.
+
+## Weldability and carbon equivalent
+
+Hardenability in the weld heat-affected zone is summarised by a carbon equivalent (CE). API 5L uses two formulas:
+
+$$
+CE_{IIW} = C + \frac{Mn}{6} + \frac{Cr + Mo + V}{5} + \frac{Ni + Cu}{15} \qquad \text{(carbon above 0.12 \%)}
+$$
+
+$$
+CE_{Pcm} = C + \frac{Si}{30} + \frac{Mn + Cu + Cr}{20} + \frac{Ni}{60} + \frac{Mo}{15} + \frac{V}{10} + 5B \qquad \text{(carbon 0.12 \% or less)}
+$$
+
+PSL2 limits are 0.43 for the IIW formula and 0.25 for Pcm. Lower is easier to weld.
+
+<CarbonEquivalent client:visible />
+
+Try this: load the 1960s X52 chemistry and compare it with modern X65. The old steel is weaker but far harder to weld, because of its carbon. This matters when you tie in to, or repair, a vintage pipeline.
+
+## Toughness and fracture control
+
+Strength stops a pipe yielding. **Toughness** stops a crack running.
+
+- **Charpy V-notch test** measures the energy absorbed in breaking a notched bar at a set temperature. PSL2 sets minimum values for pipe body, weld and heat-affected zone.
+- **Drop-weight tear test (DWTT)** checks that fracture is ductile (shear) at the minimum design temperature, for larger pipe.
+- On gas pipelines a running ductile fracture is driven by the decompressing gas. The specified Charpy energy must be high enough to **arrest** it, or crack arrestors are fitted.
+
+## Sour service
+
+When the fluid contains wet hydrogen sulphide (H₂S) above the threshold in ISO 15156 (NACE MR0175), steel can crack by two mechanisms: sulphide stress cracking (SSC) in hard zones, and hydrogen-induced cracking (HIC) along inclusions. Sour-service pipe (suffix S) therefore has:
+
+- hardness limited to about 250 HV10 in pipe, weld and heat-affected zone,
+- very low sulphur with calcium treatment to control inclusion shape,
+- HIC testing to NACE TM0284 and SSC testing to NACE TM0177.
+
+<Callout type="aramco">
+Saudi Aramco purchases line pipe to its own materials system specifications (the 01-SAMSS series), which add requirements to API 5L, and selects materials through SAES-L-132 and SAES-L-136. Because much of Aramco's production is sour, sour-service requirements apply widely. Check the current specifications for the exact grade and process restrictions.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| API 5L / ISO 3183 | Line pipe grades, PSL1 and PSL2 requirements, chemistry, tensile, Charpy and DWTT tests, dimensions and tolerances. |
+| API 5L Annex H | Additional requirements for PSL2 pipe ordered for sour service. |
+| ISO 15156 / NACE MR0175 | Defines sour service and the material limits (hardness, qualification tests) for H₂S environments. |
+| SAES-L-136 | Aramco restrictions on pipe, flange and fitting materials. |
+| SAES-L-132 | Aramco material selection for piping systems by service. |
+
+</Standards>
+
+<Worked title="Grade B or X65 for a 100 km NPS 30 gas line?">
+
+**Given:** OD 762 mm, design pressure 9.6 MPa, Class 1 (F = 0.72), no corrosion allowance.
+
+**Grade B (245 MPa):** t = 9.6 × 762 / (2 × 245 × 0.72) = 20.7 mm, so the standard wall is 22.2 mm. Weight 405 kg/m.
+
+**X65 (450 MPa):** t = 9.6 × 762 / (2 × 450 × 0.72) = 11.3 mm, so the standard wall is 11.9 mm. Weight 220 kg/m.
+
+**Over 100 km:** 40 500 tonnes against 22 000 tonnes. X65 saves **18 500 tonnes of steel**, about 46 %, and roughly halves the weld metal in every girth weld. X65 costs a little more per tonne, but nowhere near enough to cancel that saving.
+
+</Worked>
+
+## Common mistakes
+
+- Ordering PSL1 pipe for a transmission line because it is cheaper. It has no guaranteed toughness.
+- Assuming a higher grade is always better. Below a certain pressure it only raises D/t.
+- Forgetting the service suffix: X65M is not qualified for sour service, X65MS is.
+- Mixing vintage and modern steel in a tie-in without checking the old pipe's carbon equivalent.
+
+<Quiz client:visible questions={[
+  { q: "What does the 65 in API 5L X65 mean?", options: ["65 mm maximum wall", "Minimum yield strength of 65 000 psi", "Tensile strength of 65 MPa", "0.65 % carbon"], answer: 1, why: "The X number is SMYS in thousands of psi: 65 ksi is about 450 MPa." },
+  { q: "Which requirement is mandatory for PSL2 but not PSL1?", options: ["Hydrostatic mill test", "Charpy impact toughness", "Outside diameter tolerance", "Pipe length"], answer: 1, why: "PSL2 guarantees toughness through mandatory Charpy testing; PSL1 does not." },
+  { q: "Modern TMCP steel achieves high strength mainly through:", options: ["High carbon content", "Fine grain size from controlled rolling and micro-alloying", "Thick walls", "Cold expansion alone"], answer: 1, why: "Grain refinement raises strength and toughness together while keeping carbon, and so carbon equivalent, low." },
+  { q: "A pipe is marked X60QS. The S means:", options: ["Seamless", "Spiral welded", "Qualified for sour service", "Stress relieved"], answer: 2, why: "Q is quenched and tempered delivery condition; S is the sour-service suffix." }
+]} />

@@ -1,0 +1,154 @@
+---
+title: CRA, clad and non-metallic pipe
+summary: When carbon steel cannot survive the fluid, the alternatives are corrosion-resistant alloys, clad or lined pipe, and non-metallic systems. Learn how to screen the choice.
+order: 3
+minutes: 30
+level: Intermediate
+standards: [ISO 15156, API 5LC, API 5LD, API 15S, ISO 14692, SAES-L-132]
+outcomes:
+  - Estimate CO₂ corrosion rate and the wall loss over the design life
+  - Decide when a corrosion allowance stops being practical
+  - Compare solid CRA, clad, lined, RTP and GRE pipe
+  - Recognise the sour-service threshold
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import CorrosionAllowance from "@/components/interactives/CorrosionAllowance.tsx";
+import PipeWallTypes from "@/components/interactives/PipeWallTypes.tsx";
+
+## The material selection question
+
+Carbon steel is always the first candidate. The question is whether it can last the design life with a sensible corrosion allowance and a corrosion control programme that will really be maintained. If it cannot, a more resistant material is needed.
+
+Internal corrosion in oil and gas pipelines is driven mainly by:
+
+- **Carbon dioxide (CO₂)** dissolved in water, forming carbonic acid ("sweet" corrosion).
+- **Hydrogen sulphide (H₂S)**, which causes cracking as well as corrosion ("sour" service).
+- **Chlorides, oxygen and bacteria**, mainly in water injection and produced water lines.
+
+No free water means no corrosion. Dry gas and stabilised crude lines are normally carbon steel.
+
+## Estimating CO₂ corrosion
+
+The classic de Waard and Milliams equation gives the corrosion rate of bare carbon steel in wet CO₂:
+
+$$
+\log V_{cor} = 5.8 - \frac{1710}{T} + 0.67 \, \log p_{CO_2}
+$$
+
+with $V_{cor}$ in mm per year, $T$ in kelvin and $p_{CO_2}$ (the CO₂ partial pressure) in bar. Partial pressure is total pressure multiplied by the mole fraction of CO₂ in the gas.
+
+This is a deliberately conservative starting point. Real rates are lowered by protective iron carbonate scale, higher pH, oil wetting and glycol, and modern models correct for these.
+
+## Inhibition and availability
+
+Corrosion inhibitor can cut the rate to around 0.1 mm per year, but only while it is being injected. The key number is **availability**: the fraction of time the inhibition system works as intended.
+
+$$
+\text{wall loss} = \left[ A \times V_{inhibited} + (1 - A) \times V_{cor} \right] \times \text{design life}
+$$
+
+At a bare rate of several millimetres a year, the few percent of time without inhibitor does almost all the damage.
+
+<CorrosionAllowance client:visible />
+
+Try this: keep the default hot, high-CO₂ case and move inhibitor availability from 95 % to 99 %. The wall loss falls sharply. Then raise the H₂S partial pressure past 0.3 kPa and note the sour-service flag.
+
+As a rule of thumb, a corrosion allowance of 1.5 to 3 mm is normal, up to 6 mm is heavy but possible, and beyond that carbon steel is the wrong material.
+
+## The sour threshold
+
+ISO 15156 (NACE MR0175) defines sour service for carbon steel as an H₂S partial pressure of **0.3 kPa (0.05 psi)** or more in the presence of water. Above it, materials must be resistant to sulphide stress cracking. For carbon steel that means controlled hardness and qualified chemistry (see the grades lesson). For alloys, each grade has its own limits of H₂S, chloride, temperature and pH.
+
+## The alternatives
+
+<PipeWallTypes client:visible />
+
+Click through each construction. Notice that clad and lined pipe keep carbon steel as the pressure wall and add only a thin alloy barrier, which is why they cost far less than solid alloy in large sizes.
+
+### Corrosion-resistant alloys
+
+| Alloy | What it resists | Main limits |
+|---|---|---|
+| 13Cr martensitic stainless | Wet CO₂, moderate temperature | Little H₂S tolerance, difficult field welding |
+| 316L austenitic stainless | CO₂; used as cladding | Chloride pitting and stress cracking when hot |
+| 22Cr duplex | CO₂ with some H₂S, chlorides | About 150 °C, strict welding control, external chloride cracking |
+| 25Cr super duplex | As duplex, more severe | Cost, heat-treatment sensitivity |
+| Alloy 825 / 625 (nickel alloys) | Severe sour, high chloride, hot | Cost: normally used only as cladding |
+
+### Non-metallic pipe
+
+Non-metallic pipe removes corrosion as a failure mode and replaces it with others: temperature, pressure, permeation, impact damage and joint integrity.
+
+- **Reinforced thermoplastic pipe (RTP)** is spooled and laid quickly with few joints. It suits flowlines and water lines within its pressure and temperature rating.
+- **Glass-reinforced epoxy (GRE, also called RTR)** is rigid pipe in joints with bonded or threaded connections. It is common for water injection and produced water.
+- **HDPE liners** pulled into carbon steel lines protect the steel for water service and rehabilitate corroded lines.
+
+<Callout type="aramco">
+Saudi Aramco has deployed non-metallic pipe widely for flowlines and water systems, governed by the SAES-L-600 series (SAES-L-610 and SAES-L-620) and selected under SAES-L-132. Non-metallic pipe in hydrocarbon service has specific limits on pressure, temperature, diameter and location. Verify them in the current revisions.
+</Callout>
+
+## Comparing on life-cycle cost
+
+The decision is rarely made on purchase price. Compare over the full design life:
+
+- **Capital cost:** pipe, welding (alloy welding is slow), coating, installation.
+- **Operating cost:** inhibitor chemicals, injection equipment, monitoring, pigging, inspection runs.
+- **Risk cost:** the consequence of a leak and the realism of maintaining 95 % or better inhibitor availability at a remote site for 25 years.
+
+Short, hot, very corrosive lines favour alloy. Long, cooler, mildly corrosive lines favour inhibited carbon steel.
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ISO 15156 / NACE MR0175 | Sour-service definition and qualification limits for carbon steels and corrosion-resistant alloys. |
+| API 5LC | Specification for solid CRA line pipe. |
+| API 5LD | Specification for CRA clad and lined steel pipe. |
+| API 15S | Spoolable reinforced plastic line pipe (RTP): qualification and rating. |
+| API 15HR / ISO 14692 | High-pressure fibreglass line pipe and glass-reinforced plastic piping. |
+| SAES-L-132 and SAES-L-133 | Aramco material selection and corrosion protection requirements for pipelines. |
+| SAES-L-610 / SAES-L-620 | Aramco requirements for non-metallic piping. |
+
+</Standards>
+
+<Worked title="Screening a hot wet gas flowline">
+
+**Given:** 60 °C, total pressure 100 bar with 2 mol % CO₂, so CO₂ partial pressure is 2 bar. Design life 25 years. Negligible H₂S.
+
+**Bare-steel rate:**
+
+$$
+\log V_{cor} = 5.8 - \frac{1710}{333} + 0.67 \log(2) = 0.869 \quad\Rightarrow\quad V_{cor} = 7.4 \text{ mm/yr}
+$$
+
+**With inhibitor at 95 % availability** (inhibited rate 0.1 mm/yr):
+
+$$
+0.95 \times 0.1 + 0.05 \times 7.4 = 0.465 \text{ mm/yr} \quad\Rightarrow\quad 11.6 \text{ mm in 25 years}
+$$
+
+That is far beyond a practical allowance.
+
+**At 99 % availability:** 0.99 × 0.1 + 0.01 × 7.4 = 0.173 mm/yr, or 4.3 mm in 25 years. Feasible with a heavy allowance, but only if 99 % availability is truly achievable.
+
+**Conclusion:** unless a refined corrosion model reduces the bare rate substantially, this line is a candidate for CRA-clad or solid 13Cr pipe.
+
+</Worked>
+
+## Common mistakes
+
+- Using total pressure instead of CO₂ partial pressure.
+- Assuming 100 % inhibitor availability.
+- Selecting duplex stainless steel without checking its temperature and H₂S limits.
+- Forgetting that non-metallic lines still need metallic connectors, which can corrode.
+- Ignoring external corrosion: alloy pipe buried in sabkha may still need coating.
+
+<Quiz client:visible questions={[
+  { q: "The sour-service threshold for carbon steel in ISO 15156 is an H₂S partial pressure of:", options: ["0.3 kPa (0.05 psi)", "3 kPa", "30 kPa", "Any trace of H₂S"], answer: 0, why: "At or above 0.3 kPa with water present, sulphide stress cracking resistant materials are required." },
+  { q: "Why does inhibitor availability matter so much?", options: ["Inhibitor is expensive", "The uninhibited rate is so high that short outages cause most of the wall loss", "It changes the pipe grade", "It affects hydrotest pressure"], answer: 1, why: "At 7 mm/yr bare rate, 5 % downtime contributes about 0.37 mm/yr, four times the inhibited contribution." },
+  { q: "In metallurgically clad pipe, which layer carries the pressure?", options: ["The CRA layer", "The carbon steel backing", "Both equally", "The external coating"], answer: 1, why: "The thin alloy layer is a corrosion barrier. The carbon steel provides the strength." },
+  { q: "A main limitation of reinforced thermoplastic pipe is:", options: ["It corrodes in CO₂", "It cannot be spooled", "Temperature, pressure and diameter limits", "It needs cathodic protection"], answer: 2, why: "RTP is corrosion-free but each product has a qualified pressure and temperature envelope and limited diameter." }
+]} />

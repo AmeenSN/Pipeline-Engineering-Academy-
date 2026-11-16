@@ -36,11 +36,11 @@ tests/                                    unit tests for the engineering library
 | Code | Module | Status |
 |---|---|---|
 | M0 | Foundations | Planned |
-| M1 | Line pipe materials and manufacturing | Planned |
+| M1 | Line pipe materials and manufacturing | **Built: 4 lessons, 7 interactive tools** |
 | M2 | Mechanical design | **Built: 7 lessons, 9 interactive tools** |
 | M3 | Route selection and surveys | Planned |
 | M4 | Safety and risk (PDI, location class) | Planned |
-| M5 | Bends and pipe geometry | Planned |
+| M5 | Bends and pipe geometry | **Built: 4 lessons, 5 interactive tools** |
 | M6 | Crossings and special terrain | Planned |
 | M7 | Trench design and burial | Planned |
 | M8 | Construction | Planned |

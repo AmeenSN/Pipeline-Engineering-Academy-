@@ -1,7 +1,7 @@
 ---
 import Base from '@/layouts/Base.astro';
 import ModuleGrid from '@/components/ui/ModuleGrid.astro';
-import { MODULES, lessonCount } from '@/data/curriculum';
+import { MODULES, lessonCount, liveLessonCount, toolCount } from '@/data/curriculum';
 const features = [
   { t: 'Learn by moving things', d: 'Every concept has a diagram you can drag, slide and break. Raise the temperature and watch a buried line buckle.' },
   { t: 'Calculators you can trust', d: 'Each tool shows its working, runs on a tested engineering library and switches between SI and US units.' },
@@ -21,7 +21,7 @@ const features = [
           <a href="/learn/" class="btn btn-ghost">Browse the curriculum</a>
         </div>
         <dl class="mt-10 flex flex-wrap gap-x-10 gap-y-4">
-          {[[MODULES.length, 'modules'], [lessonCount, 'lessons planned'], ['9', 'interactive tools live']].map(([n, l]) => (
+          {[[MODULES.length, 'modules'], [liveLessonCount, `of ${lessonCount} lessons live`], [toolCount, 'interactive tools']].map(([n, l]) => (
             <div><dt class="num text-3xl font-bold">{n}</dt><dd class="text-sm text-muted">{l}</dd></div>
           ))}
         </dl>

@@ -1,0 +1,154 @@
+---
+title: Fittings, flanges and valves
+summary: A pipeline is only as strong as its weakest component. Learn how flange classes work, which fittings keep a line piggable, and which valve belongs where.
+order: 4
+minutes: 30
+level: Foundation
+standards: [ASME B16.5, ASME B16.47, ASME B16.9, MSS SP-75, API 6D, SAES-L-108]
+outcomes:
+  - Select a flange pressure class for a design pressure and temperature
+  - Explain why the flange often sets the MAOP of a system
+  - Identify fittings that affect pigging
+  - Choose between ball, gate, check and globe valves
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import FlangeRating from "@/components/interactives/FlangeRating.tsx";
+import ValveExplorer from "@/components/interactives/ValveExplorer.tsx";
+
+## Components and the weakest link
+
+Line pipe is designed by calculation. Flanges, fittings and valves are mostly **rated**: they are made to dimensional standards that assign each a pressure rating. The maximum allowable operating pressure (MAOP) of a pipeline system is the lowest of the pipe design pressure, the test pressure divided by the test factor, and the rating of the weakest component.
+
+## Flange classes
+
+ASME B16.5 groups flanges into pressure **classes**: 150, 300, 600, 900, 1500 and 2500. The class number is a label, not a pressure. The actual rating depends on the flange material and falls as temperature rises.
+
+For ordinary carbon steel flanges (material group 1.1) at ambient temperature:
+
+| Class | Rating at 38 °C | Typical pipeline use |
+|---|---|---|
+| 150 | 19.6 bar (285 psi) | Water, low-pressure gathering |
+| 300 | 51.1 bar (740 psi) | Gathering and distribution |
+| 600 | 102.1 bar (1480 psi) | Most transmission pipelines |
+| 900 | 153.2 bar (2220 psi) | High-pressure gas, injection |
+| 1500 | 255.3 bar (3705 psi) | Wellhead flowlines, injection |
+| 2500 | 425.5 bar (6170 psi) | Very high pressure |
+
+<FlangeRating client:visible />
+
+Try this: set 96 bar at 60 °C and read off Class 600. Now raise the temperature toward 100 °C: the Class 600 rating drops below the design pressure and the selector jumps to Class 900. Temperature derating catches many designers out.
+
+<Callout type="note">
+Many transmission pipelines are designed to exactly the Class 600 ambient rating: 102 bar, or 1480 psi. The pipe could usually take more, but going higher would push every valve and flange up a class.
+</Callout>
+
+### Flange details that matter
+
+- **Size range.** B16.5 covers up to NPS 24. Larger flanges are to ASME B16.47 (Series A or B) or MSS SP-44.
+- **Type.** Weld-neck flanges are standard for pipelines: the tapered hub transfers stress smoothly and the butt weld can be radiographed.
+- **Face.** Raised face (RF) with a spiral-wound gasket up to about Class 600 to 900; ring-type joint (RTJ) with a metal ring for higher classes and sour service.
+- **Bore.** The flange bore must match the pipe wall, or the mismatch must be tapered.
+- **Material strength.** A standard flange forging is weaker than X65 pipe. High-yield flanges (for example ASTM A694 F65) are used so that the hub can match the pipe wall.
+
+Every flange is a potential leak and a maintenance item. Buried pipelines use as few as possible: valves are often welded-end.
+
+## Fittings
+
+**Butt-weld fittings** (ASME B16.9, and MSS SP-75 for high-strength grades) include elbows, tees, reducers and caps. They are designed to be at least as strong as the matching pipe.
+
+Fittings that need special thought on a pipeline:
+
+- **Elbows.** Standard long-radius elbows have a radius of 1.5 D, too tight for inspection pigs. Mainline changes of direction use bends of 3 D or 5 D and larger (module M5).
+- **Tees.** A branch opening larger than about a quarter to a third of the run diameter must be fitted with **guide bars** (a barred tee), or a pig can turn into the branch and stick.
+- **Reducers.** The mainline should keep a constant internal diameter. Dual-diameter pigs exist but limit inspection options.
+- **Branch outlets** (weldolets, sweepolets). Used for small connections such as instrument tappings and drains.
+
+### Special pipeline components
+
+- **Monolithic isolation joints** electrically separate the cathodically protected pipeline from station piping, without the leak paths of an insulated flange.
+- **Anchor flanges** are forged rings welded into the line and cast into a concrete anchor block to hold thermal forces (module M2).
+- **Scraper trap closures** are quick-opening end closures with a safety interlock that prevents opening under pressure.
+
+## Valves
+
+Pipeline valves are made to **API 6D**. The four types you meet most:
+
+<ValveExplorer client:visible />
+
+Drag the slider to operate each valve. Compare the ball and gate valves when fully open: both leave a clear, full-bore passage for a pig. The globe valve never does.
+
+### Choosing a valve
+
+| Duty | Usual choice | Why |
+|---|---|---|
+| Mainline block valve, gas | Full-bore trunnion ball valve | Quarter turn, tight shut-off, piggable |
+| Mainline block valve, liquids | Through-conduit gate or ball valve | Piggable, tolerant of solids |
+| Scraper trap isolation | Full-bore ball or gate valve | Pig must pass |
+| Backflow prevention | Swing or axial-flow check valve | Automatic |
+| Flow or pressure control | Globe or axial control valve | Stable throttling |
+| Small drains and vents | Ball or plug valve | Simple, compact |
+
+Other features to specify:
+
+- **Full bore or reduced bore.** Anything on the piggable route must be full bore.
+- **End connections.** Welded ends for buried mainline valves; flanged where the valve must be removable.
+- **Double block and bleed.** Two seats with a vent between them, to prove isolation before maintenance.
+- **Actuator.** Manual gearbox, electric, hydraulic, or gas-over-oil using line gas. Remote and automatic operation is covered under sectionalizing valves in module M11.
+- **Buried service.** Stem extension, external coating, and sealant, drain and vent lines brought above ground.
+- **Fire-safe design and testing** for hydrocarbon service.
+
+<Callout type="aramco">
+Saudi Aramco selects valves under SAES-L-108 and buys them to the 04-SAMSS series of materials specifications, which add requirements to API 6D, for example on seat design, testing and sour-service materials. Flange and fitting material limits are in SAES-L-136 and SAES-L-109. Verify details in the current revisions.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B16.5 | Flanges up to NPS 24: dimensions and pressure-temperature ratings by class and material group. |
+| ASME B16.47 / MSS SP-44 | Large-diameter flanges, NPS 26 to 60. |
+| ASME B16.9 / MSS SP-75 | Factory-made butt-weld fittings; SP-75 covers high-strength grades to match X-grade pipe. |
+| ASME B16.20 / B16.21 | Metallic and non-metallic gaskets. |
+| API 6D | Pipeline valves: ball, gate, check and plug. Design, testing and marking. |
+| ASME B31.4 §404 and B31.8 §831 | How components and their ratings enter pipeline design. |
+| SAES-L-108 and SAES-L-109 | Aramco selection of valves and of flanges, gaskets and bolts. |
+
+</Standards>
+
+<Worked title="Flange class for a 96 bar gas pipeline">
+
+**Given:** design pressure 96 bar, design temperature 60 °C, carbon steel flanges (group 1.1).
+
+**Class 300** at 60 °C is about 49 bar. Not enough.
+
+**Class 600** is 100.2 bar at 50 °C and 93.2 bar at 100 °C. Interpolating to 60 °C:
+
+$$
+100.2 - \frac{60 - 50}{100 - 50} \times (100.2 - 93.2) = 98.8 \text{ bar}
+$$
+
+98.8 bar is above 96 bar, so **Class 600** is suitable, with 3 % margin.
+
+**Check the hydrotest.** A pipeline strength test at 1.25 × 96 = 120 bar is below the flange test limit of 1.5 × 102.1 = 153 bar, so the valves and flanges can stay in the test section.
+
+**What if the design temperature were 100 °C?** The Class 600 rating falls to 93.2 bar, below the design pressure, and Class 900 would be required.
+
+</Worked>
+
+## Common mistakes
+
+- Reading the class number as a pressure in psi. Class 600 is rated 1480 psi, not 600.
+- Forgetting temperature derating of flanges.
+- Fitting a reduced-bore valve or an unbarred tee on a piggable line.
+- Using a standard-strength flange on high-grade pipe without checking the hub thickness transition.
+- Testing against a closed valve at a pressure above its seat test rating.
+
+<Quiz client:visible questions={[
+  { q: "A carbon steel Class 600 flange at ambient temperature is rated for about:", options: ["600 psi", "600 bar", "102 bar (1480 psi)", "51 bar (740 psi)"], answer: 2, why: "The class number is only a label. Group 1.1 Class 600 is 102.1 bar at 38 °C." },
+  { q: "Why are barred tees used?", options: ["To strengthen the branch weld", "To stop a pig entering or lodging in the branch", "To reduce pressure drop", "For cathodic protection"], answer: 1, why: "Guide bars across a large branch opening keep the pig travelling along the run." },
+  { q: "Which valve should never be installed in the piggable mainline?", options: ["Full-bore ball valve", "Through-conduit gate valve", "Globe valve", "Full-opening check valve"], answer: 2, why: "A globe valve has no straight-through bore, so a pig cannot pass." },
+  { q: "A monolithic isolation joint is used to:", options: ["Absorb thermal expansion", "Electrically isolate the pipeline for cathodic protection", "Launch pigs", "Measure flow"], answer: 1, why: "It separates the protected pipeline from grounded station piping without flanged leak paths." }
+]} />
