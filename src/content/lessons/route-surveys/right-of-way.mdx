@@ -1,0 +1,104 @@
+---
+title: Right of way
+summary: The right of way is the strip of land where the pipeline is built and then protected for life. Learn how its width is set, how it is laid out for construction and what is allowed on it afterwards.
+order: 4
+minutes: 20
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, SAES-L-410, SAES-B-064]
+outcomes:
+  - Distinguish the construction ROW from the permanent ROW
+  - Build up a construction ROW width from its working parts
+  - Explain the spoil side and working side layout
+  - List activities restricted on an operating ROW
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import RowSection from "@/components/interactives/RowSection.tsx";
+
+## Two rights of way
+
+**Construction right of way.** The temporary working strip needed to build the pipeline. It must hold the trench, the excavated spoil, the welded pipe string, the equipment and a travel lane. Typically 15 to 40 m wide.
+
+**Permanent right of way.** The narrower strip kept for the life of the pipeline, where the operator has rights of access and third parties are restricted. Typically 6 to 25 m for a single line, and much wider for a multi-pipeline corridor.
+
+Extra **temporary workspace** is added at crossings, steep slopes, bends, tie-ins and stockpile areas.
+
+## Laying out the construction ROW
+
+The ROW is split by the trench into two sides:
+
+- The **spoil side** takes the excavated material, and topsoil where it is stripped and kept separately.
+- The **working side** takes everything else: the pipe string on skids beside the trench, the sidebooms and welding equipment, and a lane for vehicles to pass.
+
+The trench is therefore **off-centre**, closer to the spoil side.
+
+<RowSection client:visible />
+
+Try this: change the ground from firm soil to loose sand. The trench sides must be flatter, the trench top widens, the spoil pile grows, and the ROW needs several more metres. Then switch pipe size from NPS 16 to NPS 48.
+
+## What sets the width
+
+- **Pipe diameter.** Larger pipe needs a bigger trench and heavier, wider equipment.
+- **Soil.** Loose sand needs flat trench slopes and produces a wide spoil pile. Rock allows a narrow trench but may need space for padding material and blasting protection.
+- **Cover depth.** Deeper trench, more spoil.
+- **Topsoil.** In agricultural land, topsoil is stripped and stored separately so it can be restored, adding width.
+- **Number of pipelines.** A second parallel line adds its own trench and separation.
+- **Terrain.** Side slopes need a cut-and-fill working bench, which can double the width.
+
+Wider is easier to build on but costs more land, more clearing and more reinstatement. Environmental permits often cap the width, and construction then has to adapt.
+
+## Parallel pipelines and corridors
+
+Where several pipelines share a corridor, spacing between them is set by:
+
+- room to **excavate and repair** one line without endangering its neighbour,
+- construction equipment working beside a **live** line,
+- limiting damage to adjacent lines if one **ruptures**,
+- cathodic protection interference.
+
+Typical centre-to-centre spacings range from a few metres in congested areas to 15 m or more for large gas lines.
+
+<Callout type="aramco">
+Saudi Aramco pipelines run in designated corridors with standard spacing between lines and defined setbacks from the corridor edge. SAES-B-064 and SAES-L-410 set the spacing, and work near existing lines requires crossing permits and often a temporary protective ramp where vehicles cross live pipelines. Confirm the required spacing for the pipe size and service in the current standards.
+</Callout>
+
+## Preparing and restoring the ROW
+
+During construction the ROW is:
+
+1. **Surveyed and staked**, with the centreline and both boundaries marked.
+2. **Cleared** of vegetation and obstacles and fenced where needed.
+3. **Graded** to give a working surface. On dunes and side slopes this is major earthworks.
+4. Provided with **access roads** and gaps for local traffic and wildlife.
+
+After backfill it is **reinstated**: graded to original contours, topsoil replaced, drainage restored, a crown left over the trench for settlement, and erosion protection installed on slopes.
+
+## Living with the ROW
+
+On an operating pipeline, the ROW is kept clear so the line can be patrolled, reached and excavated. Typically restricted:
+
+- Buildings and permanent structures of any kind.
+- Deep-rooted trees.
+- Excavation, drilling or blasting without the operator's permit.
+- Changes in ground level, which alter cover and loading.
+- Heavy vehicle crossings except at designed crossings.
+
+The leading cause of pipeline failures worldwide is **third-party damage**: someone digging who did not know, or did not check, that the pipeline was there. Markers, patrols, permits and public awareness are the defences (modules M7 and M11).
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §434.3 and B31.8 §841 | Right of way to be selected and prepared to minimise hazards; clearing, grading and restoration requirements. |
+| ASME B31.8 §851 and B31.4 §451 | ROW patrolling, maintenance of markers and control of encroachment. |
+| SAES-L-410 | Pipeline corridor and spacing requirements. |
+| SAES-B-064 | Safety distances between pipelines and from other facilities. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Why is the trench off-centre in the construction ROW?", options: ["Survey error", "The working side needs more room than the spoil side", "To avoid cathodic protection", "For drainage"], answer: 1, why: "Pipe string, sidebooms and a travel lane all sit on the working side." },
+  { q: "Which change widens the ROW most for the same pipe?", options: ["Switching from rock to loose sand", "Using a higher steel grade", "Using 3LPE instead of FBE", "Shorter pipe joints"], answer: 0, why: "Loose sand needs flat trench slopes, giving a wide trench top and a much bigger spoil pile." },
+  { q: "The most common cause of pipeline damage on an operating ROW is:", options: ["Internal corrosion", "Third-party excavation", "Earthquake", "Lightning"], answer: 1, why: "Unauthorised or uninformed digging by others is the leading cause of pipeline failures." }
+]} />

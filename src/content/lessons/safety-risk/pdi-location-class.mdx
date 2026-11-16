@@ -1,0 +1,131 @@
+---
+title: PDI study and location classes
+summary: How many people live near the pipeline decides how thick its wall must be. Learn the ASME building-count method, the Saudi Aramco population density index approach, and how to run a study.
+order: 1
+minutes: 30
+level: Intermediate
+standards: [ASME B31.8, SAES-B-064, SAES-L-410]
+outcomes:
+  - Determine ASME B31.8 location class with the sliding-zone method
+  - Explain the idea of rupture exposure radius and population density index
+  - Link location class to design factor, wall thickness, valve spacing and test pressure
+  - Plan and document a location class study
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import PdiStudy from "@/components/interactives/PdiStudy.tsx";
+
+## The principle
+
+A pipeline failure in open desert harms no one. The same failure beside a housing compound could be a disaster. Codes respond by making the pipeline **more robust where more people are exposed**. The measure of exposure is the location class.
+
+Location class then drives several design decisions at once:
+
+| Decision | Effect of a higher class |
+|---|---|
+| Design factor | Lower, so the wall is thicker |
+| Sectionalizing valve spacing | Closer |
+| Hydrotest pressure factor | Higher |
+| Depth of cover | Greater |
+| Weld inspection percentage | Higher |
+| Patrol and survey frequency | More often |
+
+## The ASME B31.8 method
+
+For gas pipelines, ASME B31.8 counts **buildings intended for human occupancy**:
+
+1. Draw a zone **a quarter of a mile wide** centred on the pipeline (about 200 m each side).
+2. Slide a window **one mile long** along that zone.
+3. At every position, count the buildings inside the window. Each separate dwelling unit in a multi-unit building counts as one.
+4. Assign the class from the count:
+
+| Class | Buildings in the 1-mile zone | Design factor |
+|---|---|---|
+| 1 | 10 or fewer | 0.72 (Division 2) |
+| 2 | 11 to 45 | 0.60 |
+| 3 | 46 or more | 0.50 |
+| 4 | Multi-storey buildings prevalent, heavy traffic, many utilities underground | 0.40 |
+
+Class 3 also applies where the pipeline passes within about 100 yards (90 m) of a place of public assembly, such as a school, hospital or playground used by 20 or more people, even if the building count is low.
+
+<PdiStudy client:visible />
+
+Try this: start from the village preset and slide the zone across it. The class rises as the cluster enters the window and falls as it leaves. Now click to add buildings near the line in open desert and watch the class band change. Notice that buildings outside the shaded corridor do not count.
+
+Each change of class along the route becomes a wall thickness change on the alignment sheet. The code lets the boundary of a Class 2 or 3 section end 220 yards (200 m) from the nearest building of the cluster, rather than at the edge of the full mile.
+
+## Liquid pipelines
+
+ASME B31.4 uses a single design factor and has no location classes. Protection near population comes instead from routing, extra cover, valve placement and, in many jurisdictions, regulations on high consequence areas.
+
+## The Saudi Aramco approach
+
+Saudi Aramco applies location classes to **both gas and liquid** hydrocarbon pipelines through SAES-B-064, using a different measure:
+
+- **Rupture exposure radius (RER).** The distance from the pipeline within which people could be harmed by a rupture. It depends on the fluid, the pipe diameter and the pressure, and is read from tables in the standard. Large high-pressure gas and NGL lines have the largest RER.
+- **Population density index (PDI).** A count of the population, through the number and type of buildings, within the RER strip along a set length of pipeline.
+- **Location class** is then assigned from the PDI, with higher classes for more dense and multi-storey development.
+
+The logic matches ASME B31.8, but the width of the strip **scales with the hazard** of the particular pipeline instead of being fixed at a quarter mile.
+
+<Callout type="aramco">
+The detailed rules, that is the RER tables, how each building type is counted, the segment length and the PDI thresholds for each class, must be taken from the current SAES-B-064. Commonly cited thresholds are a PDI of 10 or less for Class 1 and above 30 for Class 3, but do not rely on memory or on this page for a real study.
+</Callout>
+
+## Running a study
+
+1. **Define the strip.** Quarter-mile corridor for B31.8, or the RER for the Aramco method.
+2. **Gather data.** Recent satellite or aerial imagery, topographic survey, land-use and development plans from the municipality.
+3. **Identify and count** every occupied building, and note places of assembly.
+4. **Apply the sliding window** and mark class boundaries on a strip map.
+5. **Allow for the future.** If an area is planned for development, design for the class it will become. Raising class later means lowering pressure or replacing pipe.
+6. **Feed the result** into wall thickness, valve spacing and test pressure, and show it as a band on the alignment sheets.
+7. **Document** the imagery date, counts and assumptions. The study will be repeated during operation.
+
+## Class changes during operation
+
+Towns grow toward pipelines. Operators re-survey periodically, and when a segment's class rises they must confirm the existing pipe is adequate. If not, the options are to reduce the operating pressure, re-test to a higher pressure where the code allows it, replace the section with heavier pipe, or reroute.
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.8 §840.2 | Location class from the building count in a sliding zone 1 mile long and ¼ mile wide; provisions for places of assembly and for cluster boundaries. |
+| ASME B31.8 §840.3 and §854 | Consider future development; study and act on changes in class during operation. |
+| ASME B31.8 Table 841.1.6-1 | Design factor for each location class. |
+| SAES-B-064 | Rupture exposure radius, population density index and location class for Aramco onshore pipelines. |
+| SAES-L-410 | Design factor to be applied for each location class. |
+
+</Standards>
+
+<Worked title="Classifying a segment beside a village">
+
+**Given:** a gas pipeline passes a village. Inside the quarter-mile corridor, the survey finds 6 scattered farm buildings along 8 km, plus a cluster of 24 houses between KP 3.2 and KP 4.6.
+
+**Sliding the window:** any 1-mile (1.6 km) window lying wholly in open country contains at most 2 or 3 buildings: **Class 1**.
+
+A window placed from KP 3.1 to KP 4.7 contains all 24 houses, plus perhaps one farm building: 25 buildings. Between 11 and 45, so **Class 2**.
+
+**Extent:** Class 2 applies while the window holds more than 10 buildings. Using the cluster rule, the Class 2 section may end 200 m beyond the outermost house on each side: roughly KP 3.0 to KP 4.8, about 1.8 km.
+
+**Effect on design:** design factor falls from 0.72 to 0.60, so the pressure wall thickness rises by 20 % over that 1.8 km.
+
+**Alternative:** moving the route 250 m further from the village would take the cluster outside the corridor and keep the whole line in Class 1.
+
+</Worked>
+
+## Common mistakes
+
+- Counting only buildings that exist today and ignoring approved development plans.
+- Using out-of-date imagery.
+- Forgetting places of public assembly, which can raise the class on their own.
+- Applying the ASME quarter-mile corridor on a project that requires the company method, or the reverse.
+- Treating the study as done once: it must be repeated in operation.
+
+<Quiz client:visible questions={[
+  { q: "In ASME B31.8, a 1-mile zone containing 30 dwellings is:", options: ["Class 1", "Class 2", "Class 3", "Class 4"], answer: 1, why: "11 to 45 buildings intended for human occupancy is Class 2." },
+  { q: "How wide is the ASME B31.8 sliding zone?", options: ["A quarter mile each side of the pipeline", "A quarter mile in total, centred on the pipeline", "One mile", "The potential impact radius"], answer: 1, why: "The zone is ¼ mile wide in total, about 200 m either side of the centreline." },
+  { q: "What distinguishes the Saudi Aramco approach?", options: ["It ignores population", "The width of the assessed strip depends on the rupture exposure radius of that pipeline", "It applies only to water lines", "It uses a fixed 1 km strip for all lines"], answer: 1, why: "The RER scales the assessed area with fluid, diameter and pressure, so more hazardous lines are assessed over a wider strip." }
+]} />

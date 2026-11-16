@@ -1,0 +1,74 @@
+---
+title: Pipeline systems overview
+summary: From the wellhead to the customer, oil, gas and water move through several kinds of pipeline, each with its own pressure, size and design rules. Start here to see how they fit together.
+order: 1
+minutes: 15
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, SAES-L-100]
+outcomes:
+  - Name the main pipeline types and what each carries
+  - Identify the facilities along a pipeline and their purpose
+  - Describe the life cycle of a pipeline project
+---
+import Callout from "@/components/ui/Callout.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## What a pipeline is for
+
+A pipeline moves fluid from where it is produced to where it is processed or used. Per tonne moved it is the safest, cheapest and lowest-emission method of land transport, which is why the world has several million kilometres of them.
+
+A pipeline engineer's job is to make sure that the pipe **contains** the fluid for decades, at the lowest life-cycle cost, without harming people or the environment.
+
+## The types of pipeline
+
+<InfoTabs client:visible title="Pipeline types" tabs={[
+  { label: "Flowline", title: "Flowlines", text: "Connect individual wells to a manifold or gathering station.", rows: [["Size", "NPS 2 to 12"], ["Length", "Hundreds of metres to tens of kilometres"], ["Fluid", "Untreated well fluid: oil, gas, water, sand, often CO₂ and H₂S"], ["Challenges", "Internal corrosion, high temperature, sour service, many small lines"], ["Typical build", "Seamless or HFW carbon steel, or non-metallic; often above ground"]] },
+  { label: "Gathering / trunkline", title: "Gathering lines and trunklines", text: "Collect production from manifolds and carry it to a processing plant.", rows: [["Size", "NPS 8 to 36"], ["Fluid", "Multiphase or partly separated fluid"], ["Challenges", "Slugging, liquid hold-up, corrosion, frequent pigging"], ["Typical build", "Buried or above-ground carbon steel with inhibition"]] },
+  { label: "Transmission", title: "Transmission pipelines", text: "Carry treated product over long distances at high pressure.", rows: [["Size", "NPS 16 to 56"], ["Length", "Tens to thousands of kilometres"], ["Fluid", "Sales gas, stabilised crude, refined products, NGL"], ["Challenges", "Wall thickness and steel cost, route and land, fracture control, integrity over decades"], ["Typical build", "Buried X60 to X70 LSAW or HFW pipe, 3LPE coated, cathodically protected"]] },
+  { label: "Distribution", title: "Distribution networks", text: "Deliver gas or products to end users at low pressure.", rows: [["Size", "NPS 1 to 12"], ["Fluid", "Odorised gas, water"], ["Challenges", "Dense population, many connections, third-party damage"], ["Typical build", "Polyethylene or low-stress steel"]] },
+  { label: "Water", title: "Water pipelines", text: "Seawater injection, produced water disposal, utility and potable water.", rows: [["Size", "NPS 6 to 60 and more"], ["Fluid", "Seawater, brine, treated water"], ["Challenges", "Oxygen and bacterial corrosion, large diameters, surge"], ["Typical build", "Internally lined or coated steel, GRE, or cement-lined pipe"]] },
+]} />
+
+## Facilities along the line
+
+A pipeline is more than pipe. Along a typical transmission line you find:
+
+- **Pump stations** (liquids) or **compressor stations** (gas) that add the energy lost to friction.
+- **Scraper traps** (pig launchers and receivers) at each end and at intermediate stations.
+- **Sectionalizing (block) valve stations** that divide the line so a section can be isolated.
+- **Metering stations** where custody of the product changes hands.
+- **Pressure reduction and relief** stations that protect lower-rated systems downstream.
+- **Cathodic protection stations** with rectifiers and ground beds.
+- **SCADA and telecom** sites, usually sharing valve stations, often linked by a fibre-optic cable laid in the same trench.
+
+## Onshore buried, above ground, or offshore
+
+- **Buried onshore** pipelines are the norm. The soil protects the pipe from damage, sun and temperature swings, and restrains it.
+- **Above-ground** pipelines rest on supports. They are easier to inspect and avoid upheaval buckling, but they are exposed and must be allowed to expand.
+- **Offshore** pipelines lie on or under the seabed, and are governed by installation loads, stability under waves and currents, and external pressure.
+
+This academy focuses on buried onshore pipelines, with module M12 covering the other two.
+
+<Callout type="aramco">
+In Saudi Aramco, pipeline design starts from SAES-L-100, which names the applicable codes for each service, and the SAES-L-400 series for cross-country pipelines. Many Aramco flowlines and trunklines are laid above ground on supports, while pipelines near populated areas, roads and in corridors are buried.
+</Callout>
+
+## The life cycle of a pipeline
+
+1. **Concept and feasibility.** Flow rate, route options, diameter and pressure studies.
+2. **Front-end engineering (FEED).** Route survey, hydraulic design, wall thickness, material selection, cost estimate.
+3. **Detailed design.** Alignment sheets, crossing drawings, stress analysis, specifications.
+4. **Procurement.** Line pipe, valves, bends and coating, often the longest lead items.
+5. **Construction.** Right of way, welding, lowering-in, backfill, tie-ins.
+6. **Testing and commissioning.** Hydrotest, drying, product fill.
+7. **Operation and integrity management.** Monitoring, pigging, inspection, repair.
+8. **Decommissioning.** Cleaning and removal or abandonment in place.
+
+The modules of this academy follow roughly the same order.
+
+<Quiz client:visible questions={[
+  { q: "Which pipeline type normally carries untreated well fluid?", options: ["Transmission pipeline", "Flowline", "Distribution main", "Sales gas line"], answer: 1, why: "Flowlines run from wells to the first gathering or separation point, so they see raw, often corrosive fluid." },
+  { q: "What is the purpose of a compressor station on a gas pipeline?", options: ["To remove liquids", "To restore pressure lost to friction", "To launch pigs", "To measure flow for sale"], answer: 1, why: "Gas loses pressure as it flows. Compressors add energy to keep it moving." },
+  { q: "Why are most onshore transmission pipelines buried?", options: ["Buried pipe is cheaper to weld", "Soil protects and restrains the pipe", "Buried pipe needs no coating", "It avoids the need for valves"], answer: 1, why: "Burial protects against damage and temperature swings and holds the pipe in place." }
+]} />

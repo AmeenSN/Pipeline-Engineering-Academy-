@@ -1,0 +1,132 @@
+---
+title: Risk assessment and QRA
+summary: Risk is likelihood multiplied by consequence. Learn what makes pipelines fail, how far the consequences reach, and how risk is ranked and reduced.
+order: 2
+minutes: 25
+level: Intermediate
+standards: [ASME B31.8S, API 1160, ISO 31000, SAES-B-064]
+outcomes:
+  - List the main causes of pipeline failure
+  - Calculate the potential impact radius of a gas pipeline
+  - Use a risk matrix to rank a hazard
+  - Explain ALARP and the main risk reduction measures
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ImpactRadius from "@/components/interactives/ImpactRadius.tsx";
+
+## Risk in one line
+
+$$
+\text{Risk} = \text{likelihood of failure} \times \text{consequence of failure}
+$$
+
+A pipeline with a small chance of failing where nobody lives, and one with a tiny chance of failing beside a school, may carry similar risk. Risk assessment puts both on the same scale so that money and attention go where they reduce risk most.
+
+## What makes pipelines fail
+
+Incident databases in Europe and North America point to the same causes, in roughly this order for onshore pipelines:
+
+1. **Third-party damage.** Excavators, ploughs, drilling. The leading cause of gas pipeline incidents.
+2. **Corrosion.** External (coating and CP failure) and internal.
+3. **Construction and material defects.** Weld defects, seam flaws, dents from rocks.
+4. **Ground movement.** Landslides, floods and scour, subsidence, earthquakes.
+5. **Operational error.** Overpressure, incorrect valve operation.
+6. **Other.** Lightning, sabotage, hot-tap errors.
+
+Failure frequency for modern transmission pipelines is of the order of one incident per ten thousand kilometre-years, and it falls sharply with thicker wall, deeper cover and larger diameter, mainly because those resist third-party damage.
+
+## Leak or rupture
+
+A **leak** is a small hole: a pinhole from corrosion or a puncture. A **rupture** is a full-bore break. Rupture is rarer but dominates the consequences. Whether a defect leaks or ruptures depends on its length, the stress level and the toughness of the steel.
+
+## Consequences
+
+For gas, the main hazard is thermal radiation from an ignited release. ASME B31.8S gives a simple estimate of the **potential impact radius**, the distance within which people and buildings could be seriously affected:
+
+$$
+r = 0.69 \, d \, \sqrt{p}
+$$
+
+with $r$ in feet, $d$ the outside diameter in inches and $p$ the pressure in psi. The radius grows in proportion to diameter and with the square root of pressure.
+
+For liquids, the hazards are pool fires, environmental pollution, and in the case of volatile liquids such as NGL and LPG, heavy vapour clouds that travel along the ground and can explode. Liquid release volume depends on valve spacing and terrain, because the line drains downhill to the break.
+
+Toxic releases, for example sour gas with H₂S, are assessed by dispersion modelling, and the hazard distance can be kilometres.
+
+<ImpactRadius client:visible />
+
+Try this: move from NPS 16 to NPS 48 at the same pressure and count the houses inside the circle. Then click cells in the risk matrix to see how likelihood and consequence combine.
+
+## Ranking risk
+
+**Qualitative: the risk matrix.** Likelihood and consequence are each scored on a scale, typically 1 to 5, and the cell they meet in gives a risk level. It is quick, transparent and good for screening. Its weakness is that the scores are judgements.
+
+**Semi-quantitative: index methods.** Each segment gets a score from weighted factors such as cover, wall thickness, coating condition, activity level and population. Good for ranking hundreds of segments against each other.
+
+**Quantitative risk assessment (QRA).** Failure frequencies from databases are combined with release, ignition and effect models to calculate:
+
+- **Individual risk:** the annual chance of death for a person at a given location, often shown as contours beside the pipeline.
+- **Societal risk:** the frequency of incidents causing N or more fatalities, shown as an F-N curve.
+
+Both are compared against tolerability criteria set by the regulator or company.
+
+## ALARP
+
+Most criteria define three bands:
+
+- **Unacceptable.** Risk must be reduced whatever the cost.
+- **Tolerable if ALARP.** Risk must be reduced **as low as reasonably practicable**: measures are adopted unless their cost is grossly disproportionate to the benefit.
+- **Broadly acceptable.** No further action needed beyond good practice.
+
+## Reducing risk
+
+| Measure | Reduces |
+|---|---|
+| Route away from people | Consequence |
+| Heavier wall thickness | Likelihood (resists puncture and corrosion) |
+| Deeper cover, concrete slabs, warning tape | Likelihood of third-party damage |
+| Markers, patrols, one-call systems | Likelihood of third-party damage |
+| Better coating, CP, inhibition, inspection | Likelihood of corrosion failure |
+| Closer valves, remote or automatic closure | Consequence (release volume and duration) |
+| Leak detection | Consequence (response time) |
+| Emergency response planning | Consequence |
+
+<Callout type="aramco">
+SAES-B-064 builds risk thinking into prescriptive rules: rupture exposure radius, location class and required safety distances. For situations the rules do not cover, or where a deviation is requested, a formal risk assessment is used. Company loss prevention standards define the risk criteria.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.8S | Integrity management of gas pipelines: threat categories, potential impact radius, risk assessment methods. |
+| API 1160 | Integrity management for hazardous liquid pipelines, including risk assessment of high consequence areas. |
+| ISO 31000 / ISO 17776 | General principles of risk management and hazard identification. |
+| SAES-B-064 | Rupture exposure radius and safety distances for Aramco pipelines. |
+
+</Standards>
+
+<Worked title="Potential impact radius of an NPS 30 gas line">
+
+**Given:** OD 30 in (762 mm), MAOP 1000 psi (69 bar).
+
+$$
+r = 0.69 \times 30 \times \sqrt{1000} = 655 \text{ ft} = 200 \text{ m}
+$$
+
+Any building within 200 m of the pipeline lies inside the potential impact circle of the nearest point on the line.
+
+**If the pressure rises to 1440 psi (99 bar):** r = 0.69 × 30 × √1440 = 786 ft = 240 m. A 44 % pressure increase widens the radius by 20 %.
+
+**If the diameter rises to 48 in at 1000 psi:** r = 1047 ft = 319 m. Diameter has the stronger effect.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "The leading cause of onshore gas transmission pipeline incidents is:", options: ["Internal corrosion", "Third-party damage", "Earthquakes", "Overpressure"], answer: 1, why: "External interference by excavation and similar activity is consistently the top cause in incident databases." },
+  { q: "Doubling the diameter of a gas pipeline at the same pressure makes the potential impact radius:", options: ["The same", "About 1.4 times larger", "Twice as large", "Four times larger"], answer: 2, why: "The radius is directly proportional to diameter." },
+  { q: "ALARP means risk should be reduced:", options: ["To zero", "Until further measures would cost grossly more than the benefit they bring", "Only if the regulator asks", "To the industry average"], answer: 1, why: "As low as reasonably practicable: adopt measures unless their cost is grossly disproportionate to the risk reduction." }
+]} />

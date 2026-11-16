@@ -1,0 +1,80 @@
+---
+title: Topographic and geotechnical surveys
+summary: Design is only as good as the data under it. Learn what each survey measures, what it produces and how the results feed the alignment sheets and the trench design.
+order: 2
+minutes: 20
+level: Foundation
+standards: [ISO 13623, SAES-L-410, SAES-A-100]
+outcomes:
+  - Describe the main survey types and their deliverables
+  - Explain how topographic data becomes a pipeline profile
+  - List the soil parameters a pipeline designer needs
+  - Plan survey scope for a typical cross-country route
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## Why survey
+
+A desk study tells you roughly where the pipeline can go. Surveys tell you exactly what is there: the shape of the ground, what it is made of, what is buried in it and what crosses it. The results fix the centreline and feed almost every later calculation.
+
+## The surveys
+
+<InfoTabs client:visible title="Pipeline route surveys" tabs={[
+  { label: "Topographic", title: "Topographic survey", text: "Measures the shape of the ground and every visible feature along a strip either side of the centreline.", rows: [["Methods", "GNSS (RTK), total station, aerial LiDAR and drone photogrammetry for long routes"], ["Captures", "Ground levels, slopes, roads, tracks, fences, buildings, power lines, existing pipeline markers, wadi banks"], ["Typical strip", "50 to 100 m either side, wider at crossings and stations"], ["Deliverables", "Digital terrain model, strip map, ground profile along the centreline, crossing detail surveys"], ["Feeds", "Alignment sheets, bend schedule, earthworks, hydraulic profile, location class study"]] },
+  { label: "Geotechnical", title: "Geotechnical investigation", text: "Finds out what the ground is made of and how it will behave.", rows: [["Methods", "Trial pits along the route, boreholes at crossings and stations, cone penetration tests, laboratory testing"], ["Typical spacing", "Trial pits every 500 m to 1 km; boreholes at each major crossing"], ["Captures", "Soil type and layering, rock level and strength, groundwater level, density, shear strength, chemical content (sulphate, chloride)"], ["Deliverables", "Factual and interpretive reports, soil profile along the route, excavatability classes"], ["Feeds", "Trench design, rock quantities, backfill suitability, anchor blocks, HDD design, buoyancy checks"]] },
+  { label: "Soil resistivity", title: "Soil resistivity and corrosivity survey", text: "Measures how corrosive the ground is and provides data for cathodic protection design.", rows: [["Methods", "Wenner four-pin measurements at several depths; soil and groundwater sampling"], ["Typical spacing", "Every 500 m to 1 km, closer in changing ground"], ["Captures", "Resistivity, pH, chloride, sulphate, redox potential, bacteria"], ["Deliverables", "Resistivity profile, corrosivity classification, ground bed site recommendations"], ["Feeds", "Coating selection, CP current demand and anode bed design"]] },
+  { label: "Utility detection", title: "Existing utility and pipeline detection", text: "Locates buried pipelines, cables and other services the route crosses or runs beside.", rows: [["Methods", "Records search, electromagnetic pipe and cable locators, ground-penetrating radar, hand-dug trial holes to confirm"], ["Captures", "Position, depth, size, material and owner of each buried service"], ["Deliverables", "Crossing schedule and drawings, depth-of-cover records"], ["Feeds", "Crossing designs, permits, safe excavation plans"]] },
+  { label: "Hydrological", title: "Hydrological and scour study", text: "Estimates floods and erosion at wadi and water crossings.", rows: [["Methods", "Catchment analysis, rainfall records, flood modelling, bed material sampling, site inspection for flood marks"], ["Captures", "Design flood flow, velocity, flood level, scour depth, bank stability"], ["Deliverables", "Design flood data and recommended burial depth at each crossing"], ["Feeds", "Wadi crossing design, concrete coating, protection works"]] },
+  { label: "Other", title: "Other studies", text: "Depending on the route.", rows: [["Geohazard", "Faults, landslides, karst and cavities, dune migration"], ["Environmental", "Baseline for the environmental impact assessment"], ["Archaeological", "Walk-over survey for heritage sites"], ["Cadastral", "Land ownership and boundaries"], ["Unexploded ordnance", "In former conflict or military areas"]] },
+]} foot="Spacings are typical values. The project survey specification sets the actual scope." />
+
+## From survey to profile
+
+The topographic survey gives ground level at regular intervals along the centreline. Plotting level against distance gives the **ground profile**. The designer then draws the **pipe profile** below it:
+
+1. Offset the ground line by the required cover to get a first pipe line.
+2. Smooth it, because the pipe cannot follow every small bump. Where the ground curves more gently than the minimum elastic radius, the pipe follows it elastically.
+3. Add field bends where the ground changes slope more sharply.
+4. Deepen the pipe at crossings and wadis.
+5. Check the result for cover, bend count and excavation quantity.
+
+The finished profile, with the plan above it, becomes the alignment sheet (next lesson).
+
+## Soil parameters the designer needs
+
+| Parameter | Used for |
+|---|---|
+| Soil classification and density | Trench stability, backfill, soil loads |
+| Friction angle and cohesion | Anchor resistance, uplift resistance, pipe-soil friction |
+| Rock level and strength | Trenching method, padding, blasting |
+| Groundwater level and salinity | Buoyancy, dewatering, corrosion |
+| Resistivity | Cathodic protection design |
+| Sulphate and chloride | Concrete and coating selection |
+| Thermal conductivity | Heat loss, hot-line design |
+
+<Callout type="field">
+A trial pit tells you more than its log. How quickly it was dug, whether the sides stood up, and whether water came in are direct evidence of how the trench will behave. A pipeline engineer should attend some of them.
+</Callout>
+
+<Callout type="aramco">
+Survey work for Saudi Aramco follows its surveying standards and the project scope of work, with coordinates on the company grid and all existing pipelines and facilities in the corridor located and tied in. Geotechnical requirements are set by the SAES-A series. Check the current standards for required spacing and accuracy.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ISO 13623 §6 | Route surveys to identify topography, ground conditions and third-party facilities as input to design. |
+| ASME B31.4 and B31.8 | Require ground conditions and hazards along the route to be considered in design; survey method is left to the designer. |
+| SAES-L-410 | Design basis data, including survey information, for pipelines. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Which survey provides data for cathodic protection design?", options: ["Topographic", "Soil resistivity", "Hydrological", "Cadastral"], answer: 1, why: "Resistivity determines how easily protective current flows through the ground and how corrosive the soil is." },
+  { q: "Why is the pipe profile smoother than the ground profile?", options: ["To save steel", "The pipe cannot bend to follow every small change in the ground", "To avoid cathodic protection", "Survey errors"], answer: 1, why: "Pipe curvature is limited by elastic and field bend radii, so small bumps are cut through or filled." },
+  { q: "Boreholes are usually concentrated at:", options: ["Every pipe joint", "Major crossings and stations", "Only the start of the line", "High points"], answer: 1, why: "Crossings and structures need deeper, more detailed ground data than open trenching." }
+]} />

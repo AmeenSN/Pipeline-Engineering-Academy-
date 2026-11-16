@@ -1,0 +1,112 @@
+---
+title: Alignment sheets and profiles
+summary: The alignment sheet is the single drawing that tells the constructor what to build at every metre. Learn to read its plan, profile and data bands.
+order: 3
+minutes: 20
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, SAES-L-410]
+outcomes:
+  - Identify the plan, profile and data bands of an alignment sheet
+  - Read pipe specification, cover and crossing data at any station
+  - Explain stationing and kilometre points
+  - List what an as-built alignment sheet adds
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import AlignmentSheet from "@/components/interactives/AlignmentSheet.tsx";
+
+## One drawing, everything in it
+
+A cross-country pipeline may be hundreds of kilometres long. It is drawn as a series of alignment sheets, each covering a kilometre or more. Every sheet has the same layout, so that anyone can find the same information in the same place.
+
+An alignment sheet has three parts, stacked vertically and sharing one horizontal scale:
+
+- **Plan** at the top: a map view of the route and its surroundings.
+- **Profile** in the middle: a side view of the ground and the pipe.
+- **Data bands** at the bottom: rows of information, each aligned with the plan and profile above.
+
+Because they share a scale, you can drop a vertical line anywhere and read everything about that point.
+
+<AlignmentSheet client:visible />
+
+Try this: drag the slider to the road crossing near KP 0.9 and read down the bands. The wall is heavier, the cover deeper, and the crossing band names the method. Then click each band to see what it is for.
+
+## The plan
+
+The plan shows the pipeline centreline on a strip of topography or imagery, with:
+
+- **Points of intersection (PI)** where the route changes direction, each with coordinates and deflection angle.
+- Features crossed or nearby: roads, tracks, wadis, power lines, fences, buildings, existing pipelines.
+- **Right-of-way limits** and any temporary working areas.
+- North arrow, grid and match lines to the neighbouring sheets.
+
+## The profile
+
+The profile plots elevation against distance, usually with the vertical scale exaggerated five or ten times so that slopes are visible. It shows:
+
+- the **existing ground line** from the topographic survey,
+- the **pipe line** (top of pipe or bottom of trench) set by the designer,
+- depth of cover, by the gap between them,
+- crossings in section, with the pipe passing under each,
+- positions of vertical bends: sag bends and overbends.
+
+<Callout type="warn">
+Because the vertical scale is exaggerated, slopes and bends look far steeper on the profile than they are. Always read angles from the bend band or schedule, never by measuring the drawing.
+</Callout>
+
+## Stationing
+
+Distance along the pipeline is measured from its origin and written as a **station** or **kilometre point (KP)**, for example KP 12+350 means 12 350 m from the start. Stationing follows the slope distance or the horizontal distance, depending on the project convention: check the drawing notes, because on hilly routes the two differ.
+
+When a re-route changes the length, a **station equation** is used so that stations beyond it do not all have to be renumbered.
+
+## The data bands
+
+Typical bands, though every company has its own set:
+
+| Band | What it records |
+|---|---|
+| Pipe | Diameter, wall thickness, grade, manufacturing type |
+| Location class / design factor | The basis for the wall thickness |
+| Coating | External coating, concrete coating, field joint type |
+| Cover | Minimum depth of cover required |
+| Bends | Type, angle and direction of each bend |
+| Crossings | Type, reference drawing, method |
+| Soil / terrain | Rock, sand, sabkha: drives trench and padding |
+| Cathodic protection | Test posts, anodes, bonding |
+| Hydrotest | Test section limits and test pressure |
+| Land | Ownership or permit references |
+| Material take-off | Quantities for the sheet |
+
+## Design and as-built
+
+The **issued-for-construction** sheet shows what is intended. During construction the surveyor records what was actually built, and the sheet is re-issued **as-built** with:
+
+- surveyed position and level of the pipe as laid, typically at every weld,
+- actual cover,
+- weld numbers and pipe joint (heat) numbers,
+- actual bend positions and angles,
+- any re-routes and their approvals.
+
+The as-built sheets and their database are the foundation of the operator's integrity management for the next fifty years.
+
+<Callout type="aramco">
+Saudi Aramco alignment sheets follow company drafting standards with a defined band layout and plant and index numbering. Pipeline data is also held in the company's GIS. SAES-L-410 lists the information the design drawings must carry. Follow the current drafting manual for the exact format.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §401 and B31.8 §841 | Design information, including pipe specification by location, to be documented; records retained for the life of the pipeline. |
+| ASME B31.8 §851 and B31.4 §455 | Maintain maps and records showing the location of the pipeline and its components. |
+| SAES-L-410 | Required content of pipeline design drawings. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Why is the vertical scale of a profile exaggerated?", options: ["To save paper", "So that gentle changes in level are visible", "Because surveys are inaccurate", "To show true bend angles"], answer: 1, why: "At true scale a pipeline profile would look almost flat. Exaggeration makes slopes readable, but distorts angles." },
+  { q: "KP 7+250 means:", options: ["Sheet 7, drawing 250", "7250 m from the start of the pipeline", "7.25 m of cover", "250 m from valve 7"], answer: 1, why: "Kilometre point 7 plus 250 m: 7250 m along the line from its origin." },
+  { q: "What does an as-built sheet add to the design sheet?", options: ["The cost estimate", "Surveyed pipe position, actual cover and weld numbers", "The hydraulic calculation", "The route options"], answer: 1, why: "As-builts record what was actually constructed and tie each weld and pipe joint to a location." }
+]} />

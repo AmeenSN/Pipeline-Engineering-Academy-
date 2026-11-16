@@ -1,0 +1,93 @@
+---
+title: Route selection criteria
+summary: The route decides most of a pipeline's cost and risk before any pipe is ordered. Learn the constraints, the staged method and how options are compared.
+order: 1
+minutes: 25
+level: Foundation
+standards: [ASME B31.8, ISO 13623, SAES-L-410, SAES-B-064]
+outcomes:
+  - List the constraints that shape a pipeline route
+  - Describe the stages from corridor to final centreline
+  - Compare route options with a weighted scoring method
+  - Recognise terrain features to avoid in Arabian conditions
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import RouteScore from "@/components/interactives/RouteScore.tsx";
+
+## Why the route matters
+
+The shortest line between two points is rarely the best pipeline route. A route that is 10 % longer but avoids a town, a sabkha and three major crossings is usually cheaper to build, safer to operate and faster to permit.
+
+Decisions made at this stage are the hardest to reverse. Once land is acquired and pipe is ordered, the route is fixed.
+
+## What shapes a route
+
+- **Safety and population.** Keep away from housing, schools, hospitals and places where people gather. Population sets the location class, and with it the wall thickness (module M4).
+- **Terrain and ground.** Steep slopes, rock, sabkha, moving dunes, wadis and flood plains all add cost and risk.
+- **Crossings.** Each road, railway, pipeline, cable and watercourse needs design, permits and often a trenchless method.
+- **Existing corridors.** Following an established pipeline or utility corridor simplifies land access and reduces new disturbance, but brings proximity and interference issues.
+- **Environment and heritage.** Protected areas, wildlife habitat, groundwater, archaeological sites.
+- **Land use and ownership.** Farms, planned developments, military and restricted areas, mining concessions.
+- **Constructability.** Access roads, working width, water for hydrotest, camp locations.
+- **Operation.** Access for patrol and maintenance, valve station sites, power for cathodic protection.
+
+## The staged method
+
+1. **Corridor selection (desk study).** Using satellite imagery, topographic and geological maps and GIS constraint layers, several broad corridors a few kilometres wide are identified and compared.
+2. **Route selection.** Inside the preferred corridor a route a few hundred metres wide is chosen, with a site reconnaissance to confirm what the maps show.
+3. **Detailed survey.** Topographic, geotechnical and other surveys along the route (next lesson).
+4. **Centreline fixing.** The exact line is set, every bend and crossing located, and alignment sheets produced.
+5. **Construction adjustments.** Minor re-routes during construction, each approved and recorded.
+
+At each stage the corridor narrows and the cost of changing it rises.
+
+## Comparing options
+
+A common method is weighted scoring. Each route is measured against the criteria, the results are scaled, multiplied by a weight that reflects the project's priorities, and summed.
+
+<RouteScore client:visible />
+
+Try this: with the default weights the northern corridor wins. Push the "Length and cost" weight to 10 and the others down, and the direct route takes over. The numbers do not make the decision: they make the trade-off visible.
+
+<Callout type="note">
+Weighted scoring is only as good as its weights. Safety constraints are often treated as **pass or fail** rather than scored: a route that puts a school inside the hazard zone is rejected, however cheap it is.
+</Callout>
+
+## Arabian terrain to respect
+
+- **Sabkha.** Salt flats with a high, very saline water table. Weak bearing, extreme corrosivity and buoyancy. Avoid, or cross by the shortest path.
+- **Sand dunes.** Mobile dunes can bury valve stations or strip cover from the pipe. Route through inter-dune corridors where possible and avoid the slip faces.
+- **Wadis.** Dry most of the year, violent in flood. Cross at right angles at a stable, straight reach.
+- **Rock (jebel and escarpments).** Slow, costly trenching and blasting. Steep slopes need special construction methods.
+- **Corridors.** Much of the pipeline network runs in established multi-pipeline corridors, where spacing between lines and crossing rules govern.
+
+<Callout type="aramco">
+Saudi Aramco pipelines are generally routed inside reserved pipeline corridors with defined spacing between parallel lines. SAES-B-064 sets the safety distances from populated areas and facilities, and SAES-L-410 the general routing requirements. Route approval involves land affairs and other proponents well before detailed design.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.8 §840 | Location class along the route must be determined, with allowance for future development. |
+| ISO 13623 §6 | Route selection to consider safety, environment, terrain, crossings and third-party activity, with a documented selection process. |
+| SAES-L-410 | Pipeline routing and corridor requirements. |
+| SAES-B-064 | Safety distances and population density requirements along the route. |
+
+</Standards>
+
+## Common mistakes
+
+- Choosing the route from maps without a site visit.
+- Ignoring planned development: today's desert may be tomorrow's suburb.
+- Crossing wadis and roads at a skew to save length.
+- Underestimating rock and sabkha lengths at the estimate stage.
+- Leaving land acquisition and permits until after detailed design.
+
+<Quiz client:visible questions={[
+  { q: "At which stage is a route change cheapest?", options: ["During construction", "After pipe is ordered", "At the desk study and corridor stage", "After hydrotest"], answer: 2, why: "Before surveys, land acquisition and procurement, changing the line costs almost nothing." },
+  { q: "How should a pipeline normally cross a wadi?", options: ["At a skew to shorten the route", "At right angles on a straight, stable reach", "Along its length", "At the widest point"], answer: 1, why: "A perpendicular crossing at a stable reach minimises exposed length and scour risk." },
+  { q: "Why follow an existing pipeline corridor?", options: ["It removes the need for cathodic protection", "Land access is established and new disturbance is reduced", "It allows thinner wall", "It avoids all crossings"], answer: 1, why: "Corridors simplify permitting and access, though spacing and interference must be managed." }
+]} />

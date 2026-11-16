@@ -1,0 +1,80 @@
+---
+title: Codes and standards map
+summary: Pipeline engineering runs on a layered set of documents. Learn which code governs your pipeline, how company standards sit on top, and where each specialist standard fits.
+order: 2
+minutes: 15
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, ISO 13623, SAES-L-100]
+outcomes:
+  - Choose the governing design code for a pipeline by fluid and location
+  - Explain the hierarchy of law, code, company standard and project specification
+  - Find the right specialist standard for a given topic
+---
+import Callout from "@/components/ui/Callout.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## Why codes exist
+
+A design code captures decades of experience, including the lessons of past failures, as a set of minimum requirements. Following the code does not guarantee a good pipeline, but departing from it without a sound reason almost guarantees trouble.
+
+## The hierarchy
+
+Documents apply in layers. When they conflict, the higher layer wins, and the stricter requirement is normally applied.
+
+1. **Law and regulation** of the country (for example 49 CFR 192 and 195 in the United States).
+2. **Design code** chosen for the pipeline (ASME B31.4, B31.8, ISO 13623 and others).
+3. **Company engineering standards** (for example the Saudi Aramco SAES series), which add to or tighten the code.
+4. **Project specifications and drawings**, written for one project.
+5. **Referenced specialist standards** for materials, welding, coating, testing and so on.
+
+## Choosing the design code
+
+<InfoTabs client:visible title="Main pipeline design codes" tabs={[
+  { label: "ASME B31.4", title: "ASME B31.4: liquids and slurries", text: "Crude oil, refined products, LPG, liquid ammonia, CO₂ in liquid or dense phase, water and slurries.", rows: [["Design factor", "0.72 everywhere"], ["Basis", "Allowable stress design with one factor; liquids are less hazardous to the public at a distance than gas"], ["Test", "1.25 × design pressure for at least 4 hours"], ["Note", "Has a separate chapter for offshore and for CO₂ and slurry lines"]] },
+  { label: "ASME B31.8", title: "ASME B31.8: gas transmission and distribution", text: "Natural gas and other gases, from gathering to distribution.", rows: [["Design factor", "0.80 to 0.40 depending on location class"], ["Basis", "Wall thickness rises as population density rises"], ["Test", "1.1 to 1.5 × MAOP depending on class"], ["Companion", "B31.8S covers integrity management"]] },
+  { label: "ISO 13623", title: "ISO 13623: international", text: "A single standard for oil and gas pipelines, used widely outside North America.", rows: [["Design factor", "Based on fluid category and location class, applied to minimum wall thickness"], ["Basis", "Fluids grouped into categories A to E by hazard"], ["Note", "Allows reliability-based design as an alternative"]] },
+  { label: "DNV-ST-F101", title: "DNV-ST-F101: submarine pipelines", text: "The leading standard for offshore pipelines.", rows: [["Basis", "Limit-state design with partial safety factors"], ["Covers", "Pressure containment, collapse, local buckling, fatigue, installation"], ["Companions", "A family of recommended practices: F105 spans, F109 stability, F110 buckling"]] },
+  { label: "Others", title: "Other national codes", text: "Similar in principle, different in detail.", rows: [["Canada", "CSA Z662"], ["UK", "PD 8010 and IGEM/TD/1"], ["Europe", "EN 1594 (gas), EN 14161 (ISO 13623 adopted)"], ["Australia", "AS 2885"]] },
+]} foot="Design factors and test factors are summarised from memory of the codes. Always confirm against the current edition." />
+
+A useful first question on any project: **is the fluid a liquid or a gas at pipeline conditions?** That usually decides between B31.4 and B31.8. Multiphase lines are assigned by the company standard.
+
+<Callout type="note">
+Plant piping inside a facility fence is designed to **ASME B31.3**, which has different allowable stresses and rules. The boundary between pipeline code and plant code, usually at the scraper trap or the first isolation valve, must be defined on every project.
+</Callout>
+
+## Specialist standards by topic
+
+| Topic | Key documents |
+|---|---|
+| Line pipe | API 5L / ISO 3183 |
+| Sour service materials | ISO 15156 / NACE MR0175 |
+| Pipeline welding | API 1104 |
+| Valves | API 6D |
+| Flanges and fittings | ASME B16.5, B16.47, B16.9, MSS SP-75 |
+| Induction bends | ISO 15590-1, ASME B16.49 |
+| Road and rail crossings | API RP 1102 |
+| External coatings | ISO 21809 series |
+| Cathodic protection | ISO 15589-1, NACE SP0169 |
+| Pressure testing | API RP 1110 |
+| Leak detection | API RP 1130, API RP 1175 |
+| Integrity management | API 1160 (liquids), ASME B31.8S (gas) |
+| Corrosion defect assessment | ASME B31G |
+
+<Callout type="aramco">
+Saudi Aramco's SAES-L-100 lists the codes that apply to each piping and pipeline system. The SAES-L-400 series then covers cross-country pipelines: L-410 design, L-420 scraper traps, L-440 anchors, L-450 construction and L-460 crossings. Other disciplines add their own: SAES-B-064 for pipeline safety and location class, SAES-H for coatings, SAES-X for cathodic protection, SAES-W for welding and SAES-A-004 for pressure testing. Materials are bought to SAMSS specifications. These numbers are from general knowledge: confirm them against the current index.
+</Callout>
+
+## Using a code well
+
+- Read the **scope** first. Many disputes come from applying a code outside it.
+- Note the **edition**. Requirements change, and a project is tied to the edition in its contract.
+- "Shall" is mandatory, "should" is a recommendation, "may" is a permission.
+- A code gives minimums. Good engineering often goes beyond them where the risk justifies it.
+
+<Quiz client:visible questions={[
+  { q: "A 300 km stabilised crude oil pipeline would normally be designed to:", options: ["ASME B31.3", "ASME B31.4", "ASME B31.8", "API 5L"], answer: 1, why: "B31.4 covers liquid hydrocarbon pipelines. API 5L is a pipe specification, not a design code." },
+  { q: "A company standard requires 1.2 m cover where the code requires 0.9 m. Which applies?", options: ["The code, because it is higher in the hierarchy", "The stricter company requirement", "The average of the two", "Whichever is cheaper"], answer: 1, why: "Company standards add to the code. The stricter requirement is applied." },
+  { q: "Which document covers welding of pipeline girth welds?", options: ["API 6D", "API 1104", "ASME B16.5", "ISO 21809"], answer: 1, why: "API 1104 is the standard for welding pipelines and related facilities." }
+]} />

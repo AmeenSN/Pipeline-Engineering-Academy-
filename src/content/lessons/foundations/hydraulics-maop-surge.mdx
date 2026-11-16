@@ -1,0 +1,125 @@
+---
+title: Hydraulics, MAOP and surge
+summary: Before the mechanical design begins, hydraulics sets the diameter and the pressure. Learn how friction, elevation and surge shape the pressure profile of a pipeline.
+order: 3
+minutes: 25
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, API RP 1130]
+outcomes:
+  - Calculate friction pressure drop in a liquid pipeline
+  - Draw a pressure profile including elevation
+  - Define MAOP and its relation to design pressure
+  - Estimate surge pressure from a valve closure
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import Hydraulics from "@/components/interactives/Hydraulics.tsx";
+
+## Diameter is an economic choice
+
+For a given flow, a larger pipe costs more to buy and build but loses less pressure to friction, so it needs fewer or smaller pump or compressor stations. The hydraulic design finds the diameter and operating pressure that give the lowest total cost over the life of the line.
+
+## Friction loss
+
+The pressure lost to friction along a pipe is given by the Darcy-Weisbach equation:
+
+$$
+\Delta P = f \, \frac{L}{D} \, \frac{\rho \, v^2}{2}
+$$
+
+- $f$ is the friction factor, which depends on Reynolds number and pipe roughness.
+- $L$ and $D$ are the length and inside diameter.
+- $\rho$ is density and $v$ is velocity.
+
+Two results follow. Pressure drop rises with the **square** of flow rate. And for the same flow, it falls roughly with the **fifth power** of diameter: going from NPS 20 to NPS 24 cuts friction by about 60 %.
+
+The Reynolds number, $Re = \rho v D / \mu$, tells you whether flow is laminar (below about 2300) or turbulent. Pipelines are almost always turbulent.
+
+## Elevation
+
+Liquid pipelines also gain or lose pressure with height:
+
+$$
+\Delta P_{static} = \rho \, g \, \Delta z
+$$
+
+For crude oil this is about 0.83 bar for every 10 m. A pipeline climbing 500 m needs over 40 bar just to lift the oil. Going downhill, the same effect can raise pressure above MAOP in a valley even when the pump is off: the **static** or shut-in condition must always be checked.
+
+For gas, density is low, so elevation matters much less, but gas is compressible, so its velocity rises as pressure falls along the line.
+
+## MAOP
+
+The **maximum allowable operating pressure** is the highest pressure at which the pipeline may be operated. It is the lowest of:
+
+- the design pressure of the pipe (from wall thickness),
+- the hydrotest pressure divided by the test factor,
+- the rating of the weakest component (flanges, valves).
+
+Operating pressure, including normal variations, must stay at or below MAOP at every point. Because of elevation, the governing point is often a low spot, not the pump discharge.
+
+<Hydraulics client:visible />
+
+Try this: increase the flow rate and watch the friction loss grow with the square of flow. Then set a large elevation gain and see the arrival pressure collapse. Finally shorten the line with a high flow and look at the surge peak.
+
+## Surge
+
+When flow is stopped suddenly, by a valve closing or a pump tripping, the moving liquid column piles up against the closure. Its kinetic energy becomes pressure. This is surge, or water hammer. The Joukowsky equation gives the rise for an instant stop:
+
+$$
+\Delta P = \rho \, a \, \Delta v
+$$
+
+where $a$ is the speed of the pressure wave in the pipe, around 1000 to 1200 m/s for oil or water in steel. Every 1 m/s of velocity stopped produces roughly 9 to 12 bar.
+
+The full rise occurs if the valve closes faster than the time the wave takes to travel to the far end and back, $2L / a$. On a long pipeline that can be several minutes, so most ordinary valve closures count as "fast".
+
+Liquid pipeline codes limit surge to **110 % of the design pressure**. If the calculated surge exceeds that, the designer adds:
+
+- slower valve closure times,
+- surge relief valves and tanks,
+- pump trip logic and controlled shutdown sequences,
+- or a higher design pressure near the valve.
+
+<Callout type="warn">
+Gas pipelines do not suffer liquid surge, because gas compresses. Liquid lines, including water injection and NGL lines, always need a surge study.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §402.2 | Internal design pressure must cover steady operation and static head. Surge and other variations may not exceed 110 % of design pressure. |
+| ASME B31.8 §805 and §845 | Definition of MAOP and the overpressure protection required to keep within it. |
+| SAES-L-410 | Design pressure to include static head and surge for Aramco pipelines; surge analysis for liquid lines. |
+
+</Standards>
+
+<Worked title="Friction loss in a 100 km crude line">
+
+**Given:** NPS 24 × 12.7 mm (inside diameter 584.6 mm), 2000 m³/h of crude, density 850 kg/m³, viscosity 8 cP, roughness 0.045 mm.
+
+**Velocity:** area = π/4 × 0.5846² = 0.2684 m². v = (2000 / 3600) / 0.2684 = **2.07 m/s**.
+
+**Reynolds number:** 850 × 2.07 × 0.5846 / 0.008 = 128 600. Turbulent.
+
+**Friction factor** (Swamee-Jain): f = 0.0175.
+
+**Pressure gradient:**
+
+$$
+\frac{\Delta P}{L} = \frac{0.0175}{0.5846} \times \frac{850 \times 2.07^2}{2} = 54.5 \text{ Pa/m} = 0.545 \text{ bar/km}
+$$
+
+**Over 100 km:** about **54 bar** of friction loss. With 80 bar at the pump and 50 m of climb (4 bar), about 22 bar arrives.
+
+**Surge:** wave speed about 1140 m/s, so an instant stop gives 850 × 1140 × 2.07 = 20 bar.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "Flow rate in a liquid line doubles. Friction pressure drop:", options: ["Doubles", "Roughly quadruples", "Halves", "Is unchanged"], answer: 1, why: "Friction loss varies with velocity squared (slightly less, because the friction factor falls a little)." },
+  { q: "Where is a liquid pipeline most likely to exceed MAOP under shut-in conditions?", options: ["At the highest point", "At the lowest point", "At the pump suction", "At a bend"], answer: 1, why: "Static head adds pressure at low points when the line is full and blocked in." },
+  { q: "The maximum surge pressure permitted by ASME B31.4 is:", options: ["100 % of design pressure", "110 % of design pressure", "125 % of design pressure", "The hydrotest pressure"], answer: 1, why: "Surge and other transient variations are limited to 10 % above the internal design pressure." }
+]} />

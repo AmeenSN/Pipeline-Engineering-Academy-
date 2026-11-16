@@ -1,0 +1,94 @@
+---
+title: Integrity management
+summary: A pipeline is designed once and operated for fifty years. Integrity management is the continuous cycle that keeps it fit for service: know the threats, inspect, assess, fix, repeat.
+order: 3
+minutes: 20
+level: Intermediate
+standards: [ASME B31.8S, API 1160, API 1163, SAES-L-410]
+outcomes:
+  - Describe the integrity management cycle
+  - Match each threat to the methods that detect and control it
+  - Choose between in-line inspection, pressure testing and direct assessment
+  - Explain what design and construction must hand over to operations
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## The cycle
+
+Integrity management is a loop, not a project:
+
+1. **Gather and integrate data.** Design, materials, construction records, operating history, inspection results, surveys.
+2. **Identify threats** to each segment.
+3. **Assess risk** and rank segments (previous lesson).
+4. **Plan and carry out integrity assessments**: inspection, testing or direct examination.
+5. **Respond.** Repair, replace, reduce pressure or re-inspect sooner.
+6. **Prevent and mitigate.** Improve coating, CP, inhibition, patrols, markers, valves.
+7. **Measure performance** and feed the lessons back into step 1.
+
+The interval between assessments is set by how fast the worst credible defect could grow to failure.
+
+## Threats and how they are managed
+
+ASME B31.8S groups threats by how they behave over time. Pick a threat to see how it is found and controlled.
+
+<InfoTabs client:visible title="Pipeline integrity threats" tabs={[
+  { label: "External corrosion", text: "Time-dependent. Occurs where coating is damaged and cathodic protection is inadequate.", rows: [["Found by", "MFL or ultrasonic in-line inspection; close-interval potential and coating (DCVG) surveys; excavation"], ["Prevented by", "Coating quality, cathodic protection, interference mitigation"], ["Assessed with", "ASME B31G, Modified B31G, RSTRENG"], ["Typical response", "Recoat, repair sleeve, adjust CP, re-inspect at an interval based on growth rate"]] },
+  { label: "Internal corrosion", text: "Time-dependent. Occurs where water, CO₂, H₂S, oxygen or bacteria are present, usually at low points.", rows: [["Found by", "In-line inspection, corrosion coupons and probes, fluid sampling"], ["Prevented by", "Dehydration, inhibitors, biocides, regular cleaning pigs, internal coating"], ["Assessed with", "The same corrosion defect methods"], ["Typical response", "Increase pigging and chemical treatment, repair, replace low-point sections"]] },
+  { label: "Cracking (SCC)", text: "Time-dependent. Stress corrosion cracking forms colonies of small cracks under disbonded coating at high stress.", rows: [["Found by", "Ultrasonic or EMAT crack-detection tools, hydrotest, direct examination"], ["Prevented by", "Good coating adhesion, lower stress and temperature downstream of compressors"], ["Assessed with", "Fracture mechanics (API 579, BS 7910)"], ["Typical response", "Grind out shallow cracks, sleeve or replace, re-test"]] },
+  { label: "Manufacturing defects", text: "Stable unless activated. Seam weld flaws, laminations and hard spots present since the pipe was made.", rows: [["Found by", "Mill records, crack tools, hydrotest"], ["Activated by", "Pressure cycling (fatigue), increased pressure, corrosion at the seam"], ["Managed by", "Knowing the pipe vintage and seam type, limiting pressure cycling, periodic assessment"]] },
+  { label: "Construction defects", text: "Stable unless activated. Girth weld defects, wrinkle bends, dents from rocks in the backfill.", rows: [["Found by", "Construction NDT records, geometry (caliper) tools, strain tools"], ["Activated by", "Ground movement, fatigue"], ["Managed by", "Good construction quality control, baseline geometry inspection after construction"]] },
+  { label: "Third-party damage", text: "Time-independent: it can happen any day. Dents, gouges and punctures from excavation.", rows: [["Found by", "Patrols, geometry and MFL tools, reports from the public"], ["Prevented by", "Markers, cover, slabs, warning tape, one-call and permit systems, awareness"], ["Assessed with", "Dent and gouge criteria in the codes; a dent with a gouge is treated as severe"], ["Typical response", "Immediate assessment and repair of any reported hit"]] },
+  { label: "Weather and ground", text: "Time-independent. Floods, scour, landslides, dune movement, earthquakes.", rows: [["Found by", "Patrols after storms, cover surveys, inertial mapping tools, satellite monitoring"], ["Prevented by", "Routing, burial depth, erosion protection"], ["Typical response", "Restore cover and support, strain relief, reroute"]] },
+  { label: "Incorrect operation", text: "Time-independent. Overpressure, wrong valve line-up, procedure not followed.", rows: [["Prevented by", "Pressure protection systems, procedures, training, management of change"], ["Found by", "Audits, incident investigation, SCADA records"]] },
+]} />
+
+## Three ways to assess
+
+| Method | What it does | Best for | Limits |
+|---|---|---|---|
+| **In-line inspection (ILI)** | An intelligent pig measures the whole pipe wall | Corrosion, dents, cracks, mapping | Line must be piggable |
+| **Pressure test** | Proves the pipe holds a pressure above MAOP | Cracks and seam defects; unpiggable lines | Finds only defects large enough to fail; service interrupted; says nothing about smaller ones |
+| **Direct assessment** | Surveys and models predict where damage is, then excavations confirm | Unpiggable lines | Samples the line rather than inspecting all of it |
+
+ILI is the preferred method wherever the line can be pigged, which is why piggability is designed in from the start (module M11).
+
+## What design must hand over
+
+The integrity engineer of 2060 will rely on what the project hands over today:
+
+- as-built alignment sheets and the pipeline GIS database,
+- pipe mill certificates with heat numbers tied to location,
+- weld maps, welding procedures and NDT records,
+- coating, holiday test and CP commissioning records,
+- hydrotest records and charts,
+- a **baseline in-line inspection** soon after commissioning,
+- the design basis: pressures, temperatures, corrosion allowance, design life.
+
+<Callout type="field">
+Missing records are a real integrity threat. Regulations in several countries now require operators who cannot produce traceable, verifiable and complete records for a pipeline to re-test it or reduce its pressure.
+</Callout>
+
+<Callout type="aramco">
+Saudi Aramco operates a pipeline integrity management programme covering scraping, in-line inspection intervals, CP monitoring and corrosion control, supported by its inspection procedures and the SAES-L series. New pipelines are required to be scrapable unless an exemption is approved.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.8S | Integrity management of gas pipelines: threats, data integration, risk assessment, assessment methods and intervals. |
+| API 1160 | Managing system integrity for hazardous liquid pipelines. |
+| API 1163 / NACE SP0102 | Qualification and use of in-line inspection systems. |
+| NACE SP0502 | External corrosion direct assessment. |
+| API 579 / BS 7910 | Fitness-for-service assessment of flaws. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Which threat is time-independent?", options: ["External corrosion", "Stress corrosion cracking", "Third-party damage", "Internal corrosion"], answer: 2, why: "Third-party damage can occur at any moment and does not grow from a predictable rate." },
+  { q: "A key limitation of a pressure test as an integrity assessment is that it:", options: ["Cannot be done on gas lines", "Reveals only defects big enough to fail at test pressure", "Damages coating", "Requires the line to be piggable"], answer: 1, why: "Sub-critical defects survive the test and remain unknown." },
+  { q: "Why is a baseline in-line inspection run soon after construction?", options: ["To clean the line", "To record the as-new condition so later change can be measured", "To replace the hydrotest", "To dry the pipe"], answer: 1, why: "It separates original features from later damage and catches construction dents early." }
+]} />
