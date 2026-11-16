@@ -47,7 +47,7 @@ export default function WallThickness() {
         )}
         <Segmented label="Weld joint factor E" value={E} onChange={setE} options={[{ value: '1', label: '1.0 (API 5L)' }, { value: '0.8', label: '0.8' }]} />
         {service === 'gas' && <Slider label="Design temperature" kind="temp" value={temp} onChange={setTemp} min={20} max={230} step={5} />}
-        <Slider label="Corrosion allowance" kind="mm" value={ca} onChange={setCa} min={0} max={6.4} step={0.1} />
+        <Slider label="Corrosion allowance" kind="wall" value={ca} onChange={setCa} min={0} max={6.4} step={0.1} />
       </Controls>
       <View>
         <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-4 items-center">
@@ -73,28 +73,30 @@ export default function WallThickness() {
               ['var(--brand)', 'Pressure design thickness', r.tPressure],
               ['var(--steel)', 'Spare (rounding up to a standard wall)', Math.max(tSel - r.tRequired, 0)],
             ].map(([c, l, v]) => (
-              <div key={l as string} className="flex items-center gap-2.5">
-                <span style={{ width: 12, height: 12, borderRadius: 3, background: c as string, flex: 'none' }} />
-                <span className="flex-1" style={{ color: 'var(--muted)' }}>{l}</span>
-                <span className="num font-semibold">{u('mm', v as number, sys === 'si' ? 2 : 3)}</span>
+              <div key={l as string} className="flex items-start gap-2.5">
+                <span style={{ width: 12, height: 12, background: c as string, flex: 'none', marginTop: 4 }} />
+                <span>
+                  <span className="block" style={{ color: 'var(--muted)', fontSize: '.82rem' }}>{l}</span>
+                  <span className="num font-semibold block">{fmt('wall', sys, v as number, 2)}</span>
+                </span>
               </div>
             ))}
             <div className="mt-2"><Meter label="Hoop stress ÷ allowable (corroded wall)" ratio={r.utilisation} max={1.25} /></div>
           </div>
         </div>
         <Stats>
-          <Stat label="Required wall (incl. CA)" kind="mm" value={r.tRequired} dp={sys === 'si' ? 2 : 3} />
-          <Stat label="Selected standard wall" kind="mm" value={tSel} dp={sys === 'si' ? 1 : 3} tone="brand" text={r.tSelected ? undefined : 'none'} />
+          <Stat label="Required wall (incl. CA)" kind="wall" value={r.tRequired} dp={2} />
+          <Stat label="Selected standard wall" kind="wall" value={tSel} tone="brand" text={r.tSelected ? undefined : 'none'} />
           <Stat label="Hoop stress" kind="stress" value={r.hoop} />
           <Stat label="Allowable  S·F·E·T" kind="stress" value={r.allowable} />
           <Stat label="D / t" value={r.dOverT} dp={1} tone={r.dOverT > 96 ? 'warn' : undefined} />
         </Stats>
         {!r.tSelected ? <Verdict tone="bad">Required wall exceeds the heaviest standard wall listed. Consider a higher grade or larger design factor review.</Verdict>
           : r.dOverT > 96 ? <Verdict tone="warn">Pressure design is satisfied, but D/t above about 96 makes the pipe prone to ovalising and denting in handling. Consider a heavier wall.</Verdict>
-          : <Verdict tone="ok">Select {u('mm', tSel, sys === 'si' ? 1 : 3)} wall. Hoop stress is {(r.utilisation * 100).toFixed(0)} % of the allowable.</Verdict>}
+          : <Verdict tone="ok">Select {fmt('wall', sys, tSel)} wall. Hoop stress is {(r.utilisation * 100).toFixed(0)} % of the allowable.</Verdict>}
         <div className="steps" aria-label="Calculation steps">
-          <b>t</b> = P·D / (2·S·F·E·T) = {P.toFixed(2)} × {D} / (2 × {g.smys} × {F} × {E} × {T.toFixed(3)}) = <b>{r.tPressure.toFixed(2)} mm</b>{'\n'}
-          <b>t_req</b> = t + CA = {r.tPressure.toFixed(2)} + {ca.toFixed(1)} = <b>{r.tRequired.toFixed(2)} mm</b>  →  next standard wall <b>{r.tSelected ?? '—'} mm</b>
+          <b>t</b> = P·D / (2·S·F·E·T) = {P.toFixed(2)} × {D} / (2 × {g.smys} × {F} × {E} × {T.toFixed(3)}) = <b>{fmt('wall', 'si', r.tPressure, 2)}</b>{'\n'}
+          <b>t_req</b> = t + CA = {r.tPressure.toFixed(2)} + {ca.toFixed(1)} = <b>{fmt('wall', 'si', r.tRequired, 2)}</b>  →  next standard wall <b>{r.tSelected ? fmt('wall', 'si', r.tSelected) : '—'}</b>
         </div>
       </View>
     </Frame>

@@ -55,7 +55,7 @@ export default function GradeCompare() {
           <Stat label="SMYS" kind="stress" value={g.smys} />
           <Stat label="SMTS" kind="stress" value={g.smts} />
           <Stat label="Yield / tensile ratio" value={g.smys / g.smts} dp={2} tone={g.smys / g.smts > 0.88 ? 'warn' : undefined} />
-          <Stat label="Wall needed" kind="mm" value={cur.t ?? 0} dp={sys === 'si' ? 1 : 3} tone="brand" text={cur.t ? undefined : 'none'} />
+          <Stat label="Wall needed" kind="wall" value={cur.t ?? 0} tone="brand" text={cur.t ? undefined : 'none'} />
           <Stat label="Steel per km" text={cur.mass ? `${cur.mass.toFixed(0)} t` : '—'} />
           <Stat label={`Saving vs Grade ${base.g.id}`} text={cur.mass && base.mass ? `${((1 - cur.mass / base.mass) * 100).toFixed(0)} %` : '—'} tone="ok" />
         </Stats>

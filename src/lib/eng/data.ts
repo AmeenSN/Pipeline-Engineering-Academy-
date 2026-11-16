@@ -52,3 +52,14 @@ export function tempDerating(tC: number): number {
 
 export const STEEL = { E: 207000, nu: 0.3, alpha: 11.7e-6, rho: 7850 }; // MPa, -, 1/°C, kg/m3
 export const G = 9.81;
+
+// Nominal inch values of the standard walls above (ASME B36.10M), in the same order.
+export const STANDARD_WALLS_IN = [
+  0.188, 0.219, 0.25, 0.281, 0.312, 0.344, 0.375, 0.406, 0.438, 0.469, 0.5, 0.562, 0.625,
+  0.688, 0.75, 0.812, 0.875, 0.938, 1.0, 1.062, 1.125, 1.188, 1.25, 1.375, 1.5,
+];
+/** Wall thickness in inches: the nominal value for a standard wall, otherwise a straight conversion. */
+export function wallInches(mm: number): number {
+  const i = STANDARD_WALLS.findIndex((w) => Math.abs(w - mm) < 0.011);
+  return i >= 0 ? STANDARD_WALLS_IN[i] : mm / 25.4;
+}

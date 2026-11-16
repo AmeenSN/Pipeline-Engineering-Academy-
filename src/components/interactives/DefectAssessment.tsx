@@ -36,7 +36,7 @@ export default function DefectAssessment() {
           <path d={`M20 ${wy}H${W / 2 - len * 0.22}Q${W / 2} ${wy + dep * wh * 2.1} ${W / 2 + len * 0.22} ${wy}H${W - 20}V${wy + wh}H20Z`} fill="url(#da)" stroke="var(--text)" strokeWidth="1.5" />
           <path d={`M${W / 2 - len * 0.22} ${wy}Q${W / 2} ${wy + dep * wh * 2.1} ${W / 2 + len * 0.22} ${wy}Z`} fill={tone === 'bad' ? 'var(--bad)' : 'var(--accent)'} opacity=".55" />
           <text x="24" y={wy - 8} className="svg-label">outside surface · corrosion pit {(dep * 100).toFixed(0)} % deep, {fmt('mm', sys, len, sys === 'si' ? 0 : 1)} {unitOf('mm', sys)} long</text>
-          <text x="24" y={wy + wh + 16} className="svg-label">inside surface · remaining wall {fmt('mm', sys, pipe.t * (1 - dep), sys === 'si' ? 1 : 3)} {unitOf('mm', sys)}</text>
+          <text x="24" y={wy + wh + 16} className="svg-label">inside surface · remaining wall {fmt('wall', sys, pipe.t * (1 - dep))}</text>
         </svg>
         <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Acceptable defect depth against length" style={{ width: '100%' }}>
           <path d={`M${x(1)},${y(0)}` + curve.map(([l, d]) => `L${x(l).toFixed(1)},${y(d).toFixed(1)}`).join('') + `L${x(1000)},${y(0)}Z`} fill="var(--ok)" opacity=".12" />

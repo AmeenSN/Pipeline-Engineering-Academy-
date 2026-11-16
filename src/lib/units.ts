@@ -1,9 +1,10 @@
+import { wallInches } from './eng/data';
 import { useSyncExternalStore } from 'react';
 
 export type UnitSystem = 'si' | 'us';
 export type Kind =
   | 'pressure' | 'stress' | 'kpa' | 'mm' | 'm' | 'dT' | 'temp' | 'force' | 'lineload'
-  | 'density' | 'gamma' | 'velocity' | 'hz' | 'none' | 'years' | 'pct';
+  | 'density' | 'gamma' | 'velocity' | 'hz' | 'none' | 'years' | 'pct' | 'wall';
 
 interface Def { si: [string, number, number]; us: [string, number, number]; offset?: number }
 // [unit label, multiplier from base, default decimals]. Base units: MPa, mm, m, °C, N, N/m, kPa, kg/m³, kN/m³, m/s.
@@ -24,6 +25,7 @@ const DEFS: Record<Kind, Def> = {
   years: { si: ['yr', 1, 0], us: ['yr', 1, 0] },
   pct: { si: ['%', 100, 1], us: ['%', 100, 1] },
   none: { si: ['', 1, 2], us: ['', 1, 2] },
+  wall: { si: ['', 1, 1], us: ['', 1, 1] }, // wall thickness: always shown in both mm and inches (see fmt)
 };
 
 export function unitOf(kind: Kind, sys: UnitSystem) { return DEFS[kind][sys][0]; }
@@ -32,6 +34,10 @@ export function toDisplay(kind: Kind, sys: UnitSystem, v: number) {
   return v * d[sys][1] + (sys === 'us' ? d.offset ?? 0 : 0);
 }
 export function fmt(kind: Kind, sys: UnitSystem, v: number, dp?: number) {
+  if (kind === 'wall') {
+    const mm = `${v.toFixed(dp ?? 1)} mm`, inch = `${wallInches(v).toFixed(3)} in`;
+    return sys === 'si' ? `${mm} (${inch})` : `${inch} (${mm})`;
+  }
   if (!Number.isFinite(v)) return '∞';
   const x = toDisplay(kind, sys, v);
   const n = dp ?? DEFS[kind][sys][2];

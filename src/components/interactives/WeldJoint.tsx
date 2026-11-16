@@ -28,7 +28,7 @@ export default function WeldJoint() {
     <Frame title="Girth weld build-up and heat input" foot="Heat input = volts × amps × 60 ÷ (1000 × travel speed in mm/min), in kJ/mm. The acceptable range comes from the qualified welding procedure; 0.5 to 2.2 kJ/mm is used here only as an illustration.">
       <Controls>
         <Segmented label="Joint preparation" value={bevel} onChange={setBevel} options={[{ value: 'std', label: '30° bevel (manual)' }, { value: 'narrow', label: 'Narrow gap (auto)' }]} />
-        <Slider label="Wall thickness" kind="mm" value={t} onChange={setT} min={6.4} max={25.4} step={0.1} />
+        <Slider label="Wall thickness" kind="wall" value={t} onChange={setT} min={6.4} max={25.4} step={0.1} />
         <Slider label="Passes completed" value={done} onChange={setDone} min={0} max={4} step={1} dp={0} />
         <Slider label="Arc voltage (V)" value={V} onChange={setV} min={18} max={34} step={1} dp={0} />
         <Slider label="Current (A)" value={I} onChange={setI} min={80} max={300} step={5} dp={0} />
@@ -47,7 +47,7 @@ export default function WeldJoint() {
           })}
           <text x="14" y={top - 10} className="svg-label">outside of pipe</text>
           <text x="14" y={bot + 18} className="svg-label">inside of pipe (bore)</text>
-          <text x="386" y={(top + bot) / 2} textAnchor="end" className="svg-label">wall {t.toFixed(1)} mm</text>
+          <text x="386" y={(top + bot) / 2} textAnchor="end" className="svg-label">wall {t.toFixed(1)} mm · {(t / 25.4).toFixed(3)} in</text>
           {PASSES.map((p, i) => <g key={p.name} opacity={i < done ? 1 : 0.35}><rect x={20 + i * 95} y="262" width="10" height="10" fill={colors[i]} /><text x={34 + i * 95} y="271" className="svg-label">{p.name}</text></g>)}
         </svg>
         <p style={{ fontSize: '.9rem', color: 'var(--muted)', minHeight: '3em' }}>{done === 0 ? 'The bevelled pipe ends are aligned in the clamp with a controlled root gap and minimal high-low offset.' : `${PASSES[done - 1].name}. ${PASSES[done - 1].text}`}</p>

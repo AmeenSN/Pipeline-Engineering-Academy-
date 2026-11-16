@@ -5,17 +5,21 @@
 @import 'katex/dist/katex.min.css';
 
 :root {
-  --bg: #f6f4ee; --surface: #ffffff; --surface-2: #efece3; --line: #dbd6c8;
-  --text: #16202e; --muted: #5b6676; --brand: #1560c2; --accent: #d4570a;
-  --yellow: #b07d00; --ok: #0c8559; --bad: #c5263a; --steel: #7a8798;
-  --grid: rgba(21, 96, 194, 0.07); --shadow: 0 1px 2px rgba(20, 30, 50, .06), 0 8px 24px rgba(20, 30, 50, .06);
+  /* Blueline print: navy ink on drafting paper */
+  --bg: #eef3fa; --surface: #f8fafd; --surface-2: #e1e9f5; --line: #8fa9cf;
+  --text: #0c2a55; --muted: #46618c; --brand: #1b4fa8; --accent: #c2410c;
+  --yellow: #8a6100; --ok: #0b7a55; --bad: #b3261e; --steel: #5f7ba6;
+  --grid: rgba(27, 79, 168, 0.07); --grid-major: rgba(27, 79, 168, 0.14);
+  --shadow: none;
   color-scheme: light;
 }
 :root[data-theme='dark'] {
-  --bg: #0a121f; --surface: #101b2d; --surface-2: #15233a; --line: #213450;
-  --text: #e7eef8; --muted: #92a3bc; --brand: #56a8ff; --accent: #ff8a3d;
-  --yellow: #ffc940; --ok: #34d399; --bad: #ff6070; --steel: #8fa3bd;
-  --grid: rgba(86, 168, 255, 0.06); --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 32px rgba(0, 0, 0, .25);
+  /* Classic blueprint: white line work on cyanotype blue */
+  --bg: #0b2b55; --surface: #0e3263; --surface-2: #123c75; --line: #4f79b3;
+  --text: #f1f6ff; --muted: #b4c9e8; --brand: #8fd3ff; --accent: #ffb454;
+  --yellow: #ffe08a; --ok: #86efc3; --bad: #ff9c9c; --steel: #a9c4ea;
+  --grid: rgba(255, 255, 255, 0.045); --grid-major: rgba(255, 255, 255, 0.1);
+  --shadow: none;
   color-scheme: dark;
 }
 
@@ -25,7 +29,7 @@
   --color-brand: var(--brand); --color-accent: var(--accent); --color-yellow: var(--yellow);
   --color-ok: var(--ok); --color-bad: var(--bad); --color-steel: var(--steel);
   --font-sans: 'Inter Variable', system-ui, sans-serif;
-  --font-display: 'Space Grotesk Variable', 'Inter Variable', sans-serif;
+  --font-display: 'JetBrains Mono Variable', ui-monospace, monospace;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 }
 
@@ -44,8 +48,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; line
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
 .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .6rem 1.1rem; border-radius: 10px; font-weight: 600; font-size: .92rem; transition: transform .15s, background .15s, border-color .15s; }
 .btn:hover { transform: translateY(-1px); }
-.btn-primary { background: var(--accent); color: #fff; }
-:root[data-theme='dark'] .btn-primary { color: #1a0d02; }
+.btn-primary { background: var(--accent); color: var(--bg); }
 .btn-ghost { border: 1px solid var(--line); background: var(--surface); }
 .btn-ghost:hover { border-color: var(--brand); }
 .iconbtn { display: inline-flex; align-items: center; justify-content: center; height: 2.25rem; min-width: 2.25rem; padding: 0 .6rem; border-radius: 9px; border: 1px solid var(--line); background: var(--surface); font-size: .8rem; font-weight: 600; color: var(--muted); }
@@ -122,3 +125,65 @@ input[type='range']::-moz-range-thumb { width: 14px; height: 14px; border-radius
 .prose .not-prose ul > li { padding-left: 0; margin-top: 0; color: inherit; }
 .prose .not-prose ul > li::before { content: none; }
 .prose .not-prose p { color: inherit; }
+
+/* ================= Engineering blueprint treatment ================= */
+/* Drawing sheet: fine grid with heavier lines every fifth square. */
+body {
+  background-image:
+    linear-gradient(var(--grid-major) 1px, transparent 1px), linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-attachment: fixed;
+}
+.blueprint { background-image: none; }
+
+/* Lettering: technical monospace for titles and labels. */
+h1, h2, h3, h4 { letter-spacing: -0.03em; font-weight: 600; }
+h1 { text-transform: uppercase; letter-spacing: -0.02em; }
+.eyebrow, .ix-title, .ix-tag, .chip, .badge { text-transform: uppercase; }
+.ix-title { letter-spacing: .02em; font-size: .92rem; }
+
+/* Square corners and ruled double frames, as on a drawing border. */
+[class*='rounded'], .card, .btn, .iconbtn, .chip, .badge, .stat, .verdict, .steps, .seg, .seg button, .callout, .std, .worked,
+.ix, .ix *, .prose .katex-display, .prose code, #search-dialog, .fld select, .side-link { border-radius: 2px !important; }
+.card, .ix, .std, .worked { box-shadow: none; outline: 1px solid var(--line); outline-offset: 3px; }
+.card { background: var(--surface); }
+.btn { text-transform: uppercase; letter-spacing: .06em; font-family: var(--font-mono); font-size: .8rem; border: 1px solid transparent; }
+.btn-ghost { border-color: var(--line); }
+.iconbtn { font-family: var(--font-mono); }
+
+/* Title block on every interactive figure. */
+.ix-head { background: var(--surface-2); border-bottom: 1px solid var(--line); position: relative; }
+.ix-title::before { content: 'FIG. '; color: var(--accent); }
+.ix-tag { border-style: dashed; }
+.ix-foot { font-family: var(--font-mono); font-size: .72rem; line-height: 1.6; }
+.ix-foot::before { content: 'NOTES: '; color: var(--accent); font-weight: 600; }
+
+/* Drawings: every figure sits on grid paper inside a ruled frame, with drafting-style lettering. */
+.ix svg[role='img'], .card > svg[role='img'] {
+  background-color: var(--bg) !important;
+  background-image: linear-gradient(var(--grid-major) 1px, transparent 1px), linear-gradient(90deg, var(--grid-major) 1px, transparent 1px) !important;
+  background-size: 20px 20px !important;
+  border: 1px solid var(--line) !important;
+}
+.svg-label, .svg-strong { text-transform: uppercase; letter-spacing: .03em; }
+.svg-label { font-size: 10px; }
+.svg-strong { font-size: 11px; }
+.stat { background: var(--bg); border-style: solid; }
+.stat-label, .fld-label { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .04em; font-size: .66rem; }
+.fld-label { font-size: .68rem; }
+.verdict { font-family: var(--font-mono); font-size: .8rem; }
+
+/* Lesson sections numbered like drawing notes. */
+.prose { counter-reset: sec; }
+.prose > h2 { border-bottom: 1px solid var(--line); padding-bottom: .45rem; text-transform: uppercase; font-size: 1.3rem; letter-spacing: 0; }
+.prose > h2::before { counter-increment: sec; content: counter(sec, decimal-leading-zero) '  '; color: var(--accent); }
+.prose h3 { text-transform: uppercase; font-size: 1.02rem; letter-spacing: .01em; }
+.prose th { color: var(--accent); }
+.prose table { border: 1px solid var(--line); }
+.prose td, .prose th { border-right: 1px solid color-mix(in srgb, var(--line) 50%, transparent); }
+.prose .katex-display { background: var(--surface); border-left-width: 1px; border-style: dashed; }
+header.sticky { border-bottom-width: 2px; }
+
+.fld-val { text-transform: none; letter-spacing: 0; font-size: .8rem; }
+.stat-value { font-size: 1.02rem; }

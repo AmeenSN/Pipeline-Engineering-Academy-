@@ -49,10 +49,10 @@ export default function InductionBend() {
           <text x="548" y="56" textAnchor="end" className="svg-label">R = {n} D = {fmt('m', sys, R, 2)} {unitOf('m', sys)}</text>
         </svg>
         <Stats>
-          <Stat label="Extrados wall after bending" kind="mm" value={pipe.t * (1 - b.thinning)} dp={sys === 'si' ? 1 : 3} tone="bad" />
+          <Stat label="Extrados wall after bending" kind="wall" value={pipe.t * (1 - b.thinning)} tone="bad" />
           <Stat label="Intrados hoop stress factor" value={b.intrados} dp={3} />
-          <Stat label="Mother pipe wall needed" kind="mm" value={mother} dp={sys === 'si' ? 1 : 3} />
-          <Stat label="Next standard wall" kind="mm" value={std ?? 0} dp={sys === 'si' ? 1 : 3} tone="brand" text={std ? undefined : 'none'} />
+          <Stat label="Mother pipe wall needed" kind="wall" value={mother} />
+          <Stat label="Next standard wall" kind="wall" value={std ?? 0} tone="brand" text={std ? undefined : 'none'} />
           <Stat label="Arc length" kind="m" value={R * a} dp={2} />
         </Stats>
         {pig === 'ok' ? <Verdict tone="ok">{n >= 5 ? 'A 5 D or larger bend passes all standard cleaning and inspection pigs.' : 'A 3 D bend passes most modern inspection tools. Confirm with the ILI vendor.'} Order the mother pipe one wall heavier than the line pipe.</Verdict>

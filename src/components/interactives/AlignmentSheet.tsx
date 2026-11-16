@@ -63,7 +63,7 @@ export default function AlignmentSheet() {
             })}
             {[0, 0.5, 1, 1.5, 2, 2.5, 3].map((k) => <text key={k} x={x(k)} y="426" textAnchor="middle" className="svg-label">KP {k.toFixed(1)}</text>)}
             <line x1={x(kp)} x2={x(kp)} y1="6" y2="414" stroke="var(--bad)" strokeWidth="1.5" />
-            <rect x={x(kp) - 26} y="0" width="52" height="14" rx="3" fill="var(--bad)" /><text x={x(kp)} y="11" textAnchor="middle" style={{ fontSize: 10, fill: '#fff', fontFamily: 'var(--font-mono)' }}>KP {kp.toFixed(2)}</text>
+            <rect x={x(kp) - 26} y="0" width="52" height="14" rx="3" fill="var(--bad)" /><text x={x(kp)} y="11" textAnchor="middle" style={{ fontSize: 10, fill: 'var(--bg)', fontFamily: 'var(--font-mono)' }}>KP {kp.toFixed(2)}</text>
           </svg>
         </div>
         <label className="fld block">

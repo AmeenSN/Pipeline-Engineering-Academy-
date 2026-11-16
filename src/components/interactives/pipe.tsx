@@ -33,7 +33,7 @@ export function usePipe(nps0: number, wall0: number) {
 
 function WallValue({ t }: { t: number }) {
   const sys = useUnits();
-  return <span className="fld-val">{fmt('mm', sys, t)} {unitOf('mm', sys)}</span>;
+  return <span className="fld-val">{fmt('wall', sys, t)}</span>;
 }
 
 /** Linear scale helper for SVG charts. */

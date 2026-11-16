@@ -50,7 +50,7 @@ function Zone({ s, x, w, on, onClick, n }: { s: Stage; x: number; w: number; on:
       {s.pipe === 'in' && <circle cx={cx} cy={gy + 26} r="6" fill="var(--steel)" stroke="var(--text)" />}
       {s.pipe === 'buried' && <g><rect x={x} y={gy + 22} width={w} height="7" fill="var(--accent)" opacity=".85" /><path d={`M${x} ${gy}q${w / 2} -7 ${w} 0`} fill="var(--yellow)" opacity=".5" /></g>}
       <rect x={cx - 15} y={gy - 36} width="30" height="16" rx="3" fill={on ? 'var(--accent)' : 'var(--brand)'} opacity=".9" />
-      <text x={cx} y={gy - 24} textAnchor="middle" style={{ fontSize: 10, fill: '#fff', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>{n}</text>
+      <text x={cx} y={gy - 24} textAnchor="middle" style={{ fontSize: 10, fill: 'var(--bg)', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>{n}</text>
       <text x={cx} y="130" textAnchor="middle" className="svg-label" style={{ fontSize: 9 }}>{SHORT[n - 1]}</text>
     </g>
   );
