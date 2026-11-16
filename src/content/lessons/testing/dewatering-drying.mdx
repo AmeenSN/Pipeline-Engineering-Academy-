@@ -1,0 +1,117 @@
+---
+title: Dewatering, drying and purging
+summary: After the hydrotest the pipeline is full of water it must never see again. Learn how water is removed, how dry is dry enough, and how product is introduced safely.
+order: 2
+minutes: 20
+level: Intermediate
+standards: [ASME B31.8, API RP 1110, ISO 13623, SAES-L-150]
+outcomes:
+  - Describe dewatering with pig trains
+  - Compare dry air, vacuum and nitrogen drying
+  - State typical dew point acceptance criteria
+  - Explain purging and the introduction of gas or liquid product
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## Why water must go
+
+Water left in a pipeline after testing causes:
+
+- **Corrosion,** immediately, especially if the test water was saline or the line stands idle before start-up.
+- **Hydrates** in gas pipelines: ice-like solids of water and gas that form at high pressure and can block the line completely.
+- **Off-specification product:** sales gas and many liquid products have strict water limits.
+- **Ice** in cold service and during depressurisation.
+
+How dry the line must be depends on the product. A crude oil line needs only bulk dewatering. A sales gas, ethylene or LNG feed line needs to be thoroughly dry.
+
+## Dewatering
+
+Bulk water is pushed out by a **pig train** driven by compressed air (or by the product itself in some liquid lines):
+
+- Several pigs run in sequence: bi-directional disc or cup pigs first, then foam pigs to wipe the film left behind.
+- Pig speed is kept steady, around 0.5 to 1 m/s. Too fast and the pig rides over the water.
+- Water is discharged through a controlled outlet to the approved disposal point.
+- In hilly terrain, back-pressure is held at the outlet so the water column does not run away downhill and leave the pigs behind.
+
+After dewatering, a thin film remains on the wall, plus pools at low points, valve bodies and dead legs. For a large pipeline this is still many cubic metres.
+
+## Drying methods
+
+<InfoTabs client:visible title="Pipeline drying methods" tabs={[
+  { label: "Dry air", title: "Dry air drying", text: "Very dry compressed air is blown through the line, with foam pigs run repeatedly to spread the remaining water into a thin film that evaporates.", rows: [["Air supply", "Compressors with desiccant dryers delivering air at a dew point of −40 °C or lower"], ["Strengths", "Common, flexible, effective for long lines; pigs also remove debris"], ["Limits", "Needs a piggable line and many pig runs; slow in cold weather"], ["End point", "Outlet air dew point reaches the target and stays there during a soak period"]] },
+  { label: "Vacuum", title: "Vacuum drying", text: "Vacuum pumps lower the pressure in the sealed line until the water boils off at ambient temperature and is drawn out as vapour.", rows: [["Stages", "Pump-down, boil-off at the saturation pressure of water, then final pull-down to the target pressure"], ["Strengths", "Reaches valve cavities, dead legs and unpiggable sections; very low dew points; no pigging needed"], ["Limits", "Slow on long, large lines; evaporation cools the water and can freeze it; needs a leak-tight system"], ["End point", "Pressure corresponding to the target dew point is held during a soak test with pumps isolated"]] },
+  { label: "Nitrogen", title: "Nitrogen drying and purging", text: "Dry nitrogen is passed through the line, with or without pigs.", rows: [["Strengths", "Very dry; leaves the line inert and ready for hydrocarbon in one step"], ["Limits", "Cost of nitrogen for large volumes; asphyxiation hazard at vents"], ["Used for", "Final drying and inerting after air drying, and for short lines and station piping"]] },
+  { label: "Glycol / methanol", title: "Chemical swabbing", text: "Slugs of methanol or glycol are run between pigs to absorb the water film.", rows: [["Strengths", "Fast; can be done as part of commissioning with gas behind the train; also inhibits hydrates"], ["Limits", "Flammable and toxic chemicals to handle and dispose of; leaves a residue, so not for products with tight purity limits"], ["Used for", "Gas pipelines where a small residual of methanol or glycol is acceptable"]] },
+]} />
+
+## How dry is dry enough
+
+Dryness is specified as a **water dew point**: the temperature at which the air or gas in the line would start to condense water. The lower the dew point, the drier the line.
+
+| Service | Typical target dew point (at atmospheric pressure) |
+|---|---|
+| Crude oil, water injection | Bulk dewatering only |
+| Refined products | Dewatered and swabbed |
+| Natural gas transmission | About −20 °C |
+| Sour or CO₂-rich gas | −20 °C to −40 °C |
+| Ethylene, LPG, chemical feedstock | −40 °C or lower |
+
+After reaching the target, the line is shut in for a **soak test**, typically 12 to 24 hours, and the dew point measured again. If water remains in pools it will evaporate during the soak and the dew point will rise.
+
+## Purging and inerting
+
+Hydrocarbon gas and air must never be allowed to mix inside the pipeline. Before gas is introduced:
+
+- A **slug of nitrogen**, often between pigs, is placed between the air in the line and the incoming gas, or the whole line is purged with nitrogen until oxygen is below a few percent.
+- Gas is then introduced at a controlled velocity that keeps the interface short.
+- Vents are monitored until the gas content confirms the purge is complete.
+
+For liquid lines, the product is introduced behind a pig or batching pig train, and the air or nitrogen ahead is vented at the far end. Interfaces between water, nitrogen and product are tracked and directed to slop tanks.
+
+## Preservation
+
+A pipeline is often completed months before it enters service. It must not sit wet. Options:
+
+- Dry it and leave it filled with **dry air or nitrogen** at slight positive pressure, monitored.
+- If it must stay water-filled, treat the water with **biocide, oxygen scavenger and inhibitor**, and limit the duration.
+
+<Callout type="warn">
+Nitrogen is invisible, odourless and kills quickly by displacing oxygen. Vent points, valve pits and pig trap enclosures during purging are confined-space hazards that need gas monitoring and controlled access.
+</Callout>
+
+<Callout type="aramco">
+Saudi Aramco pre-commissioning requirements for dewatering, drying and lay-up are found in SAES-A-004 and SAES-L-150 and associated procedures, including lay-up methods where a line will not be commissioned promptly after hydrotest. Take the required dew point and lay-up method from the current standards.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.8 §841.4 | Commissioning: cleaning, drying, purging and safe introduction of gas. |
+| API RP 1110 | Dewatering and displacement after pressure testing. |
+| ISO 13623 | Pre-commissioning and commissioning, including drying to the level the product requires. |
+| AGA purging principles | Guidance on purge velocities and inert slugs to avoid flammable mixtures. |
+
+</Standards>
+
+<Worked title="How much water is left after dewatering?">
+
+**Given:** NPS 24 pipeline, inside diameter 0.585 m, 100 km long. Suppose the pig train leaves a water film averaging 0.05 mm thick on the wall.
+
+**Wall area:** π × 0.585 × 100 000 = 183 800 m².
+
+**Film volume:** 183 800 × 0.00005 = **9.2 m³** of water.
+
+Dry air at −40 °C dew point can absorb roughly 15 to 20 g of water per cubic metre as it warms and saturates at 25 °C. Removing 9200 kg therefore needs of the order of half a million cubic metres of dry air, which is why drying a long line takes days, and why repeated foam pig runs to thin and spread the film matter so much.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "Why are hydrates a concern in gas pipelines?", options: ["They corrode the coating", "They are ice-like solids that can block the line", "They are toxic", "They reduce gas quality slightly"], answer: 1, why: "Water and gas at high pressure form solid hydrates that can plug the pipeline." },
+  { q: "Which drying method reaches valve cavities and dead legs best?", options: ["Dry air with foam pigs", "Vacuum drying", "Dewatering pigs", "None"], answer: 1, why: "Under vacuum, water boils off wherever it is, including places pigs cannot reach." },
+  { q: "What is the purpose of the soak test after drying?", options: ["To cool the pipe", "To check the dew point stays low, showing no pools of water remain", "To test the coating", "To measure the wall"], answer: 1, why: "Hidden water evaporates during the shut-in and raises the dew point, revealing incomplete drying." }
+]} />

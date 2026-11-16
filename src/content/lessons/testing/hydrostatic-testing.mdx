@@ -1,0 +1,139 @@
+---
+title: Hydrostatic testing
+summary: Before it carries product, every pipeline is filled with water and pressurised above its operating pressure. Learn how test pressure and sections are set, how the test is run and how to read the result.
+order: 1
+minutes: 35
+level: Intermediate
+standards: [ASME B31.4, ASME B31.8, API RP 1110, SAES-A-004, SAES-L-150]
+outcomes:
+  - Select test pressure and duration from the design code
+  - Divide a pipeline into test sections using elevation
+  - Describe the test sequence from filling to acceptance
+  - Distinguish temperature effects and trapped air from a leak
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import HydroTest from "@/components/interactives/HydroTest.tsx";
+
+## What the test proves
+
+A hydrostatic test does two things:
+
+- **Strength test.** Raising the pressure well above MAOP causes any defect large enough to threaten the pipeline in service to fail now, while the line is full of water. Surviving defects are small enough to have a margin at operating pressure.
+- **Leak test.** Holding the pressure for hours shows whether the section is tight.
+
+Water is used because it is nearly incompressible. It stores little energy, so a failure is a split and a spill, not an explosion. Testing with air or gas (pneumatic testing) stores enormous energy and is allowed only in restricted cases.
+
+The test also establishes the MAOP: the pipeline may not be operated above the test pressure divided by the test factor.
+
+## Test pressure
+
+The **minimum** test pressure is a multiple of the design pressure or MAOP:
+
+| Code and location | Minimum test pressure | Minimum duration |
+|---|---|---|
+| ASME B31.4 (liquids) | 1.25 × design pressure | 4 hours; plus 4 hours at 1.1 × if not visually inspected |
+| ASME B31.8 Class 1 Division 2 | 1.1 × MAOP (1.25 × in some cases) | 2 hours |
+| ASME B31.8 Class 2 | 1.25 × MAOP | 2 hours |
+| ASME B31.8 Class 3 and 4 | 1.4 × or 1.5 × MAOP depending on edition | 2 hours |
+
+Many operators test for much longer than the code minimum: 8 or 24 hours is common, to give the temperature time to stabilise and small leaks time to show.
+
+The **maximum** test pressure is set by the hoop stress it causes at the lowest point of the section, commonly limited to between 90 % and 100 % of SMYS. Testing to a high percentage of SMYS gives the best defect-removal benefit, at the cost of a narrower working window.
+
+## Elevation and test sections
+
+Water pressure rises about 1 bar for every 10 m of depth. In a test section on sloping ground the **lowest point sees the highest pressure**. So:
+
+- the **highest** point must reach the minimum test pressure, and
+- the **lowest** point must not exceed the maximum.
+
+The difference between maximum and minimum, converted to metres of water, is the largest elevation range one section can have. Hilly routes are divided into several sections, each with its own test pressure.
+
+Sections are also limited by water supply and disposal, by convenient locations for test heads, and by keeping valve assemblies and special components within their own test limits.
+
+<HydroTest client:visible />
+
+Try this: raise the elevation range until the low point turns red, then read the allowed range. Change the hoop limit from 95 % to 100 % SMYS and see the window widen. Then set a temperature drop of 3 °C and read the pressure change it causes with no leak at all.
+
+## Running the test
+
+1. **Preparation.** Section cleaned and gauged (module M8). Test heads welded on, with pig traps, fill and vent connections. Instruments calibrated: deadweight tester or pressure transducer, chart recorders, and temperature probes on the pipe wall and in the ground.
+2. **Filling.** Clean, filtered water is pumped in behind one or more pigs, which push the air ahead. Filling uphill at a steady rate keeps the pig moving and the water column full. Corrosion inhibitor, oxygen scavenger and biocide are added if the water will remain for more than a few days or is saline.
+3. **Thermal stabilisation.** The water takes hours to days to reach ground temperature. Testing starts when the temperature has settled.
+4. **Pressurisation** in stages, for example to 30 %, 70 % and 100 %, with holds to check for leaks. A plot of pressure against volume of water added should be a straight line.
+5. **Hold.** The section is isolated from the pump and pressure and temperature are recorded continuously for the test duration.
+6. **Depressurisation** at a controlled rate, then dewatering (next lesson).
+7. **Records.** Charts, logs, calibration certificates and an acceptance certificate signed by the parties.
+
+## Reading the pressure-volume plot
+
+As water is pumped into a full, air-free pipe, pressure rises in direct proportion to the volume added. The slope depends on the compressibility of water and the elastic stretch of the pipe.
+
+- **A curve that starts flat and then steepens** means air is trapped. Air compresses easily, so early strokes add volume without much pressure. More than a small percentage of air makes the test insensitive to leaks and adds stored energy.
+- **A line that bends over toward the horizontal at high pressure** means the pipe is starting to yield: volume is being added without a matching pressure rise. Pressurisation is stopped. A common rule limits the deviation to 0.2 % offset on the volume axis.
+
+## Is it a leak or is it temperature?
+
+Pressure almost never stays perfectly constant during the hold. The usual cause is temperature. In a closed, restrained, water-filled pipe:
+
+$$
+\frac{\Delta P}{\Delta T} = \frac{\beta - 2\alpha}{\dfrac{D (1 - \nu^2)}{E \, t} + C}
+$$
+
+where $\beta$ is the thermal expansion coefficient of water, $\alpha$ that of steel, and $C$ the compressibility of water. The result is typically **2 to 4 bar per °C** for water at 20 to 30 °C. A fall of one degree as the pipe cools at night can drop the pressure by several bar with no leak.
+
+So the acceptance check compares the measured pressure change with the change **predicted from the measured temperature change**. An unexplained loss means a leak, which is then found by sectioning the line, walking the route, or acoustic and tracer methods.
+
+<Callout type="warn">
+A pipeline under test contains large stored energy even with water. People are kept away from the test section, test heads and temporary pipework. Temporary fittings, hoses and valves must be rated for the test pressure, and exposed pipe is barricaded.
+</Callout>
+
+## Water
+
+- **Source and quality.** Clean, low in chlorides and solids. Seawater or sabkha water needs treatment and a short residence time.
+- **Quantity.** A 30 km section of NPS 24 holds about 8000 m³.
+- **Disposal.** Test water, especially with chemicals, needs a permit and a controlled discharge: evaporation ponds, filtration, or transfer to the next section.
+
+<Callout type="aramco">
+Saudi Aramco pressure testing follows SAES-A-004 for general requirements and SAES-L-150 for pipelines. Company practice is a strength test to a high hoop stress, commonly cited as 90 % of SMYS at the lowest point, held for an extended period, followed by a leak test, with test water quality and treatment controlled under SAES-A-007. These figures are from general knowledge: take the pressure, duration and water treatment from the current standards.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §437 | Hydrostatic test at 1.25 × internal design pressure for at least 4 hours; records required. |
+| ASME B31.8 §841.3 | Test pressure and medium by location class; maximum stress during test; records. |
+| API RP 1110 | Recommended practice for pressure testing of steel pipelines: planning, procedure, pressure-volume plots, records. |
+| SAES-A-004 and SAES-L-150 | Aramco general and pipeline pressure testing requirements. |
+
+</Standards>
+
+<Worked title="Test window for an NPS 24 crude line">
+
+**Given:** 610 mm × 12.7 mm, X65 (450 MPa), design pressure 96 bar, ASME B31.4, maximum 95 % SMYS at the low point, water at 25 °C, 30 km section.
+
+**Minimum test pressure:** 1.25 × 96 = **120 bar** at the highest point.
+
+**Maximum test pressure:**
+
+$$
+P = \frac{2 \times 0.95 \times 450 \times 12.7}{610} = 17.8 \text{ MPa} = 178 \text{ bar}
+$$
+
+**Window:** 178 − 120 = 58 bar, equal to 58 × 10.2 = **590 m** of water. One section can span up to 590 m of elevation.
+
+**Temperature sensitivity:** (2.57 × 10⁻⁴ − 2 × 1.17 × 10⁻⁵) / (48.0 × 0.91 / 207 × 10⁹ + 4.6 × 10⁻¹⁰) = 3.5 × 10⁵ Pa/°C, that is **3.5 bar per °C**.
+
+**Volume:** the section holds 8050 m³. Raising it to 120 bar needs about 65 m³ more, or 0.8 % of the fill volume.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "Why is water used for pressure testing rather than air?", options: ["Water is cheaper", "Water stores little energy, so a failure is not explosive", "Air corrodes steel", "Water finds leaks faster"], answer: 1, why: "Compressed gas releases huge energy on failure. Nearly incompressible water does not." },
+  { q: "In a test section on a slope, where is pressure highest?", options: ["At the highest point", "At the lowest point", "At the pump", "The same everywhere"], answer: 1, why: "The water column adds about 1 bar per 10 m of height, so the low point carries the most." },
+  { q: "During the hold, pressure falls 4 bar overnight while pipe temperature falls 1.2 °C. This most likely indicates:", options: ["A large leak", "Normal thermal contraction", "Yielding pipe", "Trapped air"], answer: 1, why: "At about 3.5 bar per °C, a 1.2 °C drop explains a fall of about 4 bar." }
+]} />

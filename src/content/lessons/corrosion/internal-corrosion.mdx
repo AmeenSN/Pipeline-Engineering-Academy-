@@ -1,0 +1,106 @@
+---
+title: Internal corrosion control
+summary: Coating and cathodic protection look after the outside. Inside, corrosion is controlled by removing water, adding chemicals, cleaning with pigs and watching closely.
+order: 4
+minutes: 20
+level: Intermediate
+standards: [NACE SP0106, NACE SP0775, ISO 15156, SAES-L-133]
+outcomes:
+  - Identify where internal corrosion occurs in a pipeline
+  - Describe the main control methods and when each applies
+  - Compare corrosion monitoring techniques
+  - Explain the role of pigging in corrosion control
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## No water, no corrosion
+
+Dry gas and stabilised, dehydrated crude do not corrode steel. Internal corrosion needs **free water** in contact with the pipe wall, carrying a corrosive agent:
+
+- **CO₂**, forming carbonic acid,
+- **H₂S**, corrosive and a cause of cracking,
+- **Oxygen**, mainly in water injection and seawater lines,
+- **Bacteria**, particularly sulphate-reducers under deposits,
+- **Organic acids and chlorides** that make everything worse.
+
+Module M1 showed how to estimate the CO₂ rate and decide between carbon steel and resistant alloy. This lesson covers how a carbon steel line is kept alive.
+
+## Where it happens
+
+Internal corrosion is not uniform. It concentrates where water or solids collect:
+
+- **The bottom of the pipe** (6 o'clock position) in stratified flow.
+- **Low points** and the upward-sloping sections after them, where water pools.
+- **Dead legs:** branches, drains and bypasses with no flow.
+- **Under deposits** of sand, wax, scale or corrosion product, which shield the wall from inhibitor and shelter bacteria.
+- **The top of the pipe** in wet gas lines, where water condenses on the cooler upper wall and inhibitor carried in the liquid cannot reach it.
+- **Welds,** where the root profile disturbs flow.
+
+Velocity matters both ways. Too slow and water and solids settle. Too fast and the flow strips inhibitor films and erodes the wall.
+
+## Control methods
+
+<InfoTabs client:visible title="Internal corrosion control methods" tabs={[
+  { label: "Dehydration", title: "Remove the water", text: "The most effective method wherever it is practical.", rows: [["How", "Glycol or molecular-sieve dehydration of gas; separation and stabilisation of crude"], ["Target", "Water dew point safely below the lowest pipeline temperature"], ["Limits", "Upsets happen: a period of wet gas can deposit water that stays at low points"], ["Used for", "Sales gas and export crude lines"]] },
+  { label: "Inhibitors", title: "Corrosion inhibitors", text: "Chemicals that form a thin protective film on the steel.", rows: [["How", "Continuous injection of a few to tens of parts per million, or periodic batch treatment between pigs"], ["Key number", "Availability: the fraction of time injection is working at the right rate"], ["Limits", "Must reach the wall: ineffective under deposits or at the top of line; can be stripped at high velocity"], ["Selection", "Laboratory tested against the actual fluid, temperature and flow regime"]] },
+  { label: "Pigging", title: "Maintenance pigging", text: "Regular pig runs sweep out water, solids and deposits.", rows: [["How", "Cleaning pigs with brushes or scrapers, run weekly to quarterly depending on the service"], ["Why it matters", "Removes the places where bacteria and under-deposit corrosion start, and spreads inhibitor around the full circumference"], ["Batch treatment", "A slug of inhibitor or biocide is carried between two pigs to coat the whole wall"]] },
+  { label: "Biocides", title: "Biocides", text: "Chemicals that kill or control bacteria.", rows: [["How", "Batch dosing, often alternating two chemistries to avoid resistance"], ["Needs", "Clean pipe: biocide cannot penetrate thick deposits, so it is combined with pigging"], ["Monitoring", "Bacteria counts in fluids and on pig debris"]] },
+  { label: "Oxygen removal", title: "Deaeration and oxygen scavengers", text: "For water injection and seawater systems.", rows: [["How", "Vacuum or gas-stripping deaeration towers, plus chemical scavenger for the last traces"], ["Target", "Dissolved oxygen in the low parts per billion"], ["Why", "Oxygen corrosion of steel in seawater is fast, and oxygen makes every other mechanism worse"]] },
+  { label: "Internal coating", title: "Internal coatings and linings", text: "A barrier on the inside wall.", rows: [["Flow coating", "Thin epoxy applied in the mill to gas pipe: reduces friction and protects in storage, but is not a corrosion barrier at welds"], ["Protective lining", "Thicker epoxy, cement mortar or a pulled-in polyethylene liner for water service; needs a solution at every girth weld"], ["Clad or CRA", "For severe service: see module M1"]] },
+  { label: "Corrosion allowance", title: "Corrosion allowance", text: "Extra wall thickness to be consumed over the design life.", rows: [["How", "Predicted residual rate with controls working, multiplied by design life"], ["Typical", "1.5 to 6 mm"], ["Limit", "It buys time against uniform loss, not against fast pitting"]] },
+]} />
+
+## Monitoring
+
+Control only works if you know it is working. Methods are combined, because each sees something different.
+
+| Method | What it measures | Notes |
+|---|---|---|
+| Weight-loss coupons | Average metal loss over weeks or months | Simple and reliable; slow |
+| Electrical resistance (ER) probes | Cumulative metal loss, continuously | Works in any fluid |
+| Linear polarisation (LPR) probes | Instantaneous rate | Needs a continuous water phase |
+| Fluid sampling | Water content, iron, residual inhibitor, bacteria | Indirect but frequent |
+| Pig debris analysis | Solids, corrosion product, bacteria | Shows what is on the wall |
+| Ultrasonic wall thickness | Actual wall at fixed points | Direct but local |
+| In-line inspection | Wall loss over the whole pipeline | The definitive check, every few years |
+
+Coupons and probes must be placed where corrosion is expected: at the bottom of the pipe and at low points, not wherever access is easiest.
+
+<Callout type="field">
+A well-designed inhibition system fails in mundane ways: an empty chemical tank, a blocked injection quill, a pump left off after maintenance. Tracking inhibitor availability as a key performance indicator finds these before the wall does.
+</Callout>
+
+## Design for corrosion control
+
+Decisions at the design stage make operation easier:
+
+- Make the line **piggable**, with traps sized for inspection tools.
+- Avoid **dead legs** and unnecessary low points.
+- Provide **injection points, sampling points and probe fittings** at the inlet and at the locations where water is predicted to collect.
+- Choose a **velocity** range that keeps solids moving without stripping films.
+- Specify sour-service or HIC-resistant pipe where H₂S is present.
+
+<Callout type="aramco">
+Saudi Aramco's SAES-L-133 defines when internal corrosion protection is required for pipelines and which methods apply by service, and SAES-L-420 requires scraper traps so that lines can be cleaned and inspected. Sour, wet crude and gas systems are the main internal corrosion concern.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| NACE SP0106 | Control of internal corrosion in steel pipelines and piping systems. |
+| NACE SP0775 | Preparation, installation and analysis of corrosion coupons. |
+| NACE SP0206 / SP0110 / SP0208 | Internal corrosion direct assessment for dry gas, wet gas and liquid lines. |
+| ASME B31.4 §461 and B31.8 §864 | Internal corrosion control: consideration in design, mitigation and monitoring. |
+| SAES-L-133 | Aramco corrosion protection requirements. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Where is internal corrosion most likely in a wet multiphase line?", options: ["Evenly all round the pipe", "At the bottom of the pipe and at low points", "Only at valves", "At the highest point"], answer: 1, why: "Water and solids settle to the bottom and collect at low points." },
+  { q: "Why does top-of-line corrosion escape normal inhibition?", options: ["It only happens offshore", "Condensed water at the top of the pipe is not reached by inhibitor carried in the liquid phase", "The top of the pipe is hotter", "Inhibitor is too heavy"], answer: 1, why: "Inhibitor travels in the liquid at the bottom, while fresh condensate forms on the upper wall." },
+  { q: "What does maintenance pigging contribute to corrosion control?", options: ["It replaces inhibitor", "It removes water and deposits and spreads chemicals over the whole wall", "It measures wall thickness", "It dries the gas"], answer: 1, why: "Clean pipe lets inhibitor and biocide reach the steel and removes shelters for bacteria." }
+]} />

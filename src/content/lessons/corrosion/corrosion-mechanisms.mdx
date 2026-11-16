@@ -1,0 +1,112 @@
+---
+title: Corrosion mechanisms
+summary: Corrosion is an electrical process, and understanding the circuit explains every control method that follows. Learn the corrosion cell and the forms it takes on pipelines.
+order: 1
+minutes: 25
+level: Foundation
+standards: [NACE SP0169, ISO 15589-1, SAES-L-133, SAES-X-400]
+outcomes:
+  - Describe the four parts of a corrosion cell
+  - Predict which metal corrodes in a galvanic couple
+  - Recognise the main forms of external and internal pipeline corrosion
+  - Explain how coating and cathodic protection break the cell
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import GalvanicSeries from "@/components/interactives/GalvanicSeries.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## Steel wants to be rust
+
+Iron is found in nature as oxide ore. Making steel puts energy into it, and corrosion is that energy being released as the metal returns to oxide. It cannot be stopped, only slowed to a rate that does not matter over the design life.
+
+## The corrosion cell
+
+Corrosion of buried or wetted steel needs four things at once:
+
+1. **An anode**, where metal dissolves: iron atoms leave the surface as ions, releasing electrons.
+2. **A cathode**, where those electrons are consumed, usually by reducing oxygen or hydrogen ions.
+3. **A metallic path** carrying electrons from anode to cathode. On a pipeline this is the pipe wall itself.
+4. **An electrolyte** carrying ions between them: moist soil, groundwater, or water inside the pipe.
+
+Remove any one of the four and corrosion stops. Every control method does exactly that:
+
+- **Coating** separates the steel from the electrolyte.
+- **Cathodic protection** forces the whole pipe surface to be a cathode.
+- **Isolation joints** break the metallic path.
+- **Dehydration** removes the electrolyte from inside the pipe.
+
+## Why anodes and cathodes form
+
+Different points on the same pipe can have slightly different electrical potentials, and that difference drives current. Causes include:
+
+- **Different metals** connected together (a galvanic couple).
+- **New pipe joined to old pipe:** the bright new steel is anodic to the old.
+- **Different soils:** steel in clay is anodic to steel in sand.
+- **Different oxygen levels:** the bottom of the pipe on undisturbed soil is anodic to the top in aerated backfill.
+- **Mill scale, scratches and welds** on the same surface.
+
+<GalvanicSeries client:visible />
+
+Try this: pair clean carbon steel with copper (as in a grounding system) and note which corrodes. Then pair steel with magnesium or zinc to see the principle of a sacrificial anode. Finally try clean steel against rusted steel, the "new pipe next to old pipe" case.
+
+<Callout type="warn">
+A small anode connected to a large cathode is the worst combination. All the corrosion current concentrates on the small area. That is why a tiny coating defect on a well-coated pipe connected to bare copper grounding or to reinforced concrete can perforate quickly.
+</Callout>
+
+## Forms of pipeline corrosion
+
+<InfoTabs client:visible title="Corrosion types on pipelines" tabs={[
+  { label: "External, general", title: "External corrosion in soil", text: "Occurs at coating defects where cathodic protection does not reach or is inadequate.", rows: [["Driven by", "Soil moisture, salts, oxygen differences"], ["Worst in", "Wet, low-resistivity, saline soil such as sabkha"], ["Appearance", "Pits and broad metal loss under disbonded or damaged coating"], ["Control", "Coating plus cathodic protection"]] },
+  { label: "Pitting", title: "Pitting", text: "Localised attack that penetrates the wall while most of the surface is untouched.", rows: [["Why it matters", "A small loss of metal can cause a leak; hard to detect"], ["Promoted by", "Chlorides, deposits, small anodes with large cathodes"], ["Control", "Clean surfaces, inhibitors, cathodic protection, alloy choice"]] },
+  { label: "MIC", title: "Microbiologically influenced corrosion", text: "Bacteria create corrosive conditions on the steel surface.", rows: [["Main culprit", "Sulphate-reducing bacteria, which thrive without oxygen in wet clay, under disbonded coating and under deposits inside the pipe"], ["Appearance", "Deep, cup-shaped pits, often with black iron sulphide"], ["Control", "Biocides and pigging inside; good coating adhesion and more negative CP potentials outside"]] },
+  { label: "Sweet (CO₂)", title: "Internal CO₂ corrosion", text: "Carbon dioxide dissolves in water to form carbonic acid.", rows: [["Where", "Wet gas and multiphase lines, at the bottom of the pipe and at low points"], ["Appearance", "Mesa-type attack with sharp-edged flat-bottomed pits, or grooving"], ["Control", "Dehydration, inhibitors, pH control, corrosion allowance, CRA"]] },
+  { label: "Sour (H₂S)", title: "Internal H₂S corrosion and cracking", text: "Hydrogen sulphide corrodes steel and, more seriously, charges it with hydrogen.", rows: [["Damage forms", "Sulphide stress cracking in hard zones, hydrogen-induced cracking and blistering along inclusions, pitting under iron sulphide scale"], ["Control", "Sour-service steel with hardness limits and HIC resistance, inhibitors, dehydration"]] },
+  { label: "SCC", title: "External stress corrosion cracking", text: "Colonies of fine cracks grow on the outside surface under disbonded coating.", rows: [["Needs together", "Tensile stress, a susceptible steel surface and a specific environment trapped under the coating"], ["Two types", "High-pH (intergranular) and near-neutral-pH (transgranular)"], ["Risk factors", "Tape and coal-tar coatings, high stress, elevated temperature downstream of compressors"], ["Control", "FBE or 3LPE coatings, good surface preparation, crack-detection inspection"]] },
+  { label: "Stray current", title: "Stray current and interference", text: "Current from an outside source enters the pipe at one place and leaves at another.", rows: [["Sources", "DC rail systems, another operator's cathodic protection, HVDC electrodes, welding; AC from power lines"], ["Damage", "Rapid metal loss where current leaves the pipe"], ["Control", "Bonds, drainage, extra anodes, grounding with decouplers (see the interference lesson)"]] },
+  { label: "Erosion", title: "Erosion and erosion-corrosion", text: "Fast flow, sand or droplets remove metal or its protective film.", rows: [["Where", "Bends, tees, downstream of chokes and restrictions"], ["Control", "Velocity limits, long-radius bends, sand management, harder or thicker material"]] },
+]} />
+
+## How fast
+
+Corrosion rate is expressed in millimetres per year. In soil, unprotected steel typically loses 0.02 to 0.2 mm/yr on average, but pits can grow several times faster, and stray current or MIC can exceed 1 mm/yr. Internal rates in wet CO₂ service can reach several mm/yr without control (module M1).
+
+The driving factors in soil are **resistivity** (low is corrosive), moisture, chloride and sulphate content, pH and bacteria. The soil resistivity survey (module M3) is the first indicator:
+
+| Soil resistivity | Corrosivity |
+|---|---|
+| Below 10 ohm·m | Severe (sabkha, saline clay) |
+| 10 to 50 ohm·m | Corrosive |
+| 50 to 100 ohm·m | Moderate |
+| Above 100 ohm·m | Mild (dry sand, rock) |
+
+## The control strategy
+
+Pipelines are protected by **two independent barriers** used together:
+
+- **Coating** is the primary barrier. It isolates more than 99 % of the surface.
+- **Cathodic protection** protects the steel at the small percentage of defects every coating has.
+
+Each covers the other's weakness. Coating alone always has holidays. CP alone on bare pipe would need enormous current. Together they are cheap and effective. Internal corrosion is controlled separately (later lesson).
+
+<Callout type="aramco">
+SAES-L-133 sets Saudi Aramco's corrosion protection requirements for pipelines, with coatings selected under the SAES-H series and cathodic protection under SAES-X-400. The sabkha and coastal soils of the Eastern Province are among the most corrosive anywhere, which is reflected in the company's coating and CP requirements.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| NACE SP0169 | Control of external corrosion on underground or submerged metallic piping systems: coating, CP criteria and monitoring. |
+| ISO 15589-1 | Cathodic protection of on-land pipelines. |
+| ASME B31.4 Chapter VIII and B31.8 Chapter VI | Corrosion control: external coating, cathodic protection, internal corrosion and monitoring. |
+| SAES-L-133 | Aramco corrosion protection requirements for pipelines. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Which is NOT one of the four parts of a corrosion cell?", options: ["Anode", "Electrolyte", "Insulator", "Metallic path"], answer: 2, why: "The cell needs an anode, a cathode, a metallic path and an electrolyte. An insulator would break it." },
+  { q: "Steel pipe is connected to a copper grounding grid in wet soil. What happens?", options: ["The copper corrodes", "The steel corrodes faster", "Nothing", "Both are protected"], answer: 1, why: "Steel is more active than copper, so it becomes the anode of the couple." },
+  { q: "Why are coating and cathodic protection used together?", options: ["Regulations require two contractors", "Coating has defects that CP protects, and coating keeps CP current small", "CP makes the coating stick", "Coating powers the CP system"], answer: 1, why: "Each barrier covers the weakness of the other, making protection reliable and economical." }
+]} />

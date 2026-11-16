@@ -1,0 +1,138 @@
+---
+title: External pipeline coatings
+summary: The coating is the pipeline's first and most important defence against corrosion. Compare 3LPE, 3LPP, FBE and the field joint systems, and learn how coating is applied and tested.
+order: 2
+minutes: 25
+level: Intermediate
+standards: [ISO 21809-1, ISO 21809-2, ISO 21809-3, SAES-H-002]
+outcomes:
+  - List the properties a pipeline coating must have
+  - Compare the main mainline coating systems
+  - Describe plant application and its quality tests
+  - Select a compatible field joint coating
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import LayerExplorer from "@/components/interactives/LayerExplorer.tsx";
+
+## What a coating must do
+
+A coating works by keeping water, oxygen and ions away from the steel, and by being an electrical insulator so that cathodic protection current is needed only at defects. To do that for fifty years it needs:
+
+- **Adhesion** to steel that survives heat and moisture.
+- **Low permeability** to water and oxygen.
+- **High electrical resistance.**
+- **Resistance to cathodic disbondment:** the alkaline conditions CP creates at a holiday must not lift the coating around it.
+- **Mechanical toughness:** impact, abrasion, indentation and bending during handling, field bending and backfill.
+- **Temperature stability** at the operating temperature.
+- **Resistance to soil stress,** chemicals, bacteria and, during storage, sunlight.
+- **Failure that does not shield.** If it disbonds, CP current should still be able to reach the steel.
+
+## The main systems
+
+<LayerExplorer client:visible title="Mainline coating systems" top="soil" bottom="steel pipe wall" items={[
+  { label: "3LPE", title: "Three-layer polyethylene", layers: [
+    { name: "Polyethylene outer layer, 2 to 4 mm", h: 44, color: "text" },
+    { name: "Copolymer adhesive, about 0.2 mm", h: 8, color: "accent" },
+    { name: "Fusion-bonded epoxy primer, 0.15 to 0.3 mm", h: 10, color: "ok" },
+    { name: "Blast-cleaned steel", h: 22, color: "steel", hatch: true },
+  ], rows: [["Temperature", "Up to about 80 °C"], ["Strengths", "Excellent mechanical protection and low permeability; very low CP current demand"], ["Limits", "If it disbonds, the thick polyethylene can shield the steel from CP"], ["Typical use", "The most common choice worldwide for buried transmission lines, and for rocky ground"]] },
+  { label: "3LPP", title: "Three-layer polypropylene", layers: [
+    { name: "Polypropylene outer layer, 2 to 4 mm", h: 44, color: "muted" },
+    { name: "Copolymer adhesive", h: 8, color: "accent" },
+    { name: "Fusion-bonded epoxy primer", h: 10, color: "ok" },
+    { name: "Blast-cleaned steel", h: 22, color: "steel", hatch: true },
+  ], rows: [["Temperature", "Up to about 110 to 140 °C"], ["Strengths", "Harder and more heat resistant than polyethylene"], ["Limits", "More costly; brittle at low temperature; field joints need matched systems"], ["Typical use", "Hot pipelines and flowlines, offshore and HDD"]] },
+  { label: "FBE", title: "Fusion-bonded epoxy (single layer)", layers: [
+    { name: "Epoxy film, 0.35 to 0.5 mm", h: 14, color: "ok" },
+    { name: "Blast-cleaned steel", h: 22, color: "steel", hatch: true },
+  ], rows: [["Temperature", "Up to about 85 to 110 °C by grade"], ["Strengths", "Outstanding adhesion; does not shield CP if it fails; simple field joints with the same material"], ["Limits", "Thin, so easily damaged in handling and rocky backfill; absorbs some moisture; degrades in sunlight during storage"], ["Typical use", "Widely used in North America and the Middle East, with careful handling and padding"]] },
+  { label: "Dual FBE", title: "Dual-layer FBE", layers: [
+    { name: "Abrasion-resistant epoxy overcoat, 0.4 to 0.75 mm", h: 20, color: "brand" },
+    { name: "Corrosion-protection FBE, 0.25 to 0.4 mm", h: 12, color: "ok" },
+    { name: "Blast-cleaned steel", h: 22, color: "steel", hatch: true },
+  ], rows: [["Temperature", "As FBE"], ["Strengths", "FBE corrosion performance with much better impact and gouge resistance"], ["Typical use", "HDD and bored crossings, rocky terrain, bends"]] },
+  { label: "Concrete over coat", title: "Concrete weight coating over anti-corrosion coating", layers: [
+    { name: "Reinforced concrete, 40 to 150 mm", h: 50, color: "steel" },
+    { name: "3LPE or FBE corrosion coating (rough-coated for grip)", h: 12, color: "text" },
+    { name: "Blast-cleaned steel", h: 22, color: "steel", hatch: true },
+  ], rows: [["Purpose", "Negative buoyancy and mechanical protection, not corrosion protection"], ["Note", "The reinforcement must not touch the pipe"], ["Typical use", "Sabkha, wadi and river crossings, offshore"]] },
+  { label: "Legacy", title: "Older systems: coal tar enamel, asphalt and tape", layers: [
+    { name: "Outer wrap (felt or glass fibre)", h: 10, color: "muted" },
+    { name: "Coal tar or asphalt enamel 3 to 5 mm, or cold-applied tape", h: 34, color: "text" },
+    { name: "Primer", h: 6, color: "accent" },
+    { name: "Wire-brushed or blasted steel", h: 22, color: "steel", hatch: true },
+  ], rows: [["Status", "No longer applied to new transmission lines, but found on thousands of kilometres of existing pipe"], ["Problems", "Soil stress wrinkling, disbondment and CP shielding (tape); health hazards in application (coal tar)"], ["Integrity link", "Disbonded tape is strongly associated with stress corrosion cracking"]] },
+]} foot="Thicknesses and temperature limits are typical. Each product is qualified to its own rating." />
+
+## How coating is applied
+
+Mainline coating is applied in a plant, where conditions can be controlled:
+
+1. **Pre-heat and dry** the pipe.
+2. **Abrasive blast** to near-white metal with an angular profile of roughly 50 to 100 microns. This is the most important step: adhesion depends on it.
+3. **Inspect and clean** the surface; remove dust; check for soluble salts, with a phosphoric or chromate wash where specified.
+4. **Heat** the pipe to about 200 to 240 °C by induction.
+5. **Spray FBE powder** electrostatically. It melts, flows and cures on the hot steel.
+6. For three-layer systems, **extrude adhesive and polyolefin** over the still-reactive epoxy, by side-wrap or crosshead die.
+7. **Quench** with water.
+8. **Inspect:** 100 % holiday test, thickness, and visual.
+9. **Cut back** the coating at the ends for welding.
+
+## Quality tests
+
+- **Holiday detection** on every pipe.
+- **Thickness** of each layer.
+- **Adhesion:** peel test for three-layer systems; knife or pull-off for FBE.
+- **Cathodic disbondment** test: a hole is made in the coating and the sample is held under CP at elevated temperature. The radius of disbonding must be small.
+- **Impact** and **indentation** resistance.
+- **Flexibility:** a strip is bent, simulating field bending.
+- **Hot-water soak** adhesion and **degree of cure** (thermal analysis) for FBE.
+
+## Field joints, bends and repairs
+
+The coating system is only as good as its field joints (module M8). Selection rule: the joint coating must be **compatible** with the mainline coating and rated for the same temperature.
+
+| Mainline coating | Usual field joint coating |
+|---|---|
+| 3LPE | Heat-shrink sleeve with epoxy primer |
+| 3LPP | Polypropylene sleeve, flame-sprayed or injection-moulded PP |
+| FBE | FBE applied by field machine, or liquid epoxy |
+| Any, on bends and fittings | Liquid epoxy or polyurethane, or FBE in a plant |
+
+Damage found by holiday testing is repaired with melt sticks, patches or liquid epoxy to an approved procedure, then retested.
+
+## Selecting a coating
+
+Consider, in order:
+
+1. **Operating temperature** including upsets.
+2. **Terrain and installation method:** rock, HDD and offshore need toughness.
+3. **Soil corrosivity and water table.**
+4. **Field bending** requirements.
+5. **Compatibility with CP** and with concrete coating if used.
+6. **Availability** of qualified applicators near the project.
+7. **Field joint system** that completes the package.
+
+<Callout type="aramco">
+SAES-H-002 lists Saudi Aramco's approved protective coating systems (APCS) for external pipeline coating, each tied to a materials specification and a maximum service temperature. Both FBE and three-layer systems are used, with selection depending on temperature and burial condition. Check the current approved system for your service.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ISO 21809-1 | Three-layer polyolefin coatings (3LPE and 3LPP): materials, application, tests. |
+| ISO 21809-2 | Single-layer fusion-bonded epoxy coatings. |
+| ISO 21809-3 | Field joint coatings. |
+| CSA Z245.20 / Z245.21 | Widely referenced plant-applied FBE and polyethylene coating standards. |
+| SAES-H-002 | Aramco coating selection for pipelines. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Which step has the most influence on coating adhesion?", options: ["Water quench", "Abrasive blast cleaning of the steel", "End cutback", "Stencilling"], answer: 1, why: "A clean, correctly profiled surface is the foundation of adhesion for every coating." },
+  { q: "An advantage of FBE over thick polyolefin coatings is that:", options: ["It is tougher", "It does not shield cathodic protection if it fails", "It needs no surface preparation", "It tolerates rocks"], answer: 1, why: "A thin, slightly permeable film lets CP current reach the steel beneath a disbonded area." },
+  { q: "The usual field joint coating for 3LPE pipe is:", options: ["Bare steel", "Heat-shrink sleeve with epoxy primer", "Coal tar tape", "Concrete"], answer: 1, why: "A polyethylene shrink sleeve over an epoxy primer reproduces the three-layer structure at the joint." }
+]} />

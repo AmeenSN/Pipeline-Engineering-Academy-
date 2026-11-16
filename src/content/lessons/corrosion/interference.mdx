@@ -1,0 +1,122 @@
+---
+title: AC/DC interference
+summary: Pipelines share corridors with power lines, railways and other protected pipelines. Stray electrical current from these neighbours can corrode a pipe quickly or make it unsafe to touch.
+order: 5
+minutes: 20
+level: Advanced
+standards: [NACE SP0177, ISO 18086, EN 50162, SAES-X-400]
+outcomes:
+  - Distinguish DC stray current from AC interference
+  - Explain the three AC coupling mechanisms
+  - Assess AC corrosion risk from voltage and soil resistivity
+  - Describe mitigation for each kind of interference
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import AcInterference from "@/components/interactives/AcInterference.tsx";
+
+## Borrowed current
+
+A coated steel pipeline is a long, well-insulated conductor lying in the ground. It picks up electrical energy from neighbouring systems easily. Where that current **enters** the pipe, the steel is protected. Where it **leaves** to return to its source, metal is lost.
+
+## DC stray current
+
+Sources of direct current in the ground:
+
+- **Another pipeline's cathodic protection.** Current from a foreign ground bed is picked up by your pipe where it passes near the bed, travels along it, and discharges where your pipe crosses or approaches the foreign pipeline.
+- **DC traction:** metro, tram and some railway systems return current through the rails, and part of it leaks into the ground.
+- **HVDC transmission electrodes** during monopolar operation.
+- **Mining and welding** equipment.
+
+One ampere of DC leaving steel removes about 9 kg of metal a year. Concentrated at a single coating holiday, that perforates the wall in months.
+
+**Detecting it:** potential surveys with the foreign system switched on and off, data loggers at test posts to catch fluctuating potentials from traction systems, and current measurements along the pipe.
+
+**Mitigation:**
+
+- **Resistive bond** between the two structures at the discharge point, so current returns through a wire instead of through the soil.
+- **Drainage bond with a diode** back to a traction system's negative return.
+- **Additional local anodes** at the discharge area.
+- **Coating in top condition** at crossings, and physical separation from foreign ground beds.
+- **Coordination:** operators notify each other of new CP installations and test jointly.
+
+## AC interference
+
+High-voltage overhead power lines are frequently routed in the same corridors as pipelines. Three mechanisms transfer AC energy to the pipe:
+
+- **Inductive coupling.** The alternating magnetic field around the power conductors induces a voltage along a parallel pipeline, like a transformer. It acts continuously in normal operation and grows with parallel length, load current and how well the pipe is coated.
+- **Conductive (resistive) coupling.** During a ground fault or lightning strike, large current enters the earth at a tower and raises the soil potential around it. The voltage across the coating can puncture it or arc to the pipe.
+- **Capacitive coupling.** Affects pipe above ground and insulated from earth, such as a welded string on skids during construction.
+
+Modern coatings make this worse, not better. A pipe with excellent coating has almost no natural path to earth, so induced voltage builds up along it.
+
+Two separate concerns follow:
+
+**Safety.** Touch voltage at valves, test posts and exposed pipe. Limits of about 15 V in steady state are widely used, with much higher short-duration limits under fault conditions.
+
+**AC corrosion.** AC discharging at small coating holidays can corrode steel even when cathodic protection criteria are met. The risk indicator is the AC current density at a small holiday:
+
+$$
+J_{ac} = \frac{8 \, V_{ac}}{\rho \, \pi \, d}
+$$
+
+with $V_{ac}$ the pipe-to-earth AC voltage, $\rho$ the soil resistivity and $d$ the holiday diameter (0.0113 m for the standard 1 cm² holiday). Low-resistivity soil is the dangerous case.
+
+<AcInterference client:visible />
+
+Try this: hold the voltage at 8 V and reduce the soil resistivity from 100 to 5 ohm·m. The same voltage that is harmless in dry sand is a serious corrosion risk in sabkha.
+
+## AC mitigation
+
+- **Grounding** the pipeline at intervals to bring the voltage down: zinc ribbon laid in the trench beside the pipe, or copper grounding conductors.
+- **DC decouplers** between pipe and grounding. These solid-state devices pass AC freely but block DC, so the grounding does not drain the cathodic protection.
+- **Gradient control mats** buried around valves and test posts, bonded to the pipe, so that a person standing there is at the same potential as what they touch.
+- **Dead-front test posts** and insulated enclosures.
+- **Separation** from tower footings and substation grounds, and crossing power lines at right angles.
+- **Construction precautions:** temporary grounding of the welded string, bonding across joints before cutting, and safe working distances for cranes under conductors.
+- **Monitoring:** AC voltage logging and AC coupons that measure actual current density.
+
+<Callout type="warn">
+Induced AC on a pipe string lying on skids parallel to a power line can deliver a dangerous shock. Ground the string, and bond across any gap before a worker bridges it with their hands.
+</Callout>
+
+An **AC interference study** is carried out at design stage wherever a pipeline runs parallel to a high-voltage line for more than a few hundred metres, modelling steady-state and fault conditions and sizing the mitigation.
+
+<Callout type="aramco">
+Saudi Aramco pipelines commonly share corridors with power transmission lines. SAES-X-400 addresses interference and the required mitigation and monitoring, and Aramco electrical safety standards set separation and grounding requirements. Low-resistivity sabkha makes AC corrosion a particular concern.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| NACE SP0177 | Mitigation of AC and lightning effects on metallic structures and corrosion control systems: safety limits and methods. |
+| ISO 18086 / NACE SP21424 | AC corrosion: evaluation criteria based on AC voltage and current density, and mitigation. |
+| EN 50162 | Protection against corrosion by stray current from DC systems. |
+| NACE SP0169 / ISO 15589-1 | Interference testing between cathodic protection systems. |
+
+</Standards>
+
+<Worked title="AC corrosion risk in sabkha">
+
+**Given:** 8 V AC measured on the pipeline, soil resistivity 5 ohm·m.
+
+$$
+J_{ac} = \frac{8 \times 8}{5 \times \pi \times 0.0113} = 361 \text{ A/m}^2
+$$
+
+Far above 100 A/m²: AC corrosion is expected at small holidays, even though 8 V is below the 15 V touch limit.
+
+**In dry sand at 200 ohm·m** the same 8 V gives 9 A/m²: low risk.
+
+**Mitigation target:** to get below 30 A/m² in the sabkha, the voltage must come down to about 0.7 V, which needs closely spaced grounding through decouplers.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "Stray DC damages a pipeline where the current:", options: ["Enters the pipe", "Leaves the pipe", "Flows along the pipe", "Is zero"], answer: 1, why: "Metal is lost at the point of discharge to the soil. The pick-up area is actually protected." },
+  { q: "Which coupling mechanism acts continuously under normal power line operation?", options: ["Conductive", "Inductive", "Lightning", "None"], answer: 1, why: "The magnetic field of the load current induces a steady AC voltage along a parallel pipeline." },
+  { q: "What does a DC decoupler do?", options: ["Blocks AC and passes DC", "Passes AC to ground while blocking DC", "Measures soil resistivity", "Powers the rectifier"], answer: 1, why: "It lets induced AC drain to earth without short-circuiting the cathodic protection current." }
+]} />

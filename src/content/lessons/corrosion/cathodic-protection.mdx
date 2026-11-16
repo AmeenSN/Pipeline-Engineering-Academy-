@@ -1,0 +1,136 @@
+---
+title: Cathodic protection
+summary: Cathodic protection turns the whole pipeline into a cathode so that corrosion happens on anodes you can afford to lose. Learn the two system types, the protection criteria and a first sizing.
+order: 3
+minutes: 30
+level: Intermediate
+standards: [ISO 15589-1, NACE SP0169, SAES-X-400]
+outcomes:
+  - Explain how cathodic protection stops corrosion
+  - Compare sacrificial anode and impressed current systems
+  - Apply the −850 mV protection criterion and the over-protection limit
+  - Estimate current demand and the number of anodes
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import CathodicProtection from "@/components/interactives/CathodicProtection.tsx";
+
+## The idea
+
+In a corrosion cell, metal is lost only at the anode. If enough direct current is made to flow **onto** the pipe from the soil at every point, the entire pipe surface becomes a cathode, and it stops corroding. The corrosion still happens, but on separate anodes installed for the purpose.
+
+The pipeline's coating reduces the exposed steel to a tiny fraction of the surface, so the current needed is small.
+
+## Two ways to supply the current
+
+**Sacrificial (galvanic) anodes.** Blocks of a more active metal, magnesium or zinc on land, are buried near the pipe and wired to it. The natural voltage difference between anode and steel drives the current. The anode corrodes away over the years.
+
+- No power supply, almost no maintenance, little interference with neighbours.
+- Low driving voltage (about 0.7 V for magnesium against protected steel), so current output is small and falls quickly as soil resistivity rises.
+- Suited to well-coated short lines, low-resistivity soil, and local "hot spots".
+
+**Impressed current (ICCP).** A transformer-rectifier converts mains or solar power to DC. Its positive terminal feeds a **ground bed** of inert anodes (high-silicon iron, mixed metal oxide or graphite) in coke backfill, and its negative terminal connects to the pipe.
+
+- High, adjustable output: one station can protect tens of kilometres of well-coated pipe.
+- Needs power, monitoring and maintenance.
+- Can interfere with neighbouring buried structures, and can over-protect near the station.
+- The standard choice for long transmission pipelines.
+
+Ground beds are either **shallow** (anodes in a line a few metres deep, 50 to 300 m from the pipe) or **deep well** (anodes in a borehole 30 to 100 m or more deep), which need less land and spread current more evenly.
+
+<CathodicProtection client:visible />
+
+Try this: with the default 3LPE coating, compare the current demand with "aged tape" and "bare pipe". Then switch to magnesium anodes and raise the soil resistivity to see their output collapse.
+
+## How do you know it is working
+
+You cannot see the current, so protection is judged by **pipe-to-soil potential**: the voltage between the pipe and a copper / copper-sulphate reference electrode (CSE) placed on the ground above it.
+
+The main criterion: a polarised potential of **−850 mV or more negative** versus CSE.
+
+Two details matter:
+
+- **IR drop.** While current is flowing, the reading includes a voltage drop through the soil that makes the pipe look better protected than it is. The true (polarised) potential is measured an instant after switching the current off: the **instant-off** potential.
+- **Alternative criterion:** at least 100 mV of polarisation shift from the native potential.
+
+More is not better. Potentials more negative than about **−1200 mV** instant-off generate hydrogen at the steel surface, which can disbond the coating and embrittle high-strength steels.
+
+## What goes on the pipeline
+
+- **Test posts** every 1 to 2 km and at every crossing, casing and isolation joint, with wires thermit-welded or pin-brazed to the pipe.
+- **Isolation joints** at each end and at stations, separating the protected pipeline from grounded plant, with surge protection across them.
+- **Bonds** to parallel and crossing pipelines where needed.
+- **Coupons** (small bare steel samples wired to the pipe) at test posts, for accurate off-potential readings.
+- **Remote monitoring units** on rectifiers and key test posts.
+- **Temporary anodes** during construction if the permanent system will not be energised for months.
+
+## Estimating current demand
+
+$$
+I = A \times f_c \times i
+$$
+
+- $A$ is the pipe's external surface area.
+- $f_c$ is the coating breakdown factor: the fraction of the surface effectively bare. About 0.5 to 1 % for new three-layer coating, rising to several percent at end of life; much higher for old coatings.
+- $i$ is the current density bare steel needs in that soil, typically 10 to 30 mA/m², and more in saline, low-resistivity ground.
+
+Design uses the **end-of-life** breakdown factor, since coatings degrade.
+
+## Monitoring in service
+
+- **Rectifier readings** (voltage and current) monthly or by remote monitoring.
+- **Test post potentials** annually.
+- **Close-interval potential survey (CIPS):** on and off potentials every metre or so along the line, every few years. Finds under-protected stretches.
+- **DCVG or ACVG survey:** locates and sizes individual coating defects.
+- **Interference tests** with neighbouring systems.
+
+<Callout type="aramco">
+SAES-X-400 covers cathodic protection of buried Saudi Aramco pipelines, including the protection criteria, minimum design current densities by soil type (with high values for sabkha), anode bed types and test station spacing. Impressed current is the norm for cross-country lines, often with deep anode beds. Verify design current densities in the current revision.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ISO 15589-1 | Cathodic protection of on-land pipelines: criteria, design current densities, coating breakdown factors, monitoring. |
+| NACE SP0169 | Protection criteria (−850 mV polarised, or 100 mV shift), design, installation and survey requirements. |
+| NACE SP0286 | Electrical isolation of cathodically protected pipelines. |
+| SAES-X-400 | Aramco cathodic protection of buried pipelines. |
+
+</Standards>
+
+<Worked title="Current demand for a 50 km NPS 24 pipeline">
+
+**Given:** OD 0.61 m, 50 km, 3LPE coating, soil resistivity 50 ohm·m, end-of-life coating breakdown 3 %, current density 20 mA/m².
+
+**Surface area:** π × 0.61 × 50 000 = 95 800 m².
+
+**Current demand:**
+
+$$
+I = 95\,800 \times 0.03 \times 0.020 = 57 \text{ A}
+$$
+
+With new coating at 1 % breakdown, the initial demand is only 19 A.
+
+**Sacrificial option:** one 14.5 kg magnesium anode in 50 ohm·m soil has a resistance of about 18 ohm and delivers about 40 mA. Supplying 57 A would take some 1400 anodes. Not practical.
+
+**Impressed current:** two rectifier stations rated about 50 A each, with deep anode beds, give the required current with spare capacity and overlap.
+
+</Worked>
+
+## Common mistakes
+
+- Judging protection from "on" potentials, which include IR drop.
+- Forgetting isolation: a pipeline shorted to plant grounding loses its CP to the whole plant.
+- Designing for new-coating current demand instead of end-of-life.
+- Over-protecting near the rectifier to reach the far end of the line.
+- Leaving a new pipeline unprotected for a long construction period in corrosive soil.
+
+<Quiz client:visible questions={[
+  { q: "The main protection criterion for buried steel is a polarised potential of:", options: ["−500 mV vs CSE", "−850 mV vs CSE or more negative", "+850 mV vs CSE", "0 mV"], answer: 1, why: "−850 mV versus a copper / copper-sulphate electrode, measured free of IR drop, is the standard criterion." },
+  { q: "Why is the potential measured with the current momentarily off?", options: ["To save electricity", "To remove the IR drop error in the soil", "To protect the meter", "To let the anodes cool"], answer: 1, why: "With current flowing, the soil voltage drop makes the reading more negative than the true polarised potential." },
+  { q: "Why are magnesium anodes unsuitable for a long pipeline in high-resistivity soil?", options: ["They are poisonous", "Their low driving voltage gives very little current through resistive soil", "They cause over-protection", "They need a rectifier"], answer: 1, why: "Output is driving voltage divided by resistance, and the driving voltage is fixed at well under a volt." }
+]} />
