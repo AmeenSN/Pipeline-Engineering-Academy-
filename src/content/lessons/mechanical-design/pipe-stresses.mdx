@@ -1,0 +1,132 @@
+---
+title: Hoop, longitudinal and combined stress
+summary: A buried pipeline carries more than hoop stress. Learn where longitudinal stress comes from, why hot buried lines go into compression, and how the codes combine the two.
+order: 2
+minutes: 30
+level: Intermediate
+standards: [ASME B31.4, ASME B31.8, SAES-L-410]
+outcomes:
+  - Tell restrained pipe from unrestrained pipe and say why it matters
+  - Calculate longitudinal stress from pressure and temperature change
+  - Combine stresses with the Von Mises and Tresca criteria
+  - Explain why a higher tie-in temperature helps a hot pipeline
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import StressExplorer from "@/components/interactives/StressExplorer.tsx";
+
+## Two stresses at every point
+
+Take a small square of pipe wall. Pressure stretches it around the circumference (**hoop stress**, $\sigma_h$). At the same time the pipe is pulled or pushed along its axis (**longitudinal stress**, $\sigma_L$). Hoop stress depends only on pressure and geometry. Longitudinal stress depends on whether the pipe is free to move.
+
+## Restrained or unrestrained?
+
+**Unrestrained pipe** can change length. Examples are above-ground pipe with expansion loops, and the last stretch of a buried line as it comes out of the ground. Pressure on closed ends and elbows pulls the pipe axially:
+
+$$
+\sigma_L = \frac{P D}{4 t} = \frac{\sigma_h}{2}
+$$
+
+**Restrained pipe** cannot change length. A long buried pipeline is held by soil friction, so two things happen:
+
+- **Poisson effect.** Hoop tension makes the pipe want to shorten. The soil stops it, which leaves an axial tension of $\nu \sigma_h$ (about 30 % of the hoop stress).
+- **Thermal effect.** A pipe that warms by $\Delta T$ wants to grow by $\alpha \Delta T$ per unit length. The soil stops that too, which creates compression of  \alpha \Delta T$.
+
+$$
+\sigma_L = \nu \, \sigma_h - E \, \alpha \, (T_2 - T_1)
+$$
+
+For steel, $E \alpha \approx 2.4$ MPa per °C. A line tied in at 25 °C and operated at 75 °C picks up about 121 MPa of compression from temperature alone.
+
+<Callout type="note">
+$T_1$ is the temperature at which the pipe was **tied in** (locked into the ground), and $T_2$ is the operating temperature. In hot climates, tying in during the heat of the day raises $ and directly lowers compressive stress. This is why construction specifications control tie-in temperature.
+</Callout>
+
+## Combining the stresses
+
+Steel yields under a combination of stresses, not under each one separately. Hoop tension together with axial **compression** is the worst pairing, because the two stresses work together to shear the material.
+
+The codes allow either criterion:
+
+$$
+\sigma_{eq} = \sqrt{\sigma_h^2 - \sigma_h \sigma_L + \sigma_L^2} \quad \text{(Von Mises)}
+$$
+
+$$
+\sigma_{eq} = \left| \sigma_h - \sigma_L \right| \quad \text{(Tresca, when the signs differ)}
+$$
+
+and limit the result to 0.90 × SMYS for restrained pipe.
+
+<StressExplorer client:visible />
+
+Try this: keep "Buried (restrained)" selected and raise ΔT. The point slides left into compression and approaches the green boundary, even though hoop stress has not changed. Now switch to "Free to move": the axial stress becomes tensile and the temperature slider no longer matters.
+
+## Reading the yield envelope
+
+The ellipse in the right-hand plot is the Von Mises yield surface. Three things are worth noticing:
+
+- In the upper-right quadrant (both stresses tensile), the envelope bulges outward. Axial tension up to half the hoop stress actually helps.
+- In the upper-left quadrant (hoop tension, axial compression), the envelope cuts in sharply. This is where hot buried pipelines operate.
+- With zero pressure and a hot line, the point sits on the left of the horizontal axis: pure compression. This is the condition that drives upheaval buckling.
+
+## Other stresses to add
+
+The explorer covers pressure and temperature. A full analysis also adds:
+
+- **Bending stress** from elastic bends, settlement and spans: $\sigma_b = E D / (2 R)$ for an elastic bend of radius R.
+- **External loads** from soil and traffic (later lesson).
+- **Occasional loads** such as surge, earthquake and hydrotest.
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §402.6 | Defines longitudinal stress for restrained pipe (Poisson plus thermal plus bending) and unrestrained pipe. |
+| ASME B31.4 Table 403.3.1-1 | Restrained pipe: equivalent combined stress up to 0.90 SMYS. Unrestrained: sustained longitudinal stress up to 0.75 of allowable. |
+| ASME B31.8 §833 | Same stress components. Combined biaxial stress limited to k × S × T with k = 0.90 for long-term loads; Tresca or Von Mises permitted. |
+| SAES-L-410 | Requires stress analysis of restrained and unrestrained sections, including the transition zones at station approaches. |
+
+</Standards>
+
+<Worked title="Combined stress in a buried NPS 24 crude line">
+
+**Given:** OD 610 mm, wall 12.7 mm, X65 (450 MPa), P = 9.6 MPa, tie-in at 30 °C, operating at 75 °C (ΔT = 45 °C), E = 207 000 MPa, α = 11.7 × 10⁻⁶ /°C, ν = 0.3.
+
+**Hoop stress**
+
+$$
+\sigma_h = \frac{9.6 \times 610}{2 \times 12.7} = 230.6 \text{ MPa}
+$$
+
+**Longitudinal stress**
+
+$$
+\sigma_L = 0.3 \times 230.6 - 207000 \times 11.7 \times 10^{-6} \times 45 = 69.2 - 109.0 = -39.8 \text{ MPa}
+$$
+
+**Von Mises equivalent**
+
+$$
+\sigma_{eq} = \sqrt{230.6^2 - (230.6)(-39.8) + (-39.8)^2} = 252.9 \text{ MPa}
+$$
+
+**Check:** 0.90 × 450 = 405 MPa. Utilisation is 62 %, so the line passes with margin.
+
+</Worked>
+
+## Common mistakes
+
+- Using the unrestrained formula ($\sigma_h / 2$) for a buried line.
+- Getting the sign of the thermal term wrong. Heating a restrained pipe causes compression.
+- Using ambient temperature instead of the actual tie-in temperature for $T_1$.
+- Forgetting the shutdown case: a cold, depressurised line in winter can go into axial tension.
+
+<Quiz client:visible questions={[
+  { q: "A long buried pipeline warms up by 40 °C in operation. The thermal contribution to longitudinal stress is:", options: ["About 97 MPa tension", "About 97 MPa compression", "Zero, because the pipe is buried", "Equal to half the hoop stress"], answer: 1, why: "E·α·ΔT = 207 000 × 11.7e-6 × 40 ≈ 97 MPa, and restrained heating produces compression." },
+  { q: "Which combination is most severe for yielding?", options: ["Hoop tension with axial tension", "Hoop tension with axial compression", "Axial tension only", "Hoop tension only"], answer: 1, why: "Opposite signs maximise the stress difference, which is what drives yielding." },
+  { q: "Why does tying in a pipeline during the hottest part of the day help?", options: ["It improves weld quality", "It raises T1, reducing ΔT and compressive stress", "It lowers hoop stress", "It reduces soil friction"], answer: 1, why: "The locked-in temperature becomes the stress-free reference. A higher reference means a smaller rise to operating temperature." },
+  { q: "For unrestrained pipe with capped ends, pressure-induced longitudinal stress is:", options: ["ν × hoop stress", "Half the hoop stress", "Equal to the hoop stress", "Zero"], answer: 1, why: "End-cap force over the steel area gives PD/4t, half the hoop stress." }
+]} />

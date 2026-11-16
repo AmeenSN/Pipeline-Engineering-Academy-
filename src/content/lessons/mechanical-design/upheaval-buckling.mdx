@@ -1,0 +1,141 @@
+---
+title: Upheaval buckling
+summary: A hot, high-pressure buried pipeline is a compressed column. Give it a bump in the trench and too little cover, and it will lift out of the ground. Learn the mechanism and the checks.
+order: 5
+minutes: 35
+level: Advanced
+standards: [DNV-RP-F110, ASME B31.8, SAES-L-410, SAES-L-450]
+outcomes:
+  - Explain why restrained pipelines buckle upward
+  - Calculate the effective compressive force
+  - Estimate the download and cover required at an imperfection
+  - List practical ways to prevent upheaval buckling
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import Upheaval from "@/components/interactives/Upheaval.tsx";
+
+## The mechanism
+
+Press on both ends of a plastic ruler and it bows sideways. A buried pipeline does the same thing, in the direction of least resistance. Sideways and downward, undisturbed soil holds it firmly. Upward, only the loose backfill and the pipe's own weight resist. So the pipe buckles **up**.
+
+Three ingredients are needed:
+
+1. **A compressive force.** It comes from temperature rise and internal pressure in a restrained line.
+2. **An imperfection.** No trench bottom is perfectly flat. Where the pipe passes over a rock, a hard spot or an overbend, the axial force has a small lever arm and produces an upward push.
+3. **Not enough download.** If the weight of pipe and cover cannot resist that push, the pipe lifts. Lifting enlarges the imperfection, which increases the push. The failure can be sudden.
+
+<Callout type="warn">
+Upheaval buckling can expose metres of pipe above ground in one event, bend it beyond yield and wrinkle or rupture it. Small-diameter, hot, high-pressure flowlines are most at risk: they carry large forces relative to their weight and bending stiffness.
+</Callout>
+
+## The driving force
+
+For a fully restrained pipe, the effective compressive force is:
+
+$$
+N = A_s \, E \, \alpha \, \Delta T + (1 - 2\nu) \, P \, A_i
+$$
+
+Both temperature **and** pressure add compression. The pressure term surprises many engineers, since pressure causes tension in the pipe wall. The effective force, however, includes the pressure acting on the contents, and that is what drives buckling.
+
+## The download required
+
+Palmer and co-authors (1990) gave a widely used design formula for the download $w$ needed to keep a pipe stable over a prop-shaped imperfection of height $\delta$:
+
+$$
+w = \left[ 1.16 - \frac{4.76 \sqrt{E I \, w_0 / \delta}}{N} \right] N \sqrt{\frac{\delta \, w_0}{E I}}
+$$
+
+Here $E I$ is the bending stiffness of the pipe and $w_0$ is its weight per metre during installation, which sets the shape it takes over the prop. The trends are:
+
+- More force $N$ needs more download.
+- A taller imperfection $\delta$ needs more download.
+- A stiffer pipe (larger $E I$) needs less.
+
+## The download available
+
+The pipe's own weight helps. The cover provides the rest. For sand and gravel backfill the uplift resistance per metre is:
+
+$$
+q = \gamma \, H \, D \left( 1 + f \, \frac{H}{D} \right)
+$$
+
+The first part is the weight of the soil block directly above the pipe. The second part, controlled by the uplift coefficient $f$, is friction on the sides of that block. Typical values of $f$ are about 0.1 for loose sand and 0.5 or more for dense sand and rock.
+
+<Upheaval client:visible />
+
+Try this: start from the default (unstable) case and increase the cover until the pipe is held down. Reset, then instead switch the backfill from loose sand to gravel. Finally, reduce the imperfection height: trench-bottom quality is often the cheapest fix.
+
+<Callout type="field">
+Mechanically backfilled dune sand is very loose at first, so its uplift resistance is low just when the line is first heated. Wind can also strip cover from a pipeline in moving dune terrain. Both are reasons to treat as-built cover surveys seriously on hot lines.
+</Callout>
+
+## Prevention
+
+- **Control the trench profile.** Specify trench-bottom smoothness and survey it before lowering in. Remove hard points and limit overbend angles.
+- **Add cover or use better backfill.** Selected, compacted backfill or rock cover at critical locations.
+- **Raise the tie-in temperature** so the operating rise is smaller.
+- **Reduce the force.** A thinner wall of higher grade has less steel area, and so a lower thermal force.
+- **Let the line move.** Expansion loops, zig-zag (snaked) lay or going above ground on supports releases the compression.
+- **Local restraints.** Concrete saddles or anchors at known overbends.
+
+<Callout type="aramco">
+For hot buried lines, SAES-L-410 calls for the restraint of the pipeline to be checked, and SAES-L-450 controls trench-bottom preparation, bend placement and backfill. Many hot Aramco flowlines and trunklines are instead laid above ground on supports with offsets, which avoids the problem entirely.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| DNV-RP-F110 | Global buckling of pipelines: design criteria and safety factors for upheaval buckling of buried lines. Written for subsea lines but widely used onshore. |
+| Palmer et al., OTC 6335 (1990) | The semi-empirical required-download method used in this lesson. |
+| ASME B31.8 §833 | Requires restrained pipe to be checked for stability under compressive load. |
+| SAES-L-410 | Design requirement to assess restraint and stability of buried lines at design temperature. |
+| SAES-L-450 | Construction controls on trench bottom, padding, bends and backfill. |
+
+</Standards>
+
+<Worked title="Required cover for an NPS 12 hot flowline">
+
+**Given:** OD 323.9 mm, wall 9.5 mm, P = 10 MPa, ΔT = 80 °C, contents 800 kg/m³, imperfection height δ = 0.3 m.
+
+**Compressive force:** $A_s$ = 9383 mm², $A_i$ = 73 014 mm².
+
+$$
+N = 9383 \times 207000 \times 11.7 \times 10^{-6} \times 80 + 0.4 \times 10 \times 73014 = 1818 + 292 = 2110 \text{ kN}
+$$
+
+**Pipe properties:** $E I$ = 2.40 × 10⁷ N·m², operating weight $w_0$ = 1.30 kN/m.
+
+**Required download:**
+
+$$
+w = \left[ 1.16 - \frac{4.76 \times 322\,000}{2\,110\,000} \right] \times 2\,110\,000 \times 0.00402 = 3.68 \text{ kN/m}
+$$
+
+**From soil:** 3.68 − 1.30 = 2.38 kN/m must come from the cover.
+
+**Dense sand** (γ = 18 kN/m³, f = 0.5): solving $q = \gamma H D (1 + f H / D)$ gives H = **0.28 m**.
+
+**Loose sand** (γ = 15.5 kN/m³, f = 0.1): H = **0.42 m**.
+
+These are the covers at a safety factor of 1.0. With a typical design margin, and allowing for survey uncertainty in δ, the specified cover would be considerably more. Note that loose backfill needs 50 % more cover than dense backfill for the same pipe.
+
+</Worked>
+
+## Common mistakes
+
+- Ignoring the pressure contribution to the compressive force.
+- Assuming the design trench profile instead of the surveyed one.
+- Using dense-soil uplift resistance for freshly placed loose backfill.
+- Checking only the operating case, not the higher design temperature.
+
+<Quiz client:visible questions={[
+  { q: "Why does a buried pipeline buckle upward rather than sideways?", options: ["Gravity pulls it up", "Upward resistance from loose backfill is the smallest", "Pressure acts upward", "Trenches are always too narrow"], answer: 1, why: "Trench walls and the trench floor are stiff undisturbed soil. Only backfill and pipe weight resist uplift." },
+  { q: "Which pipeline is most at risk?", options: ["NPS 48 gas line at 30 °C rise", "NPS 8 flowline at 90 °C rise and high pressure", "NPS 24 water line at ambient temperature", "An above-ground line on sleepers"], answer: 1, why: "Small hot lines have high force relative to their weight and stiffness." },
+  { q: "Increasing internal pressure in a restrained line makes upheaval buckling:", options: ["Less likely", "More likely", "Unaffected", "Impossible"], answer: 1, why: "The effective compressive force includes (1 − 2ν)·P·Ai, which grows with pressure." },
+  { q: "Which is usually the cheapest way to reduce the required cover?", options: ["Increase the wall thickness", "Control trench-bottom imperfections", "Lower the steel grade", "Paint the pipe white"], answer: 1, why: "Required download rises quickly with imperfection height. A thicker wall actually raises the thermal force." }
+]} />

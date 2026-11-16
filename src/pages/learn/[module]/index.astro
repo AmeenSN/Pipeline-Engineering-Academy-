@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import { liveModules } from '@/data/curriculum';
+
+export function getStaticPaths() {
+  return liveModules.map((m) => ({ params: { module: m.id }, props: { mod: m } }));
+}
+const { mod } = Astro.props;
+const entries = (await getCollection('lessons')).filter((e) => e.id.startsWith(mod.id + '/')).sort((a, b) => a.data.order - b.data.order);
+const minutes = entries.reduce((n, e) => n + e.data.minutes, 0);
+---
+<Base title={mod.title} description={mod.blurb}>
+  <section class="blueprint border-b border-line">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 py-14">
+      <a href="/learn/" class="text-sm text-muted hover:text-text">← Curriculum</a>
+      <p class="eyebrow mt-6">Module {mod.code}</p>
+      <h1 class="text-4xl sm:text-5xl font-bold mt-2">{mod.title}</h1>
+      <p class="mt-4 text-lg text-muted max-w-2xl">{mod.blurb}</p>
+      <div class="mt-6 flex flex-wrap gap-6 text-sm text-muted num">
+        <span>{entries.length} lessons</span><span>about {Math.round(minutes / 60 * 10) / 10} hours</span><span>{entries.length + 2} interactive tools</span>
+      </div>
+      <div class="mt-6 max-w-md" data-progress-for={mod.id + '/'} data-total={entries.length}>
+        <div class="h-2 rounded-full bg-surface-2 border border-line overflow-hidden"><div data-bar class="h-full bg-ok" style="width:0;transition:width .4s"></div></div>
+        <div data-text class="text-xs text-muted mt-2 num">0 of {entries.length} complete</div>
+      </div>
+    </div>
+  </section>
+  <section class="mx-auto max-w-5xl px-4 sm:px-6 py-10 grid gap-3">
+    {entries.map((e, i) => (
+      <a href={`/learn/${e.id}/`} data-lesson-id={e.id} class="lesson-row card p-5 flex gap-5 items-start hover:border-brand transition-colors">
+        <span class="num text-2xl font-bold text-steel w-10 shrink-0">{String(i + 1).padStart(2, '0')}</span>
+        <span class="flex-1 min-w-0">
+          <span class="block font-display font-semibold text-lg">{e.data.title}</span>
+          <span class="block text-muted text-[.95rem] mt-1">{e.data.summary}</span>
+          <span class="flex flex-wrap gap-2 mt-3 text-xs num">
+            <span class="chip">{e.data.minutes} min</span><span class="chip">{e.data.level}</span>
+            {e.data.standards.slice(0, 3).map((s) => <span class="chip chip-std">{s}</span>)}
+          </span>
+        </span>
+        <span class="tick text-ok font-bold text-lg" aria-hidden="true">✓</span>
+      </a>
+    ))}
+  </section>
+  <script>
+    import { paintProgress } from '@/lib/progress';
+    paintProgress();
+  </script>
+</Base>
+<style is:global>
+  .lesson-row .tick { visibility: hidden; } .lesson-row.is-complete .tick { visibility: visible; }
+  .chip { border: 1px solid var(--line); background: var(--surface); padding: .22rem .6rem; border-radius: 99px; color: var(--muted); }
+  .chip-std { color: var(--yellow); border-color: color-mix(in srgb, var(--yellow) 40%, var(--line)); }
+</style>

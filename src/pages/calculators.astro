@@ -1,0 +1,33 @@
+---
+import Base from '@/layouts/Base.astro';
+const tools = [
+  { t: 'Wall thickness calculator', d: 'Barlow pressure design to ASME B31.4 and B31.8, with design factor, temperature derating and corrosion allowance.', h: '/learn/mechanical-design/wall-thickness/', tag: 'Design' },
+  { t: 'Stress state explorer', d: 'Hoop, longitudinal and Von Mises stress for restrained and unrestrained pipe, plotted on the yield envelope.', h: '/learn/mechanical-design/pipe-stresses/', tag: 'Stress' },
+  { t: 'Virtual anchor and end movement', d: 'Full restraint force, soil friction, anchor length and free-end expansion.', h: '/learn/mechanical-design/thermal-expansion-anchors/', tag: 'Stress' },
+  { t: 'Soil and traffic load', d: 'Crown pressure from soil and wheel loads and the resulting ovalisation.', h: '/learn/mechanical-design/external-loads-buoyancy/', tag: 'Burial' },
+  { t: 'Buoyancy check', d: 'Flotation safety factor and the concrete coating thickness needed in water or sabkha brine.', h: '/learn/mechanical-design/external-loads-buoyancy/', tag: 'Burial' },
+  { t: 'Upheaval buckling explorer', d: 'Required download and cover for a hot buried line over a trench imperfection.', h: '/learn/mechanical-design/upheaval-buckling/', tag: 'Stability' },
+  { t: 'Free span and VIV', d: 'Natural frequency, reduced velocity and the longest span free of vortex-induced vibration.', h: '/learn/mechanical-design/lateral-buckling-free-spans/', tag: 'Stability' },
+  { t: 'Pressure-cycle fatigue life', d: 'Girth-weld fatigue life from pressure swings using S-N curves.', h: '/learn/mechanical-design/fatigue-dt-collapse/', tag: 'Integrity' },
+  { t: 'Collapse and D/t', d: 'Elastic, plastic and combined collapse pressure against water depth.', h: '/learn/mechanical-design/fatigue-dt-collapse/', tag: 'Integrity' },
+];
+---
+<Base title="Calculators" description="Interactive pipeline engineering calculators with shown working and SI/US units.">
+  <section class="blueprint border-b border-line">
+    <div class="mx-auto max-w-[88rem] px-4 sm:px-6 py-14">
+      <p class="eyebrow">Calculators hub</p>
+      <h1 class="text-4xl sm:text-5xl font-bold mt-2">Every tool in one place</h1>
+      <p class="mt-4 text-lg text-muted max-w-2xl">Each calculator lives inside the lesson that explains it, so the theory, assumptions and limits are always one scroll away.</p>
+    </div>
+  </section>
+  <section class="mx-auto max-w-[88rem] px-4 sm:px-6 py-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {tools.map((t) => (
+      <a href={t.h} class="card p-5 hover:border-brand transition-colors flex flex-col">
+        <span class="eyebrow">{t.tag}</span>
+        <h2 class="font-display font-semibold text-lg mt-2">{t.t}</h2>
+        <p class="text-sm text-muted mt-1.5 flex-1">{t.d}</p>
+        <span class="mt-4 text-sm font-semibold text-accent">Open in lesson →</span>
+      </a>
+    ))}
+  </section>
+</Base>

@@ -1,0 +1,20 @@
+---
+interface Props { title: string }
+const { title } = Astro.props;
+---
+<details class="worked" open>
+  <summary><span class="tag">Worked example</span><span class="ttl">{title}</span><span class="chev" aria-hidden="true">▾</span></summary>
+  <div class="body"><slot /></div>
+</details>
+<style>
+  .worked { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); margin: 2rem 0; overflow: hidden; }
+  summary { display: flex; align-items: center; gap: .8rem; padding: .8rem 1.1rem; cursor: pointer; list-style: none; background: var(--surface-2); }
+  summary::-webkit-details-marker { display: none; }
+  .tag { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ok); border: 1px solid color-mix(in srgb, var(--ok) 45%, transparent); padding: .15rem .5rem; border-radius: 99px; white-space: nowrap; }
+  .ttl { font-family: var(--font-display); font-weight: 650; flex: 1; }
+  .chev { color: var(--muted); transition: transform .2s; }
+  details[open] .chev { transform: rotate(180deg); }
+  .body { padding: 1rem 1.2rem 1.2rem; }
+  .body :global(* + *) { margin-top: .9rem; }
+  .body :global(.katex-display) { border-left-color: var(--ok); }
+</style>

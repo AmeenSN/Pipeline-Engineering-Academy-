@@ -1,0 +1,123 @@
+---
+import '@/styles/global.css';
+import Logo from '@/components/ui/Logo.astro';
+interface Props { title?: string; description?: string }
+const { title, description = 'Interactive lessons, calculators and standards guidance for pipeline engineers.' } = Astro.props;
+const fullTitle = title ? `${title} · Pipeline Engineering Academy` : 'Pipeline Engineering Academy';
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/learn/', label: 'Curriculum' },
+  { href: '/calculators/', label: 'Calculators' },
+  { href: '/standards/', label: 'Standards' },
+];
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      (() => {
+        try {
+          const t = localStorage.getItem('pea:theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.dataset.theme = t;
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 btn btn-primary">Skip to content</a>
+    <header class="sticky top-0 z-40 border-b border-line" style="background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(10px);">
+      <div class="mx-auto max-w-[88rem] px-4 sm:px-6 min-h-16 flex flex-wrap items-center gap-x-3 sm:gap-x-6">
+        <a href="/" class="flex items-center gap-2.5 shrink-0" aria-label="Pipeline Engineering Academy home">
+          <Logo />
+          <span class="font-display font-bold leading-none text-[.95rem] ">Pipeline Engineering<br /><span class="text-accent text-[.68rem] tracking-[.22em] font-mono font-medium">ACADEMY</span></span>
+        </a>
+        <nav class="order-3 w-full pb-2 -mt-1 md:order-none md:w-auto md:pb-0 md:mt-0 flex items-center gap-1 text-sm font-medium md:ml-4" aria-label="Main">
+          {nav.map((n) => (
+            <a href={n.href} class:list={['px-2.5 sm:px-3 py-1.5 rounded-lg hover:text-text', path.startsWith(n.href) ? 'text-text bg-surface-2' : 'text-muted']}>{n.label}</a>
+          ))}
+        </nav>
+        <div class="ml-auto flex items-center gap-2">
+          <button id="search-btn" class="iconbtn gap-2" aria-label="Search lessons">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+            <span class="hidden md:inline">Search</span><kbd class="hidden md:inline num text-[.65rem] opacity-70">/</kbd>
+          </button>
+          <button id="units-btn" class="iconbtn num" aria-label="Switch unit system" title="Switch unit system">SI</button>
+          <button id="theme-btn" class="iconbtn" aria-label="Switch colour theme" title="Switch colour theme">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="flex-1"><slot /></main>
+
+    <footer class="border-t border-line mt-20">
+      <div class="mx-auto max-w-[88rem] px-4 sm:px-6 py-10 grid gap-6 md:grid-cols-[1fr_2fr] text-sm text-muted">
+        <div class="flex items-center gap-2.5"><Logo size={24} /><span class="font-display font-semibold text-text">Pipeline Engineering Academy</span></div>
+        <p class="leading-relaxed">
+          <strong class="text-text">Educational use only.</strong> Lessons paraphrase and cite industry standards (ASME, API, ISO, DNV, Saudi Aramco SAES) but do not reproduce them.
+          Values shown are typical figures for learning. Always work from the current revision of the governing standard and your project specification, and have calculations checked by a qualified engineer.
+        </p>
+      </div>
+    </footer>
+
+    <dialog id="search-dialog" aria-label="Search">
+      <div id="search-root"><p class="text-sm text-muted">Search is available on the built site.</p></div>
+    </dialog>
+
+    <script>
+      const root = document.documentElement;
+      const themeBtn = document.getElementById('theme-btn')!;
+      themeBtn.addEventListener('click', () => {
+        const t = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = t;
+        localStorage.setItem('pea:theme', t);
+      });
+
+      const unitsBtn = document.getElementById('units-btn')!;
+      const paintUnits = () => { unitsBtn.textContent = localStorage.getItem('pea:units') === 'us' ? 'US' : 'SI'; };
+      paintUnits();
+      unitsBtn.addEventListener('click', () => {
+        localStorage.setItem('pea:units', localStorage.getItem('pea:units') === 'us' ? 'si' : 'us');
+        paintUnits();
+        window.dispatchEvent(new CustomEvent('pea:units'));
+      });
+
+      const dialog = document.getElementById('search-dialog') as HTMLDialogElement;
+      let loaded = false;
+      async function openSearch() {
+        dialog.showModal();
+        if (!loaded) {
+          loaded = true;
+          try {
+            const css = document.createElement('link');
+            css.rel = 'stylesheet'; css.href = '/pagefind/pagefind-ui.css';
+            document.head.append(css);
+            await new Promise<void>((res, rej) => {
+              const s = document.createElement('script');
+              s.src = '/pagefind/pagefind-ui.js'; s.onload = () => res(); s.onerror = () => rej();
+              document.head.append(s);
+            });
+            document.getElementById('search-root')!.innerHTML = '';
+            // @ts-ignore PagefindUI is loaded at runtime
+            new PagefindUI({ element: '#search-root', showImages: false, showSubResults: true, autofocus: true });
+          } catch { /* dev server: index not built */ }
+        }
+        setTimeout(() => (dialog.querySelector('input') as HTMLInputElement | null)?.focus(), 60);
+      }
+      document.getElementById('search-btn')!.addEventListener('click', openSearch);
+      dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+      window.addEventListener('keydown', (e) => {
+        const el = e.target as HTMLElement;
+        if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName)) { e.preventDefault(); openSearch(); }
+      });
+    </script>
+  </body>
+</html>

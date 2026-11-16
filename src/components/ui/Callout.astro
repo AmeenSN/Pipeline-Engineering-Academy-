@@ -1,0 +1,21 @@
+---
+interface Props { type?: 'note' | 'warn' | 'field' | 'aramco'; title?: string }
+const { type = 'note', title } = Astro.props;
+const map = {
+  note: { c: 'var(--brand)', t: 'Key idea' },
+  warn: { c: 'var(--bad)', t: 'Watch out' },
+  field: { c: 'var(--ok)', t: 'From the field' },
+  aramco: { c: 'var(--yellow)', t: 'Saudi Aramco practice' },
+} as const;
+const m = map[type];
+---
+<aside class="callout" style={`--c:${m.c}`}>
+  <div class="callout-t">{title ?? m.t}</div>
+  <div class="callout-b"><slot /></div>
+</aside>
+<style>
+  .callout { border: 1px solid color-mix(in srgb, var(--c) 35%, var(--line)); border-left: 3px solid var(--c); background: color-mix(in srgb, var(--c) 6%, var(--surface)); border-radius: 10px; padding: .9rem 1.1rem; margin: 1.5rem 0; }
+  .callout-t { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--c); font-weight: 600; margin-bottom: .3rem; }
+  .callout-b { font-size: .96rem; }
+  .callout-b :global(p + p) { margin-top: .6rem; }
+</style>

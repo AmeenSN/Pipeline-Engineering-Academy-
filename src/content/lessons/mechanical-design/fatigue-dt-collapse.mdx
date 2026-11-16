@@ -1,0 +1,171 @@
+---
+title: Fatigue, D/t and collapse checks
+summary: The last checks before a wall thickness is final. Repeated pressure cycles wear out welds, thin walls dent and ovalise, and external pressure can crush an empty pipe.
+order: 7
+minutes: 30
+level: Advanced
+standards: [DNV-RP-C203, DNV-ST-F101, API RP 1111, ASME B31.8]
+outcomes:
+  - Estimate fatigue life from pressure cycling with an S-N curve
+  - Apply Miner's rule to a mix of cycle sizes
+  - Explain what the D/t ratio controls
+  - Check an empty pipe against external pressure collapse
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import Fatigue from "@/components/interactives/Fatigue.tsx";
+import Collapse from "@/components/interactives/Collapse.tsx";
+
+## Fatigue: failure below yield
+
+A pipeline that passes every static check can still crack if its stress keeps changing. Each cycle opens tiny flaws at weld toes a little further. After enough cycles a crack grows through the wall.
+
+Sources of cyclic stress in pipelines:
+
+- **Pressure cycling.** Batched liquid lines, pump starts and stops, and gas lines with daily demand swings (line packing).
+- **Thermal cycling** from shutdowns and restarts.
+- **Traffic** at road and rail crossings.
+- **Vibration** from spans (previous lesson) or from equipment.
+
+Liquid lines generally see far more severe pressure cycling than gas lines, because liquid is nearly incompressible and pressure follows every operational change.
+
+## S-N curves
+
+Fatigue strength is described by an S-N curve: the number of cycles to failure $N$ at a constant stress **range** $\Delta\sigma$.
+
+$$
+\log N = \log \bar{a} - m \, \log \Delta\sigma
+$$
+
+With $m = 3$ for welded steel, the relationship is steep: **doubling the stress range cuts the life by a factor of eight**. Different weld details have different curves. A ground-flush weld performs better than one with a root backing strip or misalignment.
+
+For pressure cycling the stress range is simply the hoop stress range:
+
+$$
+\Delta\sigma = \frac{\Delta P \, D}{2 \, t}
+$$
+
+## Miner's rule
+
+Real pipelines see a mix of cycle sizes. Miner's rule adds up the damage from each:
+
+$$
+D_{fat} = \sum \frac{n_i}{N_i} \leq \frac{1}{DFF}
+$$
+
+$n_i$ is the number of cycles at range $i$, $N_i$ is the life at that range, and DFF is the design fatigue factor (3 to 10, depending on consequence and on whether the weld can be inspected).
+
+<Fatigue client:visible />
+
+Try this: double the pressure swing and watch the life drop by about eight times. Then change the weld detail from D to F1 to see why weld quality and alignment (hi-lo) limits matter.
+
+<Callout type="note">
+Fatigue cracks start at stress concentrations. Dents, gouges, seam-weld peaking and girth-weld misalignment all multiply the local stress range. A dent that looks harmless in a static check can be the life-limiting feature on a heavily cycled line.
+</Callout>
+
+## What D/t controls
+
+The diameter-to-thickness ratio is a quick indicator of how the pipe will behave beyond pressure containment.
+
+| D/t | Behaviour |
+|---|---|
+| Below about 20 | Thick wall. Hard to cold bend; thin-wall formulas start to lose accuracy. |
+| 20 to 60 | Normal range for transmission lines. |
+| 60 to 96 | Thin. Needs care in handling, stacking and bending; ovality control matters. |
+| Above about 96 | Very thin. Prone to denting, buckling in field bends and collapse; avoided by most company standards. |
+
+High D/t also limits cold field bending (wrinkles form on the inside of the bend) and lowers resistance to buckling under bending and external pressure.
+
+## External pressure collapse
+
+A pipe under external pressure fails by flattening. Two idealised limits bound the behaviour:
+
+$$
+p_{el} = \frac{2 E}{1 - \nu^2} \left( \frac{t}{D} \right)^3 \qquad\qquad p_p = 2 \, \sigma_y \, \frac{t}{D}
+$$
+
+Thin pipe collapses **elastically**: the limit depends on stiffness and falls with the cube of D/t. Thick pipe collapses **plastically**: the limit depends on yield strength. Real pipe lies below both, and initial out-of-roundness lowers it further. DNV-ST-F101 combines them as:
+
+$$
+(p_c - p_{el})(p_c^2 - p_p^2) = p_c \, p_{el} \, p_p \, f_0 \, \frac{D}{t}
+$$
+
+where $f_0$ is the initial ovality.
+
+<Collapse client:visible />
+
+Try this: increase D/t and watch the collapse pressure fall away. Then raise the ovality from 0.5 % to 3 % to see why a dented or ovalised pipe is much weaker.
+
+Collapse governs offshore installation, when the pipe is empty at full water depth. Onshore it matters for:
+
+- deep river and lake crossings,
+- HDD installations, where drilling mud pressure acts on an empty pipe,
+- vacuum conditions after liquid column separation, and
+- casings and large low-pressure lines under deep fill.
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| DNV-RP-C203 | S-N curves for welded details and guidance on design fatigue factors. |
+| API RP 1102 | Fatigue checks for girth and seam welds under cyclic traffic load at crossings. |
+| DNV-ST-F101 | Collapse and propagating buckling limit states for submarine pipelines. |
+| API RP 1111 | Collapse and buckling design for offshore hydrocarbon pipelines (limit-state design). |
+| ASME B31.8 and B31.4 | Require cyclic loading and external pressure to be considered in design; limits on dents and ovality. |
+| SAES-L-410 | Company limits on wall thickness and D/t for handling and construction. |
+
+</Standards>
+
+<Worked title="Fatigue life of a batched NPS 20 liquid line">
+
+**Given:** OD 508 mm, wall 9.5 mm, pressure swings of 6 MPa (60 bar), 4 times per day. Girth welds with some misalignment: curve E ($\log \bar{a}$ = 12.010, m = 3). Design fatigue factor 5.
+
+**Stress range:**
+
+$$
+\Delta\sigma = \frac{6 \times 508}{2 \times 9.5} = 160.4 \text{ MPa}
+$$
+
+**Cycles to failure:**
+
+$$
+\log N = 12.010 - 3 \log(160.4) = 5.394 \quad\Rightarrow\quad N = 248\,000 \text{ cycles}
+$$
+
+**Life:** 4 × 365 = 1460 cycles per year, so 248 000 / 1460 = 170 years calculated life.
+
+**Design life:** 170 / 5 = **34 years**.
+
+For a 40-year service life this is not enough. Options are a 10.3 mm wall (stress range 148 MPa, design life 43 years), tighter weld alignment to qualify for curve D, or smaller pressure swings.
+
+</Worked>
+
+<Worked title="Maximum water depth for an empty NPS 24 pipe">
+
+**Given:** OD 610 mm, wall 15.9 mm (D/t = 38.4), X65, initial ovality 1 %.
+
+**Elastic limit:** $p_{el}$ = 2 × 207 000 / 0.91 × (15.9 / 610)³ = 8.06 MPa.
+
+**Plastic limit:** $p_p$ = 2 × 450 × 15.9 / 610 = 23.5 MPa.
+
+**Collapse pressure** from the combined equation: $p_c$ = 7.04 MPa. The elastic limit clearly governs at this D/t.
+
+**Allowable depth** with a resistance factor of 1.3: 7.04 / 1.3 = 5.41 MPa, which is the pressure of about **540 m** of seawater.
+
+</Worked>
+
+## Common mistakes
+
+- Using maximum pressure instead of pressure **range** for fatigue.
+- Ignoring fatigue on liquid lines because "the stress is below yield".
+- Applying a parent-metal S-N curve to a girth weld.
+- Forgetting the empty-pipe collapse case for HDD crossings.
+
+<Quiz client:visible questions={[
+  { q: "If the stress range doubles, fatigue life on an m = 3 S-N curve:", options: ["Halves", "Falls to one quarter", "Falls to one eighth", "Is unchanged"], answer: 2, why: "N is proportional to Δσ⁻³, and 2³ = 8." },
+  { q: "Which line usually has the more severe pressure-cycle fatigue duty?", options: ["A gas transmission line", "A batched liquid products line", "Both are identical", "Neither experiences cycling"], answer: 1, why: "Liquids are nearly incompressible, so every pump and valve operation produces a full pressure swing." },
+  { q: "For thin-wall pipe (high D/t), collapse pressure is governed mainly by:", options: ["Yield strength", "Elastic stiffness, varying with (t/D)³", "Coating thickness", "Internal pressure rating"], answer: 1, why: "Thin pipe buckles elastically before it yields, so steel grade gives little benefit." },
+  { q: "Miner's rule is used to:", options: ["Convert bar to psi", "Sum fatigue damage from cycles of different sizes", "Find the yield strength of weld metal", "Calculate soil friction"], answer: 1, why: "Damage from each stress range, n/N, is added and compared with the allowable." }
+]} />

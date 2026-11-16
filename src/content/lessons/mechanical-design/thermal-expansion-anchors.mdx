@@ -1,0 +1,127 @@
+---
+title: Thermal expansion and anchor forces
+summary: Where a buried pipeline comes out of the ground it starts to move. Learn how far, how hard it pushes, and how anchors and offsets keep that movement away from stations.
+order: 3
+minutes: 25
+level: Intermediate
+standards: [ASME B31.4, ASME B31.8, SAES-L-440, SAES-L-410]
+outcomes:
+  - Calculate the force needed to fully restrain a pipeline
+  - Estimate the virtual anchor length and free-end movement
+  - Decide between an anchor block and a flexible offset
+  - Describe how soil type and cover change the answer
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import AnchorExplorer from "@/components/interactives/AnchorExplorer.tsx";
+
+## The transition zone
+
+The previous lesson treated buried pipe as fully restrained. That is true in the middle of a long line, but not at its ends. At a scraper trap, pump station or valve site the pipe rises above ground and nothing stops it moving. Between the free end and the fully restrained section lies a **transition zone**, where the pipe slides through the soil and friction builds up the restraint a little with each metre.
+
+The point where friction has built up enough to stop all movement is called the **virtual anchor**.
+
+## How hard the pipe pushes
+
+To hold a pipe end completely still, an anchor must resist two effects:
+
+$$
+F = \underbrace{A_s \, E \, \alpha \, \Delta T}_{\text{thermal}} + \underbrace{P A_i - \nu \, \sigma_h A_s}_{\text{pressure}}
+$$
+
+- $A_s$ is the steel cross-section area and $A_i$ is the bore area.
+- The **thermal** term is the force needed to stop the steel growing.
+- The **pressure** term is the end-cap thrust, less the Poisson shortening that hoop stress causes.
+
+These forces are large. An NPS 24 line with a 50 °C rise pushes with close to 4000 kN, roughly the weight of 400 tonnes.
+
+## How far the pipe moves
+
+Soil resists sliding with a friction force per metre of pipe. A common estimate is:
+
+$$
+f = \mu \left( 2 \, \gamma \, H \, D + W_p \right)
+$$
+
+Here $\mu$ is the pipe-to-soil friction coefficient, $\gamma$ is soil unit weight, $H$ is depth to the pipe centreline and $W_p$ is pipe weight per metre. The first term counts soil pressing on the top and bottom of the pipe.
+
+Friction builds up linearly from the free end, so:
+
+$$
+L_a = \frac{F}{f} \qquad\qquad \delta = \frac{F \, L_a}{2 \, A_s \, E}
+$$
+
+$L_a$ is the virtual anchor length and $\delta$ is the movement at the free end.
+
+<AnchorExplorer client:visible />
+
+Try this: lower the friction coefficient to 0.3 (loose dune sand with a smooth polyethylene coating). The anchor length and end movement both grow. Now increase the cover: more soil weight means more friction and a shorter transition zone.
+
+<Callout type="field">
+Smooth coatings such as 3-layer polyethylene have low friction against sand, typically 0.3 to 0.4 times the soil's own friction. Rough coatings such as fusion-bonded epoxy with concrete grip better. Low friction means long transition zones, sometimes over a kilometre on large hot lines in dune sand.
+</Callout>
+
+## Controlling the movement
+
+Station piping, valves and scraper traps can take only a few millimetres of movement. There are three ways to protect them:
+
+- **Anchor block.** A reinforced concrete block cast around an anchor flange on the pipe. It transfers the full force $F$ to the ground through passive soil pressure and base friction. Blocks for large hot lines are massive.
+- **Flexible offset.** Let the pipe move and absorb it with a buried Z-bend, an L-bend or an above-ground expansion loop. This costs less concrete, but the bends must be checked for expansion stress.
+- **Drag anchor or partial restraint.** A smaller block that takes part of the force and allows limited movement.
+
+<Callout type="aramco">
+SAES-L-440 covers the design of anchors for buried pipelines, including when a full-thrust anchor is required at the transition from restrained to unrestrained pipe, and the soil parameters to use. Aramco practice in sabkha and loose sand needs particular care, because passive resistance is low and blocks grow large.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §402.5 and §402.6 | Expansion and flexibility: distinguish restrained from unrestrained pipe and analyse the transition. |
+| ASME B31.8 §833 and §835 | Restraint of buried pipe, anchorage at bends and forces on connected piping. |
+| SAES-L-440 | Anchor design for buried pipelines: design force, anchor flange, concrete block sizing and soil resistance. |
+| SAES-L-410 | Requires end movements to be calculated and accommodated at scraper traps and stations. |
+
+</Standards>
+
+<Worked title="Anchor force and end movement, NPS 24 line">
+
+**Given:** OD 610 mm, wall 12.7 mm, P = 9.6 MPa, ΔT = 50 °C, cover 1.0 m, soil 18 kN/m³, μ = 0.5, empty pipe weight 1.84 kN/m.
+
+**Section properties:** $A_s$ = 23 831 mm², $A_i$ = 268 416 mm², hoop stress 230.6 MPa.
+
+**Thermal part:** 23 831 × 207 000 × 11.7 × 10⁻⁶ × 50 = 2886 kN.
+
+**Pressure part:** 9.6 × 268 416 − 0.3 × 230.6 × 23 831 = 2577 − 1648 = 928 kN.
+
+**Full restraint force:** F = 2886 + 928 = **3814 kN**.
+
+**Soil friction:** depth to centreline H = 1.0 + 0.305 = 1.305 m.
+
+$$
+f = 0.5 \times (2 \times 18 \times 1.305 \times 0.61 + 1.84) = 15.2 \text{ kN/m}
+$$
+
+**Virtual anchor length:** 3814 / 15.2 = **250 m**.
+
+**End movement:** 3 814 000 × 250 / (2 × 23 831 × 207 000) = 0.097 m, about **97 mm**.
+
+That much movement would overstress a scraper trap, so this line needs an anchor block or a designed offset.
+
+</Worked>
+
+## Common mistakes
+
+- Forgetting the pressure term. It is often a quarter of the total force.
+- Using friction for dense soil when the backfill is loose, uncompacted sand.
+- Placing an anchor block in ground that cannot resist it (sabkha, high water table) without checking passive resistance.
+- Ignoring the cooldown case, when the pipe pulls back.
+
+<Quiz client:visible questions={[
+  { q: "What is the virtual anchor point?", options: ["The location of a concrete anchor block", "The point where accumulated soil friction equals the full restraint force", "The midpoint of the pipeline", "The first field bend after a station"], answer: 1, why: "Beyond this point the pipe is fully restrained and does not move axially." },
+  { q: "If pipe-soil friction is halved, the virtual anchor length:", options: ["Halves", "Stays the same", "Doubles", "Quadruples"], answer: 2, why: "L = F / f, so half the friction gives twice the length. End movement doubles too." },
+  { q: "Which term is usually larger for a hot oil line?", options: ["The thermal term", "The pressure term", "They are always equal", "Neither: soil weight governs"], answer: 0, why: "At a 50 °C rise the thermal force is about three times the pressure force in the worked example." },
+  { q: "A flexible offset instead of an anchor block means:", options: ["The pipe cannot move", "Movement is allowed and absorbed by bending of the offset legs", "No stress analysis is needed", "Friction is increased"], answer: 1, why: "The offset trades a large anchor force for bending stress in the bends, which must be checked." }
+]} />

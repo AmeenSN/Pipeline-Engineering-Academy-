@@ -1,0 +1,51 @@
+---
+import Base from '@/layouts/Base.astro';
+const groups = [
+  { g: 'Design codes', rows: [
+    ['ASME B31.4', 'Pipeline transportation systems for liquids and slurries', 'Wall thickness, stresses, cover'],
+    ['ASME B31.8', 'Gas transmission and distribution piping systems', 'Location class, wall thickness, stresses'],
+    ['ISO 13623', 'Petroleum and natural gas industries: pipeline transportation systems', 'International alternative basis'],
+    ['DNV-ST-F101', 'Submarine pipeline systems', 'Collapse, offshore limit states'],
+  ] },
+  { g: 'Saudi Aramco engineering standards', rows: [
+    ['SAES-L-410', 'Design of pipelines', 'Wall thickness, stresses, restraint'],
+    ['SAES-L-440', 'Anchors for buried pipelines', 'Anchor forces and blocks'],
+    ['SAES-L-450', 'Construction of on-land and near-shore pipelines', 'Cover, backfill, buoyancy control'],
+    ['SAES-L-460', 'Pipeline crossings under roads and railroads', 'External loads at crossings'],
+    ['SAES-B-064', 'Onshore and nearshore pipeline safety', 'Population density index, location class'],
+  ] },
+  { g: 'Materials and loads', rows: [
+    ['API 5L', 'Line pipe', 'Grades, SMYS, dimensions'],
+    ['API RP 1102', 'Steel pipelines crossing railroads and highways', 'Traffic loads on buried pipe'],
+    ['ALA 2001', 'Guidelines for the design of buried steel pipe', 'Soil loads, ovalisation'],
+  ] },
+  { g: 'Stability and fatigue', rows: [
+    ['DNV-RP-F110', 'Global buckling of submarine pipelines', 'Upheaval and lateral buckling'],
+    ['DNV-RP-F105', 'Free spanning pipelines', 'Vortex-induced vibration'],
+    ['DNV-RP-C203', 'Fatigue design of offshore steel structures', 'S-N curves'],
+    ['OTC 6335', 'Palmer et al., Design of submarine pipelines against upheaval buckling (1990)', 'Required download method'],
+  ] },
+];
+---
+<Base title="Standards" description="Cross-reference of the codes and standards used across the academy.">
+  <section class="blueprint border-b border-line">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 py-14">
+      <p class="eyebrow">Standards cross-reference</p>
+      <h1 class="text-4xl sm:text-5xl font-bold mt-2">The documents behind the lessons</h1>
+      <p class="mt-4 text-lg text-muted max-w-2xl">The academy explains these standards in its own words and points you to the source. It never replaces them. Saudi Aramco references are based on general industry knowledge of the SAES series and should be checked against your current project revision.</p>
+    </div>
+  </section>
+  <section class="mx-auto max-w-5xl px-4 sm:px-6 py-10 grid gap-8">
+    {groups.map((g) => (
+      <div>
+        <h2 class="font-display font-semibold text-xl mb-3">{g.g}</h2>
+        <div class="card overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead><tr class="text-left text-muted num text-xs uppercase tracking-wider"><th class="p-3">Document</th><th class="p-3">Title</th><th class="p-3">Used here for</th></tr></thead>
+            <tbody>{g.rows.map((r) => <tr class="border-t border-line"><td class="p-3 num font-semibold whitespace-nowrap text-yellow">{r[0]}</td><td class="p-3">{r[1]}</td><td class="p-3 text-muted">{r[2]}</td></tr>)}</tbody>
+          </table>
+        </div>
+      </div>
+    ))}
+  </section>
+</Base>

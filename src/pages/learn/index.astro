@@ -1,0 +1,15 @@
+---
+import Base from '@/layouts/Base.astro';
+import ModuleGrid from '@/components/ui/ModuleGrid.astro';
+import { MODULES, lessonCount, liveLessonCount } from '@/data/curriculum';
+---
+<Base title="Curriculum" description="The full Pipeline Engineering Academy curriculum: 13 modules from foundations to offshore.">
+  <section class="blueprint border-b border-line">
+    <div class="mx-auto max-w-[88rem] px-4 sm:px-6 py-14">
+      <p class="eyebrow">Curriculum</p>
+      <h1 class="text-4xl sm:text-5xl font-bold mt-2">{MODULES.length} modules. One pipeline, start to finish.</h1>
+      <p class="mt-4 text-lg text-muted max-w-2xl">The modules follow the life of a pipeline: materials, design, routing, construction, testing and operation. {liveLessonCount} of {lessonCount} lessons are published so far; the rest are in production.</p>
+    </div>
+  </section>
+  <section class="mx-auto max-w-[88rem] px-4 sm:px-6 py-10"><ModuleGrid detailed /></section>
+</Base>

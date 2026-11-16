@@ -1,0 +1,131 @@
+---
+title: Wall thickness calculation
+summary: How internal pressure, steel grade and the location of the line set the wall thickness of a pipeline, and how to pick the wall you actually order.
+order: 1
+minutes: 25
+level: Foundation
+standards: [ASME B31.4, ASME B31.8, SAES-L-410, API 5L]
+outcomes:
+  - Calculate pressure design wall thickness with the Barlow formula
+  - Choose the correct design factor for the service and location class
+  - Add corrosion allowance and round up to a standard API 5L wall
+  - Recognise when something other than pressure governs the wall
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import WallThickness from "@/components/interactives/WallThickness.tsx";
+
+## Why the wall matters
+
+Wall thickness is the first number a pipeline engineer fixes, and almost everything else depends on it: steel tonnage (often the largest single cost of the project), welding time, bending limits, hydrotest pressure and the stress checks in the rest of this module.
+
+The wall has one main job: to contain the internal pressure with a known margin against yielding. Pressure pushes outward on the pipe wall and tries to split the pipe along its length. The stress that resists this acts around the circumference and is called **hoop stress**.
+
+## The Barlow formula
+
+Cut a pipe in half along its axis and balance the forces on one half. Pressure acts on the projected diameter, and two wall sections carry the load:
+
+$$
+\sigma_h = \frac{P \, D}{2 \, t}
+$$
+
+Here $P$ is internal pressure, $D$ is the outside diameter and $t$ is wall thickness. Design codes turn this around and limit the hoop stress to a fraction of the pipe's specified minimum yield strength (SMYS):
+
+$$
+t = \frac{P \, D}{2 \, S \, F \, E \, T}
+$$
+
+- **S** is the SMYS of the pipe grade (for example 450 MPa for API 5L X65).
+- **F** is the design factor. It is the main safety margin and depends on the code and on how many people live near the line.
+- **E** is the longitudinal joint factor. It is 1.0 for modern seamless, ERW and SAW pipe made to API 5L.
+- **T** is the temperature derating factor. It is 1.0 up to 121 °C (250 °F) and falls slowly above that.
+
+<Callout type="note">
+The formula uses the **outside** diameter and the **nominal** wall. ASME B31.4 and B31.8 cover the API 5L mill under-tolerance inside the design factor, so you do not deduct it again. ISO 13623 works differently: it uses minimum wall thickness.
+</Callout>
+
+## Choosing the design factor
+
+For liquid pipelines to ASME B31.4 the design factor is a single value, 0.72. For gas pipelines to ASME B31.8 it depends on the **location class**, which counts buildings intended for human occupancy inside a sliding zone 1 mile long and a quarter mile either side of the line.
+
+| Location class | Typical surroundings | Design factor F |
+|---|---|---|
+| Class 1, Division 2 | Desert, farmland, sparsely populated | 0.72 |
+| Class 2 | Fringe areas around towns, industrial areas | 0.60 |
+| Class 3 | Suburban housing, shopping areas | 0.50 |
+| Class 4 | Multi-storey buildings, heavy traffic | 0.40 |
+
+A lower factor means a thicker wall for the same pressure. Moving from Class 1 to Class 3 increases the wall by 44 %. That is why route selection and wall thickness are decided together.
+
+<Callout type="aramco">
+Saudi Aramco designs to ASME B31.4 and B31.8 through SAES-L-410, but assigns location class from a population density index (PDI) study to SAES-B-064 rather than the ASME building count. The design factors per class follow the same 0.72 / 0.60 / 0.50 / 0.40 ladder. The PDI method is covered in module M4.
+</Callout>
+
+## From calculated wall to ordered wall
+
+1. Calculate the pressure design thickness $t$.
+2. Add the **corrosion allowance** (CA) if the fluid is corrosive. The CA is wall you expect to lose over the design life, so it cannot be counted for pressure.
+3. Round **up** to the next standard wall in API 5L / ASME B36.10M.
+4. Check the result against non-pressure limits (next section).
+
+<WallThickness client:visible />
+
+Try this: set Class 1, then switch to Class 3 and watch the blue pressure band grow. Then add corrosion allowance and see the selected wall jump to the next standard size.
+
+## When pressure does not govern
+
+On low-pressure or large-diameter lines the Barlow wall can be very thin. Other limits then set the wall:
+
+- **Handling and ovality.** As D/t rises above roughly 96, pipe dents and goes out of round during transport, stringing and bending.
+- **Company minimum wall.** Many operators, Saudi Aramco included, specify a minimum wall regardless of pressure.
+- **Crossings.** ASME B31.8 lowers the design factor at many road and railroad crossings, and traffic load may need extra wall (see External loads).
+- **Combined stress.** A hot buried line can fail the equivalent stress check even when hoop stress passes (next lesson).
+- **Installation.** Offshore lay, HDD pullback and cold bending can all need a heavier wall.
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §403.2 | Pressure design wall from Barlow with allowable stress 0.72 × E × SMYS. Nominal wall must be at least the design wall plus allowances. |
+| ASME B31.8 §841.1 | Design pressure P = (2St/D) × F × E × T. F from location class; T derates above 121 °C. |
+| ASME B31.8 §840.2 | Location class from the number of buildings in a 1 mile × ¼ mile sliding zone. |
+| SAES-L-410 | Pipeline design basis for Saudi Aramco. Adopts B31.4 and B31.8 with company additions such as minimum wall and extra limits at crossings. |
+| SAES-B-064 | Location class from a population density index within the rupture exposure radius. |
+| API 5L | Grades, SMYS and standard wall thicknesses with their tolerances. |
+
+</Standards>
+
+<Worked title="NPS 24 gas transmission line, Class 2">
+
+**Given:** OD 610 mm, design pressure 9.6 MPa (96 bar), API 5L X65 (SMYS 450 MPa), Class 2 (F = 0.60), E = 1.0, 60 °C (T = 1.0), corrosion allowance 1.6 mm.
+
+**Pressure design thickness**
+
+$$
+t = \frac{9.6 \times 610}{2 \times 450 \times 0.60 \times 1.0 \times 1.0} = 10.84 \text{ mm}
+$$
+
+**Add corrosion allowance:** 10.84 + 1.6 = 12.44 mm.
+
+**Select a standard wall:** the next API 5L wall is **12.7 mm** (0.500 in).
+
+**Check:** D/t = 610 / 12.7 = 48, comfortably below 96. Hoop stress on the corroded wall is 9.6 × 610 / (2 × 11.1) = 264 MPa, against an allowable of 270 MPa.
+
+</Worked>
+
+## Common mistakes
+
+- Using inside diameter, or a pressure in bar with a stress in MPa. Keep units consistent: 1 MPa = 10 bar.
+- Counting the corrosion allowance as pressure-containing wall.
+- Rounding down to the nearest standard wall.
+- Applying Class 1 factors to a line that passes a growing town. Check planned development, not just today's map.
+- Forgetting that fittings, bends and valves must match the pipe's pressure rating.
+
+<Quiz client:visible questions={[
+  { q: "Which diameter does the ASME B31.4 / B31.8 wall thickness formula use?", options: ["Inside diameter", "Mean diameter", "Outside diameter", "Nominal pipe size in inches"], answer: 2, why: "The codes use outside diameter with nominal wall, which is slightly conservative for thin-wall pipe." },
+  { q: "A gas line moves from Class 1 (F = 0.72) to Class 3 (F = 0.50). The pressure design wall:", options: ["Stays the same", "Increases by about 44 %", "Decreases by about 30 %", "Doubles"], answer: 1, why: "Wall is inversely proportional to F: 0.72 / 0.50 = 1.44." },
+  { q: "Where does the corrosion allowance go in the calculation?", options: ["It is multiplied by the design factor", "It is added after the pressure design thickness is calculated", "It is subtracted from the outside diameter", "It replaces the temperature factor"], answer: 1, why: "CA is sacrificial wall, added on top of the pressure thickness before choosing a standard wall." },
+  { q: "A calculated wall gives D/t = 120 on an NPS 48 low-pressure line. What should you do?", options: ["Accept it, pressure governs", "Reduce the grade", "Select a heavier wall for handling and ovality", "Increase the design factor"], answer: 2, why: "Very high D/t pipe is easily dented and ovalised, so handling limits govern." }
+]} />

@@ -1,0 +1,143 @@
+---
+title: Lateral buckling and free spans
+summary: Pipe that is not buried behaves differently. Exposed lines snake sideways under compression, and unsupported spans can vibrate in flowing water until they crack.
+order: 6
+minutes: 30
+level: Advanced
+standards: [DNV-RP-F110, DNV-RP-F105, DNV-ST-F101, SAES-L-410]
+outcomes:
+  - Explain lateral buckling and how it differs from upheaval buckling
+  - Calculate the natural frequency of a free span
+  - Use reduced velocity to screen for vortex-induced vibration
+  - Name the usual span correction methods
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import FreeSpan from "@/components/interactives/FreeSpan.tsx";
+
+## When the pipe is not buried
+
+This lesson covers two behaviours of exposed pipe. They matter most offshore, but both also appear onshore: above-ground lines on sleepers, pipe exposed by erosion in a wadi, and pipe bridges.
+
+## Lateral buckling
+
+A pipe lying on the surface is restrained only by friction with the ground. When temperature and pressure put it into compression, the easiest way to relieve that force is to slide **sideways** into a series of curves. This is lateral buckling, or snaking.
+
+Unlike upheaval buckling, lateral buckling is not always a failure:
+
+- **Uncontrolled**, the movement concentrates in one large buckle. Bending strain there can exceed limits and wrinkle the pipe.
+- **Controlled**, the movement is shared between many small, planned buckles. Each one relieves compression safely.
+
+Design methods to control it include:
+
+- **Snake lay**: laying the pipe in deliberate gentle curves so buckles start where intended.
+- **Sleepers or buoyancy sections** that lift the pipe locally to trigger a buckle at a chosen point.
+- **Expansion loops and offsets** for above-ground lines, which absorb growth through bending.
+
+<Callout type="aramco">
+Many Saudi Aramco hot crude and gas lines run above ground on concrete or steel supports, laid in a zig-zag or with expansion offsets. The supports use low-friction pads and guides, with anchors at intervals to divide the line into sections that expand independently. Above-ground design is covered in module M12.
+</Callout>
+
+The tendency to buckle laterally is assessed with the same effective force as the previous lesson, compared against the critical force from Hobbs' classical solutions (1984) or from finite-element analysis. DNV-RP-F110 sets out the full procedure.
+
+## Free spans
+
+A free span is a length of pipe with no support under it. Spans form where the ground is uneven, where a current scours the bed away, or where flood flow in a wadi washes out the cover.
+
+A span has two problems.
+
+**Static overstress.** The pipe sags under its own weight. For a span of length $L$ carrying weight $w$ per metre, the bending moment is roughly $w L^2 / 8$ to $w L^2 / 12$ depending on end fixity.
+
+**Vortex-induced vibration (VIV).** Flow past a cylinder sheds vortices alternately from each side. Each vortex gives the pipe a small push. If the shedding frequency comes close to a natural frequency of the span, the pipe locks in and vibrates. Amplitudes are small, but millions of cycles accumulate quickly and crack girth welds by fatigue.
+
+## Natural frequency
+
+$$
+f_n = \frac{C}{2\pi} \sqrt{\frac{E I}{m_e \, L^4}}
+$$
+
+- $C$ depends on end fixity: 9.87 for pinned ends, 15.4 for fixed-pinned, 22.4 for fixed ends.
+- $m_e$ is the effective mass per metre: pipe, coating, contents and, under water, the **added mass** of water that moves with the pipe.
+- Frequency falls with the **square** of span length. Doubling the span cuts the frequency to a quarter.
+
+## Reduced velocity
+
+The screening parameter is the reduced velocity:
+
+$$
+V_r = \frac{U}{f_n \, D}
+$$
+
+where $U$ is the flow velocity across the pipe. As a first screen:
+
+| Reduced velocity | Response |
+|---|---|
+| Below about 1 | No significant VIV |
+| About 1 to 3 | In-line vibration (along the flow), small amplitude |
+| Above about 3 | Cross-flow vibration (across the flow), large amplitude and rapid fatigue |
+
+<FreeSpan client:visible />
+
+Try this: lengthen the span until the pipe starts to vibrate, then change the end fixity to Fixed and see the allowable span grow. Notice that the longest safe span is often surprisingly short at flood velocities.
+
+<Callout type="field">
+Onshore, the classic case is a buried wadi crossing that loses its cover in a flash flood. The exposed pipe spans the scour hole and sits in fast, debris-laden water. This is why wadi crossings get extra burial depth below the predicted scour level, concrete coating and sometimes protective slabs.
+</Callout>
+
+## Correcting spans
+
+- **Supports** under the span: grout bags or mattresses offshore, piers or sleepers onshore.
+- **Rock placement or backfill** to remove the gap.
+- **Trenching** the shoulders so the pipe settles onto the bed.
+- **VIV suppression** such as strakes, where the span cannot be shortened.
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| DNV-RP-F110 | Global buckling of submarine pipelines: when lateral buckling is acceptable and how to design controlled buckles. |
+| DNV-RP-F105 | Free spanning pipelines: frequency calculation, VIV response models and fatigue screening criteria. |
+| DNV-ST-F101 | Limit-state criteria for bending strain and local buckling used to judge a buckle. |
+| SAES-L-410 | Design of above-ground restrained and unrestrained sections, supports and spans. |
+
+</Standards>
+
+<Worked title="Screening a 30 m span on an NPS 16 line">
+
+**Given:** OD 406.4 mm, wall 12.7 mm, contents 800 kg/m³, submerged in seawater, flow 0.8 m/s, pinned ends, span 30 m.
+
+**Effective mass:** steel 123 kg/m, contents 91 kg/m, added mass (coefficient 1.0) 133 kg/m. Total 347 kg/m.
+
+**Stiffness:** $E I$ = 207 × 10⁹ × 3.05 × 10⁻⁴ = 6.32 × 10⁷ N·m².
+
+**Natural frequency:**
+
+$$
+f_n = \frac{9.87}{2\pi} \sqrt{\frac{6.32 \times 10^7}{347 \times 30^4}} = 0.74 \text{ Hz}
+$$
+
+**Reduced velocity:**
+
+$$
+V_r = \frac{0.8}{0.74 \times 0.406} = 2.6
+$$
+
+The span is in the in-line VIV range and close to cross-flow onset. To bring $V_r$ below 1 the span must be shortened to about **18 m**, for example by one mid-span support.
+
+</Worked>
+
+## Common mistakes
+
+- Leaving out added mass for submerged pipe, which overestimates frequency.
+- Assuming fixed ends. Real span shoulders are somewhere between pinned and fixed.
+- Checking only the normal current, not the flood or storm velocity.
+- Treating every lateral buckle as a failure, or every one as harmless. It depends on the strain.
+
+<Quiz client:visible questions={[
+  { q: "A span doubles in length. Its natural frequency:", options: ["Halves", "Falls to a quarter", "Doubles", "Is unchanged"], answer: 1, why: "Frequency is proportional to 1/L²." },
+  { q: "Why is controlled lateral buckling sometimes acceptable?", options: ["It increases flow capacity", "It relieves compression while keeping bending strain within limits", "It removes the need for coating", "It makes pigging easier"], answer: 1, why: "Sharing expansion between several mild buckles avoids one severe, localised buckle." },
+  { q: "Which reduced velocity suggests damaging cross-flow vibration?", options: ["0.5", "1.0", "2.0", "4.5"], answer: 3, why: "Cross-flow VIV typically starts around a reduced velocity of 3 and is the most damaging mode." },
+  { q: "What does added mass represent?", options: ["Concrete coating weight", "Water that accelerates with a vibrating submerged pipe", "Marine growth", "Hydrotest water"], answer: 1, why: "A vibrating pipe must also move surrounding water, which lowers its natural frequency." }
+]} />

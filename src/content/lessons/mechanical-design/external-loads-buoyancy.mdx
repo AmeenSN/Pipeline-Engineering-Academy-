@@ -1,0 +1,153 @@
+---
+title: External loads and buoyancy
+summary: Soil and traffic press down on a buried pipe, and groundwater pushes it up. Learn to estimate crown pressure, check ovalisation and keep an empty pipe from floating.
+order: 4
+minutes: 30
+level: Intermediate
+standards: [API RP 1102, ASME B31.4, ASME B31.8, SAES-L-460, SAES-L-450]
+outcomes:
+  - Estimate soil and wheel loads on a buried pipe
+  - Check ovalisation with the modified Iowa formula
+  - Explain why very shallow and very deep cover are both demanding
+  - Run a buoyancy check and size concrete weight coating
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ExternalLoads from "@/components/interactives/ExternalLoads.tsx";
+import Buoyancy from "@/components/interactives/Buoyancy.tsx";
+
+## Loads from above
+
+A buried pipe is a flexible ring. It carries vertical load partly through its own stiffness and partly by pushing sideways against the backfill. Two loads act on the crown.
+
+**Soil load.** For a flexible steel pipe the usual estimate is the weight of the soil prism directly above it:
+
+$$
+P_s = \gamma \, H
+$$
+
+**Live load.** A wheel on the surface spreads its load through the soil. Directly below a point load $P_w$, Boussinesq gives:
+
+$$
+P_l = \frac{3 \, P_w}{2 \pi H^2} \times \text{impact factor}
+$$
+
+Soil load rises with depth. Traffic load falls with the **square** of depth. Their sum has a minimum, usually between 1 and 2 m of cover.
+
+## Ovalisation
+
+Vertical pressure squashes the ring into an oval. The modified Iowa formula estimates the change in diameter:
+
+$$
+\frac{\Delta y}{D} = \frac{D_l \, K \, P}{\dfrac{E I}{R^3} + 0.061 \, E'}
+$$
+
+- $E I / R^3$ is the ring stiffness of the pipe wall ($I = t^3 / 12$ per unit length).
+- $E'$ is the modulus of soil reaction: how firmly the backfill supports the sides of the pipe.
+- $K$ is a bedding constant (about 0.1) and $D_l$ a time-lag factor (1.0 to 1.5).
+
+Typical limits are 3 % for coated steel line pipe, and less where intelligent pigs must pass. For thin-wall pipe the soil term dominates the denominator, which is why **backfill compaction matters more than wall thickness** for ovality.
+
+<ExternalLoads client:visible />
+
+Try this: slide the cover from 0.4 m to 3 m and watch the black total-pressure curve. Then switch the backfill from Compacted to Loose and see ovalisation rise without any change in load.
+
+<Callout type="note">
+Internal pressure re-rounds the pipe and helps resist ovalisation. The worst case for external load is therefore usually the **depressurised** line, for example during construction or shutdown.
+</Callout>
+
+## Road and railroad crossings
+
+The explorer gives a quick screening estimate. A formal crossing design uses **API RP 1102**, which provides design curves for the circumferential and longitudinal stresses caused by earth load and by cyclic wheel load, then checks:
+
+- total effective stress against the allowable, and
+- **fatigue** of the girth weld and the longitudinal seam under repeated axle passes.
+
+Crossings are covered in depth in module M6.
+
+<Callout type="aramco">
+SAES-L-460 governs pipeline crossings under roads and railroads. Aramco practice generally favours thicker-wall uncased carrier pipe over casings, because a casing shields the pipe from cathodic protection and can short to the carrier. Minimum cover at crossings is greater than in open desert.
+</Callout>
+
+## Minimum cover
+
+| Location | ASME B31.4 (liquid) | ASME B31.8 (gas) |
+|---|---|---|
+| Open country, normal excavation | 0.75 m (30 in) | 0.61 m (24 in) in Class 1 |
+| Industrial, commercial, residential | 0.9 m (36 in) | 0.76 m (30 in) in Class 2 to 4 |
+| Road and rail drainage ditches | 0.9 m (36 in) | 0.9 m (36 in) |
+| River and stream crossings | 1.2 m (48 in) | By engineering assessment |
+
+Company standards are usually stricter. Projects in Saudi Arabia commonly specify about 1 m in open desert and more at crossings, in wadis and in moving dune areas.
+
+## Buoyancy
+
+Below the water table, a pipe is pushed up by the weight of the fluid it displaces. Large-diameter pipe is mostly air: an empty NPS 30 line displaces about 470 kg of water per metre but weighs only about 180 kg per metre. It will float.
+
+$$
+SF = \frac{W_{pipe} + W_{coating} + W_{contents}}{\rho_f \, g \, \dfrac{\pi D_o^2}{4}} \geq 1.1
+$$
+
+Check the **empty** pipe, because that is its state during construction and after any shutdown. Remember that the surrounding fluid may be heavier than water:
+
+- Sabkha brine can reach 1150 to 1200 kg/m³.
+- Liquefied backfill behaves like a fluid of 1500 kg/m³ or more.
+
+<Buoyancy client:visible />
+
+Try this: with the pipe empty in sabkha brine, add concrete until the safety factor reaches 1.1. Then switch to the lighter 2400 kg/m³ concrete and see how much more thickness is needed.
+
+### Buoyancy control methods
+
+- **Continuous concrete weight coating**, applied at the coating yard. Standard for sabkha, marsh and offshore.
+- **Set-on or bolt-on concrete weights** at intervals. Useful for short wet sections.
+- **Screw anchors** with straps. Efficient where the ground below is firm.
+- **Geotextile bag weights** filled with gravel. Gentle on coating.
+- **Deeper burial** with engineered backfill, where the backfill weight can be relied on.
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| API RP 1102 | Design method for uncased steel pipelines under highways and railroads, including cyclic stress and fatigue checks. |
+| ASME B31.4 §434.6 | Minimum cover for buried liquid pipelines by location. |
+| ASME B31.8 §841.1.11 | Minimum cover by location class, with extra protection where cover cannot be met. |
+| SAES-L-460 | Aramco requirements for road and railroad crossings: cover, wall thickness, casing policy. |
+| SAES-L-450 | Construction requirements including trench depth, backfill and buoyancy control in sabkha and wet areas. |
+| ALA (2001) | Guidelines for the design of buried steel pipe: soil load, wheel load and ovality formulas used in this lesson. |
+
+</Standards>
+
+<Worked title="Concrete coating for an NPS 30 line in sabkha">
+
+**Given:** OD 762 mm, wall 9.5 mm, 3 mm polyethylene coating, empty, sabkha brine at 1150 kg/m³, concrete density 3040 kg/m³, target safety factor 1.1.
+
+**Weight without concrete:** steel 176.3 kg/m plus coating 6.9 kg/m gives 183.2 kg/m, or 1.80 kN/m.
+
+**Buoyancy without concrete:** displaced area π/4 × 0.768² = 0.463 m².
+
+$$
+B = 0.463 \times 1150 \times 9.81 = 5.23 \text{ kN/m} \qquad SF = \frac{1.80}{5.23} = 0.34
+$$
+
+The bare pipe floats easily.
+
+**With concrete:** each millimetre of concrete adds weight but also adds displaced volume. Solving for the thickness where weight equals 1.1 × buoyancy gives an outer diameter of 0.937 m, so the concrete thickness is **85 mm**.
+
+</Worked>
+
+## Common mistakes
+
+- Assuming more cover is always safer. Deep burial raises soil load and makes future repair harder.
+- Using the density of fresh water in sabkha or tidal areas.
+- Checking buoyancy with the pipe full of product.
+- Relying on backfill weight in a trench that can flood before backfilling.
+
+<Quiz client:visible questions={[
+  { q: "How does wheel-load pressure on the pipe change when cover doubles?", options: ["It halves", "It falls to about a quarter", "It doubles", "It does not change"], answer: 1, why: "The Boussinesq point-load pressure varies with 1/H²." },
+  { q: "For a thin-wall large-diameter pipe, what most reduces ovalisation?", options: ["A higher steel grade", "Well-compacted sidefill", "A thicker external coating", "A lower operating temperature"], answer: 1, why: "The soil support term 0.061 E′ dominates ring stiffness for thin pipes. Grade does not affect stiffness." },
+  { q: "Which condition governs a buoyancy check?", options: ["Pipe full of crude oil", "Pipe full of hydrotest water", "Empty pipe", "Pipe at maximum pressure"], answer: 2, why: "Empty pipe is lightest. It occurs during construction and after shutdown or dewatering." },
+  { q: "Why is sabkha more demanding for buoyancy than ordinary wet ground?", options: ["The brine is denser than fresh water", "Sabkha is always deeper", "Steel is lighter in brine", "Concrete dissolves in sabkha"], answer: 0, why: "Uplift is proportional to fluid density, and sabkha brine can be 15 to 20 % denser than fresh water." }
+]} />
