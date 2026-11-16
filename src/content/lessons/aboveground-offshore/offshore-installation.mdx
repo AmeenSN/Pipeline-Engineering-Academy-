@@ -1,0 +1,97 @@
+---
+title: Offshore installation methods
+summary: Offshore, the entire construction spread is on one vessel and the pipe is lowered to the seabed as it is welded. Compare S-lay, J-lay, reel-lay and towed installation.
+order: 3
+minutes: 20
+level: Intermediate
+standards: [DNV-ST-F101, API RP 1111, DNV-RP-F105]
+outcomes:
+  - Describe how S-lay, J-lay, reel-lay and tow methods work
+  - Explain overbend and sagbend and what controls them
+  - Match an installation method to water depth and pipe size
+  - Outline post-lay activities
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## The spread on a ship
+
+Onshore, the crews move along the pipe. Offshore, the pipe moves through the crews. On a lay vessel, joints pass through a line of stations along the deck, called the **firing line**: bevelling and line-up, several welding stations, NDT, and field joint coating. After each joint is complete the vessel moves ahead one joint length and the pipe slides off the stern toward the seabed.
+
+Between the vessel and the seabed, the suspended pipe is held in shape by **tension**. Losing tension lets the pipe sag too sharply and buckle.
+
+## The methods
+
+<InfoTabs client:visible title="Offshore installation methods" tabs={[
+  { label: "S-lay", title: "S-lay", text: "The pipe is welded horizontally on deck, leaves over a curved ramp called the stinger, and hangs to the seabed in an S shape.", rows: [["Water depth", "From a few metres to over 2000 m with large vessels"], ["Pipe size", "All sizes, including large concrete-coated pipe"], ["Rate", "2 to 6 km per day: several welding stations work at once"], ["Critical points", "The overbend on the stinger (bending strain) and the sagbend near the seabed (bending plus external pressure)"], ["Controlled by", "Tensioners gripping the pipe, stinger length and curvature, vessel position"], ["Typical use", "The workhorse for trunklines and shallow to moderate depths, including the Arabian Gulf"]] },
+  { label: "J-lay", title: "J-lay", text: "Joints are welded in a near-vertical tower and lowered almost straight down, so the pipe forms a J with a single bend at the seabed.", rows: [["Water depth", "Deep and ultra-deep: about 500 m to 3000 m and more"], ["Pipe size", "Medium to large"], ["Rate", "1 to 2 km per day: usually one welding station, so multi-joint strings are pre-welded"], ["Strengths", "No overbend; lower tension; touchdown close to the vessel"], ["Limits", "Slow; not suited to shallow water"]] },
+  { label: "Reel-lay", title: "Reel-lay", text: "The pipeline is welded and tested in long strings onshore, wound onto a large reel on the vessel, then straightened and unreeled at sea.", rows: [["Water depth", "Shallow to very deep"], ["Pipe size", "Up to about NPS 16 to 18, without concrete coating"], ["Rate", "Very fast offshore: 10 km per day or more"], ["Strengths", "Welding done onshore in controlled conditions; short weather window needed"], ["Limits", "Reeling strains the pipe plastically (1 to 2 %), which needs thicker wall, strain-qualified welds and suitable coating; reel capacity limits length"]] },
+  { label: "Tow", title: "Towed installation", text: "A pipe string or bundle is fabricated on shore, launched and towed to site by tugs.", rows: [["Variants", "Surface tow, controlled-depth tow, and bottom tow along the seabed"], ["Strengths", "Complex bundles (several lines in a carrier pipe) built and tested onshore; no lay vessel"], ["Limits", "Length limited to a few kilometres per string; needs a suitable fabrication site and tow route"], ["Typical use", "Flowline bundles, short crossings, shore approaches"]] },
+  { label: "Shore pull", title: "Shore pull and shallow-water methods", text: "For landfalls, the pipe is pulled between the vessel and the shore.", rows: [["Pull ashore", "A winch on land pulls pipe from an anchored lay barge through a pre-dredged trench"], ["Pull offshore", "Strings made up on land are pulled out to sea by a barge"], ["With trenchless", "Pulled through an HDD or microtunnel under the beach"], ["Buoyancy", "Temporary floats control the pipe's weight in the surf zone"]] },
+]} />
+
+## Overbend and sagbend
+
+In S-lay the suspended pipe has two critical regions:
+
+- **Overbend:** where the pipe curves downward over the stinger. Bending strain is set by the stinger's radius. The pipe may be strained beyond yield in a controlled way.
+- **Sagbend:** where the pipe curves back to horizontal near the seabed. Curvature here is controlled by tension: more tension gives a longer, gentler curve. The pipe is also under full external pressure here, so bending and collapse combine.
+
+If tension is lost, for example by a tensioner failure or sudden vessel movement, the sagbend tightens and the pipe can buckle. A **wet buckle**, where the pipe also floods, suddenly multiplies its weight. **Buckle arrestors**, thick rings at intervals, limit how far a collapse can run.
+
+## Welding and inspection offshore
+
+Vessel time is expensive, so cycle time per joint drives everything:
+
+- mechanised gas metal arc welding at several stations,
+- automated ultrasonic testing with fracture-mechanics acceptance criteria, giving a result in about a minute,
+- induction-heated field joint coating with fast-setting infill,
+- welds qualified for installation strain, with tight limits on misalignment.
+
+## Before and after the lay
+
+**Before:**
+
+- route survey of the seabed and removal or avoidance of obstacles,
+- pre-lay trenching or seabed preparation where needed,
+- crossings of existing pipelines and cables prepared with mattresses.
+
+**During:**
+
+- touchdown monitoring by remotely operated vehicle,
+- **abandonment and recovery:** if weather worsens, the pipe end is sealed, lowered to the seabed on a cable and picked up later.
+
+**After:**
+
+- as-laid survey,
+- span correction,
+- **trenching** (jetting, ploughing or mechanical cutting) and backfill or rock placement,
+- tie-ins to risers and subsea structures with spools,
+- flooding, cleaning, gauging, hydrotest, dewatering and drying, as onshore.
+
+<Callout type="note">
+Water depth, pipe diameter and whether the pipe is concrete coated decide the method for most projects. Shallow water and large concrete-coated pipe point to S-lay. Small flowlines point to reel-lay. Very deep water with large pipe points to J-lay.
+</Callout>
+
+<Callout type="aramco">
+Offshore pipelines in Saudi Aramco's Arabian Gulf fields are in shallow water and are generally installed by S-lay barge with concrete-coated pipe, followed by trenching or burial where protection requires it, with shore approaches pulled ashore or installed by trenchless methods. Check the current offshore pipeline standards for installation requirements.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| DNV-ST-F101 Section 10 | Construction offshore: installation analysis, strain limits, welding, monitoring, post-lay survey and testing. |
+| API RP 1111 | Installation design and limits for offshore pipelines. |
+| DNV-RP-F108 | Assessment of flaws in pipeline girth welds subjected to installation strain. |
+| DNV-RP-F105 | Free span assessment after laying. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "Which method welds the pipe onshore and spools it onto the vessel?", options: ["S-lay", "J-lay", "Reel-lay", "Bottom tow"], answer: 2, why: "Reel-lay fabricates long strings onshore and unreels them at sea, straightening the pipe as it leaves." },
+  { q: "In S-lay, what mainly controls the curvature of the sagbend?", options: ["Stinger radius", "Tension applied to the pipe", "Pipe colour", "Water temperature"], answer: 1, why: "Higher tension lengthens the suspended span and reduces bending near the seabed. The stinger controls the overbend." },
+  { q: "Why is J-lay preferred in very deep water?", options: ["It is faster", "It avoids the overbend and needs less tension", "It needs no welding", "It works without a vessel"], answer: 1, why: "Lowering the pipe near-vertically removes the overbend and reduces the horizontal tension needed." }
+]} />

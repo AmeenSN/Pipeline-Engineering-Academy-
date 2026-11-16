@@ -1,0 +1,104 @@
+---
+title: Pigging and scraper traps
+summary: Pigs clean, gauge, separate and inspect a pipeline from the inside. Learn the pig types, how a launcher and receiver work, and what makes a pipeline piggable.
+order: 1
+minutes: 30
+level: Intermediate
+standards: [ASME B31.4, ASME B31.8, API 1163, SAES-L-420]
+outcomes:
+  - Match pig types to their purposes
+  - Follow the valve sequence for launching and receiving a pig
+  - List the design features that make a line piggable
+  - Explain what in-line inspection tools measure
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+import PigTrap from "@/components/interactives/PigTrap.tsx";
+
+## What a pig is
+
+A pig is a device that travels through the pipeline, pushed by the flow, sealing against the pipe wall. In Saudi Aramco and some other companies it is called a **scraper**, and the launcher and receiver are **scraper traps**.
+
+Pigs are used throughout a pipeline's life:
+
+- **Construction:** cleaning, gauging, filling for hydrotest, dewatering and drying.
+- **Operation:** removing liquids, wax, scale and debris; applying inhibitor and biocide; separating product batches.
+- **Integrity:** in-line inspection of the pipe wall.
+- **Decommissioning:** cleaning and displacing product.
+
+## Pig types
+
+<InfoTabs client:visible title="Types of pig" tabs={[
+  { label: "Foam", title: "Foam pigs", text: "Polyurethane foam cylinders, bare or coated with a harder skin, some with wire or abrasive strips.", rows: [["Purpose", "Drying, light cleaning, proving a line is passable"], ["Strengths", "Cheap, compressible: pass reductions and tight bends, and break up if stuck"], ["Limits", "Wear quickly; limited cleaning force"]] },
+  { label: "Cup / disc", title: "Mandrel pigs with cups or discs", text: "A steel body carrying replaceable polyurethane sealing cups or discs, with brushes, scraper blades or magnets added as needed.", rows: [["Purpose", "Routine cleaning, liquid removal, batching, dewatering"], ["Bi-directional", "Disc pigs can be driven either way, which matters during hydrotest filling and if a pig must be reversed"], ["Options", "Brushes for scale, blades for wax, magnets for metallic debris, bypass ports to keep debris suspended ahead of the pig"]] },
+  { label: "Sphere", title: "Spheres", text: "Hollow elastomer balls inflated with water or glycol to slightly over the pipe bore.", rows: [["Purpose", "Sweeping liquids from gas gathering lines, meter proving"], ["Strengths", "Roll through tight bends and can be launched automatically in sequence"], ["Limits", "Little cleaning ability"]] },
+  { label: "Gauge", title: "Gauging pigs", text: "A cup pig carrying a soft aluminium plate slightly smaller than the bore.", rows: [["Purpose", "Proving the line is free of dents, buckles and obstructions after construction"], ["Plate size", "Commonly 95 % of the minimum internal diameter"], ["Result", "A bent or notched plate shows there is a restriction, but not where"]] },
+  { label: "Caliper", title: "Caliper (geometry) tools", text: "An array of mechanical fingers or sensors measures the internal shape continuously.", rows: [["Finds", "Dents, ovality, wrinkles, bend radius, wall thickness changes"], ["Gives", "Size and location of each feature"], ["Run", "After construction, and before a metal-loss tool to prove it can pass"]] },
+  { label: "MFL", title: "Magnetic flux leakage inspection tools", text: "Powerful magnets saturate the pipe wall; sensors detect flux leaking out where metal is missing.", rows: [["Finds", "Internal and external corrosion, gouges, some girth weld anomalies"], ["Works in", "Gas or liquid"], ["Limits", "Infers depth indirectly; axial magnetisation is weak on narrow axial defects, for which circumferential (transverse) field tools are used"], ["Note", "The most widely used metal-loss technology"]] },
+  { label: "UT / EMAT", title: "Ultrasonic and EMAT inspection tools", text: "Ultrasonic transducers measure remaining wall directly, or detect cracks with angled beams.", rows: [["Wall measurement", "Direct, accurate thickness: excellent for corrosion and laminations"], ["Crack detection", "Stress corrosion cracking and seam weld cracks"], ["Needs", "A liquid couplant, so conventional UT runs in liquid lines or in a liquid slug in gas lines"], ["EMAT", "Generates ultrasound electromagnetically in the pipe wall, so it works in dry gas; finds cracks and disbonded coating"]] },
+  { label: "Mapping", title: "Inertial mapping units", text: "Gyroscopes and accelerometers carried on an inspection tool record its path.", rows: [["Gives", "Three-dimensional coordinates of the pipeline centreline"], ["Used for", "Locating features for excavation, detecting pipe movement from ground deformation, measuring bending strain"]] },
+]} />
+
+## Launchers and receivers
+
+A trap is a short length of oversize pipe (the **barrel**) connected to the pipeline through a full-bore valve, with a quick-opening closure at the end. It lets a pig be inserted or removed while the pipeline stays in service.
+
+<PigTrap client:visible />
+
+Step through the sequence. Watch which valves change at each step and how flow is diverted through the kicker line at the moment of launch.
+
+A **receiver** works in reverse. Its barrel is longer, to hold a long inspection tool plus debris. The bypass line leaves from the front of the barrel so flow continues after the pig has arrived, and the pig is recovered after the trap is isolated, depressurised and drained.
+
+### The safety-critical step
+
+Opening a trap closure that is still under pressure has killed operators. Defences, all used together:
+
+- a **pressure-warning interlock** on the closure that cannot be released while pressure remains,
+- a **pressure gauge and an open vent** on the barrel, checked before the closure is touched,
+- **double isolation** with a bleed between the pipeline and the barrel,
+- standing **to the side** of the door, never in front,
+- for sour service, breathing apparatus and gas monitoring; for pyrophoric iron sulphide debris, keeping it wet.
+
+## Designing a piggable line
+
+Whether inspection tools can pass is decided at design stage:
+
+- **Constant internal diameter.** Limit wall thickness changes; use transition pieces. Dual-diameter lines restrict tool choice.
+- **Full-bore mainline valves.**
+- **Bends of 3 D or, preferably, 5 D radius and larger** (module M5), with straight pipe between bends.
+- **Barred tees** on any branch larger than about a quarter to a third of the line diameter.
+- **No mitre bends, no internal obstructions,** no probes or thermowells protruding into the bore.
+- **Check valves** of a piggable type.
+- **Traps sized for inspection tools:** barrel length, working space in front of the closure, lifting facilities and drainage.
+- **Pig signallers** downstream of the launcher and upstream of the receiver.
+- **Flow conditions** within the tool's speed range, typically 0.5 to 4 m/s, which in gas lines may need the flow reduced during a run.
+
+## Running pigs
+
+- **Progressive pigging.** In a line that has not been pigged for years, start with soft foam pigs and work up through progressively more aggressive pigs, so that debris is removed a little at a time and a pig does not jam behind a wall of wax or scale.
+- **Tracking.** Pigs carry transmitters, and crews follow them at above-ground marker points.
+- **Stuck pigs** are located by the transmitter and by pressure readings, and freed by raising differential pressure, reversing flow, or as a last resort cutting out.
+- **Frequency** is set by what comes out: the debris received is measured and analysed after every run.
+
+<Callout type="aramco">
+SAES-L-420 covers the design of scraper trap station piping and appurtenances for Saudi Aramco pipelines, including barrel dimensions, valve arrangement, closures and instrumentation, and SAES-L-410 requires new pipelines to be scrapable unless a waiver is approved. Check the current standard for barrel sizing by line size and tool type.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §434.17 and B31.8 §841.1.3 | Scraper traps to be designed for the pipeline pressure, with closures and safe venting; pipelines to accommodate in-line inspection where practicable. |
+| API 1163 / NACE SP0102 | In-line inspection systems qualification, tool selection, run preparation and reporting. |
+| ASME B31.8S / API 1160 | In-line inspection as an integrity assessment method. |
+| SAES-L-420 | Aramco scraper trap station piping and appurtenances. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "What actually launches the pig out of the barrel?", options: ["Opening the closure", "Throttling the mainline bypass valve so flow diverts through the kicker line behind the pig", "Opening the drain", "Gravity"], answer: 1, why: "Restricting the bypass forces flow through the kicker line into the barrel, pushing the pig into the pipeline." },
+  { q: "Which tool measures remaining wall thickness directly?", options: ["Gauging pig", "Foam pig", "Ultrasonic inspection tool", "Sphere"], answer: 2, why: "Ultrasonic tools time the echo from the far wall, giving thickness directly. MFL infers it from magnetic leakage." },
+  { q: "Why are barred tees fitted on a piggable pipeline?", options: ["To support the branch", "To stop pigs entering or lodging in large branch openings", "To reduce turbulence", "To earth the pipe"], answer: 1, why: "Guide bars across the branch keep the pig on the main run." }
+]} />

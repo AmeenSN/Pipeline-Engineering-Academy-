@@ -1,0 +1,135 @@
+---
+title: Above-ground pipelines
+summary: A pipeline on supports is free to move, so its design is about managing expansion instead of resisting it. Learn supports, anchors, expansion loops and the hazards of exposed pipe.
+order: 1
+minutes: 25
+level: Intermediate
+standards: [ASME B31.4, ASME B31.8, SAES-L-410, SAES-L-440]
+outcomes:
+  - Explain when a pipeline is laid above ground instead of buried
+  - Calculate thermal growth between anchors
+  - Size an expansion loop leg and a support span
+  - List the hazards and protection measures for exposed pipe
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ExpansionLoop from "@/components/interactives/ExpansionLoop.tsx";
+
+## Why go above ground
+
+Burial is the default, but above-ground construction is chosen where:
+
+- the line is **hot**, and burial would mean large compressive stress, upheaval buckling risk and big anchor blocks,
+- the ground is **rock** or **sabkha**, where trenching is slow or the soil is highly corrosive,
+- the line is **short** and inside an operating area, such as flowlines in an oil field,
+- **inspection and maintenance access** is valued over protection,
+- the ground is unstable (permafrost, active faults) and the pipe must be isolated from it.
+
+The price is exposure: to vehicles, sun, sand, fire and tampering. Above-ground lines also block access across the corridor unless crossings are provided.
+
+## Restrained or free
+
+Module M2 showed that a buried pipe held by soil develops stress when heated. An above-ground pipe is designed the opposite way: it is **allowed to grow**, and the growth is absorbed by bending in loops, offsets or changes of direction.
+
+Free thermal growth of a length $L$:
+
+$$
+\delta = \alpha \, \Delta T \, L
+$$
+
+For steel, that is about 1.2 mm per metre for every 100 °C. A 300 m section heated by 60 °C grows 210 mm. The temperature range must include the coldest winter night with the line empty and the hottest condition, which in the desert includes **solar heating** of an empty or stagnant line to 80 °C or more.
+
+## Anchors, guides and supports
+
+The line is divided into sections by **anchors**. Between two anchors the pipe expands toward a loop or offset placed between them.
+
+- **Anchors** fix the pipe in all directions. They carry the loop's spring force and friction from the supports, which is far less than the full restraint force of a buried line.
+- **Guides** allow axial sliding but prevent the pipe moving sideways or lifting off, so that growth goes where the designer intends and the line cannot buckle laterally.
+- **Sliding supports** carry weight and let the pipe move. Low-friction pads (PTFE on stainless steel) reduce the friction force on anchors. Support height keeps the pipe clear of the ground, drifting sand and standing water.
+- **Wear pads or saddles** welded or clamped to the pipe protect it and its coating where it rests on a support.
+
+## Absorbing the growth
+
+- **Expansion loop:** a U-shaped offset. The legs perpendicular to the line bend as the pipe grows into the loop.
+- **Z-bend or L-bend (offset):** a change of direction used as flexibility.
+- **Zig-zag or snaked lay:** the whole line laid in a gentle wave, so growth is taken up by slight changes in curvature.
+
+A first estimate of the leg length needed uses the guided-cantilever formula:
+
+$$
+L_{leg} = \sqrt{\frac{3 \, E \, D \, \delta}{S_A}}
+$$
+
+where $\delta$ is the movement the leg absorbs and $S_A$ is the allowable expansion stress range. Larger diameter and more movement both need longer legs.
+
+<ExpansionLoop client:visible />
+
+Try this: double the distance between anchors and see the loop leg grow by about 40 %, not double, because of the square root. Compare the loop's requirement with the force a fully restrained pipe would exert, shown in the last box.
+
+## Support spacing
+
+Support span is limited by:
+
+- **bending stress** in the pipe between supports,
+- **deflection (sag)**, which must be small enough for liquid lines to drain and to avoid ponding of water in gas lines,
+- **local stress at the support**, where the pipe wall bears on the saddle: thin-wall large-diameter pipe may need a wider saddle or reinforcing pad,
+- **natural frequency**, kept high enough to avoid wind-induced vibration.
+
+Typical spans range from about 6 m for small pipe to 20 m or more for large diameters.
+
+## Hazards of exposed pipe
+
+- **Vehicle impact.** Barriers, berms or burial at road crossings.
+- **External corrosion** from the atmosphere, and especially at supports, where water and salt-laden sand collect in the crevice between pipe and support.
+- **Sand accumulation.** Drifting sand buries low pipe, which is then partly restrained, partly corroding and impossible to inspect. Supports are raised, and sand is cleared.
+- **Solar heating and UV,** which affect temperature range and coatings.
+- **Fire exposure** in process areas.
+- **Wind and flood loads** on spans and at wadi crossings.
+- **Surge and slug forces** at bends, which can shift an unrestrained line off its supports.
+
+Above-ground pipe is painted or coated for atmospheric service. It is not cathodically protected, since CP needs an electrolyte, so the transition where a line goes below ground needs both systems and an isolation joint.
+
+<Callout type="field">
+The most common corrosion on an above-ground line is not on the visible top. It is at the 6 o'clock position where the pipe sits on its supports. Inspect there, by lifting the pipe or with guided-wave ultrasonics.
+</Callout>
+
+<Callout type="aramco">
+Many Saudi Aramco flowlines, trunklines and some cross-country lines are laid above ground on supports with expansion offsets, anchors at intervals and guides to control lateral movement. SAES-L-410 covers design of unrestrained and partly restrained pipelines, and SAES-L-440 covers anchors, including those at above-ground to buried transitions. Check the current standards for support, guide and anchor requirements.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.4 §402 and §403.3 | Stress limits for unrestrained pipe: sustained longitudinal stress and expansion stress range. |
+| ASME B31.8 §833 | Flexibility and stress limits for unrestrained piping; expansion stress range limited to 0.72 S. |
+| ASME B31.4 §421 and B31.8 §834 | Design of supports, anchors and attachments. |
+| SAES-L-410 and SAES-L-440 | Aramco above-ground pipeline design, supports and anchors. |
+
+</Standards>
+
+<Worked title="Expansion loop for an NPS 24 above-ground line">
+
+**Given:** OD 610 mm, wall 12.7 mm, X65, anchors 300 m apart, temperature range 60 °C.
+
+**Growth:** 11.7 × 10⁻⁶ × 60 × 300 000 = **211 mm**.
+
+**Loop at mid-length:** each leg absorbs half, 105 mm.
+
+**Allowable expansion stress range:** 0.72 × 450 = 324 MPa.
+
+$$
+L_{leg} = \sqrt{\frac{3 \times 207\,000 \times 610 \times 105}{324}} = 11\,100 \text{ mm} = 11.1 \text{ m}
+$$
+
+**For comparison:** holding the same pipe fully restrained would take E·α·ΔT·A = 145 MPa × 23 831 mm² = **3460 kN** at each anchor. With the loop, the anchors carry only support friction and the loop's bending reaction, typically a few percent of that.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "The main design difference between buried and above-ground pipelines is that above-ground pipe:", options: ["Needs no wall thickness calculation", "Is allowed to expand, with the movement absorbed by flexibility", "Cannot carry gas", "Needs no supports"], answer: 1, why: "Buried pipe is restrained by soil; above-ground pipe is given loops or offsets so it can move." },
+  { q: "What does a guide do?", options: ["Fixes the pipe in all directions", "Allows axial sliding while preventing sideways movement", "Carries only weight", "Measures temperature"], answer: 1, why: "Guides direct the expansion along the pipe axis and prevent lateral buckling." },
+  { q: "Where is external corrosion most likely on an above-ground pipeline?", options: ["At the top of the pipe", "At support contact points", "Midway between supports", "Inside the loop"], answer: 1, why: "Moisture and salts are trapped in the crevice between the pipe and its support." }
+]} />

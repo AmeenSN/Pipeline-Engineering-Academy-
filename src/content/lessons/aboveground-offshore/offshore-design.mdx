@@ -1,0 +1,143 @@
+---
+title: Offshore pipeline design
+summary: Under the sea, the loads that govern a pipeline change. Installation, external pressure, waves and currents take over from soil and traffic. An introduction for onshore engineers.
+order: 2
+minutes: 25
+level: Intermediate
+standards: [DNV-ST-F101, DNV-RP-F109, DNV-RP-F105, API RP 1111]
+outcomes:
+  - Contrast onshore and offshore pipeline design drivers
+  - Explain limit-state design in outline
+  - Run a simple on-bottom stability check
+  - Describe offshore corrosion protection and shore approaches
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import OnBottomStability from "@/components/interactives/OnBottomStability.tsx";
+
+## What changes offshore
+
+The steel, the welds and the pressure are the same. The environment is not.
+
+| Aspect | Onshore buried | Offshore |
+|---|---|---|
+| Governing wall thickness | Internal pressure, location class | Often installation bending, collapse or stability |
+| External pressure | Negligible | Up to hundreds of bar in deep water |
+| Restraint | Soil | Self-weight and seabed friction, or trenching and burial |
+| Main external hazards | Excavators | Anchors, trawl gear, dropped objects |
+| Corrosion protection | Coating plus impressed current CP | Coating plus bracelet sacrificial anodes |
+| Construction | Many crews along the route | One lay vessel |
+| Access for repair | Excavate | Divers or remotely operated vehicles |
+| Cost of a mistake | High | Very high |
+
+## Limit-state design
+
+Onshore codes mostly limit **stress** to a fraction of yield. The main offshore code, DNV-ST-F101, uses **limit-state design**: each way the pipe could fail is checked separately, with partial safety factors on loads and resistance that depend on the consequence of failure (the safety class).
+
+The limit states include:
+
+- **Pressure containment (burst).**
+- **Collapse** under external pressure, and **propagating buckling**, where a local collapse runs along the pipe (stopped by buckle arrestors).
+- **Local buckling** under combined bending, axial force and pressure.
+- **Global buckling:** upheaval or lateral.
+- **Fatigue** from waves, vortex-induced vibration and installation.
+- **Fracture** of girth welds under installation strain.
+- **On-bottom stability.**
+
+Because installation often bends the pipe beyond yield, strain-based criteria are routine offshore.
+
+## Wall thickness
+
+Three checks usually compete:
+
+1. **Internal pressure** (burst), as onshore.
+2. **External pressure collapse** with the pipe empty at maximum water depth (module M2).
+3. **Combined loading during installation,** in the overbend and sagbend of the lay.
+
+In deep water, collapse and installation commonly govern, and D/t is lower than for an equivalent onshore line.
+
+## On-bottom stability
+
+A pipe lying on the seabed is pushed by currents and wave-induced water motion. Water flowing over it creates **drag** (horizontal), **lift** (upward) and, in waves, **inertia** forces. It must be heavy enough that seabed friction resists sliding even with lift reducing its effective weight:
+
+$$
+W_s \geq \gamma \left( \frac{F_D + F_I}{\mu} + F_L \right)
+$$
+
+where $W_s$ is the submerged weight per metre and $\mu$ the friction coefficient between pipe and seabed.
+
+Weight is added with **concrete weight coating**. Where weight alone would be excessive, the pipe is trenched, buried or covered with rock.
+
+<OnBottomStability client:visible />
+
+Try this: with no concrete the empty pipe floats. Add concrete until it is stable at 1 m/s, then double the velocity. Forces rise with velocity squared, so the weight needed quadruples. Now switch to clay and see why trenching is preferred on low-friction seabeds.
+
+## Other design topics
+
+- **Free spans.** Uneven seabed leaves the pipe unsupported. Spans are checked for static stress and vortex-induced vibration (module M2), and corrected with grout bags, rock or trenching.
+- **Global buckling.** Hot subsea lines lying on the seabed buckle laterally. Design manages this with planned buckle sites.
+- **Protection.** Burial or rock cover in fishing and shipping areas; concrete coating against trawl boards; exclusion zones.
+- **Risers and tie-ins.** The connection up to a platform, with expansion spools at the base to absorb pipeline end movement.
+- **Flow assurance.** Cold seawater promotes hydrates and wax, so insulation and chemical injection are designed with the pipeline.
+
+## Corrosion protection
+
+- **Coating:** three-layer polyolefin or FBE under concrete, with field joints infilled on the lay vessel.
+- **Cathodic protection** by **bracelet anodes** of aluminium-zinc-indium alloy, clamped round the pipe at intervals (typically every 5 to 12 joints) and sized to last the design life without maintenance.
+- **Seawater** is a uniform, low-resistivity electrolyte, so sacrificial anodes work well, unlike in most soils.
+- Internal corrosion is controlled as onshore.
+
+## Shore approach and landfall
+
+The transition from sea to land is the most complex part of many offshore pipelines:
+
+- breaking waves and strong currents in shallow water give the highest stability loads,
+- the seabed moves seasonally,
+- the coast is often environmentally sensitive and in use by others.
+
+Methods include a trenched and backfilled approach with the pipe pulled ashore, HDD or microtunnel under the beach, and in very shallow water, installation from land or barges. Saudi Aramco calls these **near-shore** pipelines, and they are covered by the same construction standard as on-land lines.
+
+<Callout type="aramco">
+Saudi Aramco's offshore pipelines in the Arabian Gulf lie in relatively shallow water, so on-bottom stability, protection from anchors and marine traffic, and shore approaches matter more than collapse. Design follows the SAES-L-800 series for offshore pipelines, with SAES-L-450 applying to near-shore construction. Check the current standards index for the applicable documents.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| DNV-ST-F101 | Submarine pipeline systems: limit-state design, materials, construction, operation. |
+| DNV-RP-F109 | On-bottom stability design of submarine pipelines. |
+| DNV-RP-F105 / F110 | Free spanning pipelines; global buckling. |
+| DNV-RP-F103 / ISO 15589-2 | Cathodic protection of submarine pipelines by galvanic anodes. |
+| API RP 1111 | Design, construction, operation and maintenance of offshore hydrocarbon pipelines (limit-state design). |
+| ASME B31.4 Chapter IX and B31.8 Chapter VIII | Offshore requirements within the ASME codes. |
+
+</Standards>
+
+<Worked title="Stability of a concrete-coated NPS 24 line">
+
+**Given:** OD 610 mm, wall 15.9 mm, 3 mm coating, 50 mm concrete at 3040 kg/m³, empty, seawater 1025 kg/m³, near-bed velocity 1.0 m/s, sand (μ = 0.6).
+
+**Outside diameter:** 0.610 + 0.006 + 0.100 = 0.716 m.
+
+**Weight in air:** steel 233 kg/m, coating 5 kg/m, concrete 318 kg/m. Total 556 kg/m = 5.46 kN/m.
+
+**Buoyancy:** π/4 × 0.716² × 1025 × 9.81 = 4.05 kN/m.
+
+**Submerged weight:** 5.46 − 4.05 = **1.41 kN/m**.
+
+**Hydrodynamic forces:** drag = ½ × 1025 × 0.7 × 0.716 × 1.0² = 257 N/m. Lift = ½ × 1025 × 0.9 × 0.716 × 1.0² = 330 N/m.
+
+**Required weight:** 1.1 × (257 / 0.6 + 330) = **0.83 kN/m**. The pipe is stable.
+
+**At 2.0 m/s** the forces quadruple and the requirement becomes 3.3 kN/m: more than twice the available weight, so more concrete or trenching is needed.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "In deep water, wall thickness is often governed by:", options: ["Location class", "External pressure collapse and installation loads", "Traffic loads", "Soil friction"], answer: 1, why: "An empty pipe at depth must resist collapse and survive the bending of installation." },
+  { q: "If near-bed water velocity doubles, drag and lift forces:", options: ["Double", "Quadruple", "Halve", "Stay the same"], answer: 1, why: "Both forces vary with velocity squared." },
+  { q: "Offshore pipelines are usually cathodically protected by:", options: ["Impressed current from shore along the whole line", "Bracelet sacrificial anodes attached to the pipe", "Paint only", "Nothing: seawater is not corrosive"], answer: 1, why: "Aluminium-alloy bracelet anodes give maintenance-free protection for the design life in conductive seawater." }
+]} />

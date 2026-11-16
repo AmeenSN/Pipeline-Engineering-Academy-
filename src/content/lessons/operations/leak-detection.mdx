@@ -1,0 +1,115 @@
+---
+title: Leak detection methods
+summary: No single method finds every leak. Compare internal software methods, external sensors and patrols, and see how a leak is located from the timing of a pressure wave.
+order: 3
+minutes: 25
+level: Intermediate
+standards: [API RP 1130, API RP 1175, API 1149, ISO 13623]
+outcomes:
+  - Classify leak detection methods as internal, external or surveillance
+  - Explain mass balance and negative pressure wave detection
+  - Judge a system by sensitivity, reliability, accuracy and robustness
+  - Select a combination of methods for a given pipeline
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+import LeakLocate from "@/components/interactives/LeakLocate.tsx";
+
+## Why detect leaks
+
+The damage from a leak grows with time. A leak detection system exists to shorten the time between the start of a release and the response: confirm, shut down, isolate, dispatch.
+
+Leaks range from full-bore ruptures, obvious within minutes from pressure and flow, to pinholes that lose a fraction of a percent of flow and can run for weeks. Different methods cover different parts of that range.
+
+## Judging a leak detection system
+
+API RP 1130 uses four measures:
+
+- **Sensitivity:** the smallest leak it can detect, and how quickly.
+- **Reliability:** how often it alarms correctly and how rarely it alarms falsely. A system that cries wolf gets ignored.
+- **Accuracy:** how well it estimates leak size and location.
+- **Robustness:** whether it keeps working when an instrument fails or the pipeline is in an unusual operating state.
+
+Improving one usually costs another. Tightening the alarm threshold raises sensitivity and also false alarms.
+
+## The methods
+
+<InfoTabs client:visible title="Leak detection methods compared" tabs={[
+  { label: "Mass balance", title: "Volume or mass balance (CPM)", text: "Internal method. Flow in is compared with flow out, corrected for the change of inventory in the line.", rows: [["Needs", "Accurate flow meters at inlet and outlet, plus pressure and temperature to correct for line pack"], ["Detects", "Leaks down to roughly 0.5 to 2 % of flow, over minutes to hours"], ["Strengths", "Simple, proven, covers the whole line between meters"], ["Limits", "Slow for small leaks; no location; disturbed by transients unless line pack is modelled"]] },
+  { label: "RTTM", title: "Real-time transient model (CPM)", text: "Internal method. A computer model of the pipeline hydraulics runs continuously and compares predicted with measured pressures and flows.", rows: [["Needs", "Good instrumentation, fluid properties and a tuned model"], ["Detects", "Small leaks faster than simple balance, including during start-up and other transients"], ["Strengths", "Best software sensitivity; estimates location"], ["Limits", "Complex to set up and maintain; depends on data quality"]] },
+  { label: "Pressure wave", title: "Negative pressure wave (rarefaction wave)", text: "Internal method. The sudden pressure drop at a new leak travels both ways as a wave, detected by fast pressure sensors.", rows: [["Needs", "High-speed pressure transmitters with synchronised clocks at each end of a segment"], ["Detects", "Leaks that start suddenly, within seconds to a minute"], ["Strengths", "Fast; locates the leak from arrival times"], ["Limits", "Misses slow-growing leaks; operational pressure changes must be filtered out; weaker in gas"]] },
+  { label: "Statistical", title: "Statistical analysis (CPM)", text: "Internal method. Statistical tests on flow and pressure patterns decide whether a leak signature is present.", rows: [["Strengths", "Low false-alarm rate; tolerant of instrument drift; simpler to maintain than a full model"], ["Limits", "Slower than transient models for a given leak size"]] },
+  { label: "Fibre optic", title: "Distributed fibre-optic sensing", text: "External method. A fibre-optic cable in the trench acts as a continuous sensor.", rows: [["Temperature (DTS)", "A liquid leak warms or cools the soil; a gas leak cools it by expansion"], ["Acoustic (DAS)", "Detects the noise of a leak, and also digging and vehicles near the line"], ["Strengths", "Finds very small leaks; locates to within metres; also gives intrusion warning"], ["Limits", "Cable must be installed with the pipe (hard to retrofit); many alarms to manage"]] },
+  { label: "Acoustic", title: "Acoustic sensors", text: "External method. Sensors on the pipe listen for the sound a leak generates.", rows: [["Strengths", "Fast and can locate"], ["Limits", "Sensor spacing of a few kilometres to tens of kilometres; background noise from valves and pumps"]] },
+  { label: "Vapour / cable", title: "Vapour-sensing tubes and hydrocarbon-sensing cables", text: "External method. A permeable tube or special cable beside the pipe picks up leaked hydrocarbon.", rows: [["Strengths", "Detects extremely small leaks"], ["Limits", "Slow (hours); practical only for short, sensitive sections such as river crossings and water-supply areas"]] },
+  { label: "Patrol", title: "Patrols and surveys", text: "Surveillance. People and instruments look for signs of leakage along the route.", rows: [["Methods", "Ground and aerial patrol, drones with gas-imaging cameras or laser methane detectors, satellite methane detection, trained dogs"], ["Finds", "Stained soil, dead vegetation, vapour, bubbles at water crossings, and third-party activity before it causes damage"], ["Limits", "Intermittent: a leak can run until the next patrol"]] },
+  { label: "SCADA", title: "SCADA monitoring and operators", text: "Pressure, flow and rate-of-change alarms watched by the control room.", rows: [["Detects", "Ruptures and large leaks within minutes"], ["Limits", "Insensitive to small leaks; depends on operator recognition and response"], ["Key lesson", "Many serious incidents involved alarms that were present but not acted on"]] },
+]} />
+
+## Locating a leak by pressure wave
+
+<LeakLocate client:visible />
+
+Try this: move the leak along the line and watch the two arrival times change. Then worsen the timing accuracy to 1 second and read the location uncertainty: with a wave speed over 1 km/s, timing precision is everything.
+
+## Choosing a combination
+
+A typical modern liquid transmission line uses:
+
+- **SCADA alarms** for ruptures,
+- a **CPM system** (mass balance with a transient model or statistical method) for medium leaks,
+- **pressure wave** detection for fast location,
+- **fibre-optic sensing** or sensing cables at high-consequence sections,
+- regular **patrols**.
+
+Gas lines rely more on SCADA, pressure monitoring, line-break valves and patrols, because gas compressibility makes software methods less sensitive.
+
+Design considerations:
+
+- **Instrumentation.** A leak detection system is only as good as its meters. Custody-quality flow measurement at both ends pays for itself.
+- **Segments.** More intermediate measurement points give better sensitivity and location.
+- **Transients.** Batch changes, pump starts and slack-line flow on hills are when false alarms occur and real leaks hide.
+- **Shut-in monitoring.** Leaks are easiest to detect when the line is shut in under pressure.
+- **Testing.** Systems are proven by controlled fluid withdrawal tests.
+
+## The human part
+
+API RP 1175 treats leak detection as a **programme**, not a device: defined performance targets, alarm management, clear authority for the controller to shut down on a credible leak alarm without seeking permission, training with simulated leaks, and review of every alarm.
+
+<Callout type="aramco">
+Saudi Aramco specifies pipeline leak detection through its process automation and instrumentation standards, with requirements depending on the fluid, the line and the population nearby. Fibre-optic cables are routinely installed alongside new pipelines for communications and are increasingly used for sensing. Check the current standards for where a leak detection system is mandatory.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| API RP 1130 | Computational pipeline monitoring for liquids: methods, performance metrics, testing, operation. |
+| API RP 1175 | Pipeline leak detection programme management. |
+| API 1149 | Estimating the effect of measurement uncertainty on leak detectability. |
+| ISO 13623 and ASME B31.4 §451 | Leak detection and patrolling as part of operation and maintenance. |
+
+</Standards>
+
+<Worked title="Locating a leak on a 50 km segment">
+
+**Given:** segment length 50 km, wave speed 1100 m/s. The pressure drop is detected at the upstream sensor 16.4 s after it starts, and at the downstream sensor 29.1 s after. Only the difference is actually measurable: 12.7 s, upstream first.
+
+$$
+x = \frac{L + a \, (t_1 - t_2)}{2} = \frac{50\,000 + 1100 \times (-12.7)}{2} = 18\,015 \text{ m}
+$$
+
+The leak is about **18.0 km** from the upstream end.
+
+**Uncertainty:** if each time stamp is good to 0.1 s, the position error is about 1100 × 0.1 / 2 = 55 m. With 1 s resolution it would be 550 m.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "Which method finds the smallest leaks but only over short lengths?", options: ["SCADA pressure alarms", "Hydrocarbon-sensing cable or vapour tube", "Volume balance", "Aerial patrol"], answer: 1, why: "Direct sensing beside the pipe detects tiny amounts of product, but is practical only for short sensitive sections." },
+  { q: "Why does tightening an alarm threshold have a cost?", options: ["It uses more power", "It increases false alarms, reducing reliability", "It slows the flow", "It damages meters"], answer: 1, why: "Sensitivity and reliability trade off: a lower threshold catches smaller leaks and also more noise." },
+  { q: "Negative pressure wave detection is weakest for:", options: ["Sudden large leaks", "Leaks that develop slowly", "Liquid lines", "Short segments"], answer: 1, why: "A slowly growing leak produces no sharp pressure front to detect." }
+]} />

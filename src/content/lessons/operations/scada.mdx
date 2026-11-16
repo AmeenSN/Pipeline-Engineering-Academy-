@@ -1,0 +1,114 @@
+---
+title: SCADA basics
+summary: A pipeline hundreds of kilometres long is run from one room. Learn the parts of a SCADA system, what it measures and controls, and how alarms and communications are managed.
+order: 5
+minutes: 20
+level: Foundation
+standards: [API RP 1165, API RP 1167, API RP 1168, IEC 62443]
+outcomes:
+  - Name the components of a pipeline SCADA system
+  - List what is typically monitored and controlled
+  - Explain alarm management and control room practice
+  - Describe the communication options and their redundancy
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## Operating at a distance
+
+SCADA stands for **supervisory control and data acquisition**. It gathers measurements from every station and valve site along the pipeline, presents them to controllers in a central control room, and carries their commands back to the field. Without it, a long pipeline would need staff at every site around the clock.
+
+SCADA **supervises**. Fast, safety-critical actions, such as tripping a pump on high pressure, are done locally by the station's own control and safety systems, which must work even if communication with the control room is lost.
+
+## The parts of the system
+
+<InfoTabs client:visible title="Components of a pipeline SCADA system" tabs={[
+  { label: "Field instruments", title: "Field instruments and actuators", text: "The sensors and final elements on the pipeline.", rows: [["Measure", "Pressure, temperature, flow, density, tank level, valve position, pig passage, gas and fire detection"], ["Act", "Valve actuators, pump and compressor drives, control valves"], ["Quality", "Leak detection and custody transfer depend on meter accuracy and calibration"]] },
+  { label: "RTU / PLC", title: "Remote terminal units and controllers", text: "The local computer at each site.", rows: [["Does", "Reads instruments, executes local control and interlock logic, time-stamps events, and communicates with the control centre"], ["RTU", "Rugged, low-power units typical of remote valve sites, often solar powered"], ["PLC", "Used at stations with more complex control"], ["Autonomy", "Holds the site safe and stores data if communications fail"]] },
+  { label: "Communications", title: "Communication network", text: "Links every site to the control centre.", rows: [["Fibre optic", "Cable laid in the pipeline trench: high capacity, also usable for leak and intrusion sensing"], ["Microwave / radio", "Line-of-sight towers along the route"], ["Satellite (VSAT)", "For remote sites without other coverage, and as a backup"], ["Cellular", "Low-cost backup where coverage exists"], ["Redundancy", "Critical sites have two independent paths"]] },
+  { label: "Master station", title: "SCADA master and servers", text: "The central computers.", rows: [["Does", "Polls the RTUs, stores real-time and historical data, runs alarm processing and applications"], ["Redundancy", "Duplicated servers with automatic failover, and a backup control centre at a separate location"], ["Applications", "Leak detection, batch tracking, line pack and hydraulic models, pig tracking, scheduling"]] },
+  { label: "HMI", title: "Operator displays (HMI)", text: "The screens through which controllers see and operate the pipeline.", rows: [["Shows", "Overview schematics, station details, trends, alarm lists"], ["Good practice", "Calm, consistent graphics that make abnormal conditions stand out, in line with API RP 1165"], ["Controls", "Start and stop units, open and close valves, change set points, with confirmation steps for critical commands"]] },
+  { label: "Safety systems", title: "Local safety and shutdown systems", text: "Independent of SCADA.", rows: [["Examples", "Station emergency shutdown, high-pressure trips, pressure relief, line-break valve logic"], ["Principle", "Protective functions do not depend on the control room or the communication link"], ["SCADA role", "Reports their status and allows remote initiation of shutdown"]] },
+]} />
+
+## What the controller sees and does
+
+**Monitored** at each site, typically:
+
+- pressure and temperature upstream and downstream,
+- flow rate and totals at metering points,
+- valve positions and actuator status,
+- pump or compressor status, speed and vibration,
+- pig signaller status,
+- cathodic protection rectifier output,
+- power, battery, intrusion and fire alarms.
+
+**Controlled** from the centre:
+
+- starting and stopping pumps or compressors,
+- pressure and flow set points,
+- opening and closing mainline and station valves,
+- initiating an emergency shutdown.
+
+Controllers use this to keep the line inside its limits: below MAOP at every point, above minimum pressures needed to avoid slack-line flow or vapour formation, and within contracted delivery rates.
+
+## Alarm management
+
+An alarm should mean one thing: something abnormal that needs the controller to act. Systems that flood the controller with hundreds of alarms an hour train people to acknowledge without reading.
+
+Good practice (API RP 1167):
+
+- every alarm has a defined cause, consequence and required response,
+- alarms are **prioritised** so the critical few stand out,
+- **nuisance and standing alarms** are tracked and eliminated,
+- alarm rates per controller are measured against targets,
+- set points are documented and changes controlled.
+
+## Control room management
+
+Investigations of major pipeline incidents repeatedly find the same human factors: alarms ignored, shift handover gaps, fatigue, and controllers unsure whether they were allowed to shut down. API RP 1168 addresses these:
+
+- clear **roles and authority**, including the authority to shut down on a suspected leak,
+- structured **shift handover**,
+- **fatigue management** through shift design,
+- **training** with simulators, including abnormal and emergency scenarios,
+- **management of change** for anything affecting the control room,
+- learning from incidents and near misses.
+
+## Cybersecurity
+
+A SCADA system connected to corporate networks and the internet is a target. Defences follow the IEC 62443 approach:
+
+- **Segmentation:** the control network is separated from business networks by firewalls and a demilitarised zone.
+- **Access control:** individual accounts, strong authentication, least privilege.
+- **Hardening and patching** of servers, workstations and field devices.
+- **Monitoring** for intrusion and abnormal traffic.
+- **Backups and a tested recovery plan,** including the ability to operate manually.
+
+<Callout type="field">
+When communication to a site is lost, the control room is blind there but the site is not out of control. Local logic keeps it in a safe state. Procedures define how long the line may run with a site unmonitored before someone is sent or the line is shut down.
+</Callout>
+
+<Callout type="aramco">
+Saudi Aramco pipelines are monitored and controlled through company SCADA systems designed to its process automation standards (the SAES-Z series), with remote terminal units at valve and scraper trap sites linked mainly by fibre-optic cable installed along the pipeline. Check the current standards for the required signals at each type of site.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| API RP 1165 | Recommended practice for pipeline SCADA displays. |
+| API RP 1167 | Pipeline SCADA alarm management. |
+| API RP 1168 | Pipeline control room management. |
+| API 1164 / IEC 62443 | Pipeline control system cybersecurity. |
+| ISA 18.2 / ISA 101 | Alarm management and human-machine interface design in the process industries. |
+
+</Standards>
+
+<Quiz client:visible questions={[
+  { q: "What happens at a remote valve site if communication with the control room is lost?", options: ["All valves open", "Local logic keeps the site in a safe state and stores data", "The pipeline ruptures", "The RTU switches off"], answer: 1, why: "RTUs and local safety systems operate independently of the communication link." },
+  { q: "The purpose of alarm prioritisation is to:", options: ["Increase the number of alarms", "Make critical alarms stand out so they are acted on", "Silence all alarms at night", "Replace the leak detection system"], answer: 1, why: "Controllers overloaded with low-value alarms miss the ones that matter." },
+  { q: "Which is NOT normally done by SCADA itself?", options: ["Displaying pressures", "Sending a valve close command", "Tripping a pump within milliseconds on high pressure", "Recording historical trends"], answer: 2, why: "Fast protective actions are performed by local control and safety systems, not over the SCADA link." }
+]} />

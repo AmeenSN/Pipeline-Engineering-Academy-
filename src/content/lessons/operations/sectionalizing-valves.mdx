@@ -1,0 +1,126 @@
+---
+title: Sectionalizing valves
+summary: Mainline block valves divide a pipeline into sections that can be isolated in an emergency or for maintenance. Learn the spacing rules, how valves are operated and what a valve station contains.
+order: 2
+minutes: 25
+level: Intermediate
+standards: [ASME B31.8, ASME B31.4, API 6D, SAES-L-410, SAES-B-064]
+outcomes:
+  - Apply ASME B31.8 valve spacing by location class
+  - Explain how valve placement limits the consequences of a failure
+  - Compare manual, remote and automatic valve operation
+  - Describe the equipment at a mainline valve station
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import ValveSpacing from "@/components/interactives/ValveSpacing.tsx";
+
+## Why divide the line
+
+A pipeline hundreds of kilometres long holds an enormous inventory. Sectionalizing valves (also called block valves or mainline valves) let the operator:
+
+- **limit the release** if the line leaks or ruptures, by closing the valves either side,
+- **isolate a section** for repair, modification or a tie-in without emptying the whole line,
+- **blow down or drain** one section at a time,
+- separate sections for **commissioning and testing**.
+
+Valves do not prevent a failure, and they do not affect the first minutes of a gas rupture, which are driven by the gas already in the pipe near the break. They reduce how long the release lasts and how much is lost.
+
+## Spacing for gas pipelines
+
+ASME B31.8 sets a maximum spacing by location class, so that every point on the line is within a set distance of a valve:
+
+| Location class | Maximum spacing | Farthest point from a valve |
+|---|---|---|
+| Class 1 | 32 km (20 miles) | 16 km |
+| Class 2 | 24 km (15 miles) | 12 km |
+| Class 3 | 16 km (10 miles) | 8 km |
+| Class 4 | 8 km (5 miles) | 4 km |
+
+Closer spacing in populated areas limits both the duration of a fire and the time to make the line safe. The code allows spacing to be adjusted slightly so that valves fall at accessible locations.
+
+<ValveSpacing client:visible />
+
+Try this: set Class 1 and 32 km, then change to Class 3 and watch the verdict. Read the gas volume in one section: it is the amount that escapes after the valves have closed.
+
+## Placement for liquid pipelines
+
+ASME B31.4 has no general spacing table. Valves are located by engineering assessment, because what matters for a liquid release is the **terrain**: once the valves are closed, liquid drains by gravity to the break from the high points on each side.
+
+- **Both sides of major rivers** and water bodies, to protect water supplies.
+- **Either side of populated or environmentally sensitive areas.**
+- At locations that minimise **drain-down volume**: at the tops of slopes and before long descents.
+- **Check valves** on uphill-flowing sections, which close automatically and stop the column running back.
+- At pump stations and at intervals that make maintenance practical.
+
+A **spill volume analysis** of the route profile is used to optimise valve positions.
+
+## How valves are operated
+
+| Type | How it closes | Typical response | Where used |
+|---|---|---|---|
+| Manual | A person travels to site and operates a gearbox | Hours | Remote Class 1 areas, low-consequence lines |
+| Remotely operated (ROV) | Control room command through SCADA to an actuator | Minutes | Most modern transmission lines |
+| Automatic (ASV / line-break) | Local sensing of low pressure or a high rate of pressure drop | Minutes, with no communication needed | Sites with unreliable communications, critical crossings |
+| Emergency shutdown (ESD) | Station safety system | Seconds to minutes | Station inlets and outlets |
+
+**Actuators** on mainline valves are gas-over-oil (using the pipeline's own gas pressure), electro-hydraulic, or electric. They need a stored energy supply so the valve can close on loss of power.
+
+Automatic line-break valves must be set carefully. A rate-of-pressure-drop setting that is too sensitive closes the valve during normal transients, such as a compressor trip, which is disruptive and can itself be hazardous.
+
+## The valve station
+
+A mainline valve site typically contains:
+
+- the **mainline valve**: full-bore ball or through-conduit gate, welded ends, often buried with a stem extension,
+- a **bypass** around it with smaller valves, for equalising pressure before opening and for controlled filling,
+- **blowdown connections** each side, with a vent stack on gas lines sized to depressurise the section in a set time,
+- **pressure and temperature transmitters** each side,
+- the **actuator, power supply** (solar and batteries at remote sites) and **remote terminal unit**,
+- **cathodic protection** test facilities and often a rectifier,
+- **fencing, lighting and access road**, with the site located away from roads and housing where possible.
+
+Valves are also placed so that a pig can pass: the piggable route is always through the full-bore mainline valve.
+
+## Opening a closed valve
+
+A mainline valve with full pipeline pressure on one side and none on the other must not simply be opened. The pressure is first **equalised through the bypass**. Opening against a large differential damages the seats and, on a liquid line, sends a surge down the empty side.
+
+<Callout type="aramco">
+SAES-L-410 and SAES-B-064 set Saudi Aramco's requirements for sectionalizing valve location and spacing for both gas and liquid hydrocarbon pipelines, including valves near populated areas and at major crossings, and when remote or automatic operation is required. Valve selection follows SAES-L-108. Take the spacing for each location class from the current standards.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31.8 §846 | Sectionalizing block valve spacing by location class; blowdown provisions; consideration of remote or automatic operation. |
+| ASME B31.4 §434.15 | Mainline valves at locations that limit hazard and damage from a release and facilitate maintenance, including at major river crossings. |
+| API 6D | Design and testing of pipeline valves and actuators. |
+| SAES-L-410 and SAES-B-064 | Aramco valve spacing and location. |
+
+</Standards>
+
+<Worked title="Gas inventory between two valves">
+
+**Given:** NPS 36 × 15.9 mm (inside diameter 882.2 mm), 96 bar gauge, valves 32 km apart.
+
+**Pipe volume:** π/4 × 0.8822² × 32 000 = **19 560 m³**.
+
+**Gas at standard conditions:** with absolute pressure 97 bar and compressibility about 0.9,
+
+$$
+V_{std} = 19\,560 \times \frac{97}{1.013 \times 0.9} = 2.08 \text{ million Sm}^3
+$$
+
+That is the gas that remains to escape after both valves have closed. In Class 3 with valves 16 km apart, it is halved.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "ASME B31.8 maximum valve spacing in a Class 3 location is:", options: ["32 km", "24 km", "16 km", "8 km"], answer: 2, why: "Class 3 requires a valve within 8 km of every point, so 16 km (10 miles) between valves." },
+  { q: "For a liquid pipeline, the volume released after valve closure depends mainly on:", options: ["Valve colour", "The elevation profile between the valves", "Pipe grade", "Coating type"], answer: 1, why: "Liquid drains by gravity from the high points on each side of the break." },
+  { q: "Before opening a closed mainline valve with pressure on one side only, you should:", options: ["Open it as fast as possible", "Equalise pressure through the bypass", "Close the next valve", "Launch a pig"], answer: 1, why: "Equalising protects the valve seats and avoids a surge into the unpressurised section." }
+]} />

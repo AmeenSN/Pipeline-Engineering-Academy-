@@ -1,0 +1,154 @@
+---
+title: Defect assessment and repair
+summary: An inspection reports thousands of features. Learn how corrosion, dents and cracks are assessed for fitness for service, and how the ones that fail are repaired.
+order: 4
+minutes: 30
+level: Advanced
+standards: [ASME B31G, API 579, ASME PCC-2, API 1160, ASME B31.8S]
+outcomes:
+  - Assess a corrosion defect with Modified B31G
+  - Explain how defect length and depth affect failure pressure
+  - Apply screening rules for dents and gouges
+  - Select a repair method for a given defect
+---
+import Callout from "@/components/ui/Callout.astro";
+import Standards from "@/components/ui/Standards.astro";
+import Worked from "@/components/ui/Worked.astro";
+import Quiz from "@/components/ui/Quiz.tsx";
+import DefectAssessment from "@/components/interactives/DefectAssessment.tsx";
+import InfoTabs from "@/components/interactives/InfoTabs.tsx";
+
+## Fitness for service
+
+No pipeline is free of defects. The question is never "is there a defect?" but "is the pipe still fit for service with it, and for how long?" Answering that lets an operator repair what matters and leave alone what does not.
+
+## Corrosion defects
+
+A corroded area is a patch of thinner wall. It fails when the remaining ligament can no longer carry the hoop stress and bulges outward. Two dimensions matter:
+
+- **Depth** $d$, relative to wall thickness $t$.
+- **Axial length** $L$. A long defect behaves like a pipe with a thinner wall. A short one is supported by the full-thickness pipe around it and is much stronger.
+
+Circumferential width matters far less, because hoop stress acts across the axial dimension.
+
+### Modified B31G
+
+The most widely used method estimates the failure pressure as:
+
+$$
+P_f = \frac{2 \, t}{D} \, \sigma_{flow} \left[ \frac{1 - 0.85 \, d/t}{1 - 0.85 \, (d/t) / M} \right]
+$$
+
+- $\sigma_{flow}$ = SMYS + 69 MPa (10 ksi), an estimate of the stress at which ductile steel fails.
+- $M$ is the **Folias factor**, which accounts for bulging. It grows with $L^2 / (D t)$: the longer the defect, the larger $M$ and the lower the failure pressure.
+- The factor 0.85 approximates the real, irregular defect profile.
+
+The **safe operating pressure** is the failure pressure divided by a safety factor, commonly 1.39 (the inverse of a 0.72 design factor). The ratio of MAOP to safe pressure is called the **estimated repair factor (ERF)**: above 1.0, the defect needs action.
+
+Defects deeper than **80 % of the wall** are repaired regardless of the calculation.
+
+<DefectAssessment client:visible />
+
+Try this: hold the depth at 50 % and stretch the length from 50 mm to 800 mm. The defect moves from acceptable to unacceptable although no more wall has been lost at its deepest point. The green curve is the boundary.
+
+### Levels of assessment
+
+| Method | Uses | Conservatism |
+|---|---|---|
+| Original B31G | Depth and length, parabolic shape | Most conservative |
+| Modified B31G | Depth and length, 0.85 dL shape | Moderate |
+| RSTRENG (effective area) | The measured river-bottom profile of the defect | Least conservative of the three |
+| DNV-RP-F101 | Depth and length, with tensile strength and measurement uncertainty | For higher-toughness modern steels |
+| Finite-element analysis | Full geometry | Case by case |
+
+### Growth and re-inspection
+
+A defect that passes today will be deeper next year. Comparing two inspection runs, or using a conservative assumed rate, gives a corrosion growth rate. That sets the date by which each defect must be repaired or re-inspected.
+
+## Dents and mechanical damage
+
+A **plain dent** is a smooth change in curvature with no loss of wall. Under static pressure it is usually benign, and codes accept depths up to about 6 % of the diameter, subject to strain limits. Its real danger is fatigue under pressure cycling.
+
+Dents become serious when combined with something else:
+
+- **Dent with a gouge or crack.** The most severe form of mechanical damage. Cold-worked, cracked material at the base of the gouge can fail at low stress or after a delay. Requires prompt repair.
+- **Dent on a weld** (girth or seam).
+- **Dent with corrosion.**
+- **Dents on the top of the pipe**, which suggest third-party impact. Bottom-side dents are usually from rocks and are restrained by them.
+
+## Cracks
+
+Stress corrosion cracks, fatigue cracks and seam weld flaws are assessed by **fracture mechanics**, which needs the crack depth and length, the stresses and the steel's **toughness**. Methods are given in API 579 and BS 7910. Low-toughness vintage seams (old low-frequency ERW) need particular care.
+
+## Repair methods
+
+<InfoTabs client:visible title="Pipeline repair methods" tabs={[
+  { label: "Grinding", title: "Grinding (dressing)", text: "Shallow gouges, arc strikes and surface cracks are ground out to a smooth contour.", rows: [["For", "Superficial defects, where removing them leaves enough wall"], ["Check", "Remaining wall measured and assessed as a metal-loss defect; crack removal confirmed by magnetic particle testing"], ["Service", "Can be done in service"]] },
+  { label: "Type A sleeve", title: "Type A steel sleeve (reinforcing)", text: "Two half-shells fitted round the pipe and joined by longitudinal welds only. The ends are not welded to the pipe.", rows: [["For", "Non-leaking defects: external corrosion, some dents (with filler)"], ["How it works", "Restrains bulging at the defect; it does not contain pressure"], ["Strengths", "No welding onto the carrier pipe"], ["Limits", "Not for leaks or for defects expected to grow through the wall"]] },
+  { label: "Type B sleeve", title: "Type B steel sleeve (pressure-containing)", text: "A full-encirclement sleeve with its ends fillet-welded to the pipe.", rows: [["For", "Leaks, through-wall defects, cracks, internal corrosion that will continue to grow"], ["How it works", "Becomes the pressure boundary if the pipe wall fails beneath it"], ["Needs", "A qualified in-service welding procedure: flowing product cools the weld fast (hydrogen cracking risk) and thin wall can burn through"]] },
+  { label: "Composite", title: "Composite wrap", text: "Layers of glass or carbon fibre in resin applied round the pipe, with filler in the defect.", rows: [["For", "External corrosion and some dents on non-leaking pipe"], ["Strengths", "No hot work; quick; conforms to bends and fittings"], ["Limits", "Not for leaks or cracks unless specifically qualified; design must be engineered and installers trained"]] },
+  { label: "Clamp", title: "Bolted mechanical clamp", text: "A bolted steel housing with elastomer seals clamps over the damaged area.", rows: [["For", "Leaks, as an emergency or temporary repair; permanent in some designs"], ["Strengths", "Installed quickly without welding"], ["Limits", "Seal life and temperature; may later be seal-welded or replaced"]] },
+  { label: "Cut-out", title: "Cut out and replace", text: "The damaged length is removed and a pre-tested pipe section welded in.", rows: [["For", "Severe damage, buckles, extensive corrosion, cracks that cannot be otherwise repaired"], ["Strengths", "Restores the pipeline completely"], ["Limits", "Needs a shutdown and depressurised section, or hot-tap and stopple with a temporary bypass to stay in service"]] },
+  { label: "Hot tap", title: "Hot tap and stopple", text: "A fitting is welded on, a hole cut through it under pressure, and a plugging head inserted to block the line locally.", rows: [["For", "Isolating a short section for replacement while flow continues through a temporary bypass"], ["Strengths", "No shutdown of the pipeline"], ["Limits", "Specialist operation with strict in-service welding controls"]] },
+  { label: "Recoat", title: "Recoat and restore protection", text: "Where the defect is acceptable as it is, the cause is removed.", rows: [["For", "Sub-critical external corrosion"], ["How", "Clean, assess, apply repair coating, confirm cathodic protection"], ["Remember", "A repair that does not stop the corrosion mechanism only postpones the problem"]] },
+]} />
+
+## Responding to inspection results
+
+In-line inspection reports are sorted by urgency:
+
+- **Immediate:** predicted failure pressure near MAOP, metal loss over 80 %, dents with metal loss or cracks. Pressure is reduced until the feature is excavated.
+- **Scheduled:** features that will reach the limit within a defined period.
+- **Monitored:** to be compared at the next inspection.
+
+Each excavation is also a **verification dig**: the defect is measured in the ditch and compared with the tool's report, which validates (or corrects) the whole inspection.
+
+<Callout type="field">
+Before an excavation on a reported severe defect, reduce the pressure, typically to 80 % of the recent operating level. Removing the soil removes restraint, and the crew is standing next to the feature.
+</Callout>
+
+<Callout type="aramco">
+Saudi Aramco assesses and repairs pipeline defects under its pipeline repair and inspection procedures and the SAES-L series, drawing on ASME B31G, API 579 and ASME PCC-2. In-service welding and hot tapping follow dedicated company standards. Use the current company procedure to choose an approved repair for each defect type.
+</Callout>
+
+<Standards>
+
+| Reference | Requirement in brief |
+|---|---|
+| ASME B31G | Manual for determining the remaining strength of corroded pipelines: original, modified and effective-area methods. |
+| API 579-1 / ASME FFS-1 and BS 7910 | Fitness-for-service assessment, including cracks. |
+| ASME B31.4 §451.6 and B31.8 §851.4 | Disposition of defects: limits for dents, gouges and corrosion, and acceptable repair methods. |
+| ASME PCC-2 | Repair of pressure equipment and piping, including sleeves and composite wraps. |
+| API 1104 Annex B / API RP 2201 | In-service welding and hot tapping. |
+
+</Standards>
+
+<Worked title="Assessing a reported corrosion feature">
+
+**Given:** NPS 24 × 12.7 mm X65, MAOP 96 bar. ILI reports external metal loss 45 % deep and 250 mm long.
+
+**Geometry term:** L² / (D t) = 250² / (610 × 12.7) = 8.07.
+
+**Folias factor:** M = √(1 + 0.6275 × 8.07 − 0.003375 × 8.07²) = √5.84 = 2.42.
+
+**Flow stress:** 450 + 69 = 519 MPa.
+
+**Failure pressure:**
+
+$$
+P_f = \frac{2 \times 12.7}{610} \times 519 \times \frac{1 - 0.85 \times 0.45}{1 - 0.85 \times 0.45 / 2.42} = 21.6 \times \frac{0.6175}{0.842} = 15.8 \text{ MPa}
+$$
+
+**Safe pressure:** 15.8 / 1.39 = 11.4 MPa = **114 bar**.
+
+**ERF:** 96 / 114 = 0.84. Acceptable at MAOP.
+
+**Next step:** with a growth rate of, say, 0.3 mm per year, the depth passes 60 % in about six years. Schedule recoating and re-inspection well before then.
+
+</Worked>
+
+<Quiz client:visible questions={[
+  { q: "Two corrosion defects have the same depth. The longer one has:", options: ["The same failure pressure", "A lower failure pressure", "A higher failure pressure", "No effect on the pipe"], answer: 1, why: "Longer defects have a larger Folias factor: less support from surrounding full-thickness pipe." },
+  { q: "Which is the most severe form of mechanical damage?", options: ["A smooth 2 % dent on the bottom of the pipe", "A dent containing a gouge", "A scratch in the coating", "A shallow plain dent in a low-stress line"], answer: 1, why: "A gouge in a dent combines stress concentration with cracked, cold-worked material and can fail at low pressure." },
+  { q: "Which sleeve is required for a leaking defect?", options: ["Type A (ends not welded)", "Type B (ends welded, pressure-containing)", "Either", "Neither: sleeves cannot be used"], answer: 1, why: "Only a Type B sleeve, welded at its ends, can contain pressure if the pipe wall is breached." }
+]} />
